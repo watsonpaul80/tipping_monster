@@ -15,19 +15,20 @@ Automatically detect horses whose betting odds are dropping sharply (≥30%) in 
 
 4. **Detect steamers**:  
    - Identify horses where odds have dropped ≥30% compared to 08:00  
+   - Filter steamers by minimum matched volume threshold (e.g. ≥£500) to ensure market significance  
    - Attach volume data and optionally confidence tiers or form overlays  
 
 5. **Dispatch alerts to Telegram**:  
    - Format alerts with odds progression, volume, race, horse name, and optionally trainer form and confidence  
-   - Send in batches of 5 messages to avoid flooding  
+   - Send in batches of 10 messages to avoid flooding  
 
 ## Core Scripts Used
 
 | Script Name                       | Purpose                                                                                   |
-|------------------------------------|------------------------------------------------------------------------------------------|
+|----------------------------------|-------------------------------------------------------------------------------------------|
 | `fetch_betfair_sniper_odds.py`     | Fetch odds and matched volume snapshots from Betfair at specified times, save JSON files  |
 | `merge_sniper_history.py`          | Combine daily snapshots into per-horse odds progression and volume timelines              |
-| `detect_and_save_steamers.py`      | Analyze merged data, detect ≥30% odds drops, create filtered steamer JSON for dispatch    |
+| `detect_and_save_steamers.py`      | Analyze merged data, detect ≥30% odds drops with volume filter, create filtered steamer JSON for dispatch    |
 | `dispatch_snipers.py`              | Format and send sniper alerts to Telegram based on steamer JSON data                      |
 | `build_sniper_schedule.py`         | Generate daily snapshot schedule times based on race start times                          |
 | `generate_and_schedule_snipers.sh` | Create `at` jobs to run sniper pipeline at scheduled snapshot times                       |
@@ -42,7 +43,7 @@ fetch_betfair_sniper_odds.py (runs at snapshot times, saves odds+volume JSON)
 ↓  
 merge_sniper_history.py (daily merges snapshots into odds progression per horse)  
 ↓  
-detect_and_save_steamers.py (detects steamers with ≥30% drop)  
+detect_and_save_steamers.py (detects steamers with ≥30% drop and volume ≥ threshold)  
 ↓  
 dispatch_snipers.py (sends formatted alerts to Telegram)
 
@@ -74,9 +75,9 @@ tail -f logs/load_sniper_intel_$(date +%F).log
 ## 🧠 Detection Logic
 
 - Steamers are runners with a **≥30% odds drop** from the initial snapshot.
+- Only steamers with matched volume above a set threshold (default £500) are alerted.
 - Odds snapshots are taken at: **08:00**, **T-60**, **T-30**, and **T-10** mins before off time.
 - Only WIN market odds from Betfair are considered.
-- Volume matched data is also captured but currently not used in filter logic.
 
 ---
 
@@ -90,9 +91,9 @@ tail -f logs/load_sniper_intel_$(date +%F).log
 
 3. **Run Snapshot Pipeline:**  
    Each scheduled job executes:
-   - `fetch_betfair_sniper_odds.py`: grabs Betfair odds for all GB/IRE runners
+   - `fetch_betfair_sniper_odds.py`: grabs Betfair odds & volume for all GB/IRE runners
    - `merge_sniper_history.py`: creates timeline of odds per runner
-   - `detect_and_save_steamers.py`: flags drops ≥30%
+   - `detect_and_save_steamers.py`: flags drops ≥30% with volume check
    - `dispatch_snipers.py`: formats and sends Telegram alert
 
 ---
@@ -115,14 +116,14 @@ tail -f logs/load_sniper_intel_$(date +%F).log
 💰 Volume: £2,134 matched
 ```
 
-- Only 5 are sent per batch to avoid spam.
-- Steamer data includes all drops from 08:00 and any previous snapshots.
+- Alerts sent in batches of 10 messages to avoid flooding.
+- Steamer data includes all drops from 08:00 and previous snapshots.
 
 ---
 
 ## 📋 Future Improvements
 
-- Add confidence filter from ML model (e.g. only show if >25% chance)
+- Add confidence filter from ML model (e.g., only show if >25% chance)
 - Score steamers using trends, trainer/jockey form, class drop, etc.
 - Add charts or emojis to show trend intensity
 - Telegram suppression for weak steamers
