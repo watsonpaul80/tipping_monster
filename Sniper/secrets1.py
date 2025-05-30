@@ -1,0 +1,6 @@
+BF_USERNAME = "paulwatson1"
+BF_PASSWORD = "_$_h3!uh,A/R,%6"
+BF_APP_KEY = "Io0KSpM1ao195apE"
+BF_CERT_PATH = "/home/ec2-user/tipping-monster/certs/client-2048.crt"
+BF_KEY_PATH = "/home/ec2-user/tipping-monster/certs/client-2048.key"
+BF_CERT_DIR = "/home/ec2-user/tipping-monster/certs"
