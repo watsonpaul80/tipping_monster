@@ -37,7 +37,7 @@ Tipping Monster is a fully automated machine learning system that:
 | 08:10 | `generate_commentary_bedrock.py` (optional) | Creates LLM-generated commentary |
 | 08:12 | `dispatch_tips.py`           | Sends formatted tips to Telegram |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races |
-| 23:55 | `roi_tracker_advised_FIXED_v3.py` | Links tips to results and calculates profit |
+| 23:55 | `roi_tracker_advised.py` | Links tips to results and calculates profit |
 | 23:59 | `send_daily_roi_summary.py` | Telegram message with daily win %, ROI, and profit |
 
 ---
@@ -48,7 +48,7 @@ Tipping Monster is a fully automated machine learning system that:
 - `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
 - `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 - `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-- `roi_tracker_advised_FIXED_v3.py`: Matches tips with results and calculates each-way profit.
+- `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit.
 - `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 - `weekly_roi_summary.py`: Aggregates weekly tips and profits.
 - `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
@@ -192,7 +192,7 @@ An innovative feature designed to detect significant market movements and dispat
 * **🎯 Smart Mover Detection:** Identifies big Betfair price movers.
 * **⏱️ Scheduled Monitoring:** Automated cron jobs at `12:00` or `13:00` for continuous market surveillance, managed by automated schedule + `at` jobs.
 * **⚡️ Instant Alerts:** Sends tagged alerts (e.g., *"🥷 Steam Sniper: Al Ameen – 12/1 → 4/1"*) directly to Telegram.
-* **📊 Odds Snapshots:** `Workspace_betfair_odds.py` supports `--label` for capturing specific odds snapshots.
+* **📊 Odds Snapshots:** ``fetch_betfair_odds.py`` supports `--label` for capturing specific odds snapshots.
 * **⚖️ Odds Comparison:** `compare_odds_to_0800.py` is built and ready for comparing current odds to the 08:00 baseline.
 * **📤 Sniper Dispatch:** `dispatch_snipers.py` is built and triggers Telegram alerts.
 * **🔄 Job Management:** `load_sniper_jobs.sh` loads each snapshot into the `at` queue for scheduled execution.
@@ -226,7 +226,7 @@ Only tips with odds ≥ 5.0 are eligible for **each-way profit** to avoid false 
 
 | Script | Purpose |
 |--------|---------|
-| `roi_tracker_advised_FIXED_v3.py` | Main daily tracker – filters, calculates profit, generates tip results CSV |
+| `roi_tracker_advised.py` | Main daily tracker – filters, calculates profit, generates tip results CSV |
 | `weekly_roi_summary.py` | Rolls up recent tips into ISO week summaries for weekly ROI |
 | `send_daily_roi_summary.py` | Posts a daily summary to Telegram with ROI and profit |
 | `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip |
@@ -263,7 +263,7 @@ Only tips with odds ≥ 5.0 are eligible for **each-way profit** to avoid false 
 | :------------- | :------------------------------- | :------------------------------------------------ |
 | `05:01`        | `build_sniper_schedule.py`       | Generates the daily sniper schedule.              |
 | `05:02`        | `load_sniper_jobs.sh`            | Loads all sniper odds-check jobs into the `at` queue. |
-| `08:00`        | `Workspace_betfair_odds.py`          | Captures the **baseline odds snapshot** (labeled `0800`). |
+| `08:00`        | ``fetch_betfair_odds.py``          | Captures the **baseline odds snapshot** (labeled `0800`). |
 | `12:00+`       | `evaluate_steamers.py`           | Compares current odds to the 08:00 baseline to detect market movers. |
 | `Rolling`      | `at` triggers sniper jobs        | Fetches and compares odds in real-time, then dispatches alerts to Telegram. |
 | `23:40`        | `evaluate_steamers.py`           | Calculates ROI for sniper picks if race results are available. |

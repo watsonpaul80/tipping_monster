@@ -1,131 +1,106 @@
-# 🔫 Steam Sniper Mode Overview
+# 🔫 Steam Sniper Mode Overview (Updated – 31 May 2025)
 
-## Purpose
-Automatically detect horses whose betting odds are dropping sharply (≥30%) in the run-up to a race, even if they weren’t tipped earlier — then send high-quality, context-rich alerts to Telegram subscribers.
-
-## How It Works — Step by Step
-
-1. **Fetch odds snapshots** at key times:  
-   - Baseline at 08:00  
-   - Then at T-60, T-30, T-10 minutes before each race start  
-
-2. **Collect volume matched** on Betfair alongside odds, to gauge market interest  
-
-3. **Merge snapshots** for each horse to create a timeline of odds progression and volume (e.g., 28/1 → 18/1 → 12/1 → 8/1)  
-
-4. **Detect steamers**:  
-   - Identify horses where odds have dropped ≥30% compared to 08:00  
-   - Filter steamers by minimum matched volume threshold (e.g. ≥£500) to ensure market significance  
-   - Attach volume data and optionally confidence tiers or form overlays  
-
-5. **Dispatch alerts to Telegram**:  
-   - Format alerts with odds progression, volume, race, horse name, and optionally trainer form and confidence  
-   - Send in batches of 10 messages to avoid flooding  
-
-## Core Scripts Used
-
-| Script Name                       | Purpose                                                                                   |
-|----------------------------------|-------------------------------------------------------------------------------------------|
-| `fetch_betfair_sniper_odds.py`     | Fetch odds and matched volume snapshots from Betfair at specified times, save JSON files  |
-| `merge_sniper_history.py`          | Combine daily snapshots into per-horse odds progression and volume timelines              |
-| `detect_and_save_steamers.py`      | Analyze merged data, detect ≥30% odds drops with volume filter, create filtered steamer JSON for dispatch    |
-| `dispatch_snipers.py`              | Format and send sniper alerts to Telegram based on steamer JSON data                      |
-| `build_sniper_schedule.py`         | Generate daily snapshot schedule times based on race start times                          |
-| `generate_and_schedule_snipers.sh` | Create `at` jobs to run sniper pipeline at scheduled snapshot times                       |
-| `run_sniper_pipeline.sh`           | Master shell script to run fetch → merge → detect → dispatch for a given snapshot label   |
-| `safecron.sh`                      | Wrapper for cron jobs with logging and Telegram failure alerts                            |
-
-## Data Flow Summary
-
-Racecards JSONL (daily batch) → build_sniper_schedule.py → schedule snapshot times  
-↓  
-fetch_betfair_sniper_odds.py (runs at snapshot times, saves odds+volume JSON)  
-↓  
-merge_sniper_history.py (daily merges snapshots into odds progression per horse)  
-↓  
-detect_and_save_steamers.py (detects steamers with ≥30% drop and volume ≥ threshold)  
-↓  
-dispatch_snipers.py (sends formatted alerts to Telegram)
-
-## Useful Manual Commands
-
-```bash
-# Run full sniper pipeline for a snapshot label
-bash run_sniper_pipeline.sh 1420
-
-# Build daily sniper snapshot schedule
-python build_sniper_schedule.py
-
-# Schedule sniper jobs with at
-bash generate_and_schedule_snipers.sh
-
-# Detect steamers manually
-python detect_and_save_steamers.py --date 2025-05-28 --label 1420
-
-# Dispatch sniper alerts
-python dispatch_snipers.py --source sniper_data/steamers_2025-05-28_1420.json
-
-# Monitor logs
-tail -f logs/build_sniper_intel_$(date +%F).log
-tail -f logs/load_sniper_intel_$(date +%F).log
-```
+## 🎯 Purpose
+Automatically detect horses whose **Betfair odds have dropped ≥30%** during the day — even if they weren’t tipped — and **send sharp, clean alerts** to Telegram subscribers as a signal of major market movement ("Steamers").
 
 ---
 
-## 🧠 Detection Logic
+## ⚙️ How It Works — Step by Step
 
-- Steamers are runners with a **≥30% odds drop** from the initial snapshot.
-- Only steamers with matched volume above a set threshold (default £500) are alerted.
-- Odds snapshots are taken at: **08:00**, **T-60**, **T-30**, and **T-10** mins before off time.
-- Only WIN market odds from Betfair are considered.
+1. **Fetch odds snapshots** at multiple times:
+   - First snapshot is **08:00**
+   - Then snapshot at **T-60, T-30, T-10 mins** before race start
+
+2. **Save odds snapshots** as JSON files in `steam_sniper_intel/sniper_data/`, tagged by label (e.g. `1505` for 15:05)
+
+3. **Detect steamers:**
+   - Compare most recent snapshot to earliest (usually 08:00)
+   - Flag any runner whose price has dropped **≥30%**
+   - ✅ *No longer requires volume thresholds due to Betfair API limits*
+
+4. **Save results** to `steamers_YYYY-MM-DD_HHMM.json`
+
+5. **Dispatch to Telegram:**
+   - Format odds drops (e.g., 18/1 → 12/1 → 8/1)
+   - Send alert in a human-readable batch of up to 10 steamers per message
+
+---
+
+## 📜 Core Scripts Used
+
+| Script | Purpose |
+|--------|---------|
+| `fetch_betfair_sniper_odds.py` | Fetch odds snapshots for all runners in GB/IRE WIN markets |
+| `compare_sniper_odds.py` | Detect steamers by comparing current snapshot to the earliest |
+| `dispatch_snipers.py` | Format and send steamer alerts to Telegram |
+| `build_sniper_schedule.py` | Builds the list of snapshot times per race |
+| `generate_and_schedule_snipers.sh` | Schedules all fetch jobs using `at` commands |
+| `run_sniper_pipeline.sh` | Runs fetch → detect → dispatch in one step |
+| `safecron.sh` | Runs cron jobs safely with logging and Telegram error alerts |
 
 ---
 
 ## 🔁 Workflow Summary
 
-1. **Build the Race Schedule:**  
-   `build_sniper_schedule.py` pulls all races for the day with times.
+1. `build_sniper_schedule.py`  
+   ⮕ Generates snapshot times (e.g. `0930`, `1005`, `1020`)
 
-2. **Generate Jobs to Fetch Odds:**  
-   `generate_and_schedule_snipers.sh` uses the race times to create `at` jobs for each snapshot point (T-60, T-30, T-10).
+2. `generate_and_schedule_snipers.sh`  
+   ⮕ Schedules `run_sniper_pipeline.sh LABEL` for each snapshot label
 
-3. **Run Snapshot Pipeline:**  
-   Each scheduled job executes:
-   - `fetch_betfair_sniper_odds.py`: grabs Betfair odds & volume for all GB/IRE runners
-   - `merge_sniper_history.py`: creates timeline of odds per runner
-   - `detect_and_save_steamers.py`: flags drops ≥30% with volume check
-   - `dispatch_snipers.py`: formats and sends Telegram alert
-
----
-
-## 📂 File Output
-
-- `steam_sniper_intel/sniper_data/` — odds snapshots (labelled by time)
-- `steam_sniper_intel/merged_*.json` — timeline of odds movement
-- `steam_sniper_intel/steamers_*.json` — confirmed steamers with metadata
+3. `run_sniper_pipeline.sh 1505`  
+   ⮕ Runs:
+   - `fetch_betfair_sniper_odds.py` → saves `1505.json`
+   - `compare_sniper_odds.py` → compares to 08:00 and saves `steamers_1505.json`
+   - `dispatch_snipers.py` → sends to Telegram
 
 ---
 
-## 📨 Telegram Output Format
+## 📂 File Structure & Output
 
-```
-🔥 Steam Sniper: Market Intelligence
-📍 14:20 York
-🐎 Al Ameen
-🔻 Odds Drop: 20/1 → 16/1 → 10/1 → 6/1
-💰 Volume: £2,134 matched
-```
-
-- Alerts sent in batches of 10 messages to avoid flooding.
-- Steamer data includes all drops from 08:00 and previous snapshots.
+| Folder / File | Description |
+|---------------|------------|
+| `steam_sniper_intel/sniper_data/` | Snapshot odds files (`HHMM.json`) |
+| `steam_sniper_intel/sniper_data/steamers_*.json` | Final output — list of confirmed steamers |
+| `sniper_schedule.txt` | Times like `0930`, `0950`, etc. |
 
 ---
 
-## 📋 Future Improvements
+## ✉️ Telegram Alert Format
 
-- Add confidence filter from ML model (e.g., only show if >25% chance)
-- Score steamers using trends, trainer/jockey form, class drop, etc.
-- Add charts or emojis to show trend intensity
-- Telegram suppression for weak steamers
+🔥 **Steam Sniper Alert**  
+📍 **14:20 Chester**  
+🐎 **William Walton**  
+🔻 **Odds Drop: 20/1 → 14/1 → 8/1**  
+
+- No volume attached anymore  
+- If ML scoring added later, confidence tiers can be included  
 
 ---
+
+## 🛠️ Useful Manual Commands
+
+```bash
+# Run pipeline for specific label (e.g. 1505)
+bash run_sniper_pipeline.sh 1505
+
+# Compare odds manually
+python compare_sniper_odds.py --snapshot steam_sniper_intel/sniper_data/2025-05-31_1505.json --label 1505
+
+# Send steamer alerts manually
+python dispatch_snipers.py --source steam_sniper_intel/sniper_data/steamers_2025-05-31_1505.json
+
+# Build today’s snapshot schedule
+python build_sniper_schedule.py
+
+# Schedule the snapshots for today
+bash generate_and_schedule_snipers.sh
+🧠 Detection Logic
+Steamer = any runner whose odds dropped ≥30%
+
+Based on comparing current odds to earliest snapshot
+
+Volume was removed (Betfair doesn't support it in bulk API)
+
+🚀 Improvements on the Horizon
+🧠 Add ML scoring for steamer confidence 📉 Display odds history progression with emojis/arrows 📊 Detect drifters as well (odds rising) 🕐 Use snapshots like 1 hour before, 30 mins before, 10 mins before

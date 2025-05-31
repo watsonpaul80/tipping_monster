@@ -1,39 +1,43 @@
-# TIPPING MONSTER TODO LIST
+## 🔫 Steam Sniper – May 31 Fixes & Backlog
 
-## Completed ✅
-- [x] Daily/weekly ROI tracking based on advised stakes  
-- [x] ROI calculation documentation  
-- [x] Safecron Telegram failure alerts integration  
-- [x] Sniper pipeline scripts: fetch, merge, detect, dispatch  
-- [x] Sniper automation schedule build and load  
-- [x] Volume collection from Betfair odds snapshots  
-- [x] Batch dispatch of sniper alerts to Telegram (updated to 10 per batch)  
+### ✅ Completed Fixes (May 31)
+- Fixed issue where sniper jobs weren’t triggering due to empty schedule.
+- Identified root cause: `build_sniper_schedule.py` ran too early (09:15) before racecards were fully available.
+- Cron adjusted to:
+  - `30 9 * * *` → `build_sniper_schedule.py`
+  - `35 9 * * *` → `generate_and_schedule_snipers.sh`
+- Confirmed racecard scraping completes by then in most cases.
+- Race time parser patched to support both 12-hour (`3:15`) and 24-hour (`15:15`) formats.
+- Manually validated that sniper jobs now schedule and dispatch correctly (e.g. 14:45, 15:05).
+- Confirmed `wait_for_racefile()` already ensures the file exists before running.
 
-## Current Backlog
-- [ ] Odds progression tracking across snapshots with visualization  
-- [ ] Implement confidence tiers for steamers (High, Moderate, Low) using volume, odds drop, and form data  
-- [ ] Overlay trainer & jockey form stats into sniper alerts  
-- [ ] Incorporate course/distance/going profile checks for steamers  
-- [ ] Train and integrate ML classifier to score steamers’ win likelihood  
-- [ ] Use ML confidence scores to suppress low-quality steamers  
-- [ ] Staking simulation based on confidence tiers for sniper bets  
-- [ ] Expand Telegram Market Intelligence reports with enhanced context and formatting  
-- [ ] Develop visual ROI dashboards and tag-based filtering (NAPs, trainer, class, etc.)  
-- [ ] Monetisation tiers and private premium Telegram channels setup  
-- [ ] Add LLM-generated commentary explaining picks and confidence levels  
-- [ ] Implement Telegram user commands (e.g., /roi, /stats, /nap)  
-- [ ] Build self-training loops using tip outcomes to improve models  
-- [ ] Automate webhook actions to manage expired subscribers  
-- [ ] Create intro walkthrough videos and marketing collateral  
+---
 
-## Infrastructure & Stability
-- [ ] Full README and detailed documentation for all sniper-related scripts and automation  
-- [ ] Clean deprecated and unused sniper scripts and scheduling files  
-- [ ] Add automated verification to ensure snapshot files exist before running compare jobs  
-- [ ] Enhance error messaging and alerting for missing data or snapshot issues  
-- [ ] Implement success Telegram alerts for critical sniper pipeline steps  
+### 🔜 Backlog – Sniper Improvements
 
-## Miscellaneous
-- [ ] Add better error recovery and retries in Betfair API calls  
-- [ ] Add more comprehensive logging and monitoring dashboards  
-- [ ] Optimize pipeline execution time and resource usage  
+#### 🛠️ Robustness & Monitoring
+- [ ] Retry logic if no valid race times found after file exists (e.g. retry every 10s for 2 mins).
+- [ ] Send Telegram alert if schedule is empty after building.
+- [ ] Save daily schedule log to `logs/sniper_schedule_YYYY-MM-DD.log` for audit/debug.
+
+#### 📈 ROI + Outcome Feedback
+- [ ] Track win %, place %, and ROI of steamers per snapshot/day/week.
+- [ ] Log results to `logs/sniper_results_YYYY-MM-DD.csv` or similar.
+- [ ] Integrate sniper ROI into `weekly_roi_summary.py` for Telegram reporting.
+
+#### 💬 Telegram Message Polish
+- [ ] Show odds progression in alert (e.g. `20/1 → 12/1 → 7/1`).
+- [ ] Include drop %, matched volume, and market trend.
+- [ ] Add "Steam Confidence Tier" label:
+  - 🟢 High (volume + form + big drop)
+  - 🟡 Moderate (price only)
+  - 🔴 Low (low volume, weak context)
+- [ ] Optional: Add LLM commentary to explain the steamer pick.
+
+#### 🤖 ML-Powered Steam Detection (Phase 2)
+- [ ] Log historical steamers to `steamers_profile.csv` with result, odds movement, volume, tags.
+- [ ] Train classifier to predict win chance based on steamer profile.
+- [ ] Only dispatch steamers with predicted win chance > X% (e.g. 25%+)
+- [ ] Add predicted win chance to Telegram alerts for elite filtering.
+
+---
