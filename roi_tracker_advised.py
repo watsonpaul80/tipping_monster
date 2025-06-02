@@ -57,12 +57,14 @@ def calculate_profit(row):
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
 
-def main(date_str, mode, min_conf, send_to_telegram, use_sent):
+def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False):
     date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     date_display = date_obj.strftime("%Y-%m-%d")
 
     if use_sent:
-        input_file = f"logs/sent_tips_{date_str}.jsonl"
+        input_file = f"logs/sent_tips_{date_str}_realistic.jsonl"
+        if not os.path.exists(input_file):
+            input_file = f"logs/sent_tips_{date_str}.jsonl"
     else:
         input_file = f"predictions/{date_str}/tips_with_odds.jsonl"
 
@@ -85,7 +87,10 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent):
                 tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
                 tip["Horse"] = normalize_horse_name(tip.get("name", "Unknown"))
                 tip["Confidence"] = tip.get("confidence", 0.0)
-                tip["Odds"] = tip.get("bf_sp", tip.get("odds", 0.0))
+                bf_sp = tip.get("bf_sp", tip.get("odds", 0.0))
+                realistic = tip.get("realistic_odds", bf_sp)
+                tip["Odds"] = realistic
+                tip["odds_delta"] = round(realistic - bf_sp, 2)
                 tip["Date"] = date_display
                 tip["Mode"] = mode
                 tip["Stake"] = 1.0
@@ -135,18 +140,24 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent):
     merged_df["Profit"] = merged_df.apply(lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row), axis=1)
 
     num_nrs = (merged_df["Position"] == "NR").sum()
+    wins = (merged_df["Position"] == "1").sum()
+    places = merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
+    losses = len(merged_df) - wins - places - num_nrs
 
     summary = {
         "Date": date_display,
         "Tips": len(merged_df),
-        "Wins": (merged_df["Position"] == "1").sum(),
-        "Places": merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum(),
+        "Wins": wins,
+        "Places": places,
         "NRs": num_nrs,
         "Stake": merged_df["Stake"].sum(),
         "Profit": round(merged_df["Profit"].sum(), 2),
     }
 
     roi = (summary["Profit"] / summary["Stake"]) * 100 if summary["Stake"] > 0 else 0.0
+    strike_rate = (wins / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
+    place_rate = (places / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
+
     result_line = (
         f"{summary['Date']}   Tips: {summary['Tips']}    Wins: {summary['Wins']}   "
         f"Places: {summary['Places']}   NRs: {summary['NRs']}   Stake: {summary['Stake']:.2f} "
@@ -154,21 +165,21 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent):
     )
     print(result_line)
 
+    if show:
+        return
+
     output_path = f"logs/tips_results_{date_str}_{mode}.csv"
-    merged_df[["Date", "Race Time", "Course", "Horse", "Odds", "Confidence", "Position", "Mode", "Stake", "Profit"]].to_csv(output_path, index=False)
+    merged_df[["Date", "Race Time", "Course", "Horse", "Odds", "odds_delta", "Confidence", "Position", "Mode", "Stake", "Profit"]].to_csv(output_path, index=False)
     print(f"✅ Saved: {output_path}")
 
     if send_to_telegram:
-        message = (
-            f"📊 *{date_display} ROI Summary*\n"
-            f"🏇 *Tips:* {summary['Tips']} | 🥇 *Winners:* {summary['Wins']} | 🥈 *Places:* {summary['Places']}"
-        )
-        if summary["NRs"] > 0:
-            message += f" | 🚫 *NRs:* {summary['NRs']}"
-        message += (
-            f"\n💸 *Stake:* {summary['Stake']} pts | *Profit:* {summary['Profit']} pts\n"
-            f"📈 *ROI:* {roi:.2f}%"
-        )
+        message = f"""📊 *Tipping Monster Daily ROI – {date_display} ({mode.capitalize()})*
+
+🏇 Tips: {summary['Tips']}  |  🟢 {wins}W  |  🟡 {places}P  |  🔴 {losses}L
+🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%
+💰 Profit: {summary['Profit']:+.2f} pts
+📈 ROI: {roi:.2f}%
+🪙 Staked: {summary['Stake']:.2f} pts"""
         send_telegram_message(message)
 
 if __name__ == "__main__":
@@ -178,7 +189,8 @@ if __name__ == "__main__":
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--use_sent", action="store_true", help="Use sent tips file instead of predictions")
+    parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
     args = parser.parse_args()
 
-    main(args.date, args.mode, args.min_conf, args.telegram, args.use_sent)
+    main(args.date, args.mode, args.min_conf, args.telegram, args.use_sent, args.show)
 

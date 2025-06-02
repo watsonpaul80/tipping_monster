@@ -1,3 +1,4 @@
+
 import os
 import json
 import time
@@ -70,7 +71,7 @@ def main():
             try:
                 price_data = trading.betting.list_market_book(
                     market_ids=batch,
-                    price_projection=filters.price_projection(price_data=['EX_BEST_OFFERS'])
+                    price_projection=filters.price_projection(price_data=['EX_ALL_OFFERS'])
                 )
                 all_price_data.extend(price_data)
                 time.sleep(0.5)
@@ -84,6 +85,7 @@ def main():
                 race_time = mkt.market_start_time.strftime("%H:%M")
                 course = mkt.event.venue if mkt.event and mkt.event.venue else "Unknown"
                 race_id = f"{race_time} {course}"
+                total_market_volume = round(book.total_matched, 2)
 
                 for runner, runner_book in zip(mkt.runners, book.runners):
                     prices = runner_book.ex.available_to_back
@@ -95,8 +97,10 @@ def main():
                         "horse": runner.runner_name,
                         "price": round(best_price, 2) if best_price else None,
                         "volume": volume,
+                        "total_market_volume": total_market_volume,
                         "selection_id": runner.selection_id,
                         "market_id": mkt.market_id,
+                        "is_fav": False  # optional placeholder
                     })
             except Exception as e:
                 print(f"[!] Error processing market {mkt.market_id}: {e}")
@@ -112,4 +116,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

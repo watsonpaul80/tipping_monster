@@ -1,106 +1,200 @@
----
+# 🧠 TIPPING MONSTER – MASTER SYSTEM OVERVIEW
 
-# 🐎 TIPPING MONSTER MASTER BLUEPRINT (v6+)
-
-## A Comprehensive System Overview
-
-This document provides a detailed look into the Tipping Monster system, outlining its live production features, robust infrastructure, completed functionalities, and core logic, including the innovative Steam Sniper mode.
+This document outlines the Tipping Monster project including core automation, tip generation logic, product layers, and roadmap planning. It reflects the current v6 system along with v7 enhancements and the newly defined v8+ strategic expansion.
 
 ---
 
-# 🧠 TIPPING MONSTER — CORE SYSTEM OVERVIEW (SPRUCED)
+## 🎯 CORE FEATURES (v6 COMPLETE)
 
-This document explains the logic, flow, scripts, and automation of the **core ML tipping engine** behind Tipping Monster. It handles: racecards, inference, Telegram tips, ROI tracking, and summary stats.
+These core functionalities are currently **deployed and operating seamlessly** within the v6 system.
+
+* ✅ Automated pipeline (racecard → tips → results → ROI)
+* ✅ Confidence-based XGBoost ML model for tip generation
+* ✅ Odds integration (Betfair snapshot)
+* ✅ Tagging (e.g. Class Drop, In Form)
+* ✅ LLM commentary generation (optional)
+* ✅ Realistic odds injection
+* ✅ Telegram dispatch logic with rich formatting and efficient batching
+* ✅ ROI tracking (level + advised)
+* ✅ Confidence calibration logger & detailed confidence band ROI logging
+* ✅ Weekly and daily ROI summaries
+* ✅ Sent vs unsent tip separation
+* ✅ Full logging + S3 backup
+* ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
+* ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
+* ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
+* ✅ Smart Class Tracking: Real-time class-drop tracking via `last_class`
+* ✅ Model Management: Latest model detection, S3 upload, and prediction output streamlined
+* ✅ Data Preparation: Flattened JSONL format for optimized inference input
+* ✅ Dynamic Staking: A sophisticated confidence-based staking model
+* ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
+* ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
+* ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
+* ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
+* ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
 ---
 
-## 🏇 WHAT THE SYSTEM DOES
+## 🧩 TIP CATEGORIES (DEFINED IN `TIPPING_MONSTER_PRODUCTS.md`)
 
-Tipping Monster is a fully automated machine learning system that:
-- Pulls GB/IRE racecards via rpscrape
-- Predicts the most likely winner in each race
-- Formats and delivers tips to Telegram
-- Tracks win/place results and calculates daily ROI
-- Logs confidence bands and weekly summaries
+The system defines 8 core product layers:
+
+1.  🧠 Monster Tips (Main)
+2.  📋 Monster Tips (All Races)
+3.  💸 Value Bets
+4.  📉 Steamers
+5.  🥈 Each-Way Specials
+6.  🔗 Doubles & Trebles
+7.  ⚠️ Danger Favs
+8.  ❌ Monster Lay
 
 ---
 
-## 🔄 DAILY WORKFLOW (5 AM to Midnight)
+## 🔁 AUTOMATION PIPELINE (Daily Workflow 5 AM to Midnight)
 
-| Time  | Script                        | What it does |
-|-------|-------------------------------|--------------|
-| 05:00 | `daily_upload_racecards.sh`  | Pulls today’s racecards using `rpscrape` |
-| 05:06 | `daily_flatten.sh`           | Flattens racecards to JSONL format for ML input |
-| 08:00 | `fetch_betfair_odds.py`      | Grabs Betfair odds snapshot |
-| 08:05 | `run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race |
-| 08:08 | `merge_odds_into_tips.py`    | Adds odds to predicted tips |
-| 08:10 | `generate_commentary_bedrock.py` (optional) | Creates LLM-generated commentary |
-| 08:12 | `dispatch_tips.py`           | Sends formatted tips to Telegram |
-| 23:30 | `rpscrape` (results cron)    | Gets results for today’s races |
-| 23:55 | `roi_tracker_advised.py` | Links tips to results and calculates profit |
-| 23:59 | `send_daily_roi_summary.py` | Telegram message with daily win %, ROI, and profit |
+| Time  | Script                        | Purpose                                                    |
+|-------|-------------------------------|------------------------------------------------------------|
+| 05:00 | `daily_upload_racecards.sh`  | Pulls today’s racecards using `rpscrape`                 |
+| 05:06 | `daily_flatten.sh`           | Flattens racecards to JSONL format for ML input       |
+| 08:00 | `fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
+| 08:05 | `run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race             |
+| 08:08 | `merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
+| 08:10 | `generate_commentary_bedrock.py` (optional) | Creates LLM-generated commentary                 |
+| 08:12 | `dispatch_tips.py`           | Sends formatted tips to Telegram                       |
+| 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
+| 23:55 | `roi_tracker_advised.py`     | Links tips to results and calculates profit            |
+| 23:59 | `send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
 
 ---
 
 ## ⚙️ SCRIPT EXPLANATIONS
 
-- `train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
-- `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
-- `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
-- `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-- `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit.
-- `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
-- `weekly_roi_summary.py`: Aggregates weekly tips and profits.
-- `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
+* `train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
+* `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
+* `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
+* `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
+* `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
+* `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
+* `weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
+* `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
+* `generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
+* `send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
 
 ---
 
-## 💸 ROI TRACKING LOGIC
+## 📈 PERFORMANCE TRACKING & ROI – HOW IT WORKS
 
-- ROI is tracked per confidence level and overall
-- Stakes:
-  - Singles: 1pt Win (or 0.5pt EW for longshots)
-- Place terms:
-  - <5 runners: Win Only
-  - 5–7: 2 places @ 1/4 odds
-  - 8+: 3 places @ 1/5 odds (or 3 places @ 1/4 for 12–15 runner handicaps, 4 @ 1/4 for 16+)
+Tipping Monster tracks daily and weekly performance using a **point-based ROI system**.
+
+### 💡 Overview
+
+* Every day, tip outcomes are compared with **Betfair SP odds**. (Note: Also uses best realistic odds from snapshots)
+* ROI is calculated in both:
+    * **Level mode** (1pt win/each-way per tip)
+    * **Advised mode** (confidence-weighted staking from the model)
+* The system tracks: Tips count, Winners, Places (for each-way logic), Profit in points, ROI %
+* Only tips with odds ≥ 5.0 are eligible for **each-way profit** to avoid false positives on short-odds places.
+* Supports each-way place terms.
+* Confidence bands logged for ROI per bin.
+* Weekly summaries in ISO format.
+* `monster_confidence_per_day_with_roi.csv` logs band stats.
+
+### Stakes and Place Terms from ROI Tracking Logic
+* Stakes:
+    * Singles: 1pt Win (or 0.5pt EW for longshots)
+* Place terms:
+    * <5 runners: Win Only
+    * 5–7: 2 places @ 1/4 odds
+    * 8+: 3 places @ 1/5 odds (or 3 places @ 1/4 for 12–15 runner handicaps, 4 @ 1/4 for 16+)
+
+### 🛠️ Scripts Involved
+
+| Script                                      | Purpose                                                                         |
+|---------------------------------------------|---------------------------------------------------------------------------------|
+| `roi_tracker_advised.py`                    | Main daily tracker – filters, calculates profit, generates tip results CSV      |
+| `weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
+| `send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
+| `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
+| `logs/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
+| `logs/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
+
+---
+
+## 📈 ROI Pipeline – How It Works (Full Flow)
+
+### 🧠 Purpose
+Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and **true tip delivery logs**, ensuring accurate Telegram updates and subscriber trust.
+
+---
+
+### 🔄 Flow Summary
+
+| Step | Time | Script | What It Does |
+|------|------|--------|--------------|
+| 1 | 22:50 | `extract_best_realistic_odds.py` | Injects best realistic odds into tip records from latest snapshot before race |
+| 2 | 22:51 | `roi_tracker_advised.py` (x2) | Generates `tips_results_DATE.csv` files for both `--mode advised` and `--mode level` |
+| 3 | 22:52 | `send_daily_roi_summary.py` | Sends formatted daily ROI summary to Telegram |
+| 4 | Sunday 23:58 | `weekly_roi_summary.py --telegram` | Sends full weekly ROI breakdown to Telegram |
+
+---
+
+### 🗂️ Files Used & Created
+
+| File | Role |
+|------|------|
+| `logs/sent_tips_DATE.jsonl` | Tips that were actually sent |
+| `odds_snapshots/DATE_HHMM.json` | Source for realistic odds |
+| `logs/sent_tips_DATE_realistic.jsonl` | Tips with updated odds injected |
+| `logs/tips_results_DATE_[level\|advised].csv` | Main per-day ROI breakdown |
+| `logs/roi_telegram_DATE.log` | Output of Telegram ROI summary |
+| `logs/weekly_roi_summary.txt` | Human-friendly weekly Telegram output |
+| `logs/monster_confidence_per_day_with_roi.csv` | Confidence bin ROI stats for analysis |
+
+---
+
+### 🔧 Commands
+
+Run manually:
+```bash
+# Daily ROI pipeline (default date = today)
+bash run_roi_pipeline.sh
+
+# Weekly summary (current ISO week)
+python weekly_roi_summary.py --week $(date +%G-W%V) --telegram
+```
+
+Automated by cron:
+```cron
+# 📊 ROI Pipeline (Realistic Odds → ROI → Telegram)
+50 22 * * * bash safecron.sh roi_pipeline /bin/bash run_roi_pipeline.sh
+
+# 📤 Weekly ROI Summary to Telegram
+58 23 * * 0 bash safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
+```
+
+---
+
+✅ **Status**  
+All components live and working as intended:
+
+✔️ Realistic odds now injected and used for ROI  
+✔️ Daily tips filtered by sent tips file  
+✔️ Advised + Level tracked separately  
+✔️ Telegram summary sent nightly
 
 ---
 
 ## 📡 TELEGRAM OUTPUT
 
-- Channel: `-1002580022335`
-- Tips sent in morning (by 08:15)
-- ROI sent at 23:59
-- Weekly summary sent Saturday night
+* Channel: `-1002580022335` (Successfully migrated)
+* Tips sent in morning (by 08:15)
+* ROI sent at 23:59
+* Weekly summary sent Saturday night
 
 ---
 
-## 🔐 FILE STRUCTURE
-
-- `predictions/YYYY-MM-DD/` → holds `tips_with_odds.jsonl` and summaries
-- `logs/monster_confidence_per_day_with_roi.csv` → stores per-band stats
-- `logs/tips_results_YYYY-MM-DD.csv` → daily ROI output
-
----
-
-## ✅ Live Features in Production (v6)
-
-These core functionalities are currently **deployed and operating seamlessly** within your v6 system, delivering daily value.
-
-* **Extensive Data Coverage:** Full GB/IRE Flat & Jumps training data for comprehensive insights.
-* **Automated Data Ingestion:** Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
-* **Continuous Learning:** Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`) ensures adaptive performance.
-* **Smart Class Tracking:** Real-time class-drop tracking via `last_class` for identifying value.
-* **Dual ROI Tracking:** Daily ROI tracking for both level and advised stakes provides a holistic view.
-* **Confidence Analysis:** Detailed confidence band ROI logging and analysis for strategy refinement.
-* **AI-Powered Commentary:** Automated commentary and tagging using advanced model features.
-* **Full Automation:** Auto-cron for daily training and inference cycles.
-* **Model Management:** Latest model detection, S3 upload, and prediction output streamlined.
-
----
-
-## ⚙️ Infrastructure & Core Automation
+## ⚙️ INFRASTRUCTURE & CORE AUTOMATION
 
 The foundational elements and automated processes that power Tipping Monster are **robustly in place and fully operational**.
 
@@ -126,229 +220,104 @@ The foundational elements and automated processes that power Tipping Monster are
 
 ---
 
-## ✨ Completed Tasks & Features
+## 🚧 PLANNED ENHANCEMENTS
 
-These features represent significant milestones, having been **fully implemented, tested, and marked as complete**.
+### 🔜 v7 Features
+* SHAP-based tip explanations (Top 5 feature impact per tip in .md + Telegram)
+* Confidence band filtering (Activate suppression logic based on band ROI performance)
+* Premium tip tagging logic (Tag top 3 per day as Premium Tips)
+* Dashboard enhancements (Visual dashboards - Streamlit / HTML)
+* Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
+* Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
+* Parallel model comparison (v6 vs v7)
+* Drawdown tracking in ROI logs
 
-* **ML Tip Generation:** Powered by XGBoost, generating intelligent tips from racecard data.
-* **Data Preparation:** Flattened JSONL format for optimized inference input.
-* **Odds Integration:** Seamless integration of Betfair odds snapshots.
-* **Dynamic Staking:** A sophisticated confidence-based staking model for optimized betting.
-* **Market Dynamics:** Advanced market mover & odds drift detection capabilities.
-* **Telegram Dispatch:** Robust Telegram tip dispatch with rich formatting and efficient batching.
-* **ROI Data Persistence:** ROI logging to `monster_confidence_per_day_with_roi.csv` for historical analysis.
-* **Each-Way Profit Logic:** Accurate Each-Way profit calculation based on fluctuating odds.
-* **Financial Tracking:** Comprehensive bankroll tracker with detailed CSV logs.
-* **Telegram Channel Migration:** Successful migration to the new Telegram channel (ID: `-1002580022335`).
-* **Full Automation:** All critical processes fully automated via cron jobs.
-* **Tip Summaries:** Automated creation of `tips_summary.txt` files for quick overview.
-* **Telegram ROI Summaries:** Automated daily ROI summaries sent via `send_roi_summary.py`.
-* **Matching Accuracy:** Enhanced fuzzy horse name matching and time alignment for precise result linking.
-* **Development Log:** All tracked tasks and changes logged in `TIPPING_MONSTER_TASKS.md`.
-
-## 📣 Auto-Tweeting Tips to Twitter (monstertweeter module)
-
-The `monstertweeter/auto_tweet_tips.py` script publishes all **daily Tipping Monster selections** to Twitter (X) as a thread. It runs automatically each morning (08:15 via cron) **after tips have been dispatched** to Telegram.
-
-This system increases transparency and reach by making the Monster's free tips publicly visible on social media — without revealing paid content such as Sniper alerts.
-
-### ✅ What It Does
-- Posts a Twitter thread of all selections from `tips_with_odds.jsonl`
-- Highlights the **NAP** (highest-confidence selection)
-- Includes **yesterday’s ROI** from `logs/tips_results_YYYY-MM-DD_advised.csv`
-- Excludes Sniper-only tips and anything under the public tipping threshold (e.g. confidence < 0.80)
-- Branded with hashtags like `#TippingMonster` for growth and visibility
+### 🔭 v8+ Expansion (Strategic)
+* Trainer intent tracker
+* Drift watcher
+* Telegram replay builder
+* Wildcard tips
+* Self-training feedback loop
+* Hall of Fame
+* Tip memory tracking
+* /roi and /nap bot commands (Also /stats)
+* Commentary fine-tuning via GPT
+* Telegram poll buttons
+* Stake simulation modes
+* Place-focused model (predict 1st–3rd)
+* Confidence regression model (predict prob, not binary)
+* ROI-based calibration (not just accuracy)
+* Penalise stale horses and poor form
+* Weekly ROI line chart (matplotlib) to logs
+* Monetisation hooks (Stripe, Patreon, etc.)
 
 ---
 
-## 🧠 Auto-Tweet Fallback Logic (Planned)
+## 📁 FOLDER STRUCTURE
 
-### Problem
-If **no tips meet the 0.80 confidence threshold**, the dispatch script doesn’t create `tips_with_odds.jsonl`, and no tweet is sent — even though tips may have been delivered or manually posted.
-
-### ✅ What We Have Now
-- Clean daily Twitter posts when tips exist
-- ROI included from previous day
-- Silent skip if `tips_with_odds.jsonl` is missing
-- Logging and threading work reliably
-
-### ❌ What’s Missing
-- No fallback when tips are filtered out
-- `logs/sent_tips_YYYY-MM-DD.jsonl` is not used by the Twitter module
-- Creates gaps in public posting when the Telegram side was still active
-
-### 🔧 What We Need to Solve
-- Update `auto_tweet_tips.py` to fallback to `logs/sent_tips_*.jsonl` if `tips_with_odds.jsonl` is absent
-- Tweet a message like: “📭 No tips today — Monster’s confidence was below threshold” if both are empty
-- Ensure clear logging of fallback usage for transparency
-- Preserve the discipline of the Monster while maintaining a daily public presence
+| Folder                      | Purpose            |
+|-----------------------------|--------------------|
+| `predictions/YYYY-MM-DD/`   | Tips + summaries |
+| `logs/`                     | ROI + summaries (Also stores per-band stats and daily ROI output) |
+| `odds_snapshots/`           | Betfair snapshots  |
+| `steam_sniper_intel/`       | Steamer outputs    |
 
 ---
 
-### 🚀 Steam Sniper Mode (Fully Implemented)
+## ✅ FILES TO REFERENCE
 
-An innovative feature designed to detect significant market movements and dispatch lucrative alerts for horses **not already tipped** by the main model.
+* `monster_todo.md` – full backlog + roadmap
+* `TIPPING_MONSTER_PRODUCTS.md` – tip product layer logic
+* `logs/tips_results_*.csv` – ROI by day
+* `logs/sent_tips_*.jsonl` – actual sent Telegram tips
+* `logs/monster_confidence_per_day_with_roi.csv` – bin tracking
+* `monster_changelog.md` – versioned updates if added
+* `TIPPING_MONSTER_TASKS.md` - Development log for tracked tasks and changes (Note: `monster_todo.md` is the primary task list)
 
-* **🎯 Smart Mover Detection:** Identifies big Betfair price movers.
-* **⏱️ Scheduled Monitoring:** Automated cron jobs at `12:00` or `13:00` for continuous market surveillance, managed by automated schedule + `at` jobs.
-* **⚡️ Instant Alerts:** Sends tagged alerts (e.g., *"🥷 Steam Sniper: Al Ameen – 12/1 → 4/1"*) directly to Telegram.
-* **📊 Odds Snapshots:** ``fetch_betfair_odds.py`` supports `--label` for capturing specific odds snapshots.
-* **⚖️ Odds Comparison:** `compare_odds_to_0800.py` is built and ready for comparing current odds to the 08:00 baseline.
-* **📤 Sniper Dispatch:** `dispatch_snipers.py` is built and triggers Telegram alerts.
-* **🔄 Job Management:** `load_sniper_jobs.sh` loads each snapshot into the `at` queue for scheduled execution.
-* **📈 Performance Tracking:** `evaluate_steamers.py` logs results and calculates ROI for sniper picks.
-* **🗓️ Weekly Summaries:** `steam_sniper_weekly_summary.py` provides a comprehensive weekly sniper ROI summary to Telegram.
 
----
+📊 ROI Tracking – Overview
+The Tipping Monster system has a full-stack ROI pipeline that tracks performance at every level. It captures ROI for both public-facing sent tips and internal all tips to allow deep analysis, performance tuning, and monetisation reporting.
 
-## 📈 ROI Tracking – How It Works
+🧠 ROI Modes
+Mode	Description
+advised	ROI using variable stakes per tip
+level	(Deprecated) Fixed-stake ROI per tip
 
-Tipping Monster tracks daily and weekly performance using a **point-based ROI system**.
+We're now focused solely on advised mode for all ROI tracking.
 
-### 💡 Overview
+🗂️ ROI Scripts
+Script	Purpose	Scope
+tag_roi_tracker.py	Tracks ROI by tag	✅ Sent + All tips
+send_daily_roi_summary.py	Sends daily Telegram ROI	✅ Sent only
+roi_tracker_advised.py	CLI tracker for daily PnL	✅ Sent only
+weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
+generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
+calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
+unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
-- Every day, tip outcomes are compared with **Betfair SP odds**.
-- ROI is calculated in both:
-  - **Level mode** (1pt win/each-way per tip)
-  - **Advised mode** (confidence-weighted staking from the model)
-- The system tracks:
-  - Tips count
-  - Winners
-  - Places (for each-way logic)
-  - Profit in points
-  - ROI %
+📄 ROI Output Files
+File	Description
+tips_results_YYYY-MM-DD_advised_sent.csv	ROI per tip (only sent tips)
+tips_results_YYYY-MM-DD_advised_all.csv	ROI per tip (all tips)
+tag_roi_summary_sent.csv	ROI by tag for sent tips
+tag_roi_summary_all.csv	ROI by tag for all tips
+monster_confidence_per_day_with_roi.csv	ROI by confidence bin
+unified_roi_sheet.csv	Full tip log with Date/Week/Month
 
-Only tips with odds ≥ 5.0 are eligible for **each-way profit** to avoid false positives on short-odds places.
+🔍 Analysis Levels
+Daily ROI and summary
 
----
+Weekly breakdown with per-day win/place/profit stats
 
-### 🛠️ Scripts Involved
+By tag: ROI and profit for every tag (🔥 Trainer %, ❗ Confidence, etc.)
 
-| Script | Purpose |
-|--------|---------|
-| `roi_tracker_advised.py` | Main daily tracker – filters, calculates profit, generates tip results CSV |
-| `weekly_roi_summary.py` | Rolls up recent tips into ISO week summaries for weekly ROI |
-| `send_daily_roi_summary.py` | Posts a daily summary to Telegram with ROI and profit |
-| `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip |
-| `logs/tips_results_YYYY-MM-DD_[level|advised].csv` | Stores per-day ROI breakdown |
-| `logs/weekly_roi_summary.txt` | Used for Telegram weekly summary posts |
-| `logs/monster_confidence_per_day_with_roi.csv` | (Optional) Aggregated confidence bin ROI, used for filtering insight |
+By confidence: ROI tracking across confidence bands
 
----
+By send status: Can compare sent vs unsent performance
 
-### 📦 Key Data Files
+By time: Week/month fields embedded in final spready
 
-| File | Description |
-|------|-------------|
-| `predictions/YYYY-MM-DD/tips_with_odds.jsonl` | Full output with model confidence and odds |
-| `predictions/YYYY-MM-DD/tips_summary.txt` | Cleaned summary version used for subscribers |
-| `logs/tips_results_*.csv` | Daily ROI performance logs |
-| `logs/weekly_roi_summary.txt` | Aggregated weekly performance for Telegram |
-| `logs/monster_confidence_per_day_with_roi.csv` | Confidence band win/place/profit ratios |
 
 ---
 
-### ✅ Extra Features
-
-- Confidence filtering (`--min_conf 0.80`) can be applied to hide low-quality tips
-- ROI is calculated in **pts**, making it bankroll-agnostic (e.g. 1pt = £10 or £20)
-- Place logic obeys racing rules:
-  - 1/5 or 1/4 odds based on race type + runners
-  - Win-only if fewer than 5 runners
----
-
-## ⏰ Daily Automation Schedule (Detailed Overview)
-
-| Time           | Component                        | What It Does                                      |
-| :------------- | :------------------------------- | :------------------------------------------------ |
-| `05:01`        | `build_sniper_schedule.py`       | Generates the daily sniper schedule.              |
-| `05:02`        | `load_sniper_jobs.sh`            | Loads all sniper odds-check jobs into the `at` queue. |
-| `08:00`        | ``fetch_betfair_odds.py``          | Captures the **baseline odds snapshot** (labeled `0800`). |
-| `12:00+`       | `evaluate_steamers.py`           | Compares current odds to the 08:00 baseline to detect market movers. |
-| `Rolling`      | `at` triggers sniper jobs        | Fetches and compares odds in real-time, then dispatches alerts to Telegram. |
-| `23:40`        | `evaluate_steamers.py`           | Calculates ROI for sniper picks if race results are available. |
-| `Sunday 23:50` | `steam_sniper_weekly_summary.py` | Sends a comprehensive 7-day ROI Telegram report for Steam Sniper. |
-
----
-
-## 🧠 Steam Sniper — Core Logic
-
-The Steam Sniper module is engineered to detect significant market movers that were **not already tipped** by the main model. It operates autonomously throughout the day, delivering sharp, "sniper-style" alerts to Telegram upon detection of strong price movements.
-
-* **Baseline Creation:** At `08:00`, a crucial snapshot of Betfair odds is saved as `odds_snapshots/YYYY-MM-DD_0800.json`.
-* **Live Snapshots:** As the day progresses, the system captures additional odds snapshots at strategic race-relative times (e.g., T–60, T–30, T–10 minutes before race start).
-* **Dynamic Comparison:** Each new snapshot is rigorously compared against the 08:00 baseline using `compare_odds_to_0800.py`.
-* **Intelligent Filtering:** Horses already tipped by the main model are automatically filtered out to avoid redundancy.
-* **Trigger Mechanism:** If a horse's odds demonstrate a significant drop (e.g., from 10/1 to 5/1), it is immediately flagged as a **steamer**.
-* **Instant Delivery:** Flagged steamers are swiftly dispatched via `dispatch_snipers.py` to Telegram, accompanied by a distinctive ⚡️ alert message.
-
----
-
-## 🧾 Summary Reports
-
-The Steam Sniper module generates detailed reports to keep you informed of its performance.
-
-* **Daily Summary:** `generate_daily_steamer_summary.py` compiles a plain-text report, saved to:
-    ```
-    logs/steam_sniper_summary_YYYY-MM-DD.txt
-    ```
-    This report includes:
-    * Number of steamers flagged.
-    * Number of winners.
-    * Flat-stake ROI for sniper picks.
-
-* **Weekly Summary:** `steam_sniper_weekly_summary.py` aggregates all daily summaries to produce a comprehensive 7-day recap, which is then sent directly to Telegram.
-
----
-
-## 🛠️ Useful Manual Commands (For Debugging/Specific Checks)
-
-While the entire sniper stack is fully automated, these commands can be invaluable for manual checks or debugging:
-
-```bash
-# List today's sniper files:
-ls steamers_$(date +%F)_*.json
-
-# Check the number of steamers in a specific file (e.g., for 14:00 snapshot):
-cat steamers_$(date +%F)_1400.json | jq length
-
-# Manually fetch an odds snapshot (e.g., labeled 1400):
-python fetch_betfair_odds.py --label 1400
-
-# Manually detect steamers by comparing a specific snapshot to the 08:00 baseline:
-python compare_odds_to_0800.py --snapshot odds_snapshots/<span class="math-inline">\(date \+%F\)\_1400\.json
-\# Manually send steamer alerts from a specific source file\:
-python dispatch\_snipers\.py \-\-source steamers\_</span>(date +%F)_1400.json
-
-# Manually re-run ROI evaluation for a specific snapshot and date with debug info:
-python evaluate_steamers.py --label 1400 --date $(date +%F) --debug
-
-📌 Welcome to Tipping Monster 🧠🐎
-Your data-driven tipster powered by machine learning and confidence tracking.
-
-🔍 What You Get:
-✅ Daily horse racing tips with confidence-based staking
-
-📈 Live ROI tracking — no cherry-picking, just results
-
-🧾 Weekly summaries posted every Sunday
-
-💰 Last Week’s Results (2025-W21)
-Level Stakes: +48.51 pts (ROI: +34.4%)
-
-Advised Stakes: +48.51 pts (ROI: +34.4%)
-
-🎯 Coming Soon: Monster Premium
-🔐 Exclusive Nap tips
-
-🧠 Market Movers mode
-
-📊 Extra confidence analytics
-
-You can now offer:
-
-Tier	What’s Included	Price
-Free	1–2 tips/day	£0
-Starter	Monster picks only	£30–40/mo
-Pro	Monster + Sniper	£59–79/mo
-VIP	Pro + breakdowns + visual dashboards	£99/mo or £249/qtr
+📅 Updated: 2025-06-01

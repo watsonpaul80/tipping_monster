@@ -1,106 +1,89 @@
-# 🔫 Steam Sniper Mode Overview (Updated – 31 May 2025)
+# 🔫 Steam Sniper Mode Overview
 
-## 🎯 Purpose
-Automatically detect horses whose **Betfair odds have dropped ≥30%** during the day — even if they weren’t tipped — and **send sharp, clean alerts** to Telegram subscribers as a signal of major market movement ("Steamers").
+## Purpose
+Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%) leading up to a race, regardless of whether they were previously tipped.
 
----
-
-## ⚙️ How It Works — Step by Step
-
-1. **Fetch odds snapshots** at multiple times:
-   - First snapshot is **08:00**
-   - Then snapshot at **T-60, T-30, T-10 mins** before race start
-
-2. **Save odds snapshots** as JSON files in `steam_sniper_intel/sniper_data/`, tagged by label (e.g. `1505` for 15:05)
-
-3. **Detect steamers:**
-   - Compare most recent snapshot to earliest (usually 08:00)
-   - Flag any runner whose price has dropped **≥30%**
-   - ✅ *No longer requires volume thresholds due to Betfair API limits*
-
-4. **Save results** to `steamers_YYYY-MM-DD_HHMM.json`
-
-5. **Dispatch to Telegram:**
-   - Format odds drops (e.g., 18/1 → 12/1 → 8/1)
-   - Send alert in a human-readable batch of up to 10 steamers per message
+## Key Concepts
+- **Steamers** = Horses with significant odds drops (≥30%)
+- **Snapshots** = Time-based captures of Betfair odds
+- **Schedule** = Timed sniper jobs that fetch odds and dispatch alerts
 
 ---
 
-## 📜 Core Scripts Used
+## 🧠 How It Works – Step by Step
 
-| Script | Purpose |
-|--------|---------|
-| `fetch_betfair_sniper_odds.py` | Fetch odds snapshots for all runners in GB/IRE WIN markets |
-| `compare_sniper_odds.py` | Detect steamers by comparing current snapshot to the earliest |
-| `dispatch_snipers.py` | Format and send steamer alerts to Telegram |
-| `build_sniper_schedule.py` | Builds the list of snapshot times per race |
-| `generate_and_schedule_snipers.sh` | Schedules all fetch jobs using `at` commands |
-| `run_sniper_pipeline.sh` | Runs fetch → detect → dispatch in one step |
-| `safecron.sh` | Runs cron jobs safely with logging and Telegram error alerts |
+### 1. ⏱️ Build Snapshot Schedule
+- Uses today's `rpscrape/batch_inputs/YYYY-MM-DD.jsonl` racecard file
+- Extracts race times from `"race"` field (e.g. `"17:15 Chelmsford"`)
+- Applies snapshot offsets (T-60, T-30, T-10) to calculate capture points
+- Output: `steam_sniper_intel/sniper_schedule.txt`
 
----
+### 2. 🕐 Schedule Jobs
+- `run_sniper_pipeline.sh` loops through `sniper_schedule.txt`
+- Each time is registered via `at` command to run sniper + dispatch
 
-## 🔁 Workflow Summary
+### 3. 📸 Fetch Odds Snapshot
+- At each scheduled time, `fetch_betfair_odds.py --label TIME` is triggered
+- Snapshot JSON is saved under `odds_snapshots/YYYY-MM-DD_HHMM.json`
 
-1. `build_sniper_schedule.py`  
-   ⮕ Generates snapshot times (e.g. `0930`, `1005`, `1020`)
+### 4. 🔎 Compare to Baseline
+- `compare_odds_to_0800.py` compares latest snapshot to `08:00` snapshot
+- Horses with ≥30% odds drops are marked as steamers
 
-2. `generate_and_schedule_snipers.sh`  
-   ⮕ Schedules `run_sniper_pipeline.sh LABEL` for each snapshot label
-
-3. `run_sniper_pipeline.sh 1505`  
-   ⮕ Runs:
-   - `fetch_betfair_sniper_odds.py` → saves `1505.json`
-   - `compare_sniper_odds.py` → compares to 08:00 and saves `steamers_1505.json`
-   - `dispatch_snipers.py` → sends to Telegram
+### 5. 📤 Dispatch Steamers
+- `dispatch_snipers.py` sends formatted steamer alerts to Telegram
+- Each message is capped to 20 runners to avoid spam
+- Dispatches include emoji indicators and confidence tiers (future)
 
 ---
 
-## 📂 File Structure & Output
+## 🔧 Cron Setup
 
-| Folder / File | Description |
-|---------------|------------|
-| `steam_sniper_intel/sniper_data/` | Snapshot odds files (`HHMM.json`) |
-| `steam_sniper_intel/sniper_data/steamers_*.json` | Final output — list of confirmed steamers |
-| `sniper_schedule.txt` | Times like `0930`, `0950`, etc. |
+```cron
+# 1. Build sniper schedule (after racecards are ready)
+5 8 * * * /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py
+
+# 2. Launch pipeline jobs via `at`
+6 8 * * * /home/ec2-user/tipping-monster/steam_sniper_intel/run_sniper_pipeline.sh
+🗂️ Key Files
+File	Purpose
+build_sniper_schedule.py	Generates snapshot times from racecard
+run_sniper_pipeline.sh	Schedules fetch/dispatch jobs via at
+fetch_betfair_odds.py	Captures odds snapshots
+compare_odds_to_0800.py	Finds steamers vs baseline
+dispatch_snipers.py	Sends Telegram alerts
+sniper_schedule.txt	List of HHMM-formatted snapshot times
+odds_snapshots/*.json	Raw odds snapshots
+steamers_*.json	Steamers detected at each timepoint
+
+✅ Example Flow
+makefile
+Copy
+Edit
+08:00 →  build_sniper_schedule.py
+08:01 →  run_sniper_pipeline.sh
+12:55 →  fetch_betfair_odds.py --label 1255
+12:55 →  compare_odds_to_0800.py
+12:55 →  dispatch_snipers.py
+yaml
+Copy
+Edit
 
 ---
 
-## ✉️ Telegram Alert Format
+## 📝 Changelog Entry (`TIPPING_MONSTER_CHANGELOG.md`)
 
-🔥 **Steam Sniper Alert**  
-📍 **14:20 Chester**  
-🐎 **William Walton**  
-🔻 **Odds Drop: 20/1 → 14/1 → 8/1**  
+```md
+## [2025-06-01] Steam Sniper Pipeline Overhaul ✅
 
-- No volume attached anymore  
-- If ML scoring added later, confidence tiers can be included  
+### ➕ Features Added
+- Fully dynamic snapshot scheduling using actual racecard times
+- `build_sniper_schedule.py` now extracts race times from JSONL file
+- Auto-adjusts for only future snapshots (filters out past)
+- `run_sniper_pipeline.sh` reads schedule and registers timed `at` jobs
 
----
-
-## 🛠️ Useful Manual Commands
-
-```bash
-# Run pipeline for specific label (e.g. 1505)
-bash run_sniper_pipeline.sh 1505
-
-# Compare odds manually
-python compare_sniper_odds.py --snapshot steam_sniper_intel/sniper_data/2025-05-31_1505.json --label 1505
-
-# Send steamer alerts manually
-python dispatch_snipers.py --source steam_sniper_intel/sniper_data/steamers_2025-05-31_1505.json
-
-# Build today’s snapshot schedule
-python build_sniper_schedule.py
-
-# Schedule the snapshots for today
-bash generate_and_schedule_snipers.sh
-🧠 Detection Logic
-Steamer = any runner whose odds dropped ≥30%
-
-Based on comparing current odds to earliest snapshot
-
-Volume was removed (Betfair doesn't support it in bulk API)
-
-🚀 Improvements on the Horizon
-🧠 Add ML scoring for steamer confidence 📉 Display odds history progression with emojis/arrows 📊 Detect drifters as well (odds rising) 🕐 Use snapshots like 1 hour before, 30 mins before, 10 mins before
+### 🛠️ Fixes & Improvements
+- Fixed issue where schedule defaulted to just `08:50` if race times unreadable
+- Improved time parsing from `"race"` field (e.g. “17:15 Chelmsford”)
+- Verified pipeline now triggers dispatches for full race day
+- Added future-proofing for early and late race times

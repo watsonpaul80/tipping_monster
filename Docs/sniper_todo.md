@@ -1,43 +1,72 @@
-## 🔫 Steam Sniper – May 31 Fixes & Backlog
+# 🔫 STEAM SNIPER TODO — As of 2025-06-01
 
-### ✅ Completed Fixes (May 31)
-- Fixed issue where sniper jobs weren’t triggering due to empty schedule.
-- Identified root cause: `build_sniper_schedule.py` ran too early (09:15) before racecards were fully available.
-- Cron adjusted to:
-  - `30 9 * * *` → `build_sniper_schedule.py`
-  - `35 9 * * *` → `generate_and_schedule_snipers.sh`
-- Confirmed racecard scraping completes by then in most cases.
-- Race time parser patched to support both 12-hour (`3:15`) and 24-hour (`15:15`) formats.
-- Manually validated that sniper jobs now schedule and dispatch correctly (e.g. 14:45, 15:05).
-- Confirmed `wait_for_racefile()` already ensures the file exists before running.
+## ✅ Completed Tasks
+
+1. ✅ Parse real race times from `rpscrape/batch_inputs/YYYY-MM-DD.jsonl`
+2. ✅ Extract HH:MM from `"race": "HH:MM Venue"` fields
+3. ✅ Build snapshot schedule for each race at T-60, T-30, T-10 mins
+4. ✅ Skip snapshot times already in the past (real-time check)
+5. ✅ Save to `steam_sniper_intel/sniper_schedule.txt` in 24h format
+6. ✅ Create `run_sniper_pipeline.sh` to:
+    - Read schedule
+    - Schedule `at` jobs for each time
+    - Each job runs snapshot + steamer dispatch
+7. ✅ Ensure 08:00 snapshot captured for baseline comparison
+8. ✅ Validate all paths in `build_sniper_schedule.py` (abs not rel)
+9. ✅ Fix f-string issues in Python 3 print lines (e.g. emojis)
+10. ✅ Cap Telegram dispatches at 20 steamers per message
+11. ✅ Print job numbers and timestamps when scheduling (`atq` visible)
+12. ✅ Manual override working to re-run snapshots/dispatches
+13. ✅ System fully functional from racecard to sniper alerts (v1 live)
+
+---
+
+## 🧪 In Progress
+
+14. 🔄 Monitor `at` queue to confirm jobs run on time
+15. 🧪 Verify `odds_snapshots/` and `steamers_*.json` are saved correctly
+16. 🧪 Validate Telegram formatting is consistent, readable, and spaced
+17. 🔁 Test behavior if 08:00 snapshot is missing (fallback logic)
 
 ---
 
-### 🔜 Backlog – Sniper Improvements
+## 🔜 Next Up
 
-#### 🛠️ Robustness & Monitoring
-- [ ] Retry logic if no valid race times found after file exists (e.g. retry every 10s for 2 mins).
-- [ ] Send Telegram alert if schedule is empty after building.
-- [ ] Save daily schedule log to `logs/sniper_schedule_YYYY-MM-DD.log` for audit/debug.
-
-#### 📈 ROI + Outcome Feedback
-- [ ] Track win %, place %, and ROI of steamers per snapshot/day/week.
-- [ ] Log results to `logs/sniper_results_YYYY-MM-DD.csv` or similar.
-- [ ] Integrate sniper ROI into `weekly_roi_summary.py` for Telegram reporting.
-
-#### 💬 Telegram Message Polish
-- [ ] Show odds progression in alert (e.g. `20/1 → 12/1 → 7/1`).
-- [ ] Include drop %, matched volume, and market trend.
-- [ ] Add "Steam Confidence Tier" label:
-  - 🟢 High (volume + form + big drop)
-  - 🟡 Moderate (price only)
-  - 🔴 Low (low volume, weak context)
-- [ ] Optional: Add LLM commentary to explain the steamer pick.
-
-#### 🤖 ML-Powered Steam Detection (Phase 2)
-- [ ] Log historical steamers to `steamers_profile.csv` with result, odds movement, volume, tags.
-- [ ] Train classifier to predict win chance based on steamer profile.
-- [ ] Only dispatch steamers with predicted win chance > X% (e.g. 25%+)
-- [ ] Add predicted win chance to Telegram alerts for elite filtering.
+18. 📊 Score steamers based on:
+    - % drop from 08:00
+    - Monster tip? (yes/no)
+    - Trainer/Jockey form (if available)
+19. 🚦 Add steamer confidence tags (e.g. High / Medium / Low)
+20. 🧠 Emoji overlays:
+    - 🔥 Big market mover
+    - 🧨 Drop > 50%
+    - 🐎 Previously tipped
+21. 💾 Save each Telegram dispatch to local `logs/sniper_telegram_*.txt`
+22. 🗂️ Inject steamers into `sent_tips_*_snipers.jsonl` for ROI tracking
 
 ---
+
+## 🧠 Future Enhancements (Backlog)
+
+23. 🧮 Overlay trainer/jockey 14-day form in steamer messages
+24. 📈 Track steamer win/place ROI over time (daily + weekly)
+25. 📬 Add Discord and email alert support
+26. 🧵 Group steamers by race with “👀 Watch this race” tags
+27. 🧪 Flag steamers that drifted back (reverse steam detection)
+28. 💡 Add ML-based filtering to reduce false positives
+29. 📉 Monitor odds *velocity* (rate of change, not just % drop)
+30. 🛠️ Create `sniper_test_runner.py` to simulate pipeline offline
+31. 🧠 Auto-label potential *value bets* (if odds > implied chance)
+
+---
+
+## 🚀 Milestone
+
+🎯 **v1.0 (Live Sniper Launch) Achieved**  
+All core components live and functioning:
+- ✅ Snapshot collection
+- ✅ Steam detection
+- ✅ Telegram dispatch
+- ✅ Schedule runner via `at`
+- ✅ Fully race-aware dynamic pipeline
+

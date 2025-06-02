@@ -1,0 +1,86 @@
+# 🧶 TIPPING MONSTER PRODUCTS
+
+## 📦 TIPPING MONSTER PRODUCT STRUCTURE
+
+This document defines the 8 core product layers of the Tipping Monster system. Each layer can be monetised, bundled, or analysed independently.
+
+---
+
+### 1. 🧠 Monster Tips (Main)
+
+* The Monster’s best bet in each race
+* Based on highest model confidence (≥ 0.80)
+* Daily output: 8–12 tips max
+* Priority for results and ROI
+
+---
+
+### 2. 🗌 Monster Tips (All Races)
+
+* Tip for *every* UK/IRE race
+* Not filtered by confidence or logic
+* For punters who want a view on everything
+* Lower strike rate, broader coverage
+
+---
+
+### 3. 💸 Value Bets
+
+* Confidence ≥ 0.85 AND odds ≥ 10.0
+* Finds overpriced horses the model likes
+* Can overlap with Monster Tips or stand alone
+* Sent separately via Telegram
+
+---
+
+### 4. 📉 Steamers
+
+* Horses whose odds drop 30%+ from 08:00 snapshot
+* NOT already tipped by Monster
+* Market signal-only tips
+* Optional overlay: confidence, form, tags
+
+---
+
+### 5. 🧈 Each-Way Specials
+
+* Tips with odds ≥ 5.0 flagged for each-way strategy
+* ROI includes win + place return based on race terms
+* Targets strong place probability races
+
+---
+
+### 6. 🔗 Doubles & Trebles (Smart Combos)
+
+* Auto-combined high confidence singles
+* Based on daily Monster output
+* Filtered for reliability (no mug trebles)
+* Optional: NAP/NB combination logic
+
+---
+
+### 7. ⚠️ Danger Favs
+
+* Favourite runners Monster says to avoid
+* Confidence ≤ 0.60 OR model flags form/weight issues
+* Alerts only, not tips
+* Useful for laying or betting around favourites
+
+---
+
+### 8. ❌ Monster Lay
+
+* Most overbet runner of the day
+* Selected using confidence vs odds delta
+* High-risk layer — optional paid bolt-on
+* May overlap with Danger Fav, but stricter logic
+
+---
+
+### 📅 Updated: 2025-06-01
+
+> Notes:
+>
+> * 7 & 8 are likely bundled into main service.
+> * Telegram formatting distinct per product.
+> * Steamers and Value Bets will be highlighted in different colours with emojis for visual appeal.

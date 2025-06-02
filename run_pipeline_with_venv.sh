@@ -51,7 +51,12 @@ echo "📝 Generating LLM commentary (optional)..."
 
 # 7. Dispatch tips to Telegram
 echo "🚀 Dispatching tips to Telegram..."
-.venv/bin/python dispatch_tips.py --min_conf 0.80 >> "$LOG_DIR/dispatch.log" 2>&1
+.venv/bin/python dispatch_tips.py --min_conf 0.80 >> "$LOG_DIR/dispatch_$(date +%F).log" 2>&1
+
+# Confirm how many tips were sent
+SENT_COUNT=$(jq -s length "$LOG_DIR/../logs/sent_tips_$(date +%F).jsonl" 2>/dev/null || echo "0")
+echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
+
 
 # 8. Upload logs and dispatched tips to S3
 echo "🗂️ Uploading tips and logs to S3..."
