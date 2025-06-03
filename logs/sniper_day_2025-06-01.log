@@ -1,0 +1,7 @@
+🔫 Starting Sniper Day Pipeline: Sun Jun  1 10:51:37 BST 2025
+🛠️ Building sniper schedule...
+⚠️ No valid snapshot times found. Check racecard content.
+📆 Generating and scheduling sniper jobs...
+job 1502 at Sun Jun  1 23:55:00 2025
+✅ Scheduled sniper + dispatch for 23:55
+✅ Sniper pipeline completed: Sun Jun  1 10:51:37 BST 2025

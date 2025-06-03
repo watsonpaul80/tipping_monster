@@ -1,0 +1,10 @@
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 26 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Saving 193 runner odds to odds_snapshots/2025-06-03_0800.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-03_0800.json
+[+] Logged out

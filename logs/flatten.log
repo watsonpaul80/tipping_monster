@@ -1,0 +1,36 @@
+✅ Flattened 587 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-24.jsonl
+Completed 211.5 KiB/211.5 KiB (1.4 MiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-24.jsonl to s3://tipping-monster/batch_inputs/2025-05-24.jsonl
+✅ Flattened 591 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-24.jsonl
+Completed 211.5 KiB/211.5 KiB (429.8 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-24.jsonl to s3://tipping-monster/batch_inputs/2025-05-24.jsonl
+✅ Flattened 591 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-24.jsonl
+Completed 211.1 KiB/211.1 KiB (422.4 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-24.jsonl to s3://tipping-monster/batch_inputs/2025-05-24.jsonl
+✅ Flattened 591 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-24.jsonl
+Completed 211.3 KiB/211.3 KiB (434.9 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-24.jsonl to s3://tipping-monster/batch_inputs/2025-05-24.jsonl
+✅ Flattened 591 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-24.jsonl
+Completed 211.1 KiB/211.1 KiB (421.5 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-24.jsonl to s3://tipping-monster/batch_inputs/2025-05-24.jsonl
+✅ Flattened 443 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-25.jsonl
+Completed 153.8 KiB/153.8 KiB (324.0 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-25.jsonl to s3://tipping-monster/batch_inputs/2025-05-25.jsonl
+✅ Flattened 452 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-26.jsonl
+Completed 160.7 KiB/160.7 KiB (313.0 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-26.jsonl to s3://tipping-monster/batch_inputs/2025-05-26.jsonl
+✅ Flattened 482 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-27.jsonl
+Completed 172.4 KiB/172.4 KiB (356.1 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-27.jsonl to s3://tipping-monster/batch_inputs/2025-05-27.jsonl
+✅ Flattened 562 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-28.jsonl
+Completed 199.3 KiB/199.3 KiB (387.7 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-28.jsonl to s3://tipping-monster/batch_inputs/2025-05-28.jsonl
+✅ Flattened 571 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-29.jsonl
+Completed 202.1 KiB/202.1 KiB (400.9 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-29.jsonl to s3://tipping-monster/batch_inputs/2025-05-29.jsonl
+✅ Flattened 571 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-29.jsonl
+Completed 202.5 KiB/202.5 KiB (428.9 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-29.jsonl to s3://tipping-monster/batch_inputs/2025-05-29.jsonl
+✅ Flattened 571 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-29.jsonl
+Completed 202.6 KiB/202.6 KiB (399.2 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-29.jsonl to s3://tipping-monster/batch_inputs/2025-05-29.jsonl
+✅ Flattened 541 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-30.jsonl
+Completed 192.0 KiB/192.0 KiB (368.1 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-30.jsonl to s3://tipping-monster/batch_inputs/2025-05-30.jsonl
+✅ Flattened 855 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-05-31.jsonl
+Completed 301.3 KiB/301.3 KiB (1.7 MiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-05-31.jsonl to s3://tipping-monster/batch_inputs/2025-05-31.jsonl
+✅ Flattened 498 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-06-01.jsonl
+Completed 179.9 KiB/179.9 KiB (368.6 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-06-01.jsonl to s3://tipping-monster/batch_inputs/2025-06-01.jsonl
+✅ Flattened 471 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-06-02.jsonl
+Completed 166.8 KiB/166.8 KiB (353.8 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-06-02.jsonl to s3://tipping-monster/batch_inputs/2025-06-02.jsonl
+✅ Flattened 231 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-06-03.jsonl
+Completed 82.8 KiB/82.8 KiB (208.9 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-06-03.jsonl to s3://tipping-monster/batch_inputs/2025-06-03.jsonl
+✅ Flattened 231 runners to /home/ec2-user/tipping-monster/rpscrape/batch_inputs/2025-06-03.jsonl
+Completed 83.3 KiB/83.3 KiB (207.9 KiB/s) with 1 file(s) remainingupload: rpscrape/batch_inputs/2025-06-03.jsonl to s3://tipping-monster/batch_inputs/2025-06-03.jsonl

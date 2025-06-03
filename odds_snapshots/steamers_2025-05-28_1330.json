@@ -1,0 +1,226 @@
+[
+  {
+    "race": "Hamilton 13:00",
+    "horse": "Kodigara",
+    "prev_price": 300.0,
+    "curr_price": 80.0,
+    "drop_pct": 73.3
+  },
+  {
+    "race": "Hamilton 13:00",
+    "horse": "Gemmethegreenlite",
+    "prev_price": 150.0,
+    "curr_price": 80.0,
+    "drop_pct": 46.7
+  },
+  {
+    "race": "Beverley 13:10",
+    "horse": "Head For Freedom",
+    "prev_price": 20.0,
+    "curr_price": 10.0,
+    "drop_pct": 50.0
+  },
+  {
+    "race": "Hamilton 13:30",
+    "horse": "Cymbidium",
+    "prev_price": 27.0,
+    "curr_price": 8.6,
+    "drop_pct": 68.1
+  },
+  {
+    "race": "Newton Abbot 13:48",
+    "horse": "Stinginhisstep",
+    "prev_price": 8.4,
+    "curr_price": 5.1,
+    "drop_pct": 39.3
+  },
+  {
+    "race": "Newton Abbot 14:18",
+    "horse": "Tellairsue",
+    "prev_price": 7.2,
+    "curr_price": 4.5,
+    "drop_pct": 37.5
+  },
+  {
+    "race": "Newton Abbot 14:48",
+    "horse": "Hold Your Fort",
+    "prev_price": 10.0,
+    "curr_price": 3.9,
+    "drop_pct": 61.0
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Illusionist",
+    "prev_price": 25.0,
+    "curr_price": 10.5,
+    "drop_pct": 58.0
+  },
+  {
+    "race": "Hamilton 15:30",
+    "horse": "Savrola",
+    "prev_price": 21.0,
+    "curr_price": 7.6,
+    "drop_pct": 63.8
+  },
+  {
+    "race": "Hamilton 15:30",
+    "horse": "Alnayef",
+    "prev_price": 13.0,
+    "curr_price": 8.2,
+    "drop_pct": 36.9
+  },
+  {
+    "race": "Beverley 15:40",
+    "horse": "Laser Focus",
+    "prev_price": 8.0,
+    "curr_price": 4.4,
+    "drop_pct": 45.0
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Any Road",
+    "prev_price": 80.0,
+    "curr_price": 50.0,
+    "drop_pct": 37.5
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Pepperpots",
+    "prev_price": 21.0,
+    "curr_price": 12.0,
+    "drop_pct": 42.9
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Stonecarthy",
+    "prev_price": 29.0,
+    "curr_price": 13.5,
+    "drop_pct": 53.4
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Pleasureofpressure",
+    "prev_price": 29.0,
+    "curr_price": 13.5,
+    "drop_pct": 53.4
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Pension Plan",
+    "prev_price": 29.0,
+    "curr_price": 13.5,
+    "drop_pct": 53.4
+  },
+  {
+    "race": "Wexford 17:30",
+    "horse": "Polly Poppins",
+    "prev_price": 9.4,
+    "curr_price": 3.2,
+    "drop_pct": 66.0
+  },
+  {
+    "race": "Wexford 17:30",
+    "horse": "Gortmore Lady",
+    "prev_price": 14.0,
+    "curr_price": 3.15,
+    "drop_pct": 77.5
+  },
+  {
+    "race": "Wexford 18:00",
+    "horse": "Banana Three",
+    "prev_price": 6.8,
+    "curr_price": 4.6,
+    "drop_pct": 32.4
+  },
+  {
+    "race": "Wexford 18:00",
+    "horse": "Colorado Charlie",
+    "prev_price": 11.5,
+    "curr_price": 8.0,
+    "drop_pct": 30.4
+  },
+  {
+    "race": "Kempton 18:22",
+    "horse": "Blue Rc",
+    "prev_price": 5.6,
+    "curr_price": 3.15,
+    "drop_pct": 43.8
+  },
+  {
+    "race": "Kempton 18:52",
+    "horse": "Lesson Of Life",
+    "prev_price": 9.6,
+    "curr_price": 6.0,
+    "drop_pct": 37.5
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Ashdale Flyer",
+    "prev_price": 14.0,
+    "curr_price": 6.6,
+    "drop_pct": 52.9
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Native Song",
+    "prev_price": 25.0,
+    "curr_price": 8.4,
+    "drop_pct": 66.4
+  },
+  {
+    "race": "Cartmel 19:10",
+    "horse": "Ascension Day",
+    "prev_price": 8.0,
+    "curr_price": 3.1,
+    "drop_pct": 61.3
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Woodie Campelltown",
+    "prev_price": 23.0,
+    "curr_price": 7.0,
+    "drop_pct": 69.6
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Kazbek",
+    "prev_price": 23.0,
+    "curr_price": 7.0,
+    "drop_pct": 69.6
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Hawks Rock",
+    "prev_price": 30.0,
+    "curr_price": 18.0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Times A Wastin",
+    "prev_price": 80.0,
+    "curr_price": 48.0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Cappaho",
+    "prev_price": 80.0,
+    "curr_price": 48.0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "Kempton 19:52",
+    "horse": "Kingdom Of Stars",
+    "prev_price": 7.4,
+    "curr_price": 2.92,
+    "drop_pct": 60.5
+  },
+  {
+    "race": "Kempton 19:52",
+    "horse": "Cinnodin",
+    "prev_price": 14.0,
+    "curr_price": 8.8,
+    "drop_pct": 37.1
+  }
+]

@@ -1,0 +1,492 @@
+[
+  {
+    "race": "Newton Abbot 13:48",
+    "horse": "Mr Le Philosophe",
+    "old_price": 3.2,
+    "new_price": 1.62,
+    "drop_pct": 49.4
+  },
+  {
+    "race": "Hamilton 14:00",
+    "horse": "Dingwall",
+    "old_price": 11.5,
+    "new_price": 7.6,
+    "drop_pct": 33.9
+  },
+  {
+    "race": "Beverley 14:10",
+    "horse": "In A Hurry",
+    "old_price": 8.2,
+    "new_price": 4.8,
+    "drop_pct": 41.5
+  },
+  {
+    "race": "Beverley 14:10",
+    "horse": "Wadacre Maestro",
+    "old_price": 11.5,
+    "new_price": 5.3,
+    "drop_pct": 53.9
+  },
+  {
+    "race": "Newton Abbot 14:18",
+    "horse": "Radharc Na Slaine",
+    "old_price": 9.4,
+    "new_price": 4.0,
+    "drop_pct": 57.4
+  },
+  {
+    "race": "Hamilton 14:30",
+    "horse": "Lord Roxby",
+    "old_price": 6.4,
+    "new_price": 3.05,
+    "drop_pct": 52.3
+  },
+  {
+    "race": "Hamilton 14:30",
+    "horse": "Larchill Lass",
+    "old_price": 16.0,
+    "new_price": 10.5,
+    "drop_pct": 34.4
+  },
+  {
+    "race": "Beverley 14:40",
+    "horse": "Mystical Maria",
+    "old_price": 16.5,
+    "new_price": 7.8,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "Beverley 14:40",
+    "horse": "Dandys Angel",
+    "old_price": 16.5,
+    "new_price": 7.8,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "Beverley 14:40",
+    "horse": "Bearwith",
+    "old_price": 16.5,
+    "new_price": 7.8,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "Beverley 14:40",
+    "horse": "Anjo Bonita",
+    "old_price": 16.5,
+    "new_price": 7.8,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "Beverley 14:40",
+    "horse": "Lesrico",
+    "old_price": 16.5,
+    "new_price": 7.8,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "Newton Abbot 14:48",
+    "horse": "Hold Your Fort",
+    "old_price": 10.0,
+    "new_price": 5.3,
+    "drop_pct": 47.0
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Parisiac",
+    "old_price": 11.5,
+    "new_price": 6.2,
+    "drop_pct": 46.1
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Illusionist",
+    "old_price": 25.0,
+    "new_price": 10.0,
+    "drop_pct": 60.0
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Pop Star",
+    "old_price": 70.0,
+    "new_price": 20.0,
+    "drop_pct": 71.4
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Orbital Chime",
+    "old_price": 70.0,
+    "new_price": 20.0,
+    "drop_pct": 71.4
+  },
+  {
+    "race": "Hamilton 15:00",
+    "horse": "Minnie Wildes",
+    "old_price": 70.0,
+    "new_price": 20.0,
+    "drop_pct": 71.4
+  },
+  {
+    "race": "Beverley 15:10",
+    "horse": "Penny Ghent",
+    "old_price": 46.0,
+    "new_price": 21.0,
+    "drop_pct": 54.3
+  },
+  {
+    "race": "Beverley 15:10",
+    "horse": "Very Classy",
+    "old_price": 50.0,
+    "new_price": 24.0,
+    "drop_pct": 52.0
+  },
+  {
+    "race": "Newton Abbot 15:18",
+    "horse": "Escapologist",
+    "old_price": 4.4,
+    "new_price": 2.68,
+    "drop_pct": 39.1
+  },
+  {
+    "race": "Hamilton 15:30",
+    "horse": "Letsbefrank",
+    "old_price": 5.6,
+    "new_price": 3.35,
+    "drop_pct": 40.2
+  },
+  {
+    "race": "Hamilton 15:30",
+    "horse": "Sugar Road",
+    "old_price": 6.4,
+    "new_price": 3.7,
+    "drop_pct": 42.2
+  },
+  {
+    "race": "Hamilton 15:30",
+    "horse": "Savrola",
+    "old_price": 21.0,
+    "new_price": 11.0,
+    "drop_pct": 47.6
+  },
+  {
+    "race": "Beverley 15:40",
+    "horse": "Laser Focus",
+    "old_price": 8.0,
+    "new_price": 5.4,
+    "drop_pct": 32.5
+  },
+  {
+    "race": "Newton Abbot 15:48",
+    "horse": "Yccs Portocervo",
+    "old_price": 9.0,
+    "new_price": 5.8,
+    "drop_pct": 35.6
+  },
+  {
+    "race": "Wexford 15:55",
+    "horse": "Tasmanian Girl",
+    "old_price": 18.0,
+    "new_price": 12.0,
+    "drop_pct": 33.3
+  },
+  {
+    "race": "Hamilton 16:03",
+    "horse": "Eagle Strike",
+    "old_price": 27.0,
+    "new_price": 6.6,
+    "drop_pct": 75.6
+  },
+  {
+    "race": "Beverley 16:10",
+    "horse": "Ifonlytheycudtalk",
+    "old_price": 10.0,
+    "new_price": 6.8,
+    "drop_pct": 32.0
+  },
+  {
+    "race": "Beverley 16:10",
+    "horse": "Beneficiary",
+    "old_price": 12.5,
+    "new_price": 7.8,
+    "drop_pct": 37.6
+  },
+  {
+    "race": "Kempton 16:18",
+    "horse": "Ocean Odyssey",
+    "old_price": 4.5,
+    "new_price": 1.72,
+    "drop_pct": 61.8
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Grimaud",
+    "old_price": 8.0,
+    "new_price": 5.6,
+    "drop_pct": 30.0
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Black Heather",
+    "old_price": 14.5,
+    "new_price": 7.8,
+    "drop_pct": 46.2
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Duke Of Leggagh",
+    "old_price": 48.0,
+    "new_price": 8.4,
+    "drop_pct": 82.5
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Any Road",
+    "old_price": 80.0,
+    "new_price": 19.0,
+    "drop_pct": 76.2
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Club Manager",
+    "old_price": 80.0,
+    "new_price": 19.0,
+    "drop_pct": 76.2
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Arctic Bresil",
+    "old_price": 80.0,
+    "new_price": 19.0,
+    "drop_pct": 76.2
+  },
+  {
+    "race": "Wexford 16:30",
+    "horse": "Jake Peter",
+    "old_price": 80.0,
+    "new_price": 19.0,
+    "drop_pct": 76.2
+  },
+  {
+    "race": "Cartmel 16:40",
+    "horse": "Sang Pour Sang",
+    "old_price": 2.64,
+    "new_price": 1.67,
+    "drop_pct": 36.7
+  },
+  {
+    "race": "Kempton 16:52",
+    "horse": "Coul Jane",
+    "old_price": 23.0,
+    "new_price": 14.5,
+    "drop_pct": 37.0
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Onebrightbluerose",
+    "old_price": 6.4,
+    "new_price": 2.44,
+    "drop_pct": 61.9
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "My Good Pal",
+    "old_price": 7.4,
+    "new_price": 3.3,
+    "drop_pct": 55.4
+  },
+  {
+    "race": "Wexford 17:00",
+    "horse": "Pauls Dream",
+    "old_price": 9.4,
+    "new_price": 5.5,
+    "drop_pct": 41.5
+  },
+  {
+    "race": "Cartmel 17:10",
+    "horse": "Mr Sundancer",
+    "old_price": 11.0,
+    "new_price": 4.4,
+    "drop_pct": 60.0
+  },
+  {
+    "race": "Kempton 17:52",
+    "horse": "Kamaway",
+    "old_price": 42.0,
+    "new_price": 15.5,
+    "drop_pct": 63.1
+  },
+  {
+    "race": "Kempton 17:52",
+    "horse": "Lastchancezouloon",
+    "old_price": 29.0,
+    "new_price": 19.0,
+    "drop_pct": 34.5
+  },
+  {
+    "race": "Wexford 18:00",
+    "horse": "Kalaroun",
+    "old_price": 19.0,
+    "new_price": 6.2,
+    "drop_pct": 67.4
+  },
+  {
+    "race": "Wexford 18:00",
+    "horse": "Conflict Lady",
+    "old_price": 26.0,
+    "new_price": 15.0,
+    "drop_pct": 42.3
+  },
+  {
+    "race": "Cartmel 18:10",
+    "horse": "Dalyotin",
+    "old_price": 14.5,
+    "new_price": 9.8,
+    "drop_pct": 32.4
+  },
+  {
+    "race": "Cartmel 18:10",
+    "horse": "Vroomoz Eile",
+    "old_price": 17.5,
+    "new_price": 9.2,
+    "drop_pct": 47.4
+  },
+  {
+    "race": "Kempton 18:22",
+    "horse": "Blue Rc",
+    "old_price": 5.6,
+    "new_price": 2.04,
+    "drop_pct": 63.6
+  },
+  {
+    "race": "Kempton 18:22",
+    "horse": "Leadenhall Street",
+    "old_price": 13.0,
+    "new_price": 6.2,
+    "drop_pct": 52.3
+  },
+  {
+    "race": "Wexford 18:30",
+    "horse": "Tag Man",
+    "old_price": 5.1,
+    "new_price": 3.1,
+    "drop_pct": 39.2
+  },
+  {
+    "race": "Wexford 18:30",
+    "horse": "Lieutenant Mayne",
+    "old_price": 5.6,
+    "new_price": 3.15,
+    "drop_pct": 43.8
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Ashlia Dancer",
+    "old_price": 11.5,
+    "new_price": 5.7,
+    "drop_pct": 50.4
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Ashdale Flyer",
+    "old_price": 14.0,
+    "new_price": 6.8,
+    "drop_pct": 51.4
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Native Song",
+    "old_price": 25.0,
+    "new_price": 8.0,
+    "drop_pct": 68.0
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "No Fussing",
+    "old_price": 25.0,
+    "new_price": 8.0,
+    "drop_pct": 68.0
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Knockraha Eagle",
+    "old_price": 25.0,
+    "new_price": 8.0,
+    "drop_pct": 68.0
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Captain Kate",
+    "old_price": 25.0,
+    "new_price": 8.0,
+    "drop_pct": 68.0
+  },
+  {
+    "race": "Wexford 19:00",
+    "horse": "Diamonds Diva",
+    "old_price": 25.0,
+    "new_price": 8.0,
+    "drop_pct": 68.0
+  },
+  {
+    "race": "Kempton 19:22",
+    "horse": "Turquino",
+    "old_price": 4.2,
+    "new_price": 2.86,
+    "drop_pct": 31.9
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Thedeviluno",
+    "old_price": 5.1,
+    "new_price": 2.1,
+    "drop_pct": 58.8
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Woodie Campelltown",
+    "old_price": 23.0,
+    "new_price": 9.0,
+    "drop_pct": 60.9
+  },
+  {
+    "race": "Wexford 19:30",
+    "horse": "Kazbek",
+    "old_price": 23.0,
+    "new_price": 9.0,
+    "drop_pct": 60.9
+  },
+  {
+    "race": "Cartmel 19:40",
+    "horse": "Galileo Silver",
+    "old_price": 20.0,
+    "new_price": 11.0,
+    "drop_pct": 45.0
+  },
+  {
+    "race": "Cartmel 19:40",
+    "horse": "Shantou Moon",
+    "old_price": 46.0,
+    "new_price": 10.0,
+    "drop_pct": 78.3
+  },
+  {
+    "race": "Cartmel 19:40",
+    "horse": "Torngat",
+    "old_price": 100.0,
+    "new_price": 12.0,
+    "drop_pct": 88.0
+  },
+  {
+    "race": "Kempton 19:52",
+    "horse": "Kingdom Of Stars",
+    "old_price": 7.4,
+    "new_price": 3.0,
+    "drop_pct": 59.5
+  },
+  {
+    "race": "Kempton 19:52",
+    "horse": "Cinnodin",
+    "old_price": 14.0,
+    "new_price": 9.0,
+    "drop_pct": 35.7
+  }
+]

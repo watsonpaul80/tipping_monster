@@ -1,0 +1,119 @@
+🧲 1:45 Redcar – Willowinghurn @ N/A
+Confidence: 89%
+✅ High ML score
+
+🧲 2:15 Redcar – Lope Y Linda @ N/A
+Confidence: 93%
+✅ High ML score
+
+🧲 2:30 Carlisle – Call Margot @ N/A
+Confidence: 77%
+
+
+🧲 2:45 Redcar – Early Release @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 3:00 Carlisle – Water Of Leith @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 3:30 Carlisle – Kats Bob @ N/A
+Confidence: 99%
+✅ High ML score
+
+🧲 3:45 Redcar – Rajapour @ N/A
+Confidence: 99%
+✅ High ML score
+
+🧲 4:00 Carlisle – Billy Bathgate @ N/A
+Confidence: 100%
+✅ High ML score
+
+🧲 4:15 Redcar – Muscika @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 4:30 Carlisle – Twisting Physics @ N/A
+Confidence: 99%
+✅ High ML score
+
+🧲 4:45 Redcar – Novello Lad @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 5:00 Carlisle – Heavenly Heather @ N/A
+Confidence: 99%
+✅ High ML score
+
+🧲 5:10 Roscommon – Letters Of Love @ N/A
+Confidence: 96%
+✅ High ML score
+
+🧲 5:15 Redcar – I Can Boogy @ N/A
+Confidence: 96%
+✅ High ML score
+
+🧲 5:20 Windsor – Faustus @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 5:30 Carlisle – Harry Palmer @ N/A
+Confidence: 99%
+✅ High ML score
+
+🧲 5:40 Roscommon – Divelment @ N/A
+Confidence: 96%
+✅ High ML score
+
+🧲 5:50 Windsor – Canyouhearthedrums @ N/A
+Confidence: 93%
+✅ High ML score
+
+🧲 6:10 Roscommon – Carrickfinn @ N/A
+Confidence: 94%
+✅ High ML score
+
+🧲 6:20 Windsor – Blue Bolt @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 6:40 Roscommon – Mocking @ N/A
+Confidence: 89%
+✅ High ML score
+
+🧲 7:10 Roscommon – Chavajod @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 7:20 Windsor – Fast Steps @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 7:30 Wolverhampton (AW) – Invincible Ruby @ N/A
+Confidence: 94%
+✅ High ML score
+
+🧲 7:40 Roscommon – Ozark Daze @ N/A
+Confidence: 96%
+✅ High ML score
+
+🧲 7:50 Windsor – Epimeteo @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 8:00 Wolverhampton (AW) – Medinilla @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 8:10 Roscommon – Enziya @ N/A
+Confidence: 97%
+✅ High ML score
+
+🧲 8:30 Wolverhampton (AW) – Rock N Roll Rocket @ N/A
+Confidence: 98%
+✅ High ML score
+
+🧲 9:00 Wolverhampton (AW) – Novak @ N/A
+Confidence: 97%
+✅ High ML score

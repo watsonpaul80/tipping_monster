@@ -1,0 +1,4655 @@
+[
+  {
+    "race": "Haydock 12:13",
+    "horse": "Shader",
+    "bf_sp": 1.66,
+    "selection_id": 72360877,
+    "market_id": "1.244344289",
+    "is_fav": true,
+    "market_rank": 82354616
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Stressfree",
+    "bf_sp": 7.4,
+    "selection_id": 54315014,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 83617917
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Steel Tiger",
+    "bf_sp": 7.8,
+    "selection_id": 68937428,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 45567117
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Lieber Power",
+    "bf_sp": 16.5,
+    "selection_id": 48500507,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 72592658
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Fox Journey",
+    "bf_sp": 17.5,
+    "selection_id": 48500513,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 83166733
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Galyx",
+    "bf_sp": 24.0,
+    "selection_id": 68425422,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 82319524
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Albany",
+    "bf_sp": 40.0,
+    "selection_id": 185024,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 80105997
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Naqeeb",
+    "bf_sp": 50.0,
+    "selection_id": 28440791,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 11030
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Kildare Legend",
+    "bf_sp": 140.0,
+    "selection_id": 69767880,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 81447683
+  },
+  {
+    "race": "Haydock 12:13",
+    "horse": "Faylaq",
+    "bf_sp": 140.0,
+    "selection_id": 20983316,
+    "market_id": "1.244344289",
+    "is_fav": false,
+    "market_rank": 72111081
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Byzantine Empress",
+    "bf_sp": 4.6,
+    "selection_id": 28041037,
+    "market_id": "1.244344524",
+    "is_fav": true,
+    "market_rank": 57419600
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Bona Fortuna",
+    "bf_sp": 5.9,
+    "selection_id": 4204707,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 70085732
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Rock Opera",
+    "bf_sp": 8.4,
+    "selection_id": 146425,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 60918877
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Danzan",
+    "bf_sp": 9.6,
+    "selection_id": 12988926,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 3406806
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Alfa Whiteburd",
+    "bf_sp": 9.6,
+    "selection_id": 54186795,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 26475246
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Wreck It Ryley",
+    "bf_sp": 10.0,
+    "selection_id": 51623517,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 69174829
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Ray Vonn",
+    "bf_sp": 15.5,
+    "selection_id": 46478452,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 36289310
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Ingleby Archie",
+    "bf_sp": 18.5,
+    "selection_id": 59363297,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 57313928
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Baba Reza",
+    "bf_sp": 22.0,
+    "selection_id": 30778276,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 44247382
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Wen Moon",
+    "bf_sp": 29.0,
+    "selection_id": 46065559,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 7556661
+  },
+  {
+    "race": "York 12:30",
+    "horse": "May Blossom",
+    "bf_sp": 28.0,
+    "selection_id": 16621796,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 30512474
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Muscika",
+    "bf_sp": 55.0,
+    "selection_id": 11778714,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 378563
+  },
+  {
+    "race": "York 12:30",
+    "horse": "Lucky Man",
+    "bf_sp": 75.0,
+    "selection_id": 45904,
+    "market_id": "1.244344524",
+    "is_fav": false,
+    "market_rank": 48291516
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Breckenbrough",
+    "bf_sp": 3.35,
+    "selection_id": 82354616,
+    "market_id": "1.244344048",
+    "is_fav": true,
+    "market_rank": 72360877
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Brecon Beacons",
+    "bf_sp": 8.8,
+    "selection_id": 83617917,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 54315014
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Shining Pearl",
+    "bf_sp": 10.0,
+    "selection_id": 45567117,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 68937428
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Maybe Not",
+    "bf_sp": 12.0,
+    "selection_id": 72592658,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 48500507
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Abloom",
+    "bf_sp": 12.5,
+    "selection_id": 83166733,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 48500513
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Noche Clasica",
+    "bf_sp": 12.0,
+    "selection_id": 82319524,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 68425422
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Princess Amber",
+    "bf_sp": 12.0,
+    "selection_id": 80105997,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 185024
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Dream Angel",
+    "bf_sp": 14.5,
+    "selection_id": 11030,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 28440791
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Free Pic",
+    "bf_sp": 17.5,
+    "selection_id": 81447683,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 69767880
+  },
+  {
+    "race": "Chester 12:35",
+    "horse": "Albeyours",
+    "bf_sp": 22.0,
+    "selection_id": 72111081,
+    "market_id": "1.244344048",
+    "is_fav": false,
+    "market_rank": 20983316
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Fine Interview",
+    "bf_sp": 4.8,
+    "selection_id": 60661825,
+    "market_id": "1.244344298",
+    "is_fav": true,
+    "market_rank": 60661825
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Durham Castle",
+    "bf_sp": 5.9,
+    "selection_id": 57503592,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 57503592
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Kings Lynn",
+    "bf_sp": 8.0,
+    "selection_id": 25679578,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 25679578
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Kodi Lion",
+    "bf_sp": 8.6,
+    "selection_id": 58423328,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 58423328
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Pals Battalion",
+    "bf_sp": 11.5,
+    "selection_id": 58928490,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 58928490
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Trilby",
+    "bf_sp": 13.0,
+    "selection_id": 16034559,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 16034559
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Sergeant Wilko",
+    "bf_sp": 18.0,
+    "selection_id": 54449586,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 54449586
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Dakota Gold",
+    "bf_sp": 22.0,
+    "selection_id": 11596880,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 11596880
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Sergeant Pep",
+    "bf_sp": 26.0,
+    "selection_id": 44979300,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 44979300
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Grant Wood",
+    "bf_sp": 36.0,
+    "selection_id": 45646125,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 45646125
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Woven",
+    "bf_sp": 46.0,
+    "selection_id": 13198541,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 13198541
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Bosh",
+    "bf_sp": 40.0,
+    "selection_id": 39605056,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 39605056
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Tinto",
+    "bf_sp": 46.0,
+    "selection_id": 8111772,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 8111772
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Arctic Thunder",
+    "bf_sp": 46.0,
+    "selection_id": 35921086,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 35921086
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Cajetan",
+    "bf_sp": 55.0,
+    "selection_id": 13147575,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 13147575
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Baldomero",
+    "bf_sp": 65.0,
+    "selection_id": 22136802,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 22136802
+  },
+  {
+    "race": "Haydock 12:48",
+    "horse": "Wodao",
+    "bf_sp": null,
+    "selection_id": 44081486,
+    "market_id": "1.244344298",
+    "is_fav": false,
+    "market_rank": 44081486
+  },
+  {
+    "race": "Listowel 12:55",
+    "horse": "Maughreen",
+    "bf_sp": 3.45,
+    "selection_id": 64780048,
+    "market_id": "1.244345146",
+    "is_fav": true,
+    "market_rank": 55581780
+  },
+  {
+    "race": "Listowel 12:55",
+    "horse": "Royal Eagle",
+    "bf_sp": 4.9,
+    "selection_id": 56863,
+    "market_id": "1.244345146",
+    "is_fav": false,
+    "market_rank": 4088239
+  },
+  {
+    "race": "Listowel 12:55",
+    "horse": "Jane Eire",
+    "bf_sp": 5.7,
+    "selection_id": 72322103,
+    "market_id": "1.244345146",
+    "is_fav": false,
+    "market_rank": 70085741
+  },
+  {
+    "race": "Listowel 12:55",
+    "horse": "Gers Gigi",
+    "bf_sp": 7.4,
+    "selection_id": 69041357,
+    "market_id": "1.244345146",
+    "is_fav": false,
+    "market_rank": 68765612
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Tadej",
+    "bf_sp": 7.0,
+    "selection_id": 83060710,
+    "market_id": "1.244344533",
+    "is_fav": true,
+    "market_rank": 28041037
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Lieutenant Kije",
+    "bf_sp": 9.0,
+    "selection_id": 84239466,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 4204707
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Art Lover",
+    "bf_sp": 11.5,
+    "selection_id": 84239474,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 146425
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Anashhad",
+    "bf_sp": 12.0,
+    "selection_id": 84239465,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 12988926
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Do Or Do Not",
+    "bf_sp": 13.0,
+    "selection_id": 83654051,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 54186795
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Strength Of Spirit",
+    "bf_sp": 13.5,
+    "selection_id": 83846775,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 51623517
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Mister Freeman",
+    "bf_sp": 17.5,
+    "selection_id": 84239469,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 46478452
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Champion Island",
+    "bf_sp": 16.5,
+    "selection_id": 83060724,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 59363297
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Beach Partee",
+    "bf_sp": 20.0,
+    "selection_id": 84239473,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 30778276
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Alfa Patisserie",
+    "bf_sp": 20.0,
+    "selection_id": 84239468,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 46065559
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Advance Twentyfive",
+    "bf_sp": 23.0,
+    "selection_id": 84239471,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 16621796
+  },
+  {
+    "race": "York 13:05",
+    "horse": "Auspicious",
+    "bf_sp": 26.0,
+    "selection_id": 25313573,
+    "market_id": "1.244344533",
+    "is_fav": false,
+    "market_rank": 11778714
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Never So Brave",
+    "bf_sp": 2.9,
+    "selection_id": 57419600,
+    "market_id": "1.244344055",
+    "is_fav": true,
+    "market_rank": 83060710
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Bobby Bennu",
+    "bf_sp": 5.4,
+    "selection_id": 70085732,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239466
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Telemark",
+    "bf_sp": 6.0,
+    "selection_id": 60918877,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239474
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Fair Point",
+    "bf_sp": 8.4,
+    "selection_id": 3406806,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239465
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Witch Hunter",
+    "bf_sp": 10.5,
+    "selection_id": 26475246,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 83654051
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Myal",
+    "bf_sp": 16.5,
+    "selection_id": 69174829,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 83846775
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Yanifer",
+    "bf_sp": 24.0,
+    "selection_id": 36289310,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239469
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Cerulean Bay",
+    "bf_sp": 23.0,
+    "selection_id": 57313928,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 83060724
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Holguin",
+    "bf_sp": 21.0,
+    "selection_id": 44247382,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239473
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Brewing",
+    "bf_sp": 34.0,
+    "selection_id": 7556661,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239468
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Rhoscolyn",
+    "bf_sp": 25.0,
+    "selection_id": 30512474,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 84239471
+  },
+  {
+    "race": "Chester 13:10",
+    "horse": "Kingdom Come",
+    "bf_sp": 80.0,
+    "selection_id": 378563,
+    "market_id": "1.244344055",
+    "is_fav": false,
+    "market_rank": 25313573
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Jasour",
+    "bf_sp": 5.8,
+    "selection_id": 55581780,
+    "market_id": "1.244344307",
+    "is_fav": true,
+    "market_rank": 44514333
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "No Half Measures",
+    "bf_sp": 6.6,
+    "selection_id": 4088239,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 2446553
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Leovanni",
+    "bf_sp": 9.0,
+    "selection_id": 70085741,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 7556568
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Balmoral Lady",
+    "bf_sp": 10.0,
+    "selection_id": 68765612,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 6002664
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Shagraan",
+    "bf_sp": 11.5,
+    "selection_id": 48532,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 145766
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Seven Questions",
+    "bf_sp": 12.5,
+    "selection_id": 56460595,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 71597392
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Rage Of Bamby",
+    "bf_sp": 12.5,
+    "selection_id": 45475534,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 44494737
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Democracy Dilemma",
+    "bf_sp": 15.5,
+    "selection_id": 43930428,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 39311119
+  },
+  {
+    "race": "Haydock 13:23",
+    "horse": "Fahrenheit Seven",
+    "bf_sp": 19.5,
+    "selection_id": 67909538,
+    "market_id": "1.244344307",
+    "is_fav": false,
+    "market_rank": 58258444
+  },
+  {
+    "race": "Listowel 13:30",
+    "horse": "Sonnyboyliston",
+    "bf_sp": 1.65,
+    "selection_id": 25510145,
+    "market_id": "1.244345151",
+    "is_fav": true,
+    "market_rank": 64780048
+  },
+  {
+    "race": "Listowel 13:30",
+    "horse": "Dream Diamond",
+    "bf_sp": 3.45,
+    "selection_id": 16836952,
+    "market_id": "1.244345151",
+    "is_fav": false,
+    "market_rank": 56863
+  },
+  {
+    "race": "Listowel 13:30",
+    "horse": "Wholelotofbusiness",
+    "bf_sp": 8.4,
+    "selection_id": 63678962,
+    "market_id": "1.244345151",
+    "is_fav": false,
+    "market_rank": 72322103
+  },
+  {
+    "race": "Listowel 13:30",
+    "horse": "Complete Fiction",
+    "bf_sp": 18.0,
+    "selection_id": 29969245,
+    "market_id": "1.244345151",
+    "is_fav": false,
+    "market_rank": 69041357
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Jm Jungle",
+    "bf_sp": 2.58,
+    "selection_id": 44514333,
+    "market_id": "1.244344541",
+    "is_fav": true,
+    "market_rank": 25510145
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Loom",
+    "bf_sp": 3.15,
+    "selection_id": 2446553,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 16836952
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Duran",
+    "bf_sp": 4.2,
+    "selection_id": 7556568,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 63678962
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Venture Capital",
+    "bf_sp": 4.2,
+    "selection_id": 6002664,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 29969245
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Bergerac",
+    "bf_sp": 3.9,
+    "selection_id": 145766,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 80735342
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Zayer",
+    "bf_sp": 8.2,
+    "selection_id": 71597392,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 47425092
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Jumbeau",
+    "bf_sp": 13.0,
+    "selection_id": 44494737,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 84239426
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Bond Chairman",
+    "bf_sp": 13.0,
+    "selection_id": 39311119,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 83498262
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Kodiac Thriller",
+    "bf_sp": 13.0,
+    "selection_id": 58258444,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 72890920
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Habooba",
+    "bf_sp": 9.2,
+    "selection_id": 50687900,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 39459007
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Miss Attitude",
+    "bf_sp": 17.0,
+    "selection_id": 45744236,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 84239428
+  },
+  {
+    "race": "York 13:40",
+    "horse": "Spirit Of Applause",
+    "bf_sp": 17.0,
+    "selection_id": 46846827,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 84239427
+  },
+  {
+    "race": "York 13:40",
+    "horse": "It Just Takes Time",
+    "bf_sp": 17.0,
+    "selection_id": 10108658,
+    "market_id": "1.244344541",
+    "is_fav": false,
+    "market_rank": 84239425
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Tricky Tel",
+    "bf_sp": 2.52,
+    "selection_id": 83355557,
+    "market_id": "1.244344062",
+    "is_fav": true,
+    "market_rank": 83355557
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Come On Over",
+    "bf_sp": 3.65,
+    "selection_id": 227963,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 227963
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Going Commando",
+    "bf_sp": 9.8,
+    "selection_id": 82831825,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 82831825
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Goldenstateofmind",
+    "bf_sp": 12.5,
+    "selection_id": 83129718,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 83129718
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Ahead Of Fashion",
+    "bf_sp": 11.5,
+    "selection_id": 81862563,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 81862563
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Full Gas",
+    "bf_sp": 14.5,
+    "selection_id": 10681525,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 10681525
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Call Me By My Name",
+    "bf_sp": 20.0,
+    "selection_id": 82473631,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 82473631
+  },
+  {
+    "race": "Chester 13:45",
+    "horse": "Malinga The Slinga",
+    "bf_sp": 55.0,
+    "selection_id": 82831827,
+    "market_id": "1.244344062",
+    "is_fav": false,
+    "market_rank": 82831827
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Shaha",
+    "bf_sp": 4.3,
+    "selection_id": 68837981,
+    "market_id": "1.244344315",
+    "is_fav": true,
+    "market_rank": 41409789
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Estrange",
+    "bf_sp": 4.2,
+    "selection_id": 73000140,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 73153260
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Beautiful Love",
+    "bf_sp": 8.0,
+    "selection_id": 15189484,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 48386162
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Chorus",
+    "bf_sp": 7.4,
+    "selection_id": 55425,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 42037331
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Invisible Friend",
+    "bf_sp": 8.8,
+    "selection_id": 41707682,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 44665384
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Sioux Life",
+    "bf_sp": 20.0,
+    "selection_id": 60873650,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 25170331
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Bay Of Sanibel",
+    "bf_sp": 6.2,
+    "selection_id": 60824702,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 32880768
+  },
+  {
+    "race": "Haydock 13:58",
+    "horse": "Our Golden One",
+    "bf_sp": 18.0,
+    "selection_id": 59692269,
+    "market_id": "1.244344315",
+    "is_fav": false,
+    "market_rank": 5426729
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Kara Sacre",
+    "bf_sp": 4.2,
+    "selection_id": 82057956,
+    "market_id": "1.244345156",
+    "is_fav": true,
+    "market_rank": 59692201
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Sticktotheplan",
+    "bf_sp": 4.4,
+    "selection_id": 80378459,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 16840111
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Seeitoldya",
+    "bf_sp": 6.0,
+    "selection_id": 83355823,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 39726197
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Ballyharney",
+    "bf_sp": 9.8,
+    "selection_id": 74990339,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 40693479
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Qaasid",
+    "bf_sp": 9.6,
+    "selection_id": 35577258,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 63132402
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Reiki Revolution",
+    "bf_sp": 14.5,
+    "selection_id": 72651335,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 11223838
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Gaoithe Glory",
+    "bf_sp": 17.5,
+    "selection_id": 74238278,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 66089392
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Pistocchi",
+    "bf_sp": 19.5,
+    "selection_id": 83421716,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 22346493
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Ballinaboola Jet",
+    "bf_sp": 21.0,
+    "selection_id": 50566940,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 58001528
+  },
+  {
+    "race": "Listowel 14:05",
+    "horse": "Tinking Man",
+    "bf_sp": 25.0,
+    "selection_id": 84239430,
+    "market_id": "1.244345156",
+    "is_fav": false,
+    "market_rank": 49525931
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Term Of Endearment",
+    "bf_sp": 2.98,
+    "selection_id": 41364674,
+    "market_id": "1.244344547",
+    "is_fav": true,
+    "market_rank": 68837981
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Sueno",
+    "bf_sp": 3.2,
+    "selection_id": 20145083,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 73000140
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Scenic",
+    "bf_sp": 5.0,
+    "selection_id": 48060679,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 15189484
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Jane Temple",
+    "bf_sp": 10.0,
+    "selection_id": 74470450,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 55425
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Divina Grace",
+    "bf_sp": 29.0,
+    "selection_id": 46145297,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 41707682
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Allonsy",
+    "bf_sp": 38.0,
+    "selection_id": 50712478,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 60873650
+  },
+  {
+    "race": "York 14:15",
+    "horse": "Crystal Flyer",
+    "bf_sp": 38.0,
+    "selection_id": 62302778,
+    "market_id": "1.244344547",
+    "is_fav": false,
+    "market_rank": 60824702
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Percy Shelley",
+    "bf_sp": 4.3,
+    "selection_id": 41409789,
+    "market_id": "1.244344069",
+    "is_fav": true,
+    "market_rank": 43098037
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "William Walton",
+    "bf_sp": 4.4,
+    "selection_id": 73153260,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 227528
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Dreams Adozen",
+    "bf_sp": 8.6,
+    "selection_id": 48386162,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 26340381
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Lagoon Nebula",
+    "bf_sp": 12.0,
+    "selection_id": 42037331,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 61533459
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Grey Fable",
+    "bf_sp": 15.0,
+    "selection_id": 44665384,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 390818
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Its Good To Laugh",
+    "bf_sp": 13.0,
+    "selection_id": 25170331,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 11019159
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Oman",
+    "bf_sp": 15.5,
+    "selection_id": 32880768,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 59363421
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Trojan Sun",
+    "bf_sp": 17.5,
+    "selection_id": 5426729,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 55953141
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Wind Your Neck In",
+    "bf_sp": 28.0,
+    "selection_id": 40766240,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 4429615
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "State Legend",
+    "bf_sp": 40.0,
+    "selection_id": 40124102,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 30758988
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Hydroplane",
+    "bf_sp": 40.0,
+    "selection_id": 20749609,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 44463230
+  },
+  {
+    "race": "Chester 14:20",
+    "horse": "Perseus Way",
+    "bf_sp": 65.0,
+    "selection_id": 41192891,
+    "market_id": "1.244344069",
+    "is_fav": false,
+    "market_rank": 4232981
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Alyanaabi",
+    "bf_sp": 2.74,
+    "selection_id": 43098037,
+    "market_id": "1.244344322",
+    "is_fav": true,
+    "market_rank": 10243790
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Audience",
+    "bf_sp": 5.6,
+    "selection_id": 227528,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 247287
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Kinross",
+    "bf_sp": 9.4,
+    "selection_id": 26340381,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 55681539
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Kikkuli",
+    "bf_sp": 9.8,
+    "selection_id": 61533459,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 68245475
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Spycatcher",
+    "bf_sp": 10.0,
+    "selection_id": 390818,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 71661945
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Volterra",
+    "bf_sp": 16.5,
+    "selection_id": 11019159,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 38138574
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Ten Bob Tony",
+    "bf_sp": 22.0,
+    "selection_id": 59363421,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 58186645
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Room Service",
+    "bf_sp": 30.0,
+    "selection_id": 55953141,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 72857248
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Tiger Bay",
+    "bf_sp": 28.0,
+    "selection_id": 4429615,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 47648469
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Quinault",
+    "bf_sp": 44.0,
+    "selection_id": 30758988,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 69878544
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Greys Monument",
+    "bf_sp": 40.0,
+    "selection_id": 44463230,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 69652912
+  },
+  {
+    "race": "Haydock 14:33",
+    "horse": "Mount Athos",
+    "bf_sp": null,
+    "selection_id": 4232981,
+    "market_id": "1.244344322",
+    "is_fav": false,
+    "market_rank": 57238178
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "A Nod To Getaway",
+    "bf_sp": 2.94,
+    "selection_id": 44798085,
+    "market_id": "1.244345161",
+    "is_fav": true,
+    "market_rank": 41364674
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "Olord",
+    "bf_sp": 4.9,
+    "selection_id": 40463532,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 20145083
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "Mellem",
+    "bf_sp": 4.9,
+    "selection_id": 74312146,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 48060679
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "Aboy Joey",
+    "bf_sp": 9.6,
+    "selection_id": 62442452,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 74470450
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "Ardfert Mary",
+    "bf_sp": 10.5,
+    "selection_id": 42165807,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 46145297
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "Matties Mountain",
+    "bf_sp": 15.5,
+    "selection_id": 26831207,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 50712478
+  },
+  {
+    "race": "Listowel 14:40",
+    "horse": "River Vale",
+    "bf_sp": 30.0,
+    "selection_id": 42866970,
+    "market_id": "1.244345161",
+    "is_fav": false,
+    "market_rank": 62302778
+  },
+  {
+    "race": "York 14:50",
+    "horse": "White Crown Star",
+    "bf_sp": 5.4,
+    "selection_id": 71414293,
+    "market_id": "1.244344554",
+    "is_fav": true,
+    "market_rank": 71414293
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Cairdeas",
+    "bf_sp": 7.8,
+    "selection_id": 750227,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 750227
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Coul Angel",
+    "bf_sp": 9.4,
+    "selection_id": 78024417,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 78024417
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Sweet Fantastic",
+    "bf_sp": 12.0,
+    "selection_id": 74275945,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 74275945
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Singoura",
+    "bf_sp": 12.5,
+    "selection_id": 76728407,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 76728407
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Prosperitas",
+    "bf_sp": 12.0,
+    "selection_id": 71915805,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 71915805
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Harswell Ruby",
+    "bf_sp": 14.5,
+    "selection_id": 72651349,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 72651349
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Hunky Dory",
+    "bf_sp": 15.5,
+    "selection_id": 13095708,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 13095708
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Last Shamardal",
+    "bf_sp": 19.5,
+    "selection_id": 80147940,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 80147940
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Party Bear",
+    "bf_sp": 25.0,
+    "selection_id": 11291023,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 11291023
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Frankies Dream",
+    "bf_sp": 26.0,
+    "selection_id": 51058,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 51058
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Four Fifty",
+    "bf_sp": 30.0,
+    "selection_id": 19084750,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 19084750
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Miss Collada",
+    "bf_sp": 38.0,
+    "selection_id": 68504732,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 68504732
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Bear Kode",
+    "bf_sp": 38.0,
+    "selection_id": 71192482,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 71192482
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Art Design",
+    "bf_sp": 44.0,
+    "selection_id": 69584704,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 69584704
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Diamont Katie",
+    "bf_sp": 46.0,
+    "selection_id": 68799688,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 68799688
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Kameel",
+    "bf_sp": 50.0,
+    "selection_id": 78060257,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 78060257
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Jamaican Storm",
+    "bf_sp": 50.0,
+    "selection_id": 75281344,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 75281344
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Tuscan Point",
+    "bf_sp": 55.0,
+    "selection_id": 68686027,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 68686027
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Veydari",
+    "bf_sp": 80.0,
+    "selection_id": 70113657,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 70113657
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Georgecandoit",
+    "bf_sp": 65.0,
+    "selection_id": 68937454,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 68937454
+  },
+  {
+    "race": "York 14:50",
+    "horse": "Jachin",
+    "bf_sp": 90.0,
+    "selection_id": 72176816,
+    "market_id": "1.244344554",
+    "is_fav": false,
+    "market_rank": 72176816
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Spirit Of Acklam",
+    "bf_sp": 1.83,
+    "selection_id": 59692201,
+    "market_id": "1.244344077",
+    "is_fav": true,
+    "market_rank": 82057956
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Charmaine",
+    "bf_sp": 2.92,
+    "selection_id": 16840111,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 80378459
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Box To Box",
+    "bf_sp": 4.2,
+    "selection_id": 39726197,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 83355823
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Dream Harder",
+    "bf_sp": 5.2,
+    "selection_id": 40693479,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 74990339
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Mighty Bandit",
+    "bf_sp": 7.0,
+    "selection_id": 63132402,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 35577258
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Struth",
+    "bf_sp": 7.4,
+    "selection_id": 11223838,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 72651335
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Miss Alpilles",
+    "bf_sp": 8.0,
+    "selection_id": 66089392,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 74238278
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Paradoxical",
+    "bf_sp": 6.6,
+    "selection_id": 22346493,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 83421716
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Per Contra",
+    "bf_sp": 7.0,
+    "selection_id": 58001528,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 50566940
+  },
+  {
+    "race": "Chester 14:55",
+    "horse": "Gordon Grey",
+    "bf_sp": 7.0,
+    "selection_id": 49525931,
+    "market_id": "1.244344077",
+    "is_fav": false,
+    "market_rank": 84239430
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Arabian Leopard",
+    "bf_sp": 6.4,
+    "selection_id": 10243790,
+    "market_id": "1.244344329",
+    "is_fav": true,
+    "market_rank": 44798085
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Sea To Sky",
+    "bf_sp": 6.6,
+    "selection_id": 247287,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 40463532
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Callianassa",
+    "bf_sp": 7.6,
+    "selection_id": 55681539,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 74312146
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Mostar Dreams",
+    "bf_sp": 8.0,
+    "selection_id": 68245475,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 62442452
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Oolong Poobong",
+    "bf_sp": 8.4,
+    "selection_id": 71661945,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 42165807
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Rock Melody",
+    "bf_sp": 9.2,
+    "selection_id": 38138574,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 26831207
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Ahlain",
+    "bf_sp": 7.6,
+    "selection_id": 58186645,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 42866970
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Magic Basma",
+    "bf_sp": 9.6,
+    "selection_id": 72857248,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 69767735
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Zouky",
+    "bf_sp": 7.6,
+    "selection_id": 47648469,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 42866969
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Del Ray",
+    "bf_sp": 15.0,
+    "selection_id": 69878544,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 54117467
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Biniorella Bay",
+    "bf_sp": 8.4,
+    "selection_id": 69652912,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 53226583
+  },
+  {
+    "race": "Haydock 15:08",
+    "horse": "Lexington Belle",
+    "bf_sp": 9.4,
+    "selection_id": 57238178,
+    "market_id": "1.244344329",
+    "is_fav": false,
+    "market_rank": 20303765
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Miss Corby",
+    "bf_sp": 2.98,
+    "selection_id": 68799530,
+    "market_id": "1.244345166",
+    "is_fav": true,
+    "market_rank": 51257331
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Free Flow",
+    "bf_sp": 3.55,
+    "selection_id": 21651509,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 2229900
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Howdoyalikeherhome",
+    "bf_sp": 9.2,
+    "selection_id": 55103665,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 55912
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Chefs Kiss",
+    "bf_sp": 9.8,
+    "selection_id": 69325393,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 49411491
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Long Gone",
+    "bf_sp": 10.5,
+    "selection_id": 2159719,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 65071307
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Littlebiggie",
+    "bf_sp": 9.8,
+    "selection_id": 56330751,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 30180
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Rockstown Girl",
+    "bf_sp": 13.0,
+    "selection_id": 46392449,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 1411761
+  },
+  {
+    "race": "Listowel 15:13",
+    "horse": "Brilliant Light",
+    "bf_sp": 18.5,
+    "selection_id": 854876,
+    "market_id": "1.244345166",
+    "is_fav": false,
+    "market_rank": 69622632
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Agent Mayfair",
+    "bf_sp": 5.2,
+    "selection_id": 51257331,
+    "market_id": "1.244343946",
+    "is_fav": true,
+    "market_rank": 68245470
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Arlington",
+    "bf_sp": 5.2,
+    "selection_id": 2229900,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 272713
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Street Life",
+    "bf_sp": 6.2,
+    "selection_id": 55912,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 72211810
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Colors Of Freedom",
+    "bf_sp": 7.4,
+    "selection_id": 49411491,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 70445272
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Kipp Kelly",
+    "bf_sp": 9.2,
+    "selection_id": 65071307,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 71770229
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Forest Gunner",
+    "bf_sp": 11.0,
+    "selection_id": 30180,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 77539327
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Marcus",
+    "bf_sp": 9.0,
+    "selection_id": 1411761,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 81236587
+  },
+  {
+    "race": "Southwell 15:20",
+    "horse": "Dash Gordon",
+    "bf_sp": 9.6,
+    "selection_id": 69622632,
+    "market_id": "1.244343946",
+    "is_fav": false,
+    "market_rank": 3358853
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Munsif",
+    "bf_sp": 4.8,
+    "selection_id": 82292380,
+    "market_id": "1.244344563",
+    "is_fav": true,
+    "market_rank": 75061403
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Urban Glimpse",
+    "bf_sp": 6.2,
+    "selection_id": 72923511,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 68330728
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Asmen Warrior",
+    "bf_sp": 6.6,
+    "selection_id": 74127236,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 70396537
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Cape Breton",
+    "bf_sp": 7.4,
+    "selection_id": 2869555,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 71120845
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Crack On Boys",
+    "bf_sp": 8.0,
+    "selection_id": 77277259,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 69652911
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Looks Fantastic",
+    "bf_sp": 11.0,
+    "selection_id": 75403057,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 70867280
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Dantes Lad",
+    "bf_sp": 11.5,
+    "selection_id": 72454026,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 71942937
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Far Ahead",
+    "bf_sp": 12.5,
+    "selection_id": 311170,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 70396543
+  },
+  {
+    "race": "York 15:25",
+    "horse": "Chesneys Charm",
+    "bf_sp": 18.0,
+    "selection_id": 70430552,
+    "market_id": "1.244344563",
+    "is_fav": false,
+    "market_rank": 71560075
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Nazuki",
+    "bf_sp": 3.65,
+    "selection_id": 75061403,
+    "market_id": "1.244344084",
+    "is_fav": true,
+    "market_rank": 74504375
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Seraphim Angel",
+    "bf_sp": 4.6,
+    "selection_id": 68330728,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 73963555
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Sea Emily Run",
+    "bf_sp": 5.3,
+    "selection_id": 70396537,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 10028664
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Glamour Show",
+    "bf_sp": 8.6,
+    "selection_id": 71120845,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 7749165
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Toomuchforme",
+    "bf_sp": 11.0,
+    "selection_id": 69652911,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 73692451
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Ziggys Ariel",
+    "bf_sp": 11.5,
+    "selection_id": 70867280,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 75978143
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Lady Of Andros",
+    "bf_sp": 19.0,
+    "selection_id": 71942937,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 73689392
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Mollie Foster",
+    "bf_sp": 13.5,
+    "selection_id": 70396543,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 73678201
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Eartha",
+    "bf_sp": 38.0,
+    "selection_id": 24750737,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 70465711
+  },
+  {
+    "race": "Chester 15:30",
+    "horse": "Beauty Nation",
+    "bf_sp": 50.0,
+    "selection_id": 71560075,
+    "market_id": "1.244344084",
+    "is_fav": false,
+    "market_rank": 75556628
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Al Shababi",
+    "bf_sp": 2.82,
+    "selection_id": 75025603,
+    "market_id": "1.244344336",
+    "is_fav": true,
+    "market_rank": 75025603
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Organ",
+    "bf_sp": 7.2,
+    "selection_id": 69400787,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 69400787
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Sea Founder",
+    "bf_sp": 7.4,
+    "selection_id": 71447023,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 71447023
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Hot Cash",
+    "bf_sp": 12.0,
+    "selection_id": 9356344,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 9356344
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "City of God",
+    "bf_sp": 11.5,
+    "selection_id": 52229662,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 52229662
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Sheikh Raj",
+    "bf_sp": 10.5,
+    "selection_id": 72360916,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 72360916
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Hyperchromatic",
+    "bf_sp": 12.0,
+    "selection_id": 72070628,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 72070628
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Criminal Shore",
+    "bf_sp": 15.0,
+    "selection_id": 75229552,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 75229552
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Tactical Plan",
+    "bf_sp": 18.5,
+    "selection_id": 10691730,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 10691730
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Jr Climbs",
+    "bf_sp": 26.0,
+    "selection_id": 71023361,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 71023361
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Law Of Design",
+    "bf_sp": 44.0,
+    "selection_id": 72422005,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 72422005
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Best Rate",
+    "bf_sp": null,
+    "selection_id": 74754399,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 74754399
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Niminy Piminy",
+    "bf_sp": null,
+    "selection_id": 77319245,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 77319245
+  },
+  {
+    "race": "Haydock 15:43",
+    "horse": "Caledonian",
+    "bf_sp": null,
+    "selection_id": 598780,
+    "market_id": "1.244344336",
+    "is_fav": false,
+    "market_rank": 598780
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Barryroe Madam",
+    "bf_sp": 4.0,
+    "selection_id": 53226979,
+    "market_id": "1.244345171",
+    "is_fav": true,
+    "market_rank": 82292380
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Tackletommywoowoo",
+    "bf_sp": 4.4,
+    "selection_id": 69213072,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 72923511
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Inchidaly Copper",
+    "bf_sp": 5.5,
+    "selection_id": 38021565,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 74127236
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Dunany Point",
+    "bf_sp": 5.9,
+    "selection_id": 76118867,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 2869555
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Lough Nigara",
+    "bf_sp": 13.0,
+    "selection_id": 48984858,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 77277259
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Alright Darling",
+    "bf_sp": 17.0,
+    "selection_id": 69913038,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 75403057
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Foxy Rock",
+    "bf_sp": 23.0,
+    "selection_id": 52748785,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 72454026
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Jekiki",
+    "bf_sp": 27.0,
+    "selection_id": 56330748,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 311170
+  },
+  {
+    "race": "Listowel 15:48",
+    "horse": "Sir Carnegie",
+    "bf_sp": 130.0,
+    "selection_id": 71525953,
+    "market_id": "1.244345171",
+    "is_fav": false,
+    "market_rank": 70430552
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Marajito",
+    "bf_sp": 5.9,
+    "selection_id": 68245470,
+    "market_id": "1.244343953",
+    "is_fav": true,
+    "market_rank": 366209
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Keep The Gold",
+    "bf_sp": 6.2,
+    "selection_id": 272713,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 25182441
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Master Zack",
+    "bf_sp": 9.4,
+    "selection_id": 72211810,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 27699876
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "She Went Whoosh",
+    "bf_sp": 10.0,
+    "selection_id": 70445272,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 20002543
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "The Voominator",
+    "bf_sp": 17.0,
+    "selection_id": 71770229,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 58383349
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "El Cobre Fuego",
+    "bf_sp": 12.5,
+    "selection_id": 77539327,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 59463206
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Nordic Games",
+    "bf_sp": 18.5,
+    "selection_id": 81236587,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 61256899
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Commendation",
+    "bf_sp": 18.5,
+    "selection_id": 3358853,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 40390222
+  },
+  {
+    "race": "Southwell 15:55",
+    "horse": "Sundiata Keita",
+    "bf_sp": 19.0,
+    "selection_id": 76174195,
+    "market_id": "1.244343953",
+    "is_fav": false,
+    "market_rank": 56297028
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Delicacy",
+    "bf_sp": 3.65,
+    "selection_id": 366209,
+    "market_id": "1.244344570",
+    "is_fav": true,
+    "market_rank": 68799530
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Mums Tipple",
+    "bf_sp": 5.0,
+    "selection_id": 25182441,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 21651509
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Quest For Fun",
+    "bf_sp": 3.9,
+    "selection_id": 27699876,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 55103665
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Riot",
+    "bf_sp": 5.2,
+    "selection_id": 20002543,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 69325393
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Ziggys Condor",
+    "bf_sp": 3.85,
+    "selection_id": 58383349,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 2159719
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Mysteryofthesands",
+    "bf_sp": 7.2,
+    "selection_id": 59463206,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 56330751
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Arctic Dawn",
+    "bf_sp": 7.6,
+    "selection_id": 61256899,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 46392449
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Lir Speciale",
+    "bf_sp": 9.2,
+    "selection_id": 40390222,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 854876
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Daring Legend",
+    "bf_sp": 8.0,
+    "selection_id": 56297028,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 45172655
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Yaajooz",
+    "bf_sp": 8.4,
+    "selection_id": 60157954,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 44169523
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Crimson Spirit",
+    "bf_sp": 9.2,
+    "selection_id": 58322329,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 15576173
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Tropez Power",
+    "bf_sp": 9.2,
+    "selection_id": 39726202,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 26007509
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Tele Red",
+    "bf_sp": 14.0,
+    "selection_id": 37065275,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 41288412
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Feel The Need",
+    "bf_sp": 10.5,
+    "selection_id": 887796,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 43417491
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Al Muqdad",
+    "bf_sp": 12.5,
+    "selection_id": 46659950,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 24330468
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Mudamer",
+    "bf_sp": 12.5,
+    "selection_id": 5193254,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 45150438
+  },
+  {
+    "race": "York 16:00",
+    "horse": "Flying Fletcher",
+    "bf_sp": 12.5,
+    "selection_id": 57926081,
+    "market_id": "1.244344570",
+    "is_fav": false,
+    "market_rank": 489909
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Too Don Juan",
+    "bf_sp": 4.5,
+    "selection_id": 74504375,
+    "market_id": "1.244344091",
+    "is_fav": true,
+    "market_rank": 53226979
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Magellan Cloud",
+    "bf_sp": 5.2,
+    "selection_id": 73963555,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 69213072
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "War Hawk",
+    "bf_sp": 2.84,
+    "selection_id": 10028664,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 38021565
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Wilhelmina",
+    "bf_sp": 4.5,
+    "selection_id": 7749165,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 76118867
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Eupator",
+    "bf_sp": 5.2,
+    "selection_id": 73692451,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 48984858
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Kokanee",
+    "bf_sp": 7.6,
+    "selection_id": 75978143,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 69913038
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Kimeko Glory",
+    "bf_sp": 7.4,
+    "selection_id": 73689392,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 52748785
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Premier",
+    "bf_sp": 8.0,
+    "selection_id": 73678201,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 56330748
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Sir Paul Ramsey",
+    "bf_sp": 8.6,
+    "selection_id": 70465711,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 71525953
+  },
+  {
+    "race": "Chester 16:05",
+    "horse": "Sovereign Applause",
+    "bf_sp": 7.8,
+    "selection_id": 75556628,
+    "market_id": "1.244344091",
+    "is_fav": false,
+    "market_rank": 69213034
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Gaoth Chuil",
+    "bf_sp": 1.55,
+    "selection_id": 44081135,
+    "market_id": "1.244345206",
+    "is_fav": true,
+    "market_rank": 44081135
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Ma Belle Etoile",
+    "bf_sp": 2.82,
+    "selection_id": 61150282,
+    "market_id": "1.244345206",
+    "is_fav": false,
+    "market_rank": 61150282
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Femme Magnifique",
+    "bf_sp": 4.4,
+    "selection_id": 63937587,
+    "market_id": "1.244345206",
+    "is_fav": false,
+    "market_rank": 63937587
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Amanha",
+    "bf_sp": 13.0,
+    "selection_id": 62698409,
+    "market_id": "1.244345206",
+    "is_fav": false,
+    "market_rank": 62698409
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Betty Dutton",
+    "bf_sp": 16.0,
+    "selection_id": 45859546,
+    "market_id": "1.244345206",
+    "is_fav": false,
+    "market_rank": 45859546
+  },
+  {
+    "race": "Tramore 16:10",
+    "horse": "Florance",
+    "bf_sp": 25.0,
+    "selection_id": 44017509,
+    "market_id": "1.244345206",
+    "is_fav": false,
+    "market_rank": 44017509
+  },
+  {
+    "race": "Listowel 16:20",
+    "horse": "Samba Train",
+    "bf_sp": 1.66,
+    "selection_id": 82319371,
+    "market_id": "1.244345176",
+    "is_fav": true,
+    "market_rank": 49049520
+  },
+  {
+    "race": "Listowel 16:20",
+    "horse": "Courtmac Gesture",
+    "bf_sp": 5.8,
+    "selection_id": 81788413,
+    "market_id": "1.244345176",
+    "is_fav": false,
+    "market_rank": 10565722
+  },
+  {
+    "race": "Listowel 16:20",
+    "horse": "Poetic Twist",
+    "bf_sp": 9.0,
+    "selection_id": 84239437,
+    "market_id": "1.244345176",
+    "is_fav": false,
+    "market_rank": 58423436
+  },
+  {
+    "race": "Listowel 16:20",
+    "horse": "Crystal Supreme",
+    "bf_sp": 11.5,
+    "selection_id": 84239436,
+    "market_id": "1.244345176",
+    "is_fav": false,
+    "market_rank": 63805237
+  },
+  {
+    "race": "Listowel 16:20",
+    "horse": "Master Sydney",
+    "bf_sp": 13.5,
+    "selection_id": 82354313,
+    "market_id": "1.244345176",
+    "is_fav": false,
+    "market_rank": 35536844
+  },
+  {
+    "race": "Southwell 16:25",
+    "horse": "Imperial Guard",
+    "bf_sp": 2.62,
+    "selection_id": 8793329,
+    "market_id": "1.244343960",
+    "is_fav": true,
+    "market_rank": 27457006
+  },
+  {
+    "race": "Southwell 16:25",
+    "horse": "Muker",
+    "bf_sp": 3.55,
+    "selection_id": 28562914,
+    "market_id": "1.244343960",
+    "is_fav": false,
+    "market_rank": 60191442
+  },
+  {
+    "race": "Southwell 16:25",
+    "horse": "Sanat",
+    "bf_sp": 4.8,
+    "selection_id": 68361513,
+    "market_id": "1.244343960",
+    "is_fav": false,
+    "market_rank": 59154358
+  },
+  {
+    "race": "Southwell 16:25",
+    "horse": "Alligator Alley",
+    "bf_sp": 8.2,
+    "selection_id": 267698,
+    "market_id": "1.244343960",
+    "is_fav": false,
+    "market_rank": 50721609
+  },
+  {
+    "race": "Southwell 16:25",
+    "horse": "Fine Wine",
+    "bf_sp": 9.0,
+    "selection_id": 26989979,
+    "market_id": "1.244343960",
+    "is_fav": false,
+    "market_rank": 39947017
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Old Bridge",
+    "bf_sp": 3.15,
+    "selection_id": 81280675,
+    "market_id": "1.244343994",
+    "is_fav": true,
+    "market_rank": 8793329
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Renoir",
+    "bf_sp": 6.6,
+    "selection_id": 5176861,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 28562914
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Public Enemy",
+    "bf_sp": 6.0,
+    "selection_id": 9990950,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 68361513
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Duel Au Soleil",
+    "bf_sp": 7.4,
+    "selection_id": 80735409,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 267698
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Nathanael Greene",
+    "bf_sp": 7.6,
+    "selection_id": 41469130,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 26989979
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Never Seen Again",
+    "bf_sp": 11.0,
+    "selection_id": 48773403,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 60124507
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Secret Pass",
+    "bf_sp": 15.5,
+    "selection_id": 51015644,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 58322430
+  },
+  {
+    "race": "Stratford 16:30",
+    "horse": "Jubilee Girl",
+    "bf_sp": 30.0,
+    "selection_id": 174891,
+    "market_id": "1.244343994",
+    "is_fav": false,
+    "market_rank": 45580842
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Yellow Card",
+    "bf_sp": 3.05,
+    "selection_id": 1295925,
+    "market_id": "1.244344098",
+    "is_fav": true,
+    "market_rank": 63524961
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Sir William",
+    "bf_sp": 4.9,
+    "selection_id": 39271,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 57569279
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Arkinthestars",
+    "bf_sp": 5.7,
+    "selection_id": 73805109,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 45645988
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Divine Legacy",
+    "bf_sp": 8.4,
+    "selection_id": 71192296,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 62565033
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Topteam",
+    "bf_sp": 11.5,
+    "selection_id": 80951168,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 49767599
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Pride Of Donegal",
+    "bf_sp": 9.4,
+    "selection_id": 75978309,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 39540622
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Its Only Fun",
+    "bf_sp": 16.0,
+    "selection_id": 73768778,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 231749
+  },
+  {
+    "race": "Chester 16:35",
+    "horse": "Pappa Louis",
+    "bf_sp": 19.5,
+    "selection_id": 69400776,
+    "market_id": "1.244344098",
+    "is_fav": false,
+    "market_rank": 63132382
+  },
+  {
+    "race": "Lingfield 16:40",
+    "horse": "Golden Phase",
+    "bf_sp": 2.06,
+    "selection_id": 49049520,
+    "market_id": "1.244343684",
+    "is_fav": true,
+    "market_rank": 81280675
+  },
+  {
+    "race": "Lingfield 16:40",
+    "horse": "Jungle Cruise",
+    "bf_sp": 2.98,
+    "selection_id": 10565722,
+    "market_id": "1.244343684",
+    "is_fav": false,
+    "market_rank": 5176861
+  },
+  {
+    "race": "Lingfield 16:40",
+    "horse": "Meet Me In Meraki",
+    "bf_sp": 9.4,
+    "selection_id": 58423436,
+    "market_id": "1.244343684",
+    "is_fav": false,
+    "market_rank": 9990950
+  },
+  {
+    "race": "Lingfield 16:40",
+    "horse": "Birthday Angel",
+    "bf_sp": 13.5,
+    "selection_id": 63805237,
+    "market_id": "1.244343684",
+    "is_fav": false,
+    "market_rank": 80735409
+  },
+  {
+    "race": "Lingfield 16:40",
+    "horse": "Lennys Spirit",
+    "bf_sp": 25.0,
+    "selection_id": 35536844,
+    "market_id": "1.244343684",
+    "is_fav": false,
+    "market_rank": 41469130
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "Pipers Boreen",
+    "bf_sp": 2.08,
+    "selection_id": 50466414,
+    "market_id": "1.244345211",
+    "is_fav": true,
+    "market_rank": 43554964
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "Priory Park",
+    "bf_sp": 5.3,
+    "selection_id": 37306731,
+    "market_id": "1.244345211",
+    "is_fav": false,
+    "market_rank": 11787254
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "Portarlington",
+    "bf_sp": 6.8,
+    "selection_id": 45099972,
+    "market_id": "1.244345211",
+    "is_fav": false,
+    "market_rank": 47957862
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "U Asking Me",
+    "bf_sp": 8.0,
+    "selection_id": 57314339,
+    "market_id": "1.244345211",
+    "is_fav": false,
+    "market_rank": 42717120
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "Killinure Lass",
+    "bf_sp": 10.0,
+    "selection_id": 40548231,
+    "market_id": "1.244345211",
+    "is_fav": false,
+    "market_rank": 49257734
+  },
+  {
+    "race": "Tramore 16:45",
+    "horse": "The Little Yank",
+    "bf_sp": 26.0,
+    "selection_id": 25967814,
+    "market_id": "1.244345211",
+    "is_fav": false,
+    "market_rank": 81491374
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Leagle Aid",
+    "bf_sp": 2.2,
+    "selection_id": 63524961,
+    "market_id": "1.244343967",
+    "is_fav": true,
+    "market_rank": 1295925
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Letmebetheboss",
+    "bf_sp": 7.2,
+    "selection_id": 57569279,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 39271
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Young Endless",
+    "bf_sp": 7.2,
+    "selection_id": 45645988,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 73805109
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Albert Lasker",
+    "bf_sp": 11.0,
+    "selection_id": 62565033,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 71192296
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Legacy Power",
+    "bf_sp": 13.0,
+    "selection_id": 49767599,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 80951168
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Different Drum",
+    "bf_sp": 14.5,
+    "selection_id": 39540622,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 75978309
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Sea Master",
+    "bf_sp": 14.0,
+    "selection_id": 231749,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 73768778
+  },
+  {
+    "race": "Southwell 16:55",
+    "horse": "Night Horn",
+    "bf_sp": 28.0,
+    "selection_id": 63132382,
+    "market_id": "1.244343967",
+    "is_fav": false,
+    "market_rank": 69400776
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Iskar Dairy",
+    "bf_sp": 2.88,
+    "selection_id": 43554964,
+    "market_id": "1.244344000",
+    "is_fav": true,
+    "market_rank": 82319371
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Asian Star",
+    "bf_sp": 5.7,
+    "selection_id": 11787254,
+    "market_id": "1.244344000",
+    "is_fav": false,
+    "market_rank": 81788413
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Mary",
+    "bf_sp": 4.2,
+    "selection_id": 47957862,
+    "market_id": "1.244344000",
+    "is_fav": false,
+    "market_rank": 84239437
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Sailed Away",
+    "bf_sp": 5.2,
+    "selection_id": 42717120,
+    "market_id": "1.244344000",
+    "is_fav": false,
+    "market_rank": 84239436
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Alshadhian",
+    "bf_sp": 3.9,
+    "selection_id": 49257734,
+    "market_id": "1.244344000",
+    "is_fav": false,
+    "market_rank": 82354313
+  },
+  {
+    "race": "Stratford 17:00",
+    "horse": "Blackijo Dagrostis",
+    "bf_sp": 4.1,
+    "selection_id": 81491374,
+    "market_id": "1.244344000",
+    "is_fav": false,
+    "market_rank": 78584027
+  },
+  {
+    "race": "Lingfield 17:10",
+    "horse": "Cavalry Call",
+    "bf_sp": 3.5,
+    "selection_id": 27457006,
+    "market_id": "1.244343689",
+    "is_fav": true,
+    "market_rank": 50466414
+  },
+  {
+    "race": "Lingfield 17:10",
+    "horse": "Odin Legacy",
+    "bf_sp": 2.76,
+    "selection_id": 60191442,
+    "market_id": "1.244343689",
+    "is_fav": false,
+    "market_rank": 37306731
+  },
+  {
+    "race": "Lingfield 17:10",
+    "horse": "Papagei",
+    "bf_sp": 4.2,
+    "selection_id": 59154358,
+    "market_id": "1.244343689",
+    "is_fav": false,
+    "market_rank": 45099972
+  },
+  {
+    "race": "Lingfield 17:10",
+    "horse": "Ninth Life",
+    "bf_sp": 7.0,
+    "selection_id": 50721609,
+    "market_id": "1.244343689",
+    "is_fav": false,
+    "market_rank": 57314339
+  },
+  {
+    "race": "Lingfield 17:10",
+    "horse": "Appier",
+    "bf_sp": 4.6,
+    "selection_id": 39947017,
+    "market_id": "1.244343689",
+    "is_fav": false,
+    "market_rank": 40548231
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Miners Bridge",
+    "bf_sp": 4.7,
+    "selection_id": 64751481,
+    "market_id": "1.244345216",
+    "is_fav": true,
+    "market_rank": 64751481
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Rock On Pedro",
+    "bf_sp": 4.0,
+    "selection_id": 39923839,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 39923839
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Well Loved",
+    "bf_sp": 6.8,
+    "selection_id": 49819467,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 49819467
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Roman Parish",
+    "bf_sp": 4.5,
+    "selection_id": 45282938,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 45282938
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Kyle Valley",
+    "bf_sp": 4.4,
+    "selection_id": 56616475,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 56616475
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Smallcraftwarning",
+    "bf_sp": 7.0,
+    "selection_id": 46636448,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 46636448
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Must Be Dreaming",
+    "bf_sp": 8.0,
+    "selection_id": 11484761,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 11484761
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Early Arrival",
+    "bf_sp": 8.0,
+    "selection_id": 35688472,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 35688472
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Greenway Machine",
+    "bf_sp": 8.0,
+    "selection_id": 25903079,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 25903079
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "God Help Us",
+    "bf_sp": 8.0,
+    "selection_id": 38739607,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 38739607
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Maid On The Moon",
+    "bf_sp": 8.0,
+    "selection_id": 38690051,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 38690051
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Ta Se Rua",
+    "bf_sp": 8.6,
+    "selection_id": 44284517,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 44284517
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Walk In Time",
+    "bf_sp": 9.0,
+    "selection_id": 44696774,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 44696774
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Hit The Frame",
+    "bf_sp": 6.0,
+    "selection_id": 72322095,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 72322095
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Milan Dollar Lady",
+    "bf_sp": 6.0,
+    "selection_id": 65666344,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 65666344
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Robin Elite",
+    "bf_sp": 12.5,
+    "selection_id": 48571487,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 48571487
+  },
+  {
+    "race": "Tramore 17:15",
+    "horse": "Tennessee Titan",
+    "bf_sp": 12.5,
+    "selection_id": 19685897,
+    "market_id": "1.244345216",
+    "is_fav": false,
+    "market_rank": 19685897
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Understudy",
+    "bf_sp": 2.28,
+    "selection_id": 428644,
+    "market_id": "1.244343974",
+    "is_fav": true,
+    "market_rank": 2477469
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Coedana",
+    "bf_sp": 3.35,
+    "selection_id": 82909628,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 13387566
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Hatysa",
+    "bf_sp": 6.0,
+    "selection_id": 75448533,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 81862571
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Luxmundi",
+    "bf_sp": 11.0,
+    "selection_id": 80656771,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 84239269
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Bintnouf",
+    "bf_sp": 18.5,
+    "selection_id": 82997520,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 82514068
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Luna Bay",
+    "bf_sp": 21.0,
+    "selection_id": 84239405,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 84239270
+  },
+  {
+    "race": "Southwell 17:25",
+    "horse": "Victoria Concordia",
+    "bf_sp": 80.0,
+    "selection_id": 62041205,
+    "market_id": "1.244343974",
+    "is_fav": false,
+    "market_rank": 83421669
+  },
+  {
+    "race": "Stratford 17:30",
+    "horse": "Auntie Maggie",
+    "bf_sp": 3.2,
+    "selection_id": 69041259,
+    "market_id": "1.244344007",
+    "is_fav": true,
+    "market_rank": 27933252
+  },
+  {
+    "race": "Stratford 17:30",
+    "horse": "Clear Storm",
+    "bf_sp": 3.65,
+    "selection_id": 62565027,
+    "market_id": "1.244344007",
+    "is_fav": false,
+    "market_rank": 84239273
+  },
+  {
+    "race": "Stratford 17:30",
+    "horse": "Northern Rose",
+    "bf_sp": 2.22,
+    "selection_id": 23406724,
+    "market_id": "1.244344007",
+    "is_fav": false,
+    "market_rank": 84239272
+  },
+  {
+    "race": "Stratford 17:30",
+    "horse": "Window Of Time",
+    "bf_sp": 4.3,
+    "selection_id": 61566326,
+    "market_id": "1.244344007",
+    "is_fav": false,
+    "market_rank": 82093789
+  },
+  {
+    "race": "Stratford 17:30",
+    "horse": "Penthouse Poppet",
+    "bf_sp": 8.4,
+    "selection_id": 44767258,
+    "market_id": "1.244344007",
+    "is_fav": false,
+    "market_rank": 83583826
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Twilight Star",
+    "bf_sp": 2.08,
+    "selection_id": 2477469,
+    "market_id": "1.244343694",
+    "is_fav": true,
+    "market_rank": 428644
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Shine On Me",
+    "bf_sp": 4.5,
+    "selection_id": 13387566,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 82909628
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Justice Twice",
+    "bf_sp": 5.8,
+    "selection_id": 81862571,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 75448533
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Queen Evie",
+    "bf_sp": 8.8,
+    "selection_id": 84239269,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 80656771
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Guernsey Lady",
+    "bf_sp": 13.0,
+    "selection_id": 82514068,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 82997520
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Nebrook Star",
+    "bf_sp": 13.5,
+    "selection_id": 84239270,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 84239405
+  },
+  {
+    "race": "Lingfield 17:40",
+    "horse": "Ocean Pie",
+    "bf_sp": 32.0,
+    "selection_id": 83421669,
+    "market_id": "1.244343694",
+    "is_fav": false,
+    "market_rank": 62041205
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Kainsbourg",
+    "bf_sp": 4.1,
+    "selection_id": 61409840,
+    "market_id": "1.244345221",
+    "is_fav": true,
+    "market_rank": 59423715
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "The Store Boy",
+    "bf_sp": 7.2,
+    "selection_id": 82473509,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 40290352
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Sea Of Doubt",
+    "bf_sp": 6.2,
+    "selection_id": 69174757,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 26314799
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Met Office",
+    "bf_sp": 7.0,
+    "selection_id": 28486449,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 74784024
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Eye Of A Tiger",
+    "bf_sp": 8.2,
+    "selection_id": 60184986,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 45374228
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Deed Pole",
+    "bf_sp": 7.6,
+    "selection_id": 49903640,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 46065117
+  },
+  {
+    "race": "Tramore 17:45",
+    "horse": "Accustomed",
+    "bf_sp": 8.6,
+    "selection_id": 5645647,
+    "market_id": "1.244345221",
+    "is_fav": false,
+    "market_rank": 58821651
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Kingdom Of Time",
+    "bf_sp": 5.2,
+    "selection_id": 59423715,
+    "market_id": "1.244343981",
+    "is_fav": true,
+    "market_rank": 8207344
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Down To The Kid",
+    "bf_sp": 1.75,
+    "selection_id": 40290352,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 134774
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Al Rufaa",
+    "bf_sp": 15.0,
+    "selection_id": 26314799,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 50307180
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Kisdon Force",
+    "bf_sp": 30.0,
+    "selection_id": 74784024,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 47224199
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Rich Rhythm",
+    "bf_sp": 14.5,
+    "selection_id": 45374228,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 41466912
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "King Of Ithaca",
+    "bf_sp": 20.0,
+    "selection_id": 46065117,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 67801053
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "King Of Fury",
+    "bf_sp": 44.0,
+    "selection_id": 58821651,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 22214462
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Golden Pharaoh",
+    "bf_sp": 18.5,
+    "selection_id": 45677362,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 6539385
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Ten Commitments",
+    "bf_sp": 34.0,
+    "selection_id": 64472310,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 62886004
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Livio Milo",
+    "bf_sp": 55.0,
+    "selection_id": 47672170,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 71872036
+  },
+  {
+    "race": "Southwell 17:55",
+    "horse": "Giorgio M",
+    "bf_sp": 44.0,
+    "selection_id": 60918634,
+    "market_id": "1.244343981",
+    "is_fav": false,
+    "market_rank": 69841192
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Amberelli",
+    "bf_sp": 2.58,
+    "selection_id": 69296711,
+    "market_id": "1.244344014",
+    "is_fav": true,
+    "market_rank": 69041259
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Jos Rainbow",
+    "bf_sp": 4.9,
+    "selection_id": 50148696,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 62565027
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Fillyfudge",
+    "bf_sp": 6.0,
+    "selection_id": 46118466,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 23406724
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Opticality",
+    "bf_sp": 7.4,
+    "selection_id": 41527397,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 61566326
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Organic",
+    "bf_sp": 14.0,
+    "selection_id": 1102459,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 44767258
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Masonbrook Meadow",
+    "bf_sp": 17.0,
+    "selection_id": 57926188,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 49229036
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Sadies Diamond",
+    "bf_sp": 17.0,
+    "selection_id": 57314343,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 57783571
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Sweet Serene",
+    "bf_sp": 18.0,
+    "selection_id": 64922452,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 46660190
+  },
+  {
+    "race": "Stratford 18:00",
+    "horse": "Pomeriggio",
+    "bf_sp": 26.0,
+    "selection_id": 55631854,
+    "market_id": "1.244344014",
+    "is_fav": false,
+    "market_rank": 63973716
+  },
+  {
+    "race": "Lingfield 18:10",
+    "horse": "Assaranca",
+    "bf_sp": 4.1,
+    "selection_id": 27933252,
+    "market_id": "1.244343700",
+    "is_fav": true,
+    "market_rank": 69296711
+  },
+  {
+    "race": "Lingfield 18:10",
+    "horse": "Elenaya",
+    "bf_sp": 3.9,
+    "selection_id": 84239273,
+    "market_id": "1.244343700",
+    "is_fav": false,
+    "market_rank": 50148696
+  },
+  {
+    "race": "Lingfield 18:10",
+    "horse": "Private Project",
+    "bf_sp": 4.9,
+    "selection_id": 84239272,
+    "market_id": "1.244343700",
+    "is_fav": false,
+    "market_rank": 46118466
+  },
+  {
+    "race": "Lingfield 18:10",
+    "horse": "Paroda Diva",
+    "bf_sp": 6.0,
+    "selection_id": 82093789,
+    "market_id": "1.244343700",
+    "is_fav": false,
+    "market_rank": 41527397
+  },
+  {
+    "race": "Lingfield 18:10",
+    "horse": "Hazy Cosmic Jane",
+    "bf_sp": 9.0,
+    "selection_id": 83583826,
+    "market_id": "1.244343700",
+    "is_fav": false,
+    "market_rank": 1102459
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "May Call You Back",
+    "bf_sp": 2.46,
+    "selection_id": 54379071,
+    "market_id": "1.244345226",
+    "is_fav": true,
+    "market_rank": 6414430
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "Applejack Poet",
+    "bf_sp": 3.4,
+    "selection_id": 45830367,
+    "market_id": "1.244345226",
+    "is_fav": false,
+    "market_rank": 38340846
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "Cramers Valley",
+    "bf_sp": 9.4,
+    "selection_id": 56984879,
+    "market_id": "1.244345226",
+    "is_fav": false,
+    "market_rank": 45282940
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "Good Bye Milan",
+    "bf_sp": 10.5,
+    "selection_id": 40191173,
+    "market_id": "1.244345226",
+    "is_fav": false,
+    "market_rank": 23225808
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "Kentucky Bluebird",
+    "bf_sp": 11.5,
+    "selection_id": 80990354,
+    "market_id": "1.244345226",
+    "is_fav": false,
+    "market_rank": 15914199
+  },
+  {
+    "race": "Tramore 18:15",
+    "horse": "Bright N Shine",
+    "bf_sp": 11.5,
+    "selection_id": 10050863,
+    "market_id": "1.244345226",
+    "is_fav": false,
+    "market_rank": 43626738
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Create",
+    "bf_sp": 2.0,
+    "selection_id": 8207344,
+    "market_id": "1.244343987",
+    "is_fav": true,
+    "market_rank": 61409840
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Latin",
+    "bf_sp": 3.6,
+    "selection_id": 134774,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 82473509
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Sams Hope",
+    "bf_sp": 4.5,
+    "selection_id": 50307180,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 69174757
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Starshot",
+    "bf_sp": 12.5,
+    "selection_id": 47224199,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 28486449
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Greenlightforgo",
+    "bf_sp": 13.0,
+    "selection_id": 41466912,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 60184986
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Royal Justice",
+    "bf_sp": 18.5,
+    "selection_id": 67801053,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 49903640
+  },
+  {
+    "race": "Southwell 18:25",
+    "horse": "Musterion",
+    "bf_sp": 21.0,
+    "selection_id": 22214462,
+    "market_id": "1.244343987",
+    "is_fav": false,
+    "market_rank": 5645647
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "Bethpage",
+    "bf_sp": 3.05,
+    "selection_id": 6414430,
+    "market_id": "1.244344020",
+    "is_fav": true,
+    "market_rank": 54379071
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "Up For Parol",
+    "bf_sp": 3.4,
+    "selection_id": 38340846,
+    "market_id": "1.244344020",
+    "is_fav": false,
+    "market_rank": 45830367
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "Lihyan",
+    "bf_sp": 5.0,
+    "selection_id": 45282940,
+    "market_id": "1.244344020",
+    "is_fav": false,
+    "market_rank": 56984879
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "Jaytee",
+    "bf_sp": 3.4,
+    "selection_id": 23225808,
+    "market_id": "1.244344020",
+    "is_fav": false,
+    "market_rank": 40191173
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "West To The Bridge",
+    "bf_sp": 7.8,
+    "selection_id": 15914199,
+    "market_id": "1.244344020",
+    "is_fav": false,
+    "market_rank": 80990354
+  },
+  {
+    "race": "Stratford 18:30",
+    "horse": "Imperial Merlin",
+    "bf_sp": 5.7,
+    "selection_id": 43626738,
+    "market_id": "1.244344020",
+    "is_fav": false,
+    "market_rank": 10050863
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Knights Gold",
+    "bf_sp": 4.4,
+    "selection_id": 64553873,
+    "market_id": "1.244343706",
+    "is_fav": true,
+    "market_rank": 64553873
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Tolerance",
+    "bf_sp": 7.0,
+    "selection_id": 4906381,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 4906381
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Blue Wonder",
+    "bf_sp": 7.0,
+    "selection_id": 16654052,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 16654052
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Telepathic",
+    "bf_sp": 7.4,
+    "selection_id": 202403,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 202403
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Havana Whisper",
+    "bf_sp": 8.2,
+    "selection_id": 72693644,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 72693644
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Love Is The Law",
+    "bf_sp": 10.0,
+    "selection_id": 71560076,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 71560076
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Jet Packer",
+    "bf_sp": 10.5,
+    "selection_id": 70397069,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 70397069
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Noble Guest",
+    "bf_sp": 13.5,
+    "selection_id": 71953904,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 71953904
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "This Farh",
+    "bf_sp": 18.0,
+    "selection_id": 72422020,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 72422020
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Geo",
+    "bf_sp": 30.0,
+    "selection_id": 27259360,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 27259360
+  },
+  {
+    "race": "Lingfield 18:40",
+    "horse": "Shimaleyah",
+    "bf_sp": 38.0,
+    "selection_id": 80105999,
+    "market_id": "1.244343706",
+    "is_fav": false,
+    "market_rank": 80105999
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "Sunset Boulevard",
+    "bf_sp": 3.25,
+    "selection_id": 2009025,
+    "market_id": "1.244345231",
+    "is_fav": true,
+    "market_rank": 56263057
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "Ellis Mor",
+    "bf_sp": 4.0,
+    "selection_id": 78220675,
+    "market_id": "1.244345231",
+    "is_fav": false,
+    "market_rank": 54880991
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "Yarraman Makarrata",
+    "bf_sp": 7.6,
+    "selection_id": 74674612,
+    "market_id": "1.244345231",
+    "is_fav": false,
+    "market_rank": 3922
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "Kotkito Bello",
+    "bf_sp": 7.0,
+    "selection_id": 81788400,
+    "market_id": "1.244345231",
+    "is_fav": false,
+    "market_rank": 44665607
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "On Cloud Wine",
+    "bf_sp": 6.6,
+    "selection_id": 62993183,
+    "market_id": "1.244345231",
+    "is_fav": false,
+    "market_rank": 45325621
+  },
+  {
+    "race": "Tramore 18:45",
+    "horse": "Hillstar Blues",
+    "bf_sp": 9.0,
+    "selection_id": 80378467,
+    "market_id": "1.244345231",
+    "is_fav": false,
+    "market_rank": 10189143
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "My Gift To You",
+    "bf_sp": 2.8,
+    "selection_id": 42738484,
+    "market_id": "1.244344026",
+    "is_fav": true,
+    "market_rank": 48299526
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Stans The Man",
+    "bf_sp": 3.9,
+    "selection_id": 38872805,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 35792174
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Hidden Heroics",
+    "bf_sp": 8.0,
+    "selection_id": 41225761,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 8877584
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Ajp Kingdom",
+    "bf_sp": 9.4,
+    "selection_id": 48829647,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 55720831
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Yes Day",
+    "bf_sp": 9.8,
+    "selection_id": 48188391,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 13663995
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Gats And Co",
+    "bf_sp": 10.0,
+    "selection_id": 37094646,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 46091736
+  },
+  {
+    "race": "Stratford 19:00",
+    "horse": "Ashtown Lad",
+    "bf_sp": 8.8,
+    "selection_id": 27546555,
+    "market_id": "1.244344026",
+    "is_fav": false,
+    "market_rank": 40920672
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "City Cyclone",
+    "bf_sp": 3.35,
+    "selection_id": 48299526,
+    "market_id": "1.244343717",
+    "is_fav": true,
+    "market_rank": 42738484
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Thapa Vc",
+    "bf_sp": 4.6,
+    "selection_id": 35792174,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 38872805
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Francisco",
+    "bf_sp": 6.0,
+    "selection_id": 8877584,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 41225761
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Land Of Magic",
+    "bf_sp": 4.1,
+    "selection_id": 55720831,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 48829647
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Harbour Vision",
+    "bf_sp": 8.0,
+    "selection_id": 13663995,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 48188391
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Wilde And Dandy",
+    "bf_sp": 8.8,
+    "selection_id": 46091736,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 37094646
+  },
+  {
+    "race": "Lingfield 19:10",
+    "horse": "Court Of Session",
+    "bf_sp": 16.0,
+    "selection_id": 40920672,
+    "market_id": "1.244343717",
+    "is_fav": false,
+    "market_rank": 27546555
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Liadawn",
+    "bf_sp": 2.22,
+    "selection_id": 84238896,
+    "market_id": "1.244345236",
+    "is_fav": true,
+    "market_rank": 50540107
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Fraher Field",
+    "bf_sp": 2.9,
+    "selection_id": 83166829,
+    "market_id": "1.244345236",
+    "is_fav": false,
+    "market_rank": 63486882
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Early Bird",
+    "bf_sp": 9.8,
+    "selection_id": 9609887,
+    "market_id": "1.244345236",
+    "is_fav": false,
+    "market_rank": 11683779
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Tricksofthetrade",
+    "bf_sp": 12.0,
+    "selection_id": 5320756,
+    "market_id": "1.244345236",
+    "is_fav": false,
+    "market_rank": 62565047
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Crossbar Getaway",
+    "bf_sp": 8.2,
+    "selection_id": 72211550,
+    "market_id": "1.244345236",
+    "is_fav": false,
+    "market_rank": 50447678
+  },
+  {
+    "race": "Tramore 19:15",
+    "horse": "Her Name Is Isla",
+    "bf_sp": 32.0,
+    "selection_id": 84238894,
+    "market_id": "1.244345236",
+    "is_fav": false,
+    "market_rank": 41456641
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "Nickelforce",
+    "bf_sp": 8.0,
+    "selection_id": 50540107,
+    "market_id": "1.244344032",
+    "is_fav": true,
+    "market_rank": 68545708
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "Village Master",
+    "bf_sp": 6.4,
+    "selection_id": 63486882,
+    "market_id": "1.244344032",
+    "is_fav": false,
+    "market_rank": 41803819
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "Romanor",
+    "bf_sp": 5.5,
+    "selection_id": 11683779,
+    "market_id": "1.244344032",
+    "is_fav": false,
+    "market_rank": 4872811
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "The Dream Goes On",
+    "bf_sp": 8.6,
+    "selection_id": 62565047,
+    "market_id": "1.244344032",
+    "is_fav": false,
+    "market_rank": 43868907
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "Moodofthemoment",
+    "bf_sp": 8.4,
+    "selection_id": 50447678,
+    "market_id": "1.244344032",
+    "is_fav": false,
+    "market_rank": 13104301
+  },
+  {
+    "race": "Stratford 19:30",
+    "horse": "Great Dange",
+    "bf_sp": 8.6,
+    "selection_id": 41456641,
+    "market_id": "1.244344032",
+    "is_fav": false,
+    "market_rank": 38200461
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Mart",
+    "bf_sp": 3.2,
+    "selection_id": 56263057,
+    "market_id": "1.244343711",
+    "is_fav": true,
+    "market_rank": 2009025
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Bint Havana Gold",
+    "bf_sp": 3.7,
+    "selection_id": 54880991,
+    "market_id": "1.244343711",
+    "is_fav": false,
+    "market_rank": 78220675
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Spanish Star",
+    "bf_sp": 4.0,
+    "selection_id": 3922,
+    "market_id": "1.244343711",
+    "is_fav": false,
+    "market_rank": 74674612
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Minnesota Lad",
+    "bf_sp": 4.4,
+    "selection_id": 44665607,
+    "market_id": "1.244343711",
+    "is_fav": false,
+    "market_rank": 81788400
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Danger Alert",
+    "bf_sp": 6.4,
+    "selection_id": 45325621,
+    "market_id": "1.244343711",
+    "is_fav": false,
+    "market_rank": 62993183
+  },
+  {
+    "race": "Lingfield 19:40",
+    "horse": "Sovereign Knight",
+    "bf_sp": 9.0,
+    "selection_id": 10189143,
+    "market_id": "1.244343711",
+    "is_fav": false,
+    "market_rank": 80378467
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Laravie",
+    "bf_sp": 2.14,
+    "selection_id": 68545708,
+    "market_id": "1.244344039",
+    "is_fav": true,
+    "market_rank": 84238896
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Hillsin",
+    "bf_sp": 4.3,
+    "selection_id": 41803819,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 83166829
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Zoran",
+    "bf_sp": 2.9,
+    "selection_id": 4872811,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 9609887
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Getaway With You",
+    "bf_sp": 8.6,
+    "selection_id": 43868907,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 5320756
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Impecunious",
+    "bf_sp": 17.0,
+    "selection_id": 13104301,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 72211550
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Supreme Yeats",
+    "bf_sp": 9.8,
+    "selection_id": 38200461,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 84238894
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Stage Show",
+    "bf_sp": 9.8,
+    "selection_id": 6611340,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 81492897
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Tzarmix",
+    "bf_sp": 9.8,
+    "selection_id": 49854146,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 84238897
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Mactavish",
+    "bf_sp": 9.8,
+    "selection_id": 42155888,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 84238895
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Rare Clouds",
+    "bf_sp": 9.8,
+    "selection_id": 22292113,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 69437377
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Bensini",
+    "bf_sp": 17.0,
+    "selection_id": 48353342,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 83498269
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Juan Bermudez",
+    "bf_sp": 17.0,
+    "selection_id": 41122648,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 71120883
+  },
+  {
+    "race": "Stratford 20:00",
+    "horse": "Scudamore",
+    "bf_sp": null,
+    "selection_id": 28618285,
+    "market_id": "1.244344039",
+    "is_fav": false,
+    "market_rank": 56616295
+  }
+]

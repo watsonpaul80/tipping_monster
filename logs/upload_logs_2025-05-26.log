@@ -1,0 +1,4 @@
+/bin/bash: /home/ec2-user/tipping-monster/upload_logs_to_s3.sh: Permission denied
+  adding: home/ec2-user/tipping-monster/logs/daily_results.log (deflated 91%)
+Completed 915 Bytes/915 Bytes (2.5 KiB/s) with 1 file(s) remainingupload: ../../../tmp/tipping-monster-logs-2025-05-26.zip to s3://tipping-monster/logs-archive/tipping-monster-logs-2025-05-26.zip
+Uploaded /tmp/tipping-monster-logs-2025-05-26.zip to s3://tipping-monster/logs-archive/

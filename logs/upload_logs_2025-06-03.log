@@ -1,0 +1,3 @@
+  adding: home/ec2-user/tipping-monster/logs/train_2025-05-25.log (deflated 51%)
+Completed 1.3 KiB/1.3 KiB (4.1 KiB/s) with 1 file(s) remainingupload: ../../tmp/tipping-monster-logs-2025-06-03.zip to s3://tipping-monster/logs-archive/tipping-monster-logs-2025-06-03.zip
+Uploaded /tmp/tipping-monster-logs-2025-06-03.zip to s3://tipping-monster/logs-archive/

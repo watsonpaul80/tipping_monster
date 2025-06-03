@@ -20,7 +20,7 @@ ROI is tracked across the following dimensions:
 | `calibrate_confidence_daily.py` | Tracks ROI per confidence band daily |
 | `weekly_roi_summary.py` | Sends weekly Telegram summary |
 | `send_daily_roi_summary.py` | Sends daily Telegram summary (sent tips only) |
-| `unified_roi_sheet.csv` | Merges tip logs with week/month/date info |
+| | `unified_roi_sheet.csv` | Merges tip logs with tip, stake, odds, ROI, tag, confidence, and date metadata |
 
 ## 🧾 Output Files
 
@@ -33,3 +33,7 @@ ROI is tracked across the following dimensions:
 
 These are ready for pivoting, filtering, and dashboard integration.
 
+## 📺 Dashboards
+- *Streamlit dashboards planned*, including:
+  - Paul's View: deep ROI filtering by tag, confidence, date
+  - Member-facing view: simplified sent tip ROI
