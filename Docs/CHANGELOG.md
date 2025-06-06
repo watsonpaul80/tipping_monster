@@ -137,3 +137,6 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - 🔍 Diagnosis: ROI script defaulted to today even when `--date` was passed (issue still under review)
 
 ---
+## 2025-06-06 — ROI Script Consolidation
+- Removed duplicate scripts from `ROI/` directory.
+- Canonical versions kept in project root.
