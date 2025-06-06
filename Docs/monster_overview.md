@@ -12,14 +12,17 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Confidence-based XGBoost ML model for tip generation
 * ✅ Odds integration (Betfair snapshot)
 * ✅ Tagging (e.g. Class Drop, In Form)
+* ✅ Tag-based commentary generation (ML-driven)
 * ✅ LLM commentary generation (optional)
 * ✅ Realistic odds injection
+* ✅ Odds delta tracking for each tip
 * ✅ Telegram dispatch logic with rich formatting and efficient batching
 * ✅ ROI tracking (level + advised)
 * ✅ Confidence calibration logger & detailed confidence band ROI logging
 * ✅ Weekly and daily ROI summaries
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
+* ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`, `sniper/`)
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
@@ -115,6 +118,7 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi_tracker_advised.py`                    | Main daily tracker – filters, calculates profit, generates tip results CSV      |
 | `weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
+| `generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
 | `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
