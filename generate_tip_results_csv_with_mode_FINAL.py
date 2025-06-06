@@ -1,26 +1,18 @@
 
 import argparse
-import pandas as pd
-import os
 from datetime import datetime
+import os
+import pandas as pd
 
 # Adjust as needed
 LOGS_DIR = "logs"
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--date",
-        default=datetime.today().strftime("%Y-%m-%d"),
-        help="Date in YYYY-MM-DD",
-    )
-    parser.add_argument("--mode", choices=["advised", "level"], required=True)
-    return parser.parse_args()
+TODAY = datetime.today().strftime("%Y-%m-%d")
 
 # Dummy loading logic – replace with your actual tip/result merging logic
 def load_tips_results(date_str: str) -> pd.DataFrame:
-    """Load merged tips and results for the given date."""
-    return pd.read_csv(f"{LOGS_DIR}/tips_results_raw_{date_str}.csv")
+    """Load the merged tips/results file for the given date."""
+    path = os.path.join(LOGS_DIR, f"tips_results_raw_{date_str}.csv")
+    return pd.read_csv(path)
 
 def calculate_level_stakes(row):
     odds = row["odds"]
@@ -40,16 +32,29 @@ def calculate_level_stakes(row):
 
     return pd.Series([total_stake, profit])
 
-def main():
-    args = parse_args()
-    df = load_tips_results(args.date)
+def main(date_str: str, mode: str):
+    df = load_tips_results(date_str)
 
     df[["level_stake", "level_profit"]] = df.apply(calculate_level_stakes, axis=1)
 
     # Save cleaned file
-    output_file = f"{LOGS_DIR}/tips_results_{args.date}_{args.mode}.csv"
+    output_file = os.path.join(LOGS_DIR, f"tips_results_{date_str}_{mode}.csv")
     df.to_csv(output_file, index=False)
     print(f"✅ Level stakes file saved: {output_file}")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--date",
+        default=TODAY,
+        help="Date in YYYY-MM-DD format (default: today)",
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["advised", "level"],
+        default="level",
+        help="ROI mode used for the output file name",
+    )
+    args = parser.parse_args()
+
+    main(args.date, args.mode)
