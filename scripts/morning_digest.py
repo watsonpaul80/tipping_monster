@@ -7,9 +7,9 @@ TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 BASE_DIR = "/home/ec2-user/tipping-monster"
 
-# Use Paul's personal Telegram info directly
-TG_USER_ID = "1054773464"  # Your personal Telegram user ID
-TG_BOT_TOKEN = "6298132668:AAGja-iEQzAK1Ri5jBOoHwP4-YWZuywKjNU"  # Your bot token
+# Telegram credentials come from the environment
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Your personal Telegram user ID
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
@@ -39,7 +39,7 @@ msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
 requests.post(
-    f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TG_USER_ID, "text": msg}
+    f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+    data={"chat_id": TELEGRAM_CHAT_ID, "text": msg}
 )
 
