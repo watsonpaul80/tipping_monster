@@ -320,4 +320,4 @@ By time: Week/month fields embedded in final spready
 
 ---
 
-📅 Updated: 2025-06-01
+📅 Updated: 2025-06-01.
