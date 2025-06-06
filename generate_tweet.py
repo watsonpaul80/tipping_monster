@@ -23,7 +23,7 @@ roi_summary = "📊 ROI Yday: No data"
 if os.path.exists(ROI_PATH):
     try:
         df = pd.read_csv(ROI_PATH)
-        total_staked = df['Staked'].sum()
+        total_staked = df['Stake'].sum()
         profit = df['Profit'].sum()
         roi = (profit / total_staked) * 100 if total_staked > 0 else 0
         roi_summary = f"📊 ROI Yday: {roi:.1f}% ({profit:+.2f} pts)"
