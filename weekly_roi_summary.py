@@ -27,8 +27,8 @@ def send_to_telegram(msg, token, chat_id):
 
 def main(week, send_telegram=False):
     mode = "advised"
-    TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
-    CHAT_ID = "-1002580022335"
+    TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+    CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
     week_dates = get_week_dates(week)
     df = load_week_data(week_dates, mode)
