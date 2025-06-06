@@ -3,14 +3,23 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import requests
 
+"""Send a morning digest to Telegram.
+
+Requires the following environment variables:
+    TG_USER_ID    - Telegram user ID to send the message to
+    TG_BOT_TOKEN  - Bot token used for authentication
+"""
+
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
 
-# Telegram credentials come from the environment
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Your personal Telegram user ID
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+# Read Telegram credentials from environment variables
+# Required variables: TG_USER_ID, TG_BOT_TOKEN
+TG_USER_ID = os.getenv("TG_USER_ID")
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
