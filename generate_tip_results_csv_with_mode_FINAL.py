@@ -1,16 +1,26 @@
 
+import argparse
 import pandas as pd
 import os
 from datetime import datetime
 
 # Adjust as needed
 LOGS_DIR = "logs"
-TODAY = datetime.today().strftime("%Y-%m-%d")
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--date",
+        default=datetime.today().strftime("%Y-%m-%d"),
+        help="Date in YYYY-MM-DD",
+    )
+    parser.add_argument("--mode", choices=["advised", "level"], required=True)
+    return parser.parse_args()
 
 # Dummy loading logic – replace with your actual tip/result merging logic
-def load_tips_results():
-    # Expecting a dataframe with: horse, result, odds, bet_type
-    return pd.read_csv(f"{LOGS_DIR}/tips_results_raw_{TODAY}.csv")
+def load_tips_results(date_str: str) -> pd.DataFrame:
+    """Load merged tips and results for the given date."""
+    return pd.read_csv(f"{LOGS_DIR}/tips_results_raw_{date_str}.csv")
 
 def calculate_level_stakes(row):
     odds = row["odds"]
@@ -31,12 +41,13 @@ def calculate_level_stakes(row):
     return pd.Series([total_stake, profit])
 
 def main():
-    df = load_tips_results()
+    args = parse_args()
+    df = load_tips_results(args.date)
 
     df[["level_stake", "level_profit"]] = df.apply(calculate_level_stakes, axis=1)
 
     # Save cleaned file
-    output_file = f"{LOGS_DIR}/tips_results_{TODAY}_level.csv"
+    output_file = f"{LOGS_DIR}/tips_results_{args.date}_{args.mode}.csv"
     df.to_csv(output_file, index=False)
     print(f"✅ Level stakes file saved: {output_file}")
 
