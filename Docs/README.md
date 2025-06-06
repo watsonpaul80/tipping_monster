@@ -26,4 +26,3 @@ The scripts expect the following environment variables to be defined:
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎
 
-
