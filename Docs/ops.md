@@ -31,6 +31,8 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### Results, Calibration & ROI
 
+_All ROI-related scripts now live in the project root. The previous `ROI/` directory was removed during consolidation._
+
 3.  **Upload Daily Results (`daily_upload_results.sh`)**
     *   **Frequency:** Daily at 22:30
     *   **Purpose:** Uploads race results from the day. These results are essential for calculating ROI and model performance.
