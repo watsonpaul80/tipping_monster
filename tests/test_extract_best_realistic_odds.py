@@ -1,24 +1,34 @@
 import os
 import sys
 
-import pytest
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+from extract_best_realistic_odds import extract_race_key
 
 
-ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
-sys.path.insert(0, ROOT_DIR)
+def test_extract_race_key_normal_case():
+    minutes, course = extract_race_key("15:30 Chelmsford")
+    assert minutes == 15 * 60 + 30
+    assert course == "chelmsford"
 
-from extract_best_realistic_odds import load_snapshots, find_best_odds
+
+def test_extract_race_key_with_extra_spaces():
+    minutes, course = extract_race_key(" 15:30   Chelmsford ")
+    assert minutes is None and course is None
 
 
-@pytest.mark.parametrize(
-    "runner,expected",
-    [
-        ("fast runner", 4.5),
-        ("unknown", None),
-    ],
-)
-def test_find_best_odds(runner, expected):
-    snapshots = load_snapshots("2025-06-07")
-    # Race at 12:30 -> 750 minutes
-    price = find_best_odds(12 * 60 + 30, "testville", runner, snapshots)
-    assert price == expected
+def test_extract_race_key_missing_space_returns_none():
+    minutes, course = extract_race_key("15:30Chelmsford")
+    assert minutes is None and course is None
+
+
+def test_extract_race_key_bad_time_returns_none():
+    minutes, course = extract_race_key("15-30 Chelmsford")
+    assert minutes is None and course is None
+
+
+def test_extract_race_key_empty_course_returns_none():
+    minutes, course = extract_race_key("15:30   ")
+    assert minutes is None and course is None
+

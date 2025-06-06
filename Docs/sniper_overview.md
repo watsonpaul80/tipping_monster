@@ -57,17 +57,11 @@ odds_snapshots/*.json	Raw odds snapshots
 steamers_*.json	Steamers detected at each timepoint
 
 ✅ Example Flow
-makefile
-Copy
-Edit
 08:00 →  build_sniper_schedule.py
 08:01 →  run_sniper_pipeline.sh
 12:55 →  fetch_betfair_odds.py --label 1255
 12:55 →  compare_odds_to_0800.py
 12:55 →  dispatch_snipers.py
-yaml
-Copy
-Edit
 
 ---
 
