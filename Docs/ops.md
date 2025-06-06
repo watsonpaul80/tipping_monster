@@ -31,6 +31,8 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### Results, Calibration & ROI
 
+_All ROI-related scripts now live in the project root. The previous `ROI/` directory was removed during consolidation._
+
 3.  **Upload Daily Results (`daily_upload_results.sh`)**
     *   **Frequency:** Daily at 22:30
     *   **Purpose:** Uploads race results from the day. These results are essential for calculating ROI and model performance.
@@ -69,17 +71,10 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### System Maintenance
 
-<<<<<<< HEAD
 9.  **Backup to S3 (`backup_to_s3.sh`)**
     *   **Frequency:** Daily at 02:10
     *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/backup_to_s3.sh`
-=======
-9.  **Backup to S3 (`backup_to_s3_zipped.sh`)**
-    *   **Frequency:** Daily at 02:10
-    *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/backup_to_s3_zipped.sh`
->>>>>>> 03b957e18d6d0d53f7821026798f6944d0450029
 
 10. **Upload Logs to S3 (`upload_logs_to_s3.sh`)**
     *   **Frequency:** Daily at 04:00
