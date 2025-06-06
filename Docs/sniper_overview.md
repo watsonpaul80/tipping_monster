@@ -86,4 +86,4 @@ Edit
 - Fixed issue where schedule defaulted to just `08:50` if race times unreadable
 - Improved time parsing from `"race"` field (e.g. “17:15 Chelmsford”)
 - Verified pipeline now triggers dispatches for full race day
-- Added future-proofing for early and late race times
+- Added future-proofing for early and late race times.
