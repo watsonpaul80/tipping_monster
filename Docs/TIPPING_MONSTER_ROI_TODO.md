@@ -16,5 +16,5 @@
 - [ ] ROI calendar view (monthly heatmap)
 - [ ] ROI accuracy predictor (modelled vs real)
 - [ ] ROI API endpoint (for external dashboards)
-[ ] Date filter support (e.g. last 7 days, last 30 days) for Paul’s View
+[ ] Date filter support (e.g. last 7 days, last 30 days) for Paul’s View.
 

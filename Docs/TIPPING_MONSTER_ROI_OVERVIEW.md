@@ -36,4 +36,4 @@ These are ready for pivoting, filtering, and dashboard integration.
 ## 📺 Dashboards
 - *Streamlit dashboards planned*, including:
   - Paul's View: deep ROI filtering by tag, confidence, date
-  - Member-facing view: simplified sent tip ROI
+  - Member-facing view: simplified sent tip ROI.
