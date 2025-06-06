@@ -1,20 +1,3 @@
-Date,Race Time,Course,Horse,Odds,Confidence,Position,Mode,Stake,Profit
-2025-05-24,1:15,Haydock,Dashing Darcey,13.0,0.9798966646194458,2,advised,1.0,0.3
-2025-05-24,1:50,Haydock,Afentiko,29.0,0.9953218102455139,3,advised,1.0,1.9
-2025-05-24,1:55,Curragh,Magical Hope,10.5,0.9895762205123901,3,advised,1.0,-1.0
-2025-05-24,2:05,Goodwood,Basalt,16.5,0.9809547662734985,5,advised,1.0,-1.0
-2025-05-24,2:10,Beverley,Artista,4.1,0.9566039443016052,3,advised,1.0,-1.0
-2025-05-24,2:35,Goodwood,Blue Nguru,3.75,0.9566474556922913,3,advised,1.0,-1.0
-2025-05-24,2:45,Beverley,Naval Light,5.6,0.9930904507637024,2,advised,1.0,-0.44
-2025-05-24,3:00,Haydock,Big Mojo,5.6,0.992020308971405,4,advised,1.0,-1.0
-2025-05-24,3:05,Curragh,Storm Boy,3.1,0.9967005848884583,9,advised,1.0,-1.0
-2025-05-24,3:15,Goodwood,Manila Thriller,21.0,0.9914371371269226,7,advised,1.0,-1.0
-2025-05-24,3:30,Haydock,American Affair,2.9,0.9960846900939941,5,advised,1.0,-1.0
-2025-05-24,3:40,Curragh,Scorthy Champ,4.1,0.9959176182746887,6,advised,1.0,-1.0
-2025-05-24,4:10,Haydock,Don Pacifico,7.0,0.9224349856376648,2,advised,1.0,-0.3
-2025-05-24,4:15,Curragh,Skukuza,2.98,0.9968931674957275,1,advised,1.0,1.98
-2025-05-24,4:20,Goodwood,Song Brocade,18.0,0.9903151392936707,7,advised,1.0,-1.0
-2025-05-24,4:40,Haydock,Humble Spark,5.6,0.9792892336845398,2,advised,1.0,-0.44
-2025-05-24,4:50,Curragh,Chicago Fireball,7.6,0.9957537651062012,7,advised,1.0,-1.0
-2025-05-24,4:55,Goodwood,Naanas Sparkle,9.0,0.8913898468017578,3,advised,0.75,-0.07
-2025-05-24,6:50,Salisbury,Jarraaf,2.7,0.9852939248085022,4,advised,1.0,-1.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:3f73002f5cdb06720054e565f2febf31f7853bf8d50742cc94506e1c13a5ad4c
+size 1570
