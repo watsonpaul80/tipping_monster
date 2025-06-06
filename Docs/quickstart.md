@@ -17,7 +17,7 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 Key folders and scripts include:
 
 - `rpscrape/` – scraper for racecards and results.
-- `ROI/` and `run_roi_pipeline.sh` – scripts for ROI tracking and Telegram summaries.
+- ROI tracking scripts (e.g., `roi_tracker_advised.py`, `send_daily_roi_summary.py`) and `run_roi_pipeline.sh` send performance updates via Telegram.
 - `logs/` – organized logs for inference, ROI, dispatch and sniper processes.
 - `predictions/` – daily output tips and summaries.
 - Root‑level scripts such as `run_pipeline_with_venv.sh`, `fetch_betfair_odds.py`, and `dispatch_tips.py` drive the daily pipeline.
@@ -51,7 +51,7 @@ These times are detailed in `Docs/monster_overview.md`.
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
 3. Explore the training (`train_model_v6.py`) and inference (`run_inference_and_select_top1.py`) scripts to see how predictions are generated.
-4. Review `ROI/` scripts and `run_roi_pipeline.sh` to understand profit tracking.
+4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 
 With these files as a guide, you can get up to speed quickly and start contributing to the system.
