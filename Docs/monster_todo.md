@@ -8,7 +8,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🔥 HIGH PRIORITY (Current Sprint)
 
-1. **ML-Based Commentary System** — tag-based smart summaries (no LLM)  
+1. ✅ **ML-Based Commentary System** — tag-based smart summaries (no LLM)  
    ✍️ Already implemented: logic-driven blurbs like  
    “✍️ yard in form, fresh off a short break.”  
    ✅ Confirmed working with tags such as Fresh, Light Weight, Class Drop, etc.  
@@ -77,7 +77,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 41. ✅ Output `logs/dispatch/sent_tips_YYYY-MM-DD_realistic.jsonl`
 42. ✅ ROI tracker prefers `realistic_odds` over `bf_sp`  
 43. ✅ “Realistic Odds Mode” label in ROI summary  
-44. Log delta: `realistic_odds - bf_sp` in ROI logs  
+44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
 46. Track high-delta tips separately (paused due to sniper being disabled)  
 47. Add `odds_delta` to ML training as signal
@@ -102,7 +102,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🧠 LEARNING FROM ODDS DELTA
 
-52. Calculate and store `odds_delta` (realistic - SP)  
+52. ✅ Calculate and store `odds_delta` (realistic - SP)  
 53. Score tips based on delta + result + confidence  
 54. Reward positive delta wins, penalise drifts  
 55. Add `delta_tag` to messages (e.g. “🔥 Market Mover”)  
