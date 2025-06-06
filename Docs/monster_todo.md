@@ -93,7 +93,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ### 🧼 Log Management Enhancements (User Suggested)
 
-* [ ] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
+* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
 * [ ] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
 * [ ] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
 * [ ] [#065] Add daily check script to verify all expected logs were created and non-empty
