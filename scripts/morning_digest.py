@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from datetime import datetime, timedelta
 import requests
 
@@ -12,12 +13,13 @@ Requires the following environment variables:
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-BASE_DIR = "/home/ec2-user/tipping-monster"
+BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
 
 # Read Telegram credentials from environment variables
 # Required variables: TG_USER_ID, TG_BOT_TOKEN
 TG_USER_ID = os.getenv("TG_USER_ID")
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
@@ -47,7 +49,7 @@ msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
 requests.post(
-    f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TG_USER_ID, "text": msg}
+    f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
+    data={"chat_id": TELEGRAM_CHAT_ID, "text": msg}
 )
 

@@ -1,15 +1,18 @@
 #!/bin/bash
 # Run this at 05:10 daily (manually or via cron)
 
-cd /home/ec2-user/tipping-monster/steam_sniper_intel || exit 1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+
+cd "$REPO_ROOT/steam_sniper_intel" || exit 1
 
 # Step 1: Activate venv and generate sniper schedule
-source ../.venv/bin/activate
+source "$REPO_ROOT/.venv/bin/activate"
 python build_sniper_schedule.py
 
 # Step 2: Schedule sniper jobs using 'at' for each label
 SCHEDULE_FILE="sniper_schedule.txt"
-PIPELINE_SCRIPT="/home/ec2-user/tipping-monster/steam_sniper_intel/run_sniper_pipeline.sh"
+PIPELINE_SCRIPT="$REPO_ROOT/steam_sniper_intel/run_sniper_pipeline.sh"
 
 if [ ! -f "$SCHEDULE_FILE" ]; then
     echo "❌ Schedule file not found: $SCHEDULE_FILE"
@@ -22,9 +25,9 @@ while IFS= read -r label; do
 
     # Create inline script block to run the sniper job
     at $hour:$minute <<EOF
-cd /home/ec2-user/tipping-monster
+cd "$REPO_ROOT"
 source .venv/bin/activate
-bash $PIPELINE_SCRIPT $label
+bash "$PIPELINE_SCRIPT" $label
 EOF
 
     echo "⏱ Scheduled sniper job at $hour:$minute (Label: $label)"

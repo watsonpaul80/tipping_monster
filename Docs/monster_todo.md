@@ -8,7 +8,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🔥 HIGH PRIORITY (Current Sprint)
 
-1. **ML-Based Commentary System** — tag-based smart summaries (no LLM)  
+1. ✅ **ML-Based Commentary System** — tag-based smart summaries (no LLM)  
    ✍️ Already implemented: logic-driven blurbs like  
    “✍️ yard in form, fresh off a short break.”  
    ✅ Confirmed working with tags such as Fresh, Light Weight, Class Drop, etc.  
@@ -77,7 +77,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 41. ✅ Output `logs/dispatch/sent_tips_YYYY-MM-DD_realistic.jsonl`
 42. ✅ ROI tracker prefers `realistic_odds` over `bf_sp`  
 43. ✅ “Realistic Odds Mode” label in ROI summary  
-44. Log delta: `realistic_odds - bf_sp` in ROI logs  
+44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
 46. Track high-delta tips separately (paused due to sniper being disabled)  
 47. Add `odds_delta` to ML training as signal
@@ -86,23 +86,23 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 💡 IDEAS & PIPELINE QUALITY
 
-48. Fallback logic if `logs/sent_tips.jsonl` is missing  
-49. Alert if dispatch runs but no tips are sent  
+48. ✅ Fallback logic if `logs/sent_tips.jsonl` is missing
+49. ✅ Alert if dispatch runs but no tips are sent
 50. Alert if odds snapshot fails or returns too few runners  
 51. Self-heal for missing logs, retry on failure
 
 ### 🧼 Log Management Enhancements (User Suggested)
 
-* [ ] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
-* [ ] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
-* [ ] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
-* [ ] [#065] Add daily check script to verify all expected logs were created and non-empty
+* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
+* [x] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
+* [x] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
+* [x] [#065] Add daily check script to verify all expected logs were created and non-empty
 
 ---
 
 ## 🧠 LEARNING FROM ODDS DELTA
 
-52. Calculate and store `odds_delta` (realistic - SP)  
+52. ✅ Calculate and store `odds_delta` (realistic - SP)  
 53. Score tips based on delta + result + confidence  
 54. Reward positive delta wins, penalise drifts  
 55. Add `delta_tag` to messages (e.g. “🔥 Market Mover”)  
