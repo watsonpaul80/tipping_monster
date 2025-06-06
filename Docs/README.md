@@ -4,9 +4,10 @@ This documentation set covers everything about the **Tipping Monster** project �
 
 ## 📄 Files Included
 
-- `monster_overview.md`: Full overview of the main ML pipeline, tip logic, and automation.
-- `monster_todo.md`: Task tracker for main tipping logic including ROI, model training, and Telegram output.
-- `sniper_overview.md`: Description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
-- `sniper_todo.md`: Task tracker for Steam Sniper features, scoring, and automation ideas.
+- `quickstart.md` – brief overview of the repo and where to start.
+- `monster_overview.md` – full overview of the main ML pipeline, tip logic, and automation.
+- `monster_todo.md` – task tracker for main tipping logic including ROI, model training, and Telegram output.
+- `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
+- `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎
