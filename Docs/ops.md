@@ -69,17 +69,10 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### System Maintenance
 
-<<<<<<< HEAD
 9.  **Backup to S3 (`backup_to_s3.sh`)**
     *   **Frequency:** Daily at 02:10
     *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/backup_to_s3.sh`
-=======
-9.  **Backup to S3 (`backup_to_s3_zipped.sh`)**
-    *   **Frequency:** Daily at 02:10
-    *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/backup_to_s3_zipped.sh`
->>>>>>> 03b957e18d6d0d53f7821026798f6944d0450029
 
 10. **Upload Logs to S3 (`upload_logs_to_s3.sh`)**
     *   **Frequency:** Daily at 04:00
