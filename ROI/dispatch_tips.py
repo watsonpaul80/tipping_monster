@@ -8,7 +8,7 @@ import sys
 TODAY = date.today().isoformat()
 PREDICTIONS_PATH = f"predictions/{TODAY}/tips_with_odds.jsonl"
 SUMMARY_PATH = f"predictions/{TODAY}/tips_summary.txt"
-SENT_TIPS_PATH = f"logs/sent_tips_{TODAY}.jsonl"
+SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{TODAY}.jsonl"
 
 TELEGRAM_BOT_TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
 TELEGRAM_CHAT_ID = "-1002580022335"

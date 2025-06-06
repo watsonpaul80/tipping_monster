@@ -42,8 +42,8 @@ def find_best_odds(race_time_minutes, course, horse_name, snapshots):
     return None
 
 def main(date_str):
-    sent_tips_path = Path(f"logs/sent_tips_{date_str}.jsonl")
-    output_path = Path(f"logs/sent_tips_{date_str}_realistic.jsonl")
+    sent_tips_path = Path(f"logs/dispatch/sent_tips_{date_str}.jsonl")
+    output_path = Path(f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl")
 
     if not sent_tips_path.exists():
         print(f"❌ Sent tips file not found: {sent_tips_path}")

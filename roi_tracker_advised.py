@@ -62,9 +62,9 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False):
     date_display = date_obj.strftime("%Y-%m-%d")
 
     if use_sent:
-        input_file = f"logs/sent_tips_{date_str}_realistic.jsonl"
+        input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
         if not os.path.exists(input_file):
-            input_file = f"logs/sent_tips_{date_str}.jsonl"
+            input_file = f"logs/dispatch/sent_tips_{date_str}.jsonl"
     else:
         input_file = f"predictions/{date_str}/tips_with_odds.jsonl"
 
@@ -168,7 +168,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False):
     if show:
         return
 
-    output_path = f"logs/tips_results_{date_str}_{mode}.csv"
+    output_path = f"logs/roi/tips_results_{date_str}_{mode}.csv"
     merged_df[["Date", "Race Time", "Course", "Horse", "Odds", "odds_delta", "Confidence", "Position", "Mode", "Stake", "Profit"]].to_csv(output_path, index=False)
     print(f"✅ Saved: {output_path}")
 

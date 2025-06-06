@@ -7,7 +7,7 @@ import re
 
 DATE = datetime.now().strftime("%Y-%m-%d")
 CARD_PATH = f"rpscrape/batch_inputs/{DATE}.jsonl"
-OUT_PATH = f"logs/sniper_schedule_{DATE}.json"
+OUT_PATH = f"logs/sniper/sniper_schedule_{DATE}.json"
 
 def get_snapshot_times(post_time_str):
     post_time = datetime.strptime(post_time_str, "%H:%M")
