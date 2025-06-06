@@ -30,7 +30,7 @@ A typical daily pipeline runs the following steps:
 08:00  fetch_betfair_odds.py      # Capture odds snapshot
 08:05  run_inference_and_select_top1.py  # Predict and select tips
 08:08  merge_odds_into_tips.py    # Attach odds to tips
-08:10  generate_commentary_bedrock.py (optional)
+08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  dispatch_tips.py           # Send tips to Telegram
 23:30  rpscrape (results cron)    # Get results for today
 23:55  roi_tracker_advised.py     # Link tips to results and calc profit

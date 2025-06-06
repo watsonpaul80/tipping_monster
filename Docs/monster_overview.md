@@ -12,6 +12,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Confidence-based XGBoost ML model for tip generation
 * ✅ Odds integration (Betfair snapshot)
 * ✅ Tagging (e.g. Class Drop, In Form)
+* (Optional) LLM commentary generation – script not included
 * ✅ Tag-based commentary generation (ML-driven)
 * ✅ LLM commentary generation (optional)
 * ✅ Realistic odds injection
@@ -62,7 +63,7 @@ The system defines 8 core product layers:
 | 08:00 | `fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
 | 08:05 | `run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race             |
 | 08:08 | `merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
-| 08:10 | `generate_commentary_bedrock.py` (optional) | Creates LLM-generated commentary                 |
+| 08:10 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi_tracker_advised.py`     | Links tips to results and calculates profit            |
@@ -210,7 +211,7 @@ The foundational elements and automated processes that power Tipping Monster are
     * **`08:00`**: Fetch Betfair odds
     * **`08:05`**: Run ML inference
     * **`08:08`**: Merge tips with odds
-    * **`08:10`**: Add LLM commentary (optional)
+    * **`08:10`**: *(disabled)* Add LLM commentary – script not included
     * **`08:12`**: Dispatch tips to Telegram
     * **`23:30`**: Upload race results
     * **`23:55`**: Run ROI tracker
