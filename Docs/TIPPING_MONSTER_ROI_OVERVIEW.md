@@ -29,8 +29,10 @@ ROI is tracked across the following dimensions:
 - `tag_roi_summary_all.csv`
 - `tag_roi_summary_sent.csv`
 - `monster_confidence_per_day_with_roi.csv`
+- `unified_roi_sheet.csv`
 - `weekly_summary.csv`
 
+- Each log row includes `odds_delta` (realistic vs SP)
 These are ready for pivoting, filtering, and dashboard integration.
 
 ## 📺 Dashboards
