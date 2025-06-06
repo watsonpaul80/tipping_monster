@@ -59,9 +59,9 @@ def calculate_profit(row):
 
 def load_tips(date_str, min_conf, use_sent):
     if use_sent:
-        input_file = f"logs/sent_tips_{date_str}_realistic.jsonl"
+        input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
         if not os.path.exists(input_file):
-            input_file = f"logs/sent_tips_{date_str}.jsonl"
+            input_file = f"logs/dispatch/sent_tips_{date_str}.jsonl"
     else:
         input_file = f"predictions/{date_str}/tips_with_odds.jsonl"
 
@@ -152,12 +152,12 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
         strike_rate = (wins / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
         place_rate = (places / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
 
-        output_path = f"logs/tips_results_{date_str}_{mode}_{source}.csv"
+        output_path = f"logs/roi/tips_results_{date_str}_{mode}_{source}.csv"
         merged_df["Mode"] = mode
         merged_df.to_csv(output_path, index=False)
         print(f"✅ Saved: {output_path}")
 
-        tag_output = f"logs/tag_roi_summary_{source}.csv"
+        tag_output = f"logs/roi/tag_roi_summary_{source}.csv"
         if "tags" in merged_df.columns:
             merged_df["tags"] = merged_df["tags"].apply(lambda x: x if isinstance(x, list) else [])
             all_rows = []

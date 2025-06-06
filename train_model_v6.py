@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print("🛠 Preprocessing...")
     df = preprocess(df)
     # Find all tip log files you want to merge in
-    tip_logs = sorted(glob.glob("logs/tips_results_*_advised.csv"))
+    tip_logs = sorted(glob.glob("logs/roi/tips_results_*_advised.csv"))
     if tip_logs:
         print(f"📝 Injecting tip logs: {tip_logs[-3:]} ...")
         df = merge_tip_logs(df, tip_logs)

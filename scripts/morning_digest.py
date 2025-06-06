@@ -14,8 +14,8 @@ TG_BOT_TOKEN = "6298132668:AAGja-iEQzAK1Ri5jBOoHwP4-YWZuywKjNU"  # Your bot toke
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
 tips_path = f"{BASE_DIR}/predictions/{TODAY}/tips_with_odds.jsonl"
-telegram_log = f"{BASE_DIR}/logs/sent_tips_{TODAY}.jsonl"
-roi_path = f"{BASE_DIR}/logs/tips_results_{YESTERDAY}_advised.csv"
+telegram_log = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
+roi_path = f"{BASE_DIR}/logs/roi/tips_results_{YESTERDAY}_advised.csv"
 
 # === STATUS CHECKS ===
 def check_file(path):

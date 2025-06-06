@@ -16,7 +16,7 @@ TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
 CHAT_ID = "-1002580022335"  # Tipping Monster channel
 MODE = "advised"
 DATE = args.date or datetime.today().strftime("%Y-%m-%d")
-CSV_PATH = f"logs/tips_results_{DATE}_{MODE}.csv"
+CSV_PATH = f"logs/roi/tips_results_{DATE}_{MODE}.csv"
 
 # === LOAD CSV ===
 if not os.path.exists(CSV_PATH):
