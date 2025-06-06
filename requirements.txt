@@ -5,3 +5,7 @@ matplotlib
 shap
 requests
 python-dotenv
+shellcheck 
+boto3
+betfairlightweight 
+orjson
