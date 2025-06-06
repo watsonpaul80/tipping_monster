@@ -24,5 +24,5 @@ The scripts expect the following environment variables to be defined:
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
 
-Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎
+Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 
