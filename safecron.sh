@@ -19,24 +19,9 @@ send_telegram_alert() {
     -d text=$'⚠️ *Cron Failure Detected*\n*Job:* \`'"$JOB_NAME"$'\`\n*Exit Code:* '"$STATUS"$'\n*Time:* '"$(date)"$'\n*Log:*\n```\n'"$LOG_TAIL"$'\n```'
 }
 
-# Check if job matches sniper tasks and run accordingly
-case "$JOB_NAME" in
-  build_sniper_intel)
-    source /home/ec2-user/tipping-monster/.venv/bin/activate
-    /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py "$@" >> "$LOG_FILE" 2>&1
-    STATUS=$?
-    ;;
-  load_sniper_intel)
-    source /home/ec2-user/tipping-monster/.venv/bin/activate
-    /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh "$@" >> "$LOG_FILE" 2>&1
-    STATUS=$?
-    ;;
-  *)
-    # Default: run the passed command as is
-    eval "$CMD" >> "$LOG_FILE" 2>&1
-    STATUS=$?
-    ;;
-esac
+# Run the provided command and capture the exit status
+eval "$CMD" >> "$LOG_FILE" 2>&1
+STATUS=$?
 
 # If error, send Telegram alert
 if [ $STATUS -ne 0 ]; then

@@ -1,5 +1,4 @@
 backup_to_s3.sh
-build_sniper_schedule.py
 calibrate_confidence_daily.py
 check_betfair_market_times.py
 cleanup_monster_scripts.sh
@@ -8,18 +7,15 @@ daily_flatten.sh
 daily_train.sh
 daily_upload_racecards.sh
 daily_upload_results.sh
-dispatch_snipers.py
 dispatch_tips.py
 evaluate_steamers.py
 fetch_betfair_odds.py
 flatten_racecards.py
 flatten_racecards_v3.py
-generate_and_schedule_snipers.sh
 generate_race_schedule.py
 generate_tip_results_csv_with_mode_FINAL.py
 generate_tip_results_csv_with_mode.py
 generate_weekly_summary.py
-load_sniper_jobs.sh
 merge_odds_into_tips.py
 python weekly_roi_summary_FINAL_v2.py
 results_match_debug.py
