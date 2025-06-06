@@ -218,3 +218,39 @@ betfairlightweight.exceptions.LoginError: API login: ACTIONS_REQUIRED
 [+] Uploading to S3...
 [?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-03_0903.json
 [+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 34 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Saving 262 runner odds to odds_snapshots/2025-06-04_0850.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-04_0850.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_0850.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_0850.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 56 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Fetching batch 6
+[+] Saving 476 runner odds to odds_snapshots/2025-06-06_0850.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-06_0850.json
+[+] Logged out

@@ -1,0 +1,496 @@
+[
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Fast Flo",
+    "odds_progression": [
+      140.0,
+      90.0
+    ],
+    "volume": 0,
+    "drop_pct": 35.7
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Star Of Life",
+    "odds_progression": [
+      17.0,
+      17.0,
+      7.4
+    ],
+    "volume": 0,
+    "drop_pct": 56.5
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Baggot Street",
+    "odds_progression": [
+      22.0,
+      22.0,
+      8.0
+    ],
+    "volume": 0,
+    "drop_pct": 63.6
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Queensland Boy",
+    "odds_progression": [
+      3.25,
+      3.25,
+      1.41
+    ],
+    "volume": 0,
+    "drop_pct": 56.6
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "On The Inlet",
+    "odds_progression": [
+      9.4,
+      9.0,
+      3.3
+    ],
+    "volume": 0,
+    "drop_pct": 64.9
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Velocity Vow",
+    "odds_progression": [
+      17.5,
+      17.5,
+      10.0
+    ],
+    "volume": 0,
+    "drop_pct": 42.9
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Safe And Sound",
+    "odds_progression": [
+      17.0,
+      17.0,
+      8.4
+    ],
+    "volume": 0,
+    "drop_pct": 50.6
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Arthurs Realm",
+    "odds_progression": [
+      44.0,
+      44.0,
+      11.0
+    ],
+    "volume": 0,
+    "drop_pct": 75.0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Touch The Moon",
+    "odds_progression": [
+      65.0,
+      65.0,
+      13.5
+    ],
+    "volume": 0,
+    "drop_pct": 79.2
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "High Point",
+    "odds_progression": [
+      75.0,
+      75.0,
+      17.0
+    ],
+    "volume": 0,
+    "drop_pct": 77.3
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Titian",
+    "odds_progression": [
+      140.0,
+      140.0,
+      17.5
+    ],
+    "volume": 0,
+    "drop_pct": 87.5
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Polygram",
+    "odds_progression": [
+      6.0,
+      6.0,
+      2.04
+    ],
+    "volume": 0,
+    "drop_pct": 66.0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Hurstwood",
+    "odds_progression": [
+      27.0,
+      27.0,
+      5.1
+    ],
+    "volume": 0,
+    "drop_pct": 81.1
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Ancient State",
+    "odds_progression": [
+      3.95,
+      4.0,
+      1.93
+    ],
+    "volume": 0,
+    "drop_pct": 51.1
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Something",
+    "odds_progression": [
+      9.4,
+      9.4,
+      6.0
+    ],
+    "volume": 0,
+    "drop_pct": 36.2
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Clansman",
+    "odds_progression": [
+      9.6,
+      9.6,
+      5.8
+    ],
+    "volume": 0,
+    "drop_pct": 39.6
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Flag Of St George",
+    "odds_progression": [
+      5.7,
+      5.7,
+      3.75
+    ],
+    "volume": 0,
+    "drop_pct": 34.2
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Onemorenomore",
+    "odds_progression": [
+      10.0,
+      10.0,
+      6.0
+    ],
+    "volume": 0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Cancan In The Rain",
+    "odds_progression": [
+      26.0,
+      26.0,
+      9.6
+    ],
+    "volume": 0,
+    "drop_pct": 63.1
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Devils Angel",
+    "odds_progression": [
+      3.75,
+      3.6,
+      1.82
+    ],
+    "volume": 0,
+    "drop_pct": 51.5
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Havana Prince",
+    "odds_progression": [
+      7.0,
+      7.0,
+      4.6
+    ],
+    "volume": 0,
+    "drop_pct": 34.3
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Mariner",
+    "odds_progression": [
+      7.4,
+      7.4,
+      3.1
+    ],
+    "volume": 0,
+    "drop_pct": 58.1
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Clear Angel",
+    "odds_progression": [
+      15.0,
+      15.0,
+      6.8
+    ],
+    "volume": 0,
+    "drop_pct": 54.7
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Protocol Zayin A",
+    "odds_progression": [
+      36.0,
+      36.0,
+      23.0
+    ],
+    "volume": 0,
+    "drop_pct": 36.1
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Emily Love",
+    "odds_progression": [
+      5.6,
+      5.6,
+      3.55
+    ],
+    "volume": 0,
+    "drop_pct": 36.6
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Manhattan Chute",
+    "odds_progression": [
+      10.0,
+      10.0,
+      6.0
+    ],
+    "volume": 0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Bay Breeze",
+    "odds_progression": [
+      11.0,
+      11.0,
+      5.1
+    ],
+    "volume": 0,
+    "drop_pct": 53.6
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Sir Maxi",
+    "odds_progression": [
+      19.5,
+      19.5,
+      8.2
+    ],
+    "volume": 0,
+    "drop_pct": 57.9
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Giselles Izzy",
+    "odds_progression": [
+      19.0,
+      19.0,
+      8.6
+    ],
+    "volume": 0,
+    "drop_pct": 54.7
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Yazaman",
+    "odds_progression": [
+      21.0,
+      21.0,
+      8.0
+    ],
+    "volume": 0,
+    "drop_pct": 61.9
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Silent Flame",
+    "odds_progression": [
+      26.0,
+      26.0,
+      16.5
+    ],
+    "volume": 0,
+    "drop_pct": 36.5
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Red Veil",
+    "odds_progression": [
+      6.4,
+      6.4,
+      2.72
+    ],
+    "volume": 0,
+    "drop_pct": 57.5
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Eskimo Pie",
+    "odds_progression": [
+      14.0,
+      14.0,
+      7.0
+    ],
+    "volume": 0,
+    "drop_pct": 50.0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Anthelia",
+    "odds_progression": [
+      40.0,
+      40.0,
+      17.0
+    ],
+    "volume": 0,
+    "drop_pct": 57.5
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Alkuwarrior",
+    "odds_progression": [
+      200.0,
+      200.0,
+      10.5
+    ],
+    "volume": 0,
+    "drop_pct": 94.8
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Whatswrongnow",
+    "odds_progression": [
+      17.0,
+      17.0,
+      11.5
+    ],
+    "volume": 0,
+    "drop_pct": 32.4
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Happy Me",
+    "odds_progression": [
+      23.0,
+      23.0,
+      15.0
+    ],
+    "volume": 0,
+    "drop_pct": 34.8
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Lyra Constellation",
+    "odds_progression": [
+      11.0,
+      11.0,
+      7.2
+    ],
+    "volume": 0,
+    "drop_pct": 34.5
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Native Dream",
+    "odds_progression": [
+      9.0,
+      9.0,
+      5.4
+    ],
+    "volume": 0,
+    "drop_pct": 40.0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Langholm",
+    "odds_progression": [
+      13.5,
+      13.5,
+      7.4
+    ],
+    "volume": 0,
+    "drop_pct": 45.2
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Top Gun Tina",
+    "odds_progression": [
+      25.0,
+      25.0,
+      7.4
+    ],
+    "volume": 0,
+    "drop_pct": 70.4
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Lockdown Lass",
+    "odds_progression": [
+      180.0,
+      190.0,
+      7.0
+    ],
+    "volume": 0,
+    "drop_pct": 96.1
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Alto Sax",
+    "odds_progression": [
+      4.9,
+      4.9,
+      2.32
+    ],
+    "volume": 0,
+    "drop_pct": 52.7
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Nebras",
+    "odds_progression": [
+      11.5,
+      10.5,
+      7.8
+    ],
+    "volume": 0,
+    "drop_pct": 32.2
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Berto Ramirez",
+    "odds_progression": [
+      10.0,
+      10.0,
+      3.15
+    ],
+    "volume": 0,
+    "drop_pct": 68.5
+  }
+]

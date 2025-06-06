@@ -1,0 +1,22 @@
+[
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Fast Flo",
+    "odds_progression": [
+      140.0,
+      90.0
+    ],
+    "volume": 0,
+    "drop_pct": 35.7
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Aeons Aegis",
+    "odds_progression": [
+      7.8,
+      3.1
+    ],
+    "volume": 0,
+    "drop_pct": 60.3
+  }
+]

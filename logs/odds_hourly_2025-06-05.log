@@ -1,0 +1,152 @@
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_0705.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_0705.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_0805.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_0805.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_0905.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_0905.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_1005.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1005.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_1105.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1105.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_1205.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1205.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_1305.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1305.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 42 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Fetching batch 5
+[+] Saving 313 runner odds to odds_snapshots/2025-06-05_1405.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1405.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 36 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Fetching batch 4
+[+] Saving 294 runner odds to odds_snapshots/2025-06-05_1505.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1505.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 30 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Saving 250 runner odds to odds_snapshots/2025-06-05_1605.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1605.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 22 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Fetching batch 3
+[+] Saving 181 runner odds to odds_snapshots/2025-06-05_1705.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1705.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 16 markets
+[+] Fetching batch 1
+[+] Fetching batch 2
+[+] Saving 127 runner odds to odds_snapshots/2025-06-05_1805.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1805.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 10 markets
+[+] Fetching batch 1
+[+] Saving 75 runner odds to odds_snapshots/2025-06-05_1905.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_1905.json
+[+] Logged out
+[+] Logging in...
+[+] Fetching markets...
+[+] Found 6 markets
+[+] Fetching batch 1
+[+] Saving 52 runner odds to odds_snapshots/2025-06-05_2005.json
+[+] Uploading to S3...
+[?] Uploaded to s3://tipping-monster/odds_snapshots/2025-06-05_2005.json
+[+] Logged out

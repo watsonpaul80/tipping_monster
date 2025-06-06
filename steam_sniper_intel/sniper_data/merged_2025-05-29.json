@@ -1,0 +1,4430 @@
+[
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Crowd Quake",
+    "odds_progression": [
+      3.15,
+      3.25
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Kessaar Power",
+    "odds_progression": [
+      4.5,
+      4.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Edvard Grieg",
+    "odds_progression": [
+      7.4,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "United Force",
+    "odds_progression": [
+      8.8,
+      8.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Pending Appeal",
+    "odds_progression": [
+      15.0,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Specialist View",
+    "odds_progression": [
+      15.5,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Al Shabab",
+    "odds_progression": [
+      16.5,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Heers Sadie",
+    "odds_progression": [
+      34.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:10 Yarmouth",
+    "horse": "Fast Flo",
+    "odds_progression": [
+      140.0,
+      90.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Solana Rose",
+    "odds_progression": [
+      1.42,
+      1.42,
+      3.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Alex Supreme",
+    "odds_progression": [
+      4.9,
+      4.9,
+      4.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Star Of Life",
+    "odds_progression": [
+      17.0,
+      17.0,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Baggot Street",
+    "odds_progression": [
+      22.0,
+      22.0,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Peggy Boo",
+    "odds_progression": [
+      null,
+      null,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "Preminision",
+    "odds_progression": [
+      null,
+      null,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Queensland Boy",
+    "odds_progression": [
+      3.25,
+      3.25,
+      1.41
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Balgowan",
+    "odds_progression": [
+      3.45,
+      3.45,
+      5.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Sydney Seabreeze",
+    "odds_progression": [
+      10.0,
+      10.0,
+      17.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Smith",
+    "odds_progression": [
+      10.0,
+      10.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Blenheim Lad",
+    "odds_progression": [
+      12.5,
+      12.5,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Kevano Breeze",
+    "odds_progression": [
+      13.0,
+      13.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Tango Sunset",
+    "odds_progression": [
+      22.0,
+      22.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Onesteptwosteps",
+    "odds_progression": [
+      32.0,
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:30 Lingfield",
+    "horse": "Blonde Arrow",
+    "odds_progression": [
+      65.0,
+      60.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Man Of Vision",
+    "odds_progression": [
+      1.93,
+      1.94,
+      3.15
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Rodeo",
+    "odds_progression": [
+      9.6,
+      9.4,
+      8.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "On The Inlet",
+    "odds_progression": [
+      9.4,
+      9.0,
+      3.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Commanders Intent",
+    "odds_progression": [
+      12.0,
+      12.0,
+      12.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Brave Hunter",
+    "odds_progression": [
+      16.0,
+      16.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:40 Yarmouth",
+    "horse": "Velocity Vow",
+    "odds_progression": [
+      17.5,
+      17.5,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Amber Honey",
+    "odds_progression": [
+      1.8,
+      1.8,
+      1.97
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Mission In Malton",
+    "odds_progression": [
+      6.8,
+      6.8,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Elizabeths Legacy",
+    "odds_progression": [
+      6.8,
+      6.8,
+      6.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Martha Costello",
+    "odds_progression": [
+      9.0,
+      9.0,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Heartened",
+    "odds_progression": [
+      28.0,
+      28.0,
+      27.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:50 Ripon",
+    "horse": "Eye On The Prize",
+    "odds_progression": [
+      46.0,
+      44.0,
+      50.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Encourager",
+    "odds_progression": [
+      1.98,
+      1.98,
+      1.94
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Rogue Soldier",
+    "odds_progression": [
+      2.62,
+      2.62,
+      2.62
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Galileos Compass",
+    "odds_progression": [
+      15.5,
+      15.5,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Invincible Navy",
+    "odds_progression": [
+      25.0,
+      24.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Born Ruler",
+    "odds_progression": [
+      42.0,
+      44.0,
+      42.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:00 Lingfield",
+    "horse": "Prometeo",
+    "odds_progression": [
+      140.0,
+      140.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Showering",
+    "odds_progression": [
+      4.3,
+      4.3,
+      4.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Miss Cartesian",
+    "odds_progression": [
+      5.6,
+      5.5,
+      5.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Atmosphere",
+    "odds_progression": [
+      5.8,
+      5.8,
+      5.7
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Neyvas Angel",
+    "odds_progression": [
+      10.5,
+      10.5,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Cocooned",
+    "odds_progression": [
+      13.5,
+      13.5,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:10 Yarmouth",
+    "horse": "Sprinter",
+    "odds_progression": [
+      14.5,
+      14.5,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "Barmyblade",
+    "odds_progression": [
+      1.55,
+      1.55,
+      1.62
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "Amor Cordis",
+    "odds_progression": [
+      7.8,
+      7.8,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "Tarlac",
+    "odds_progression": [
+      10.5,
+      10.5,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "On Key",
+    "odds_progression": [
+      17.5,
+      16.5,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "Vault Of Heaven",
+    "odds_progression": [
+      23.0,
+      23.0,
+      26.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "Rumba Bay",
+    "odds_progression": [
+      36.0,
+      34.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:20 Ripon",
+    "horse": "For What Its Worth",
+    "odds_progression": [
+      70.0,
+      70.0,
+      60.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "El Budoor",
+    "odds_progression": [
+      2.72,
+      2.72,
+      2.72
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Miss Herschel",
+    "odds_progression": [
+      6.0,
+      6.0,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Knickerbocker",
+    "odds_progression": [
+      7.8,
+      7.8,
+      16.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Silver Chamber",
+    "odds_progression": [
+      8.4,
+      8.4,
+      7.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Safe And Sound",
+    "odds_progression": [
+      17.0,
+      17.0,
+      8.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Cloaks Of Gold",
+    "odds_progression": [
+      16.0,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Queen Himiko",
+    "odds_progression": [
+      22.0,
+      22.0,
+      16.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Kathleen Mary",
+    "odds_progression": [
+      21.0,
+      21.0,
+      21.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Glint Of Light",
+    "odds_progression": [
+      29.0,
+      29.0,
+      25.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Witch Hazel",
+    "odds_progression": [
+      null,
+      null,
+      29.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Charming Whisper",
+    "odds_progression": [
+      3.85,
+      3.85,
+      3.85
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Sir Edward Lear",
+    "odds_progression": [
+      4.9,
+      4.9,
+      5.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Saturn Five",
+    "odds_progression": [
+      6.6,
+      6.6,
+      6.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Corundum",
+    "odds_progression": [
+      6.6,
+      6.6,
+      6.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Didaar",
+    "odds_progression": [
+      8.4,
+      8.0,
+      8.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Coolree",
+    "odds_progression": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Woodstock City",
+    "odds_progression": [
+      32.0,
+      32.0,
+      36.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:40 Yarmouth",
+    "horse": "Obsidian Knight",
+    "odds_progression": [
+      75.0,
+      75.0,
+      85.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Have Secret",
+    "odds_progression": [
+      2.0,
+      2.0,
+      3.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Padishakh",
+    "odds_progression": [
+      5.1,
+      5.1,
+      5.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Lets Dream",
+    "odds_progression": [
+      5.7,
+      5.6,
+      9.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Financer",
+    "odds_progression": [
+      9.8,
+      9.8,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Arthurs Realm",
+    "odds_progression": [
+      44.0,
+      44.0,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Touch The Moon",
+    "odds_progression": [
+      65.0,
+      65.0,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "High Point",
+    "odds_progression": [
+      75.0,
+      75.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Titian",
+    "odds_progression": [
+      140.0,
+      140.0,
+      17.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "First View",
+    "odds_progression": [
+      null,
+      null,
+      29.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Ey Up Its The Boss",
+    "odds_progression": [
+      null,
+      null,
+      28.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Yorkshire Lady",
+    "odds_progression": [
+      null,
+      null,
+      75.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Polygram",
+    "odds_progression": [
+      6.0,
+      6.0,
+      2.04
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Travel Agent",
+    "odds_progression": [
+      6.6,
+      6.6,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Elarak",
+    "odds_progression": [
+      7.2,
+      7.2,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Headmaster",
+    "odds_progression": [
+      7.0,
+      7.0,
+      9.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Gregorians Star",
+    "odds_progression": [
+      8.2,
+      8.2,
+      44.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Bradshaw",
+    "odds_progression": [
+      12.5,
+      12.5,
+      75.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Wild Embers",
+    "odds_progression": [
+      12.0,
+      12.0,
+      70.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "What A Recovery",
+    "odds_progression": [
+      16.5,
+      17.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Lady Of The Isles",
+    "odds_progression": [
+      28.0,
+      29.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "Sea Poetry",
+    "odds_progression": [
+      28.0,
+      28.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:00 Lingfield",
+    "horse": "The Bellhop",
+    "odds_progression": [
+      34.0,
+      34.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:10 Yarmouth",
+    "horse": "Marnier",
+    "odds_progression": [
+      2.54,
+      2.58,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:10 Yarmouth",
+    "horse": "Spinning Wheel",
+    "odds_progression": [
+      2.98,
+      2.98,
+      6.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:10 Yarmouth",
+    "horse": "Sharp Move",
+    "odds_progression": [
+      5.1,
+      5.1,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:10 Yarmouth",
+    "horse": "Caughtredhanded",
+    "odds_progression": [
+      9.4,
+      9.4,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:10 Yarmouth",
+    "horse": "Savvy Stellar",
+    "odds_progression": [
+      null,
+      null,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Variety Island",
+    "odds_progression": [
+      1.94,
+      1.93,
+      2.56
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Ishe Worth Agamble",
+    "odds_progression": [
+      3.75,
+      3.75,
+      3.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Enderman",
+    "odds_progression": [
+      5.1,
+      5.2,
+      9.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Hurstwood",
+    "odds_progression": [
+      27.0,
+      27.0,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Juryman",
+    "odds_progression": [
+      140.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Ancient State",
+    "odds_progression": [
+      3.95,
+      4.0,
+      1.93
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "All Too Beautiful",
+    "odds_progression": [
+      5.1,
+      5.1,
+      3.75
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Oldbury Lad",
+    "odds_progression": [
+      5.2,
+      5.1,
+      5.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Castellina",
+    "odds_progression": [
+      6.8,
+      6.8,
+      27.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Rogue Endeavour",
+    "odds_progression": [
+      8.6,
+      8.6,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Atherstone Beau",
+    "odds_progression": [
+      14.0,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:30 Lingfield",
+    "horse": "Top Biller",
+    "odds_progression": [
+      22.0,
+      21.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Arnaz",
+    "odds_progression": [
+      4.0,
+      4.0,
+      4.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Dark Side Thunder",
+    "odds_progression": [
+      4.5,
+      4.5,
+      4.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Scarboroughwarning",
+    "odds_progression": [
+      5.6,
+      5.7,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Rhythmic Acclaim",
+    "odds_progression": [
+      5.9,
+      5.9,
+      6.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Dashing Dick",
+    "odds_progression": [
+      8.4,
+      8.4,
+      8.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Expert Agent",
+    "odds_progression": [
+      17.5,
+      17.5,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:45 Yarmouth",
+    "horse": "Havana Sky",
+    "odds_progression": [
+      24.0,
+      24.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Masekela",
+    "odds_progression": [
+      3.75,
+      3.75,
+      3.95
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Tokyo Bay",
+    "odds_progression": [
+      5.2,
+      5.3,
+      4.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Something",
+    "odds_progression": [
+      9.4,
+      9.4,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Clansman",
+    "odds_progression": [
+      9.6,
+      9.6,
+      5.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Ancient Myth",
+    "odds_progression": [
+      11.0,
+      11.0,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Curran",
+    "odds_progression": [
+      13.5,
+      13.5,
+      18.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Free Speech",
+    "odds_progression": [
+      17.0,
+      19.0,
+      44.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Warrior Lion",
+    "odds_progression": [
+      19.0,
+      17.0,
+      24.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Valley Of Flowers",
+    "odds_progression": [
+      28.0,
+      28.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:55 Ripon",
+    "horse": "Freedom Day",
+    "odds_progression": [
+      32.0,
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:05 Lingfield",
+    "horse": "Step Along",
+    "odds_progression": [
+      5.3,
+      5.3,
+      5.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:05 Lingfield",
+    "horse": "Over Spiced",
+    "odds_progression": [
+      6.4,
+      6.6,
+      6.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:05 Lingfield",
+    "horse": "Sassy Sprezzatura",
+    "odds_progression": [
+      8.6,
+      8.6,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:05 Lingfield",
+    "horse": "Dreambird Dolly",
+    "odds_progression": [
+      8.0,
+      8.0,
+      8.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:05 Lingfield",
+    "horse": "Watkins",
+    "odds_progression": [
+      14.5,
+      14.5,
+      13.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "De Temps En Temps",
+    "odds_progression": [
+      4.2,
+      4.2,
+      4.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Couldntmakeitup",
+    "odds_progression": [
+      5.6,
+      5.6,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Ifallgoeswell",
+    "odds_progression": [
+      7.6,
+      7.4,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Ocean Of Mercy",
+    "odds_progression": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "The Mans Room",
+    "odds_progression": [
+      10.0,
+      10.5,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Stickman",
+    "odds_progression": [
+      12.0,
+      12.0,
+      12.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Elusive Ogie",
+    "odds_progression": [
+      15.5,
+      15.5,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Saint Peregrine",
+    "odds_progression": [
+      15.5,
+      16.5,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Cocovic",
+    "odds_progression": [
+      18.5,
+      18.5,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:10 Limerick",
+    "horse": "Cool Morning",
+    "odds_progression": [
+      40.0,
+      40.0,
+      36.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Giorgio M",
+    "odds_progression": [
+      1.88,
+      1.88,
+      3.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Flag Of St George",
+    "odds_progression": [
+      5.7,
+      5.7,
+      3.75
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Onemorenomore",
+    "odds_progression": [
+      10.0,
+      10.0,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Drifts Away",
+    "odds_progression": [
+      11.0,
+      11.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Silver Trumpet",
+    "odds_progression": [
+      7.0,
+      7.0,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Bella Bisbee",
+    "odds_progression": [
+      12.5,
+      12.5,
+      9.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Cancan In The Rain",
+    "odds_progression": [
+      26.0,
+      26.0,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Bluebells Boy",
+    "odds_progression": [
+      18.0,
+      18.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:20 Yarmouth",
+    "horse": "Gdaay",
+    "odds_progression": [
+      27.0,
+      27.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Devils Angel",
+    "odds_progression": [
+      3.75,
+      3.6,
+      1.82
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Nezeeh",
+    "odds_progression": [
+      4.6,
+      4.6,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "I Bid You Ajou",
+    "odds_progression": [
+      3.1,
+      3.1,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Verified",
+    "odds_progression": [
+      8.6,
+      8.6,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Fivecromwellplace",
+    "odds_progression": [
+      11.0,
+      9.0,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Amanirenas",
+    "odds_progression": [
+      15.5,
+      15.5,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Eruption",
+    "odds_progression": [
+      16.0,
+      16.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "No Speed Limit",
+    "odds_progression": [
+      18.5,
+      18.5,
+      27.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Magyar",
+    "odds_progression": [
+      18.5,
+      18.5,
+      29.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Cosmos Raj",
+    "odds_progression": [
+      2.9,
+      2.88,
+      3.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Havana Prince",
+    "odds_progression": [
+      7.0,
+      7.0,
+      4.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Mariner",
+    "odds_progression": [
+      7.4,
+      7.4,
+      3.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Clear Angel",
+    "odds_progression": [
+      15.0,
+      15.0,
+      6.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Harswell Duke",
+    "odds_progression": [
+      13.5,
+      12.5,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:30 Ripon",
+    "horse": "Volenti",
+    "odds_progression": [
+      16.5,
+      16.5,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Fareedhat El Izz A",
+    "odds_progression": [
+      3.9,
+      3.9,
+      2.96
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Amirat Al Zaman A",
+    "odds_progression": [
+      4.1,
+      4.1,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Nesl El Moulouk A",
+    "odds_progression": [
+      5.6,
+      5.4,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Hibikinada Du Mazet A",
+    "odds_progression": [
+      6.6,
+      6.6,
+      13.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Victoria A",
+    "odds_progression": [
+      14.5,
+      15.0,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Pharitz Lahia A",
+    "odds_progression": [
+      16.5,
+      17.0,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Delicatesse A",
+    "odds_progression": [
+      21.0,
+      21.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Bekham De Leyre A",
+    "odds_progression": [
+      27.0,
+      29.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:35 Lingfield",
+    "horse": "Protocol Zayin A",
+    "odds_progression": [
+      36.0,
+      36.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Keep Up",
+    "odds_progression": [
+      3.25,
+      3.25,
+      2.54
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Emily Love",
+    "odds_progression": [
+      5.6,
+      5.6,
+      3.55
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Fortunate Lighting",
+    "odds_progression": [
+      5.7,
+      5.7,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Nothing Hectic",
+    "odds_progression": [
+      6.0,
+      5.9,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Mrs Mc Go",
+    "odds_progression": [
+      10.5,
+      10.5,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Regards To Rose",
+    "odds_progression": [
+      17.0,
+      16.0,
+      40.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Iamyouare",
+    "odds_progression": [
+      19.0,
+      19.5,
+      200.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Rizedda",
+    "odds_progression": [
+      28.0,
+      28.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:42 Limerick",
+    "horse": "Bubbly Irene",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Belsito",
+    "odds_progression": [
+      2.48,
+      2.48,
+      3.9
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Havana Rum",
+    "odds_progression": [
+      5.6,
+      5.6,
+      4.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Arantes Nascimento",
+    "odds_progression": [
+      6.4,
+      6.4,
+      5.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Four Adaay",
+    "odds_progression": [
+      6.8,
+      6.8,
+      6.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Run This Way",
+    "odds_progression": [
+      10.5,
+      10.5,
+      12.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Annie Edson Taylor",
+    "odds_progression": [
+      21.0,
+      21.0,
+      16.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Sapphire Princess",
+    "odds_progression": [
+      3.65,
+      3.65,
+      3.25
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Gypsy Queen",
+    "odds_progression": [
+      3.75,
+      3.75,
+      5.7
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Night Magic",
+    "odds_progression": [
+      6.8,
+      6.8,
+      5.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Manhattan Chute",
+    "odds_progression": [
+      10.0,
+      10.0,
+      6.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Alice Monet",
+    "odds_progression": [
+      10.5,
+      11.0,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Remarkable News",
+    "odds_progression": [
+      9.8,
+      9.8,
+      16.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Sun Soldier",
+    "odds_progression": [
+      13.0,
+      13.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:57 Fairyhouse",
+    "horse": "Melvin Udall",
+    "odds_progression": [
+      19.0,
+      19.0,
+      28.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Rockin The Boat",
+    "odds_progression": [
+      1.84,
+      1.86,
+      2.46
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Wicked",
+    "odds_progression": [
+      5.3,
+      5.2,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Bulletin",
+    "odds_progression": [
+      6.6,
+      6.6,
+      6.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Seven Symphonies",
+    "odds_progression": [
+      9.2,
+      9.2,
+      6.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Emery Down",
+    "odds_progression": [
+      8.0,
+      8.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Winstons Warrior",
+    "odds_progression": [
+      null,
+      null,
+      21.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Moonjid",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:05 Sandown",
+    "horse": "Imperial Trooper",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Sharetheknowledge",
+    "odds_progression": [
+      2.5,
+      2.5,
+      1.87
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Diamond Dollar",
+    "odds_progression": [
+      5.1,
+      5.1,
+      4.9
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "The Striker Dylan",
+    "odds_progression": [
+      4.8,
+      4.8,
+      7.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Faceman",
+    "odds_progression": [
+      9.6,
+      9.6,
+      9.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Silent Dawn",
+    "odds_progression": [
+      8.2,
+      8.2,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Stily",
+    "odds_progression": [
+      8.0,
+      8.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Added Bonus",
+    "odds_progression": [
+      20.0,
+      20.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Notevenatext",
+    "odds_progression": [
+      16.5,
+      16.5,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:12 Limerick",
+    "horse": "Like A Bumblebee",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Sir Garfield",
+    "odds_progression": [
+      2.24,
+      2.24,
+      2.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Thornaby Pearl",
+    "odds_progression": [
+      2.7,
+      2.7,
+      5.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Bay Breeze",
+    "odds_progression": [
+      11.0,
+      11.0,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Sir Maxi",
+    "odds_progression": [
+      19.5,
+      19.5,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Giselles Izzy",
+    "odds_progression": [
+      19.0,
+      19.0,
+      8.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Yazaman",
+    "odds_progression": [
+      21.0,
+      21.0,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Biplane",
+    "odds_progression": [
+      24.0,
+      24.0,
+      20.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Silent Flame",
+    "odds_progression": [
+      26.0,
+      26.0,
+      16.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:20 Carlisle",
+    "horse": "Prince Of Bel Lir",
+    "odds_progression": [
+      38.0,
+      38.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Gazelle Dor",
+    "odds_progression": [
+      3.15,
+      3.1,
+      2.24
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Red Veil",
+    "odds_progression": [
+      6.4,
+      6.4,
+      2.72
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "No Return",
+    "odds_progression": [
+      6.6,
+      7.0,
+      13.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Elusive Duke",
+    "odds_progression": [
+      7.8,
+      7.8,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Misappropriation",
+    "odds_progression": [
+      7.0,
+      7.0,
+      19.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Send Harry",
+    "odds_progression": [
+      9.6,
+      9.6,
+      21.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Bearwithus",
+    "odds_progression": [
+      10.5,
+      10.5,
+      24.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Ellomate",
+    "odds_progression": [
+      17.0,
+      17.0,
+      26.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:27 Fairyhouse",
+    "horse": "Hugos Girl",
+    "odds_progression": [
+      17.0,
+      17.0,
+      38.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Clear Force",
+    "odds_progression": [
+      2.56,
+      2.56,
+      3.05
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "First Legion",
+    "odds_progression": [
+      3.55,
+      3.55,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Kamakameleon",
+    "odds_progression": [
+      7.0,
+      7.0,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Sayidah Hard Spun",
+    "odds_progression": [
+      10.5,
+      10.5,
+      7.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Eskimo Pie",
+    "odds_progression": [
+      14.0,
+      14.0,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Anthelia",
+    "odds_progression": [
+      40.0,
+      40.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:35 Sandown",
+    "horse": "Alkuwarrior",
+    "odds_progression": [
+      200.0,
+      200.0,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:42 Limerick",
+    "horse": "Quinn The Eskimo",
+    "odds_progression": [
+      1.79,
+      1.79,
+      1.77
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:42 Limerick",
+    "horse": "Ballykinlar",
+    "odds_progression": [
+      5.1,
+      5.1,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:42 Limerick",
+    "horse": "Silas Marner",
+    "odds_progression": [
+      6.6,
+      6.6,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:42 Limerick",
+    "horse": "Tir Og",
+    "odds_progression": [
+      8.4,
+      8.4,
+      8.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:42 Limerick",
+    "horse": "Tea It Is",
+    "odds_progression": [
+      null,
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Showtown",
+    "odds_progression": [
+      2.94,
+      2.94,
+      2.74
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Our Hero Matty",
+    "odds_progression": [
+      3.95,
+      3.95,
+      3.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Mister Moet",
+    "odds_progression": [
+      6.8,
+      6.6,
+      6.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Clear Above",
+    "odds_progression": [
+      8.2,
+      8.2,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Power Supreme",
+    "odds_progression": [
+      16.5,
+      16.5,
+      30.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Surgeon Commander",
+    "odds_progression": [
+      16.5,
+      16.5,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Snake Charmer",
+    "odds_progression": [
+      36.0,
+      38.0,
+      200.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Northern Tempest",
+    "odds_progression": [
+      220.0,
+      220.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Daydreama",
+    "odds_progression": [
+      null,
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:50 Carlisle",
+    "horse": "Believeinthisone",
+    "odds_progression": [
+      null,
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Jackie Brown",
+    "odds_progression": [
+      4.5,
+      4.9,
+      4.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Is That Love",
+    "odds_progression": [
+      5.9,
+      5.9,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Spirit Of Eagles",
+    "odds_progression": [
+      6.4,
+      6.4,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Hero Of The Hour",
+    "odds_progression": [
+      7.8,
+      7.4,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Yaxchilan",
+    "odds_progression": [
+      11.5,
+      11.0,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Navorrosse",
+    "odds_progression": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Star Mind",
+    "odds_progression": [
+      11.5,
+      11.5,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Whatswrongnow",
+    "odds_progression": [
+      17.0,
+      17.0,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Havana Notion",
+    "odds_progression": [
+      14.0,
+      14.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Green Valentine",
+    "odds_progression": [
+      22.0,
+      22.0,
+      18.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Lismacbryan",
+    "odds_progression": [
+      22.0,
+      22.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Happy Henry",
+    "odds_progression": [
+      23.0,
+      23.0,
+      30.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "American In Paris",
+    "odds_progression": [
+      30.0,
+      30.0,
+      22.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "17:57 Fairyhouse",
+    "horse": "Livingston Range",
+    "odds_progression": [
+      60.0,
+      60.0,
+      60.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:05 Sandown",
+    "horse": "Trawlerman",
+    "odds_progression": [
+      4.2,
+      4.2,
+      4.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:05 Sandown",
+    "horse": "Burdett Road",
+    "odds_progression": [
+      4.6,
+      4.6,
+      4.7
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:05 Sandown",
+    "horse": "Al Nayyir",
+    "odds_progression": [
+      5.7,
+      5.7,
+      5.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:05 Sandown",
+    "horse": "Coltrane",
+    "odds_progression": [
+      7.4,
+      7.4,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:05 Sandown",
+    "horse": "Tashkhan",
+    "odds_progression": [
+      8.4,
+      8.4,
+      8.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Shadow Paddy",
+    "odds_progression": [
+      3.7,
+      4.1,
+      5.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Long Gone",
+    "odds_progression": [
+      5.8,
+      6.6,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Reflectionist",
+    "odds_progression": [
+      8.0,
+      8.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Crowsatedappletart",
+    "odds_progression": [
+      9.0,
+      9.2,
+      8.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Half A Chance",
+    "odds_progression": [
+      8.4,
+      8.8,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Onefortheditch",
+    "odds_progression": [
+      8.6,
+      8.6,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Hidalgo Des Mottes",
+    "odds_progression": [
+      18.5,
+      18.5,
+      13.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Avandra",
+    "odds_progression": [
+      8.0,
+      8.0,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Boston Rajj",
+    "odds_progression": [
+      17.0,
+      17.0,
+      12.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Silent Selector",
+    "odds_progression": [
+      19.0,
+      19.0,
+      15.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Happy Me",
+    "odds_progression": [
+      23.0,
+      23.0,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "O Bon Pardon",
+    "odds_progression": [
+      19.5,
+      19.5,
+      19.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Penny Jar",
+    "odds_progression": [
+      23.0,
+      23.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Answering",
+    "odds_progression": [
+      22.0,
+      22.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Monroes Hollow",
+    "odds_progression": [
+      19.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:12 Limerick",
+    "horse": "Rut Daniels",
+    "odds_progression": [
+      34.0,
+      34.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Minnie Wildes",
+    "odds_progression": [
+      5.1,
+      5.1,
+      3.9
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Brummell",
+    "odds_progression": [
+      6.8,
+      6.8,
+      6.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Moonstone Boy",
+    "odds_progression": [
+      6.8,
+      7.2,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Irish Nectar",
+    "odds_progression": [
+      7.2,
+      7.2,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Water Of Leith",
+    "odds_progression": [
+      8.4,
+      8.6,
+      8.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Blind Beggar",
+    "odds_progression": [
+      10.5,
+      10.5,
+      8.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Never Dark",
+    "odds_progression": [
+      9.8,
+      9.8,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Invincible Annice",
+    "odds_progression": [
+      14.0,
+      14.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Hyperfocus",
+    "odds_progression": [
+      9.2,
+      9.2,
+      18.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Impressor",
+    "odds_progression": [
+      15.5,
+      15.5,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Glorious Angel",
+    "odds_progression": [
+      32.0,
+      32.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:20 Carlisle",
+    "horse": "Emeralds Pride",
+    "odds_progression": [
+      26.0,
+      26.0,
+      23.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Starsurge",
+    "odds_progression": [
+      3.8,
+      3.8,
+      5.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Northern Attitude",
+    "odds_progression": [
+      8.0,
+      8.0,
+      6.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Spent All Me Money",
+    "odds_progression": [
+      8.0,
+      8.0,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Lyra Constellation",
+    "odds_progression": [
+      11.0,
+      11.0,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Great Mover",
+    "odds_progression": [
+      9.8,
+      9.8,
+      8.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Endless Dawn",
+    "odds_progression": [
+      8.2,
+      8.2,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Kodis Angel",
+    "odds_progression": [
+      11.5,
+      11.5,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Mother Mara",
+    "odds_progression": [
+      11.5,
+      11.5,
+      13.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Vlhova",
+    "odds_progression": [
+      9.0,
+      9.0,
+      9.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Tam Lin",
+    "odds_progression": [
+      10.0,
+      10.0,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Marianne North",
+    "odds_progression": [
+      16.0,
+      16.0,
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Cosmic Force",
+    "odds_progression": [
+      9.4,
+      9.4,
+      26.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Lovely",
+    "odds_progression": [
+      15.0,
+      15.0,
+      25.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Romantic War",
+    "odds_progression": [
+      9.0,
+      9.0,
+      29.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Southgreen",
+    "odds_progression": [
+      9.4,
+      9.4,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:27 Fairyhouse",
+    "horse": "Widely Acclaimed",
+    "odds_progression": [
+      14.0,
+      14.0,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Almaqam",
+    "odds_progression": [
+      3.65,
+      3.65,
+      4.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Ombudsman",
+    "odds_progression": [
+      6.8,
+      6.8,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Military Order",
+    "odds_progression": [
+      5.4,
+      5.4,
+      8.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Enfjaar",
+    "odds_progression": [
+      8.0,
+      8.0,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Persica",
+    "odds_progression": [
+      6.6,
+      6.6,
+      9.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Ciceros Gift",
+    "odds_progression": [
+      9.6,
+      9.6,
+      9.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Phantom Flight",
+    "odds_progression": [
+      9.4,
+      9.4,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Aafoor",
+    "odds_progression": [
+      9.6,
+      9.6,
+      9.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Ancient Wisdom",
+    "odds_progression": [
+      12.5,
+      12.5,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:35 Sandown",
+    "horse": "Bolster",
+    "odds_progression": [
+      9.6,
+      9.6,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "West Of Carrig",
+    "odds_progression": [
+      2.0,
+      2.0,
+      3.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Kiln Time",
+    "odds_progression": [
+      1.04,
+      1.04,
+      6.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Its Time Again",
+    "odds_progression": [
+      1.04,
+      1.04,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Native Dream",
+    "odds_progression": [
+      9.0,
+      9.0,
+      5.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Da Big Fella",
+    "odds_progression": [
+      1.04,
+      1.04,
+      3.95
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Mother Ship",
+    "odds_progression": [
+      7.4,
+      7.4,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Jekiki",
+    "odds_progression": [
+      7.0,
+      7.0,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Southgate Avenue",
+    "odds_progression": [
+      1.04,
+      1.04,
+      9.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Likable Chancer",
+    "odds_progression": [
+      1.03,
+      1.03,
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Neska Blue",
+    "odds_progression": [
+      1.04,
+      1.04,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Donnrua Dream",
+    "odds_progression": [
+      9.0,
+      9.0,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Lucky Lioness",
+    "odds_progression": [
+      1.03,
+      1.03,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Pirate Island",
+    "odds_progression": [
+      9.0,
+      9.0,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Rideau Canal",
+    "odds_progression": [
+      1.04,
+      1.04,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Younowhatimean",
+    "odds_progression": [
+      1.04,
+      1.04,
+      18.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Hard Target",
+    "odds_progression": [
+      1.04,
+      1.04,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Dragons Pass",
+    "odds_progression": [
+      1.04,
+      1.04
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Hitthehayson",
+    "odds_progression": [
+      1.04,
+      1.04
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Mags Nelson",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Cosmo Renfro",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:42 Limerick",
+    "horse": "Sydney Cruiser",
+    "odds_progression": [
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Straya",
+    "odds_progression": [
+      2.34,
+      2.34,
+      2.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Superior Council",
+    "odds_progression": [
+      5.4,
+      5.4,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "American Star",
+    "odds_progression": [
+      5.2,
+      5.2,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Martins Brig",
+    "odds_progression": [
+      10.0,
+      10.0,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Langholm",
+    "odds_progression": [
+      13.5,
+      13.5,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Top Gun Tina",
+    "odds_progression": [
+      25.0,
+      25.0,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Lockdown Lass",
+    "odds_progression": [
+      180.0,
+      190.0,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Alto Sax",
+    "odds_progression": [
+      4.9,
+      4.9,
+      2.32
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Migdam",
+    "odds_progression": [
+      7.0,
+      7.2,
+      5.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Breathe Again",
+    "odds_progression": [
+      7.2,
+      7.0,
+      5.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Loingseoir",
+    "odds_progression": [
+      7.6,
+      13.0,
+      22.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Ranko Express",
+    "odds_progression": [
+      9.6,
+      7.6,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Forlio",
+    "odds_progression": [
+      13.0,
+      9.6,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Rockbury Lad",
+    "odds_progression": [
+      14.5,
+      14.5,
+      180.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Step To Somewhere",
+    "odds_progression": [
+      14.0,
+      14.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Takeachancejimmy",
+    "odds_progression": [
+      22.0,
+      22.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Si Senior",
+    "odds_progression": [
+      36.0,
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Pandion Power",
+    "odds_progression": [
+      48.0,
+      48.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Nita",
+    "odds_progression": [
+      65.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Solomon Coop",
+    "odds_progression": [
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Opera Ballo",
+    "odds_progression": [
+      5.5,
+      5.6,
+      4.9
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Matauri Bay",
+    "odds_progression": [
+      7.4,
+      7.0,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Bay City Roller",
+    "odds_progression": [
+      8.4,
+      8.0,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Nebras",
+    "odds_progression": [
+      11.5,
+      10.5,
+      7.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Jackknife",
+    "odds_progression": [
+      11.0,
+      12.0,
+      9.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Pellitory",
+    "odds_progression": [
+      10.5,
+      10.5,
+      11.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:05 Sandown",
+    "horse": "Suhail Star",
+    "odds_progression": [
+      13.5,
+      13.5,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Forty Kay",
+    "odds_progression": [
+      2.26,
+      2.26,
+      2.26
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Betty Mo Chara",
+    "odds_progression": [
+      3.4,
+      3.4,
+      3.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Barra Rua",
+    "odds_progression": [
+      4.2,
+      4.2,
+      4.1
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Atomic Queen",
+    "odds_progression": [
+      46.0,
+      46.0,
+      44.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Croissant",
+    "odds_progression": [
+      90.0,
+      90.0,
+      90.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Sing My Story",
+    "odds_progression": [
+      100.0,
+      100.0,
+      95.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Clash Of Wings",
+    "odds_progression": [
+      100.0,
+      100.0,
+      95.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "An Capall Liath",
+    "odds_progression": [
+      140.0,
+      140.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Champagne Melanie",
+    "odds_progression": [
+      140.0,
+      140.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Crokes Cross",
+    "odds_progression": [
+      140.0,
+      140.0,
+      140.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Subpoena",
+    "odds_progression": [
+      190.0,
+      190.0,
+      190.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Duel Concept",
+    "odds_progression": [
+      null,
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:12 Limerick",
+    "horse": "Nells Princess",
+    "odds_progression": [
+      null,
+      null,
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Push The Limit",
+    "odds_progression": [
+      2.88,
+      2.88,
+      2.88
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "The Kings Falcon",
+    "odds_progression": [
+      6.0,
+      6.0,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Danger Bay",
+    "odds_progression": [
+      6.0,
+      6.0,
+      6.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Elsass",
+    "odds_progression": [
+      9.0,
+      9.0,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Action Pact",
+    "odds_progression": [
+      11.0,
+      11.0,
+      11.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Tee Aitch Aye",
+    "odds_progression": [
+      12.5,
+      12.5,
+      12.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Tiernan",
+    "odds_progression": [
+      14.5,
+      14.5,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:20 Carlisle",
+    "horse": "Balmerino",
+    "odds_progression": [
+      20.0,
+      20.0,
+      20.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Flying Fortress",
+    "odds_progression": [
+      5.9,
+      5.9,
+      5.9
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Fantazy Man",
+    "odds_progression": [
+      7.4,
+      7.4,
+      7.6
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Winston Junior",
+    "odds_progression": [
+      7.6,
+      7.2,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Aeons Aegis",
+    "odds_progression": [
+      7.8,
+      3.1,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Paddydaddy",
+    "odds_progression": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Berto Ramirez",
+    "odds_progression": [
+      10.0,
+      10.0,
+      3.15
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Pallatine Hills",
+    "odds_progression": [
+      8.8,
+      8.8,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Edergoles Angel",
+    "odds_progression": [
+      8.2,
+      8.2,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Lily Parr",
+    "odds_progression": [
+      7.0,
+      7.0,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Sugar Club",
+    "odds_progression": [
+      7.4,
+      7.4,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "The Marty Party",
+    "odds_progression": [
+      10.5,
+      10.5,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Stiorra",
+    "odds_progression": [
+      12.0,
+      12.0,
+      12.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:30 Fairyhouse",
+    "horse": "Bridezilla",
+    "odds_progression": [
+      12.0,
+      12.0,
+      10.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Surrey Shadow",
+    "odds_progression": [
+      4.8,
+      4.8,
+      4.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Crack Shot",
+    "odds_progression": [
+      5.5,
+      5.5,
+      5.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Golden Ocean",
+    "odds_progression": [
+      7.0,
+      7.0,
+      7.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Whip Cracker",
+    "odds_progression": [
+      7.4,
+      7.4,
+      7.4
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Hickory",
+    "odds_progression": [
+      4.9,
+      4.9,
+      7.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Arkhalia Flynn",
+    "odds_progression": [
+      8.2,
+      8.2,
+      8.2
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Hafeet Alain",
+    "odds_progression": [
+      15.5,
+      15.5,
+      14.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Smart Hero",
+    "odds_progression": [
+      9.0,
+      9.0,
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Sierra Blanca",
+    "odds_progression": [
+      13.5,
+      13.5,
+      13.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Atlantic Gamble",
+    "odds_progression": [
+      19.0,
+      19.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "I Still Have Faith",
+    "odds_progression": [
+      21.0,
+      21.0,
+      21.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Miletus",
+    "odds_progression": [
+      19.0,
+      19.0,
+      19.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:40 Sandown",
+    "horse": "Alpha Crucis",
+    "odds_progression": [
+      32.0,
+      32.0,
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Hill O Rue",
+    "odds_progression": [
+      2.16,
+      2.16,
+      2.14
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Havachoc",
+    "odds_progression": [
+      3.7,
+      3.7,
+      3.7
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Sweet Cicely",
+    "odds_progression": [
+      4.7,
+      4.7,
+      4.3
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "I Got Know How",
+    "odds_progression": [
+      9.8,
+      9.8,
+      9.8
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "That Lucas Fella",
+    "odds_progression": [
+      16.0,
+      16.0,
+      16.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Tootsie",
+    "odds_progression": [
+      18.0,
+      18.0,
+      18.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Nippasso",
+    "odds_progression": [
+      18.0,
+      17.0,
+      17.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "19:50 Carlisle",
+    "horse": "Belabambina",
+    "odds_progression": [
+      17.0,
+      17.0,
+      18.5
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Mayo For Sam",
+    "odds_progression": [
+      65.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:57 Fairyhouse",
+    "horse": "Ms Messi",
+    "odds_progression": [
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "13:20 Ripon",
+    "horse": "BELLING THE CAT",
+    "odds_progression": [
+      15.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:30 Lingfield",
+    "horse": "Maritime Mist",
+    "odds_progression": [
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "14:50 Ripon",
+    "horse": "Big Meeting",
+    "odds_progression": [
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "15:20 Ripon",
+    "horse": "Bellagio Man",
+    "odds_progression": [
+      null
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Tribute To Jade",
+    "odds_progression": [
+      27.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:25 Fairyhouse",
+    "horse": "Lismacbryan Hill",
+    "odds_progression": [
+      65.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Worrals",
+    "odds_progression": [
+      20.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "First Company",
+    "odds_progression": [
+      28.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "16:50 Carlisle",
+    "horse": "Daytona Lady",
+    "odds_progression": [
+      32.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Little Ted",
+    "odds_progression": [
+      1.05
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Wheres The Crumpet",
+    "odds_progression": [
+      1.04
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Doomsday",
+    "odds_progression": [
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Elettaria",
+    "odds_progression": [
+      1.04
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "On The Bubble",
+    "odds_progression": [
+      9.0
+    ],
+    "volume": 0
+  },
+  {
+    "race": "18:50 Carlisle",
+    "horse": "Going Underground",
+    "odds_progression": [
+      1.68
+    ],
+    "volume": 0
+  }
+]

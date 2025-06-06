@@ -1,0 +1,25 @@
+[
+  {
+    "race": "18:10 Wolverhampton",
+    "horse": "Magic Moon",
+    "odds_progression": [
+      18.0,
+      12.0,
+      9.0,
+      6.0
+    ],
+    "source": "2025-05-31_1448",
+    "timestamp": "2025-05-31T14:48:00"
+  },
+  {
+    "race": "23:00 Curragh",
+    "horse": "Red Typhoon",
+    "odds_progression": [
+      14.0,
+      10.0,
+      8.0
+    ],
+    "source": "2025-05-31_1448",
+    "timestamp": "2025-05-31T14:48:00"
+  }
+]

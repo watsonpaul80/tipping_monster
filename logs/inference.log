@@ -280,3 +280,24 @@ Note: You have installed the 'manylinux2014' variant of XGBoost. Certain feature
   df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
 Saved 26 top tips to predictions/2025-06-03/output.jsonl
 ✅ Uploaded to s3://tipping-monster/predictions/2025-06-03/output.jsonl
+/home/ec2-user/tipping-monster/.venv/lib/python3.11/site-packages/xgboost/core.py:377: FutureWarning: Your system has an old version of glibc (< 2.28). We will stop supporting Linux distros with glibc older than 2.28 after **May 31, 2025**. Please upgrade to a recent Linux distro (with glibc >= 2.28) to use future versions of XGBoost.
+Note: You have installed the 'manylinux2014' variant of XGBoost. Certain features such as GPU algorithms or federated learning are not available. To use these features, please upgrade to a recent Linux distro with glibc 2.28+, and install the 'manylinux_2_28' variant.
+  warnings.warn(
+/home/ec2-user/tipping-monster/run_inference_and_select_top1.py:190: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
+Saved 44 top tips to predictions/2025-06-04/output.jsonl
+✅ Uploaded to s3://tipping-monster/predictions/2025-06-04/output.jsonl
+/home/ec2-user/tipping-monster/.venv/lib/python3.11/site-packages/xgboost/core.py:377: FutureWarning: Your system has an old version of glibc (< 2.28). We will stop supporting Linux distros with glibc older than 2.28 after **May 31, 2025**. Please upgrade to a recent Linux distro (with glibc >= 2.28) to use future versions of XGBoost.
+Note: You have installed the 'manylinux2014' variant of XGBoost. Certain features such as GPU algorithms or federated learning are not available. To use these features, please upgrade to a recent Linux distro with glibc 2.28+, and install the 'manylinux_2_28' variant.
+  warnings.warn(
+/home/ec2-user/tipping-monster/run_inference_and_select_top1.py:190: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
+Saved 42 top tips to predictions/2025-06-05/output.jsonl
+✅ Uploaded to s3://tipping-monster/predictions/2025-06-05/output.jsonl
+/home/ec2-user/tipping-monster/.venv/lib/python3.11/site-packages/xgboost/core.py:377: FutureWarning: Your system has an old version of glibc (< 2.28). We will stop supporting Linux distros with glibc older than 2.28 after **May 31, 2025**. Please upgrade to a recent Linux distro (with glibc >= 2.28) to use future versions of XGBoost.
+Note: You have installed the 'manylinux2014' variant of XGBoost. Certain features such as GPU algorithms or federated learning are not available. To use these features, please upgrade to a recent Linux distro with glibc 2.28+, and install the 'manylinux_2_28' variant.
+  warnings.warn(
+/home/ec2-user/tipping-monster/run_inference_and_select_top1.py:190: DtypeWarning: Columns (6) have mixed types. Specify dtype option on import or set low_memory=False.
+  df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
+Saved 60 top tips to predictions/2025-06-06/output.jsonl
+✅ Uploaded to s3://tipping-monster/predictions/2025-06-06/output.jsonl

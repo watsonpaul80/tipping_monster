@@ -1,0 +1,40 @@
+/home/ec2-user/tipping-monster/.venv/lib/python3.11/site-packages/xgboost/core.py:377: FutureWarning: Your system has an old version of glibc (< 2.28). We will stop supporting Linux distros with glibc older than 2.28 after **May 31, 2025**. Please upgrade to a recent Linux distro (with glibc >= 2.28) to use future versions of XGBoost.
+Note: You have installed the 'manylinux2014' variant of XGBoost. Certain features such as GPU algorithms or federated learning are not available. To use these features, please upgrade to a recent Linux distro with glibc 2.28+, and install the 'manylinux_2_28' variant.
+  warnings.warn(
+/home/ec2-user/tipping-monster/.venv/lib/python3.11/site-packages/xgboost/training.py:183: UserWarning: [03:01:47] WARNING: /workspace/src/learner.cc:738: 
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+/home/ec2-user/tipping-monster/train_model_v6.py:100: UserWarning: [03:01:53] WARNING: /workspace/src/c_api/c_api.cc:1427: Saving model in the UBJSON format as default.  You can use file extension: `json`, `ubj` or `deprecated` to choose between formats.
+  model.get_booster().save_model(dated_file)
+📅 Downloading historical data from S3...
+🛠 Preprocessing...
+Distribution of 'won':
+ won
+0    897567
+1    104724
+Name: count, dtype: int64
+📝 Injecting tip logs: ['logs/tips_results_2025-06-01_advised.csv', 'logs/tips_results_2025-06-02_advised.csv', 'logs/tips_results_2025-06-03_advised.csv'] ...
+🚀 Training model...
+
+🧠 Using features: ['draw', 'or', 'rpr', 'lbs', 'age', 'dist_f', 'class', 'going', 'prize']
+📊 Rows before training: 1002291
+Target label distribution:
+ won
+0    897567
+1    104724
+Name: count, dtype: int64
+✅ Accuracy: 0.9730
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.98      0.99      0.99    179574
+           1       0.91      0.82      0.86     20885
+
+    accuracy                           0.97    200459
+   macro avg       0.95      0.90      0.92    200459
+weighted avg       0.97      0.97      0.97    200459
+
+📦 Model saved and packaged as tipping-monster-xgb-model-2025-06-05.tar.gz
+✅ Model uploaded to S3: models/tipping-monster-xgb-model-2025-06-05.tar.gz

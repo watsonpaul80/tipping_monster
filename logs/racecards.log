@@ -70,3 +70,15 @@ Completed 406.8 KiB/406.8 KiB (2.1 MiB/s) with 1 file(s) remainingupload: ../ra
 ☁️ Uploading to S3
 Completed 406.9 KiB/406.9 KiB (2.2 MiB/s) with 1 file(s) remainingupload: ../racecards/2025-06-03.json to s3://tipping-monster/racecards/2025-06-03.json
 ✅ Racecard upload complete for 2025-06-03
+📅 Generating racecards for 2025-06-04
+☁️ Uploading to S3
+Completed 835.6 KiB/835.6 KiB (4.0 MiB/s) with 1 file(s) remainingupload: ../racecards/2025-06-04.json to s3://tipping-monster/racecards/2025-06-04.json
+✅ Racecard upload complete for 2025-06-04
+📅 Generating racecards for 2025-06-05
+☁️ Uploading to S3
+Completed 754.1 KiB/754.1 KiB (4.1 MiB/s) with 1 file(s) remainingupload: ../racecards/2025-06-05.json to s3://tipping-monster/racecards/2025-06-05.json
+✅ Racecard upload complete for 2025-06-05
+📅 Generating racecards for 2025-06-06
+☁️ Uploading to S3
+Completed 1.0 MiB/1.2 MiB (5.5 MiB/s) with 1 file(s) remainingCompleted 1.2 MiB/1.2 MiB (1.7 MiB/s) with 1 file(s) remainingupload: ../racecards/2025-06-06.json to s3://tipping-monster/racecards/2025-06-06.json
+✅ Racecard upload complete for 2025-06-06

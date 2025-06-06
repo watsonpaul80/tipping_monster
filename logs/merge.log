@@ -468,3 +468,95 @@
    - Even Break in 5:00 Southwell
    - Prince Hector in 6:45 Lingfield (AW)
    - Snooze Lane in 8:00 Wolverhampton (AW)
+[+] Using odds: odds_snapshots/2025-06-04_0850.json
+[+] Reading tips: predictions/2025-06-04/output.jsonl
+
+[🧪] Sample standardization output for debugging:
+
+[TIP]   1:10 Happy Valley  |  Horse: To Infinity
+[TIP]   1:40 Happy Valley  |  Horse: Loving Vibes
+[TIP]   2:05 Newton Abbot  |  Horse: Keel Strand
+[TIP]   2:10 Happy Valley  |  Horse: Osi Honour
+[TIP]   2:22 Nottingham  |  Horse: Lord Harcourt
+[ODDS]  Newton Abbot 13:05  |  Horse: Knights Affair
+[ODDS]  Newton Abbot 13:05  |  Horse: Keel Strand
+[ODDS]  Newton Abbot 13:05  |  Horse: Chief Black Robe
+[ODDS]  Newton Abbot 13:05  |  Horse: Highway Hero
+[ODDS]  Newton Abbot 13:05  |  Horse: Oval Street
+[✓] Merged 26 tips with odds → predictions/2025-06-04/tips_with_odds.jsonl
+[!] Unmatched tips:
+   - To Infinity in 1:10 Happy Valley
+   - Loving Vibes in 1:40 Happy Valley
+   - Osi Honour in 2:10 Happy Valley
+   - Allcash in 2:45 Happy Valley
+   - Excellence Value in 3:15 Happy Valley
+   - Elfride in 3:35 Newton Abbot
+   - Harmony N Blessed in 3:50 Happy Valley
+   - Miss Marette in 4:35 Newton Abbot
+   - Worldly in 5:15 Curragh
+   - Island Of Skye in 5:30 Nottingham
+   - Carloun in 5:40 Saratoga
+   - Red Panda in 7:10 Warwick
+   - Saisons Dor in 7:22 Ripon
+   - Chief Of State in 8:22 Ripon
+   - Gegenpressing in 8:30 Curragh
+   - Joyful Champion in 11:40 Happy Valley
+   - Floof in 12:10 Happy Valley
+   - Incanto Star in 12:40 Happy Valley
+[+] Using odds: odds_snapshots/2025-06-05_0850.json
+[+] Reading tips: predictions/2025-06-05/output.jsonl
+
+[🧪] Sample standardization output for debugging:
+
+[TIP]   2:00 Uttoxeter  |  Horse: El Galactico
+[TIP]   2:12 Hamilton  |  Horse: March Ahead
+[TIP]   2:20 Lingfield (AW)  |  Horse: Certain Style
+[TIP]   2:30 Uttoxeter  |  Horse: Roger Pol
+[TIP]   2:42 Hamilton  |  Horse: Eternal Sunshine
+[ODDS]  Uttoxeter 13:00  |  Horse: Miss Goldfire
+[ODDS]  Uttoxeter 13:00  |  Horse: Deep Purple
+[ODDS]  Uttoxeter 13:00  |  Horse: El Galactico
+[ODDS]  Uttoxeter 13:00  |  Horse: Soldier At Arms
+[ODDS]  Hamilton 13:12  |  Horse: Blue Nguru
+[✓] Merged 30 tips with odds → predictions/2025-06-05/tips_with_odds.jsonl
+[!] Unmatched tips:
+   - Sultan Of Oj in 2:50 Lingfield (AW)
+   - Sunshine And Roses in 5:00 Chelmsford (AW)
+   - Who Is Alice in 5:35 Chelmsford (AW)
+   - Prince Abu in 6:05 Chelmsford (AW)
+   - Word Of Mouth in 6:35 Chelmsford (AW)
+   - Loingseoir in 6:55 Leopardstown
+   - Sea The Wonder in 7:07 Chelmsford (AW)
+   - Dream Escape in 7:30 Leopardstown
+   - Dancingwithmyself in 7:42 Chelmsford (AW)
+   - James The Second in 8:05 Leopardstown
+   - Elizabeth Bay in 8:17 Chelmsford (AW)
+   - Ceira G in 8:47 Chelmsford (AW)
+[+] Using odds: odds_snapshots/2025-06-06_0850.json
+[+] Reading tips: predictions/2025-06-06/output.jsonl
+
+[🧪] Sample standardization output for debugging:
+
+[TIP]   1:15 Thirsk  |  Horse: Water Tiger
+[TIP]   1:30 Epsom  |  Horse: The Waco Kid
+[TIP]   1:40 Bangor-on-Dee  |  Horse: Herja
+[TIP]   1:50 Thirsk  |  Horse: Patricia R
+[TIP]   2:05 Epsom  |  Horse: Havana Hurricane
+[ODDS]  Thirsk 12:15  |  Horse: In A Hurry
+[ODDS]  Thirsk 12:15  |  Horse: Noble Testimony
+[ODDS]  Thirsk 12:15  |  Horse: Believe In Lies
+[ODDS]  Thirsk 12:15  |  Horse: Blunder
+[ODDS]  Thirsk 12:15  |  Horse: Water Tiger
+[✓] Merged 49 tips with odds → predictions/2025-06-06/tips_with_odds.jsonl
+[!] Unmatched tips:
+   - The Waco Kid in 1:30 Epsom
+   - Obelix in 4:35 Epsom
+   - Boyne Valley in 5:20 Fairyhouse
+   - Oh So Charming in 6:45 Clonmel
+   - Blue Moon Boy in 7:00 Fairyhouse
+   - Mighty Ruler in 7:09 Goodwood
+   - Picpoul in 8:10 Fairyhouse
+   - Dorth Vader in 9:28 Saratoga
+   - Bless The Broken in 10:46 Saratoga
+   - Immensitude in 11:25 Saratoga
+   - Excellent Truth in 12:04 Saratoga
