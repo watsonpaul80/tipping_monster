@@ -79,6 +79,8 @@ The system defines 8 core product layers:
 * `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
 * `generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `generate_last_7_days_summary.py`: Creates a 7-day ROI Markdown summary (use `--telegram` to post).
+* `generate_last_30_days_summary.py`: Creates a 30-day ROI Markdown summary (use `--telegram` to post).
 
 ---
 
@@ -114,6 +116,8 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi_tracker_advised.py`                    | Main daily tracker – filters, calculates profit, generates tip results CSV      |
 | `weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
+| `generate_last_7_days_summary.py`           | Saves last 7 days ROI to Markdown, optional Telegram post                   |
+| `generate_last_30_days_summary.py`          | Saves last 30 days ROI to Markdown, optional Telegram post                  |
 | `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |

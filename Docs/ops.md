@@ -65,6 +65,15 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
     *   **Purpose:** Sends a summary of the week's ROI to a Telegram channel.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram`
 
+9.  **Generate 7/30 Day ROI Summaries**
+    *   **Frequency:** Manual
+    *   **Purpose:** Produce Markdown summaries of the last 7 and 30 days with optional Telegram output.
+    *   **Command:**
+        ```bash
+        python generate_last_7_days_summary.py --telegram
+        python generate_last_30_days_summary.py --telegram
+        ```
+
 ---
 
 ### System Maintenance
