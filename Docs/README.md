@@ -10,4 +10,20 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
 - `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
 
+
+## 🔑 Environment Variables
+
+The scripts expect the following environment variables to be defined:
+
+- `BF_USERNAME`
+- `BF_PASSWORD`
+- `BF_APP_KEY`
+- `BF_CERT_PATH`
+- `BF_KEY_PATH`
+- `BF_CERT_DIR`
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎
+
+

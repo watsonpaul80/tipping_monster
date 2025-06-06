@@ -12,8 +12,8 @@ parser.add_argument("--date", type=str, help="Date in YYYY-MM-DD format", defaul
 args = parser.parse_args()
 
 # === CONFIG ===
-TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
-CHAT_ID = "-1002580022335"  # Tipping Monster channel
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tipping Monster channel
 MODE = "advised"
 DATE = args.date or datetime.today().strftime("%Y-%m-%d")
 CSV_PATH = f"logs/roi/tips_results_{DATE}_{MODE}.csv"
