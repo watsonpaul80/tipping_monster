@@ -20,6 +20,9 @@ BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
 TG_USER_ID = os.getenv("TG_USER_ID")
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 
+if not TG_USER_ID or not TG_BOT_TOKEN:
+    raise RuntimeError("TG_USER_ID and TG_BOT_TOKEN must be set in the environment")
+
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
@@ -49,7 +52,7 @@ msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
 requests.post(
-    f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TELEGRAM_CHAT_ID, "text": msg}
+    f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
+    data={"chat_id": TG_USER_ID, "text": msg}
 )
 
