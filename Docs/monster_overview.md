@@ -64,6 +64,7 @@ The system defines 8 core product layers:
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi_tracker_advised.py`     | Links tips to results and calculates profit            |
 | 23:59 | `send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
+All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now live in the project root.
 
 ---
 
