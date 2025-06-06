@@ -41,7 +41,9 @@ for path in STEAMER_FILES:
                 continue
 
             row = match.iloc[0]
-            pos = str(row["position"]).lower()
+            # results CSV uses the column name 'pos' for finishing position
+            # rather than 'position'
+            pos = str(row["pos"]).lower()
 
             ew = s["old_price"] >= 5.0
             profit = 0.0
