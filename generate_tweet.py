@@ -7,8 +7,8 @@ from datetime import date, timedelta
 BASE_DIR = "/home/ec2-user/tipping-monster"
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
-TIPS_PATH = f"{BASE_DIR}/logs/sent_tips_{TODAY}.jsonl"
-ROI_PATH = f"{BASE_DIR}/logs/tips_results_{YESTERDAY}_advised.csv"
+TIPS_PATH = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
+ROI_PATH = f"{BASE_DIR}/logs/roi/tips_results_{YESTERDAY}_advised.csv"
 
 # === Load tips ===
 tips = []

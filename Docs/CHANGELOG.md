@@ -96,7 +96,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
   - Realistic odds injection
   - Advised & level ROI tracking
   - Telegram summary dispatch
-- All ROI-related logs now stored in `logs/roi_logs/` for tidiness.
+- All ROI-related logs now stored in `logs/roi/` for tidiness.
 
 ### 📊 Weekly & Daily Summary Enhancements
 - `weekly_roi_summary.py` updated to include:

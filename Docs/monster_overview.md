@@ -143,13 +143,13 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 
 | File | Role |
 |------|------|
-| `logs/sent_tips_DATE.jsonl` | Tips that were actually sent |
+| `logs/dispatch/sent_tips_DATE.jsonl` | Tips that were actually sent |
 | `odds_snapshots/DATE_HHMM.json` | Source for realistic odds |
-| `logs/sent_tips_DATE_realistic.jsonl` | Tips with updated odds injected |
-| `logs/tips_results_DATE_[level\|advised].csv` | Main per-day ROI breakdown |
-| `logs/roi_telegram_DATE.log` | Output of Telegram ROI summary |
-| `logs/weekly_roi_summary.txt` | Human-friendly weekly Telegram output |
-| `logs/monster_confidence_per_day_with_roi.csv` | Confidence bin ROI stats for analysis |
+| `logs/dispatch/sent_tips_DATE_realistic.jsonl` | Tips with updated odds injected |
+| `logs/roi/tips_results_DATE_[level\|advised].csv` | Main per-day ROI breakdown |
+| `logs/roi/roi_telegram_DATE.log` | Output of Telegram ROI summary |
+| `logs/roi/weekly_roi_summary.txt` | Human-friendly weekly Telegram output |
+| `logs/roi/monster_confidence_per_day_with_roi.csv` | Confidence bin ROI stats for analysis |
 
 ---
 
@@ -258,7 +258,7 @@ The foundational elements and automated processes that power Tipping Monster are
 | Folder                      | Purpose            |
 |-----------------------------|--------------------|
 | `predictions/YYYY-MM-DD/`   | Tips + summaries |
-| `logs/`                     | ROI + summaries (Also stores per-band stats and daily ROI output) |
+| `logs/`                     | Main directory for categorized log subfolders (roi, dispatch, inference, sniper, etc.) |
 | `odds_snapshots/`           | Betfair snapshots  |
 | `steam_sniper_intel/`       | Steamer outputs    |
 
@@ -268,9 +268,9 @@ The foundational elements and automated processes that power Tipping Monster are
 
 * `monster_todo.md` – full backlog + roadmap
 * `TIPPING_MONSTER_PRODUCTS.md` – tip product layer logic
-* `logs/tips_results_*.csv` – ROI by day
-* `logs/sent_tips_*.jsonl` – actual sent Telegram tips
-* `logs/monster_confidence_per_day_with_roi.csv` – bin tracking
+* `logs/roi/tips_results_*.csv` – ROI by day
+* `logs/dispatch/sent_tips_*.jsonl` – actual sent Telegram tips
+* `logs/roi/monster_confidence_per_day_with_roi.csv` – bin tracking
 * `monster_changelog.md` – versioned updates if added
 * `TIPPING_MONSTER_TASKS.md` - Development log for tracked tasks and changes (Note: `monster_todo.md` is the primary task list)
 
@@ -297,12 +297,12 @@ unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files
 File	Description
-tips_results_YYYY-MM-DD_advised_sent.csv	ROI per tip (only sent tips)
-tips_results_YYYY-MM-DD_advised_all.csv	ROI per tip (all tips)
-tag_roi_summary_sent.csv	ROI by tag for sent tips
-tag_roi_summary_all.csv	ROI by tag for all tips
-monster_confidence_per_day_with_roi.csv	ROI by confidence bin
-unified_roi_sheet.csv	Full tip log with Date/Week/Month
+logs/roi/tips_results_YYYY-MM-DD_advised_sent.csv	ROI per tip (only sent tips)
+logs/roi/tips_results_YYYY-MM-DD_advised_all.csv	ROI per tip (all tips)
+logs/roi/tag_roi_summary_sent.csv	ROI by tag for sent tips
+logs/roi/tag_roi_summary_all.csv	ROI by tag for all tips
+logs/roi/monster_confidence_per_day_with_roi.csv	ROI by confidence bin
+logs/roi/unified_roi_sheet.csv	Full tip log with Date/Week/Month
 
 🔍 Analysis Levels
 Daily ROI and summary

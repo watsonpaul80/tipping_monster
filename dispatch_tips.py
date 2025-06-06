@@ -117,7 +117,7 @@ def main():
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")

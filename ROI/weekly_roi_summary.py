@@ -12,7 +12,7 @@ def get_week_dates(iso_week):
 def load_week_data(week_dates, mode="advised"):
     rows = []
     for date_str in week_dates:
-        path = f"logs/tips_results_{date_str}_{mode}.csv"
+        path = f"logs/roi/tips_results_{date_str}_{mode}.csv"
         if os.path.exists(path):
             df = pd.read_csv(path)
             df["Date"] = date_str

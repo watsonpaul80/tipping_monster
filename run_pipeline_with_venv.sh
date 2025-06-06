@@ -39,7 +39,7 @@ echo "📈 Fetching Betfair odds..."
 
 # 4. Run model inference (with last_class)
 echo "🧠 Running model inference..."
-.venv/bin/python run_inference_and_select_top1.py >> "$LOG_DIR/inference.log" 2>&1
+.venv/bin/python run_inference_and_select_top1.py >> "$LOG_DIR/inference/inference.log" 2>&1
 
 # 5. Merge odds into tips
 echo "🔗 Merging tips with odds..."
@@ -52,11 +52,11 @@ echo "📝 Generating LLM commentary (optional)..."
 # 7. Dispatch tips to Telegram
 echo "🚀 Dispatching tips to Telegram..."
 TODAY=$(date +%F)
-DISPATCH_LOG="$LOG_DIR/dispatch_${TODAY}.log"
+DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
 .venv/bin/python dispatch_tips.py --min_conf 0.80 --telegram >> "$DISPATCH_LOG" 2>&1
 
 # Confirm how many tips were sent
-SENT_TIPS_PATH="logs/sent_tips_${TODAY}.jsonl"
+SENT_TIPS_PATH="logs/dispatch/sent_tips_${TODAY}.jsonl"
 SENT_COUNT=$(jq -s length "$SENT_TIPS_PATH" 2>/dev/null || echo "0")
 echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 
@@ -72,7 +72,7 @@ fi
 # 8. Upload logs and dispatched tips to S3
 echo "🗂️ Uploading tips and logs to S3..."
 aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-aws s3 cp "logs/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+aws s3 cp "logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
 
 echo "✅ Pipeline complete: $(date)"
 

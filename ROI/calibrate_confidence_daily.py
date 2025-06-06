@@ -24,7 +24,7 @@ STAKE_GBP = 10.0
 
 PRED_DIR = Path("predictions")
 RESULT_DIR = Path("rpscrape/data/dates/all")
-CSV_OUTPUT = Path("logs/monster_confidence_per_day_with_roi.csv")
+CSV_OUTPUT = Path("logs/roi/monster_confidence_per_day_with_roi.csv")
 
 bins = [(round(c, 2), round(c + 0.1, 2)) for c in np.arange(0.5, 0.99, 0.1)]
 bins.append((0.99, 1.01))

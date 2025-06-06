@@ -41,7 +41,7 @@
     - 🔥 Big market mover
     - 🧨 Drop > 50%
     - 🐎 Previously tipped
-21. 💾 Save each Telegram dispatch to local `logs/sniper_telegram_*.txt`
+21. 💾 Save each Telegram dispatch to local `logs/sniper/sniper_telegram_*.txt`
 22. 🗂️ Inject steamers into `sent_tips_*_snipers.jsonl` for ROI tracking
 
 ---

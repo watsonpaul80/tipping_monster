@@ -6,9 +6,9 @@ from pathlib import Path
 from datetime import datetime
 
 # === CONFIG ===
-PRED_DIR = Path("logs")
+PRED_DIR = Path("logs/dispatch")
 RESULTS_DIR = Path("rpscrape/data/dates/all")
-OUTPUT_DIR = Path("logs")
+OUTPUT_DIR = Path("logs/roi")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 MASTER_LOG = OUTPUT_DIR / "master_subscriber_log.csv"
 
