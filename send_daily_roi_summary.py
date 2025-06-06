@@ -5,6 +5,9 @@ import argparse
 import pandas as pd
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # === ARGPARSE SETUP ===
 parser = argparse.ArgumentParser()
@@ -12,11 +15,16 @@ parser.add_argument("--date", type=str, help="Date in YYYY-MM-DD format", defaul
 args = parser.parse_args()
 
 # === CONFIG ===
-TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
-CHAT_ID = "-1002580022335"  # Tipping Monster channel
+TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+
+if not TOKEN or not CHAT_ID:
+    print("Error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not found in environment variables.")
+    # sys.exit(1) # This script's primary function is to send to Telegram, so exiting might be appropriate.
+
 MODE = "advised"
 DATE = args.date or datetime.today().strftime("%Y-%m-%d")
-CSV_PATH = f"logs/tips_results_{DATE}_{MODE}.csv"
+CSV_PATH = f"logs/roi/tips_results_{DATE}_{MODE}.csv"
 
 # === LOAD CSV ===
 if not os.path.exists(CSV_PATH):
@@ -43,13 +51,15 @@ msg = (
 )
 
 # === SEND TO TELEGRAM ===
-resp = requests.post(
-    f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-    data={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"}
-)
+if TOKEN and CHAT_ID: # Only attempt to send if credentials exist
+    resp = requests.post(
+        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+        data={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"}
+    )
 
-if resp.status_code == 200:
-    print(f"✅ Sent ROI summary to Telegram: {DATE}")
+    if resp.status_code == 200:
+        print(f"✅ Sent ROI summary to Telegram: {DATE}")
+    else:
+        print(f"❌ Failed to send: {resp.text}")
 else:
-    print(f"❌ Failed to send: {resp.text}")
-
+    print("ℹ️ Telegram credentials not set. Skipping send to Telegram.")

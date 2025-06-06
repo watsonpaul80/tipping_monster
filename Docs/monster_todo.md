@@ -14,13 +14,13 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
    ✅ Confirmed working with tags such as Fresh, Light Weight, Class Drop, etc.  
    🗂️ Each summary also saved per tip in logs (consider foldered logs per tip if expanding)
 
-2. **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts
+2. ✅ **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts
 
 3. **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
 
 4. **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency
 
-5. **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`, `sniper/`
+5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`, `sniper/`
 
 6. **Script Audit** — identify redundant scripts and prune/rename as needed
 
@@ -74,7 +74,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 ## 🔁 REALISTIC ODDS INTEGRATION
 
 40. ✅ Inject best odds with `extract_best_realistic_odds.py`  
-41. ✅ Output `logs/sent_tips_YYYY-MM-DD_realistic.jsonl`  
+41. ✅ Output `logs/dispatch/sent_tips_YYYY-MM-DD_realistic.jsonl`
 42. ✅ ROI tracker prefers `realistic_odds` over `bf_sp`  
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. Log delta: `realistic_odds - bf_sp` in ROI logs  
@@ -90,6 +90,13 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 49. Alert if dispatch runs but no tips are sent  
 50. Alert if odds snapshot fails or returns too few runners  
 51. Self-heal for missing logs, retry on failure
+
+### 🧼 Log Management Enhancements (User Suggested)
+
+* [ ] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
+* [ ] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
+* [ ] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
+* [ ] [#065] Add daily check script to verify all expected logs were created and non-empty
 
 ---
 

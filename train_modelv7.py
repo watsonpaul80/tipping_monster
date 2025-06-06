@@ -119,7 +119,7 @@ if __name__ == "__main__":
     df = load_all_results(s3_keys)
     print("🔧 Preprocessing...")
     df = preprocess(df)
-    tip_logs = sorted(glob.glob("logs/tips_results_*_advised.csv"))
+    tip_logs = sorted(glob.glob("logs/roi/tips_results_*_advised.csv"))
     if tip_logs:
         print(f"📝 Injecting tip logs: {tip_logs[-3:]} ...")
         df = merge_tip_logs(df, tip_logs)

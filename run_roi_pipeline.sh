@@ -9,8 +9,8 @@ else
 fi
 
 PYTHON="/home/ec2-user/tipping-monster/.venv/bin/python"
-LOGDIR="/home/ec2-user/tipping-monster/logs/roi_logs"
-SENT_TIPS="logs/sent_tips_${DATE}.jsonl"
+LOGDIR="/home/ec2-user/tipping-monster/logs/roi"
+SENT_TIPS="logs/dispatch/sent_tips_${DATE}.jsonl"
 PREDICTIONS="predictions/${DATE}/tips_with_odds.jsonl"
 
 mkdir -p $LOGDIR

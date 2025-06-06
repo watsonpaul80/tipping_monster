@@ -5,12 +5,19 @@ import requests
 from time import sleep
 import sys
 import argparse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
 
-TELEGRAM_BOT_TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
-TELEGRAM_CHAT_ID = "-1002580022335"
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+
+if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+    print("Error: TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not found in environment variables.")
+    # sys.exit(1) # Decide if script should exit if not sending to telegram
 
 SEND_TO_TELEGRAM = True
 LOG_TO_CLI_ONLY = False
@@ -91,6 +98,10 @@ def send_to_telegram(text):
     if LOG_TO_CLI_ONLY:
         print(text)
         return
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+        print("Error: Telegram credentials not configured. Cannot send message.")
+        return
+
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     data = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"}
     try:
@@ -117,7 +128,7 @@ def main():
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")
@@ -170,7 +181,7 @@ def main():
 
     print(f"📄 Saved tip summary and sent_tips to {SENT_TIPS_PATH}")
 
-    if args.telegram and not LOG_TO_CLI_ONLY:
+    if args.telegram and SEND_TO_TELEGRAM and not LOG_TO_CLI_ONLY: # Added SEND_TO_TELEGRAM check
         print("📤 Sending batches to Telegram...")
         send_batched_messages(formatted, TELEGRAM_BATCH_SIZE)
     elif not args.telegram:
@@ -178,4 +189,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

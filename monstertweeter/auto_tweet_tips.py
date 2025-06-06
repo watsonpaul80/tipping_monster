@@ -19,7 +19,7 @@ api = tweepy.API(auth)
 
 # === Load today's tips ===
 TODAY = date.today().isoformat()
-tips_path = f"logs/sent_tips_{TODAY}.jsonl"
+tips_path = f"logs/dispatch/sent_tips_{TODAY}.jsonl"
 
 if not os.path.exists(tips_path):
     print(f"[!] No tips file found: {tips_path}")
@@ -37,7 +37,7 @@ if not top_tips:
 
 # === Load ROI from yesterday ===
 yesterday = (date.today() - timedelta(days=1)).isoformat()
-roi_path = f"logs/tips_results_{yesterday}_advised.csv"
+roi_path = f"logs/roi/tips_results_{yesterday}_advised.csv"
 
 roi_summary = ""
 try:
