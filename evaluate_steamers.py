@@ -8,7 +8,7 @@ DATE = datetime.now().strftime("%Y-%m-%d")
 DATE_CSV = datetime.now().strftime("%Y_%m_%d")
 STEAMER_FILES = glob.glob(f"steamers_{DATE}_*.json")
 RESULTS_PATH = f"rpscrape/data/dates/all/{DATE_CSV}.csv"
-OUT_PATH = f"logs/steam_snipers_results_{DATE}.csv"
+OUT_PATH = f"logs/sniper/steam_snipers_results_{DATE}.csv"
 
 # === Load race results if available ===
 if os.path.exists(RESULTS_PATH):

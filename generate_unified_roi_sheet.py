@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from glob import glob
 
-OUTPUT_PATH = "logs/unified_roi_sheet.csv"
+OUTPUT_PATH = "logs/roi/unified_roi_sheet.csv"
 
 def load_and_flag(path, sent=False):
     if not os.path.exists(path):
@@ -12,7 +12,7 @@ def load_and_flag(path, sent=False):
     return df
 
 def main():
-    all_files = sorted(glob("logs/tips_results_2025-*-advised.csv"))
+    all_files = sorted(glob("logs/roi/tips_results_2025-*-advised.csv"))
     merged_rows = []
 
     for all_path in all_files:
