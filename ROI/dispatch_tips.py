@@ -10,8 +10,8 @@ PREDICTIONS_PATH = f"predictions/{TODAY}/tips_with_odds.jsonl"
 SUMMARY_PATH = f"predictions/{TODAY}/tips_summary.txt"
 SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{TODAY}.jsonl"
 
-TELEGRAM_BOT_TOKEN = "8120960859:AAFKirWdN5hCRyW_KZy4XF_p0sn8ESqI3rg"
-TELEGRAM_CHAT_ID = "-1002580022335"
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 SEND_TO_TELEGRAM = True
 LOG_TO_CLI_ONLY = False

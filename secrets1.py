@@ -1,6 +1,8 @@
-BF_USERNAME = "paulwatson1"
-BF_PASSWORD = "_$_h3!uh,A/R,%6"
-BF_APP_KEY = "Io0KSpM1ao195apE"
-BF_CERT_PATH = "/home/ec2-user/tipping-monster/certs/client-2048.crt"
-BF_KEY_PATH = "/home/ec2-user/tipping-monster/certs/client-2048.key"
-BF_CERT_DIR = "/home/ec2-user/tipping-monster/certs"
+import os
+
+BF_USERNAME = os.getenv("BF_USERNAME")
+BF_PASSWORD = os.getenv("BF_PASSWORD")
+BF_APP_KEY = os.getenv("BF_APP_KEY")
+BF_CERT_PATH = os.getenv("BF_CERT_PATH")
+BF_KEY_PATH = os.getenv("BF_KEY_PATH")
+BF_CERT_DIR = os.getenv("BF_CERT_DIR")
