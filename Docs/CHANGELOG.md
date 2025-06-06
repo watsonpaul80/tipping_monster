@@ -1,5 +1,10 @@
 # 📅 CHANGELOG
 
+## 2025-06-06
+
+### Added
+- `archive_old_logs.sh` script to compress and archive old log files.
+
 ## 2025-05-31
 
 ### Added

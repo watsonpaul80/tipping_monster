@@ -40,4 +40,7 @@ upload_logs_to_s3.sh
 weekly_roi_summary_FINAL_v2.py
 weekly_roi_summary_FIXED.py
 weekly_roi_summary.py
+
 upload_roi_dispatch_logs.sh
+archive_old_logs.sh
+
