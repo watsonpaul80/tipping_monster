@@ -1,6 +1,6 @@
 #!/bin/bash
 # Tipping Monster: Full Daily Pipeline (Run from cron or manually)
-# Last updated: 2025-06-04
+# Last updated: 2025-06-06
 
 echo "🔄 Starting full pipeline: $(date)"
 
