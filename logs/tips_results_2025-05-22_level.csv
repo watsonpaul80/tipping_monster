@@ -1,22 +1,3 @@
-Date,Race Time,Course,Horse,Odds,Confidence,Position,Mode,Profit
-2025-05-22,02:05,Ffos Las,King Roly,3.95,0.861030101776123,1,level,2.95
-2025-05-22,02:17,Haydock,Fleur De Mer,5.1,0.9831053614616394,5,level,-1.0
-2025-05-22,02:55,Yarmouth,Risen Again,1.9,0.9744429588317871,4,level,-1.0
-2025-05-22,03:05,Ffos Las,Obsessedwithyou,4.6,0.8612558841705322,1,level,3.6
-2025-05-22,03:25,Yarmouth,Acceptance,4.0,0.8546299934387207,6,level,-1.0
-2025-05-22,03:35,Ffos Las,Millsbridge,13.0,0.9793859124183655,5,level,-1.0
-2025-05-22,04:05,Ffos Las,Djo Dela Barriere,3.05,0.8779732584953308,3,level,-1.0
-2025-05-22,04:17,Haydock,Spirited Style,2.98,0.9803181886672974,1,level,1.98
-2025-05-22,04:40,Ffos Las,Junior Des Mottes,34.0,0.907518744468689,3,level,-1.0
-2025-05-22,04:52,Haydock,Woroodd,2.2,0.9862210750579834,1,level,1.2
-2025-05-22,05:00,Yarmouth,Anglo Saxson,5.0,0.9491199851036072,5,level,-1.0
-2025-05-22,05:22,Haydock,Miss Collada,46.0,0.9880334138870239,6,level,-1.0
-2025-05-22,05:30,Wolverhampton (AW),Sarabi,17.5,0.9887526631355286,6,level,-1.0
-2025-05-22,06:08,Limerick,Ambitious Fellow,5.5,0.8946130871772766,3,level,-1.0
-2025-05-22,06:38,Limerick,U Asking Me,4.1,0.8630649447441101,3,level,-1.0
-2025-05-22,07:00,Wolverhampton (AW),That Lucas Fella,9.8,0.9777721166610718,2,level,-0.02
-2025-05-22,07:08,Limerick,Iceberg Theory,2.86,0.8830875754356384,1,level,1.86
-2025-05-22,07:30,Wolverhampton (AW),Aroof,5.1,0.9771387577056885,5,level,-1.0
-2025-05-22,08:00,Wolverhampton (AW),The Cola Brasil,10.0,0.9855843186378479,6,level,-1.0
-2025-05-22,08:30,Wolverhampton (AW),Triggered,4.2,0.9914271831512451,2,level,-1.0
-2025-05-22,09:00,Wolverhampton (AW),Ornately,3.45,0.9844116568565369,2,level,-1.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:cafa44dc8656a35dbd9d3144ed43d5d1dcfa8e49a4e496480a5ba789cf7aba6c
+size 1698
