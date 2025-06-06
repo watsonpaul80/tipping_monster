@@ -1,11 +1,12 @@
 import os
+from pathlib import Path
 from datetime import datetime, timedelta
 import requests
 
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-BASE_DIR = "/home/ec2-user/tipping-monster"
+BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
 
 # Telegram credentials come from the environment
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Your personal Telegram user ID

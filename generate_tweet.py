@@ -1,10 +1,11 @@
 import os
 import json
+from pathlib import Path
 import pandas as pd
 from datetime import date, timedelta
 
 # === Config ===
-BASE_DIR = "/home/ec2-user/tipping-monster"
+BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parent))
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
 TIPS_PATH = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"

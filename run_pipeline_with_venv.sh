@@ -4,12 +4,15 @@
 
 echo "🔄 Starting full pipeline: $(date)"
 
-cd /home/ec2-user/tipping-monster || exit 1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+
+cd "$REPO_ROOT" || exit 1
 
 # Activate virtual environment
 source .venv/bin/activate
 
-LOG_DIR="/home/ec2-user/tipping-monster/logs"
+LOG_DIR="$REPO_ROOT/logs"
 mkdir -p "$LOG_DIR"
 
 # 1. Upload racecards
@@ -57,7 +60,7 @@ DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
 .venv/bin/python dispatch_tips.py --min_conf 0.80 --telegram >> "$DISPATCH_LOG" 2>&1
 
 # Confirm how many tips were sent
-SENT_TIPS_PATH="logs/dispatch/sent_tips_${TODAY}.jsonl"
+SENT_TIPS_PATH="$REPO_ROOT/logs/dispatch/sent_tips_${TODAY}.jsonl"
 SENT_COUNT=$(jq -s length "$SENT_TIPS_PATH" 2>/dev/null || echo "0")
 echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 
@@ -73,7 +76,7 @@ fi
 # 8. Upload logs and dispatched tips to S3
 echo "🗂️ Uploading tips and logs to S3..."
 aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-aws s3 cp "logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
 
 echo "✅ Pipeline complete: $(date)"
 

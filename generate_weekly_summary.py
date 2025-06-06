@@ -1,11 +1,13 @@
 
 import os
+from pathlib import Path
 import pandas as pd
 from datetime import datetime
 
 # === CONFIG ===
-LOG_DIR = "/home/ec2-user/tipping-monster/logs"
-OUT_DIR = os.path.join(LOG_DIR, "weekly_summaries")
+REPO_ROOT = Path(os.getenv("TM_ROOT", Path(__file__).resolve().parent))
+LOG_DIR = REPO_ROOT / "logs"
+OUT_DIR = LOG_DIR / "weekly_summaries"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # === GROUP FILES ===
