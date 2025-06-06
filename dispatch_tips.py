@@ -1,10 +1,11 @@
 import os
 import json
 from datetime import date
-import requests
 from time import sleep
 import sys
 import argparse
+
+from tippingmonster import send_telegram_message
 
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
@@ -91,11 +92,8 @@ def send_to_telegram(text):
     if LOG_TO_CLI_ONLY:
         print(text)
         return
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    data = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"}
     try:
-        r = requests.post(url, data=data)
-        r.raise_for_status()
+        send_telegram_message(text, token=TELEGRAM_BOT_TOKEN, chat_id=TELEGRAM_CHAT_ID)
         print("✅ Sent to Telegram")
     except Exception as e:
         print(f"❌ Telegram error: {e}")

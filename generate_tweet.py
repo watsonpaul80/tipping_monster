@@ -4,12 +4,14 @@ from pathlib import Path
 import pandas as pd
 from datetime import date, timedelta
 
+from tippingmonster import repo_path
+
 # === Config ===
-BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parent))
+BASE_DIR = repo_path()
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
-TIPS_PATH = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
-ROI_PATH = f"{BASE_DIR}/logs/roi/tips_results_{YESTERDAY}_advised.csv"
+TIPS_PATH = str(repo_path("logs", "dispatch", f"sent_tips_{TODAY}.jsonl"))
+ROI_PATH = str(repo_path("logs", "roi", f"tips_results_{YESTERDAY}_advised.csv"))
 
 # === Load tips ===
 tips = []
