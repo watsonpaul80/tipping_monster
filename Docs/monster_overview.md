@@ -115,9 +115,9 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
 | `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
-| `logs/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
-| `logs/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
-| `logs/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
+| `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
+| `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
 
 ---
 
@@ -212,7 +212,7 @@ The foundational elements and automated processes that power Tipping Monster are
     * **`23:59`**: Send ROI summary to Telegram
     * **`23:56`**: Track bankroll and cumulative profit
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
-* **Automated S3 Backups:** Daily zipped backup to S3 at `02:10 AM` using `backup_to_s3_zipped.sh`.
+* **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
     * **Security:** AES-256 Server-side encryption is enabled for all backups.
     * **Location:** Backups stored in the `tipping-monster-backups` S3 bucket.

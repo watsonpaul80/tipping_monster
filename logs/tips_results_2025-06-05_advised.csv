@@ -1,7 +1,3 @@
-Date,Race Time,Course,Horse,Odds,odds_delta,Confidence,Position,Mode,Stake,Profit
-2025-06-05,3:42,hamilton,korker,2.14,0.0,0.870779275894165,3,advised,1.0,-1.0
-2025-06-05,4:20,leopardstown,little sure shot,17.0,0.0,0.8505718111991882,2,advised,1.0,0.0
-2025-06-05,4:50,leopardstown,zabriskie point,9.6,0.0,0.893774688243866,12,advised,1.0,0.0
-2025-06-05,5:25,leopardstown,whats your game,7.8,0.0,0.9260008931159973,6,advised,1.0,0.0
-2025-06-05,5:55,leopardstown,bravais,8.8,0.0,0.9292932152748108,6,advised,1.0,0.0
-2025-06-05,6:25,leopardstown,iowntheball,14.0,0.0,0.8830704092979431,5,advised,1.0,0.0
+version https://git-lfs.github.com/spec/v1
+oid sha256:65df6792d238a4e6db3ddf04e0ddcf32fcadc08b5fd732b0806b1c1a7e8ffeb6
+size 601
