@@ -1,6 +1,7 @@
 import json
 import argparse
 import requests
+import os
 from pathlib import Path
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
