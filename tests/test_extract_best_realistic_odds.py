@@ -27,3 +27,8 @@ def test_extract_race_key_missing_space_returns_none():
 def test_extract_race_key_bad_time_returns_none():
     minutes, course = extract_race_key("15-30 Chelmsford")
     assert minutes is None and course is None
+
+
+def test_extract_race_key_empty_course_returns_none():
+    minutes, course = extract_race_key("15:30   ")
+    assert minutes is None and course is None
