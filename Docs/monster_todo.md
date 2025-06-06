@@ -152,4 +152,4 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
     - Add week/month filters  
     - Plot profit curves, emoji stats, ROI by tag (sent only)  
     - Hide any non-sent tips or internals  
-    - Add summary header: Tips, Wins, ROI, Profit
+    - Add summary header: Tips, Wins, ROI, Profit.

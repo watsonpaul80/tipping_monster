@@ -68,5 +68,5 @@ All core components live and functioning:
 - ✅ Steam detection
 - ✅ Telegram dispatch
 - ✅ Schedule runner via `at`
-- ✅ Fully race-aware dynamic pipeline
+- ✅ Fully race-aware dynamic pipeline.
 
