@@ -5,7 +5,10 @@ JOB_NAME="$1"
 shift
 CMD="$@"
 
-LOG_DIR="/home/ec2-user/tipping-monster/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+
+LOG_DIR="$REPO_ROOT/logs"
 LOG_FILE="${LOG_DIR}/${JOB_NAME}_$(date +%F).log"
 
 mkdir -p "$LOG_DIR"
@@ -22,13 +25,13 @@ send_telegram_alert() {
 # Check if job matches sniper tasks and run accordingly
 case "$JOB_NAME" in
   build_sniper_intel)
-    source /home/ec2-user/tipping-monster/.venv/bin/activate
-    /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py "$@" >> "$LOG_FILE" 2>&1
+    source "$REPO_ROOT/.venv/bin/activate"
+    "$REPO_ROOT/.venv/bin/python" "$REPO_ROOT/steam_sniper_intel/build_sniper_schedule.py" "$@" >> "$LOG_FILE" 2>&1
     STATUS=$?
     ;;
   load_sniper_intel)
-    source /home/ec2-user/tipping-monster/.venv/bin/activate
-    /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh "$@" >> "$LOG_FILE" 2>&1
+    source "$REPO_ROOT/.venv/bin/activate"
+    /bin/bash "$REPO_ROOT/steam_sniper_intel/generate_and_schedule_snipers.sh" "$@" >> "$LOG_FILE" 2>&1
     STATUS=$?
     ;;
   *)
