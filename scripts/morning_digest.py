@@ -2,14 +2,22 @@ import os
 from datetime import datetime, timedelta
 import requests
 
+"""Send a morning digest to Telegram.
+
+Requires the following environment variables:
+    TG_USER_ID    - Telegram user ID to send the message to
+    TG_BOT_TOKEN  - Bot token used for authentication
+"""
+
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 BASE_DIR = "/home/ec2-user/tipping-monster"
 
-# Use Paul's personal Telegram info directly
-TG_USER_ID = "1054773464"  # Your personal Telegram user ID
-TG_BOT_TOKEN = "6298132668:AAGja-iEQzAK1Ri5jBOoHwP4-YWZuywKjNU"  # Your bot token
+# Read Telegram credentials from environment variables
+# Required variables: TG_USER_ID, TG_BOT_TOKEN
+TG_USER_ID = os.getenv("TG_USER_ID")
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
