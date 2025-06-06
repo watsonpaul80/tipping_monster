@@ -1,3 +1,7 @@
-numpy==1.24.4
-pandas==2.1.3
-
+numpy
+pandas
+xgboost
+matplotlib
+shap
+requests
+python-dotenv
