@@ -317,6 +317,7 @@ roi_tracker_advised.py	CLI tracker for daily PnL	✅ Sent only
 weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
 generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
+roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files
@@ -326,6 +327,7 @@ logs/roi/tips_results_YYYY-MM-DD_advised_all.csv	ROI per tip (all tips)
 logs/roi/tag_roi_summary_sent.csv	ROI by tag for sent tips
 logs/roi/tag_roi_summary_all.csv	ROI by tag for all tips
 logs/roi/monster_confidence_per_day_with_roi.csv	ROI by confidence bin
+logs/roi/roi_by_confidence_band_sent.csv        ROI by confidence band
 logs/roi/unified_roi_sheet.csv	Full tip log with Date/Week/Month
 
 🔍 Analysis Levels
