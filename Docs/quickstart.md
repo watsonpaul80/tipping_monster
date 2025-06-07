@@ -23,7 +23,7 @@ Key folders and scripts include:
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `predictions/` – daily output tips and summaries.
 - Core scripts such as `core/run_pipeline_with_venv.sh`, `core/fetch_betfair_odds.py`, and `core/dispatch_tips.py` drive the daily pipeline.
-- `cli/tmcli.py` – command-line helper wrapping common tasks like `healthcheck`.
+- `cli/tmcli.py` – command-line helper with `pipeline`, `roi`, `sniper` and `healthcheck` commands.
 
 Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
 
@@ -44,6 +44,7 @@ A typical daily pipeline runs the following steps:
 These times are detailed in `Docs/monster_overview.md`.
 
 ## Key Scripts
+
 
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.

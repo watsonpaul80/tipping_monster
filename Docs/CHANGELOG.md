@@ -1,12 +1,21 @@
 # 📅 CHANGELOG
 
+## 2025-06-08
+
+### Added
+- `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
+
 ## 2025-06-07
 
 ### Added
 - NAP odds cap with override support (`dispatch_tips.py`).
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
+
+- `validate_tips.py` for verifying tips files before dispatch.
 - Added unit tests for `tmcli` subcommands.
+- ROI trackers now support `--tag` filtering for NAP/Value tips.
+
 
 
 ## 2025-05-31
@@ -135,7 +144,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Document now referenced in README files
 
 ## 2025-06-07 — CLI Helper
-- Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
+- Added `tmcli.py` with `pipeline`, `roi`, `sniper` and `healthcheck` subcommands.
+- Each command supports a `--dev` flag for safe local testing.
 - Documented CLI usage in README and ops guide.
 ## 2025-06-08
 

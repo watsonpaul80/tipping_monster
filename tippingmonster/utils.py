@@ -12,6 +12,7 @@ __all__ = [
     "send_telegram_message",
     "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
@@ -140,3 +141,10 @@ def calculate_profit(row) -> float:
     else:
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
+
+
+def tip_has_tag(tip: dict, tag: str) -> bool:
+    """Return True if ``tag`` (case-insensitive substring) is in ``tip['tags']``."""
+    tags = tip.get("tags") or []
+    tag = tag.lower()
+    return any(tag in str(t).lower() for t in tags)
