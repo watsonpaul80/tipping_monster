@@ -21,8 +21,9 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_PATH`
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
+- `TG_BOT_TOKEN`
+- `TG_USER_ID`
+You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 
@@ -32,7 +33,7 @@ Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 
 - `--telegram` sends the messages via the bot token and chat ID instead of just printing to the console.
 - `--batch-size N` controls how many tips are grouped per Telegram message (default 5).
-- Make sure `TELEGRAM_CHAT_ID` is set if you enable `--telegram`.
+- Make sure `TG_USER_ID` is set if you enable `--telegram`.
 
 Example:
 
