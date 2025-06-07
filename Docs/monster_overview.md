@@ -23,7 +23,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Weekly and daily ROI summaries
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
-* ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`, `sniper/`)
+* ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
@@ -264,9 +264,8 @@ The foundational elements and automated processes that power Tipping Monster are
 | Folder                      | Purpose            |
 |-----------------------------|--------------------|
 | `predictions/YYYY-MM-DD/`   | Tips + summaries |
-| `logs/`                     | Main directory for categorized log subfolders (roi, dispatch, inference, sniper, etc.) |
+| `logs/`                     | Main directory for categorized log subfolders (roi, dispatch, inference, etc.) |
 | `odds_snapshots/`           | Betfair snapshots  |
-| `steam_sniper_intel/`       | Steamer outputs    |
 
 ---
 

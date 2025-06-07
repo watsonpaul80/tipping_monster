@@ -28,8 +28,8 @@ if not os.path.exists(tips_path):
 with open(tips_path, "r") as f:
     tips = [json.loads(line.strip()) for line in f]
 
-# === Filter top 5 (non-sniper) tips ===
-top_tips = sorted([t for t in tips if not t.get("is_sniper")], key=lambda x: x["confidence"], reverse=True)[:5]
+# === Filter top 5 tips ===
+top_tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:5]
 
 if not top_tips:
     print("[!] No valid tips to tweet.")

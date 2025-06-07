@@ -18,7 +18,7 @@ def extract_race_key(race_str):
         return None, None
 
 def load_snapshots(date_str):
-    snapshot_dir = Path("steam_sniper_intel/sniper_data")
+    snapshot_dir = Path("odds_snapshots")
     data_by_time = []
     for file in snapshot_dir.glob(f"{date_str}_*.json"):
         label = file.stem.split("_")[1]
