@@ -6,10 +6,10 @@ from time import sleep
 import sys
 import argparse
 
-from tippingmonster import send_telegram_message, logs_path
+from tippingmonster import send_telegram_message, logs_path, in_dev_mode
 
+# === CONFIG ===
 NAP_ODDS_CAP = 21.0  # 20/1 in decimal
-
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
 
@@ -53,6 +53,17 @@ def generate_tags(tip, max_id, max_val):
         tags.append("❗ Confidence 90%+")
     if tip.get("monster_mode"):
         tags.append("💥 Monster Mode")
+    delta = tip.get("odds_delta")
+    if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
+        try:
+            delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
+        except Exception:
+            delta = None
+    if delta is not None:
+        if delta <= -1.0:
+            tags.append("🔥 Market Mover")
+        elif delta >= 1.0:
+            tags.append("❄️ Drifter")
     return tags or ["🎯 Solid pick"]
 
 def read_tips(path):
@@ -157,11 +168,18 @@ def main():
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+
+    if args.dev:
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")

@@ -145,7 +145,12 @@ if __name__ == "__main__":
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--use_sent", action="store_true", help="Use sent tips file instead of predictions")
     parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     main(args.date, args.mode, args.min_conf, args.telegram, args.use_sent, args.show)
 

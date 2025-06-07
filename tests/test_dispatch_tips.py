@@ -1,11 +1,15 @@
 import sys
 from pathlib import Path
-
 import pytest
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from dispatch_tips import calculate_monster_stake, select_nap_tip
+from dispatch_tips import (
+    calculate_monster_stake,
+    select_nap_tip,
+    generate_tags,
+    get_tip_composite_id,
+)
 
 
 def test_calculate_monster_stake_above_threshold():
@@ -68,3 +72,15 @@ def test_select_nap_tip_all_blocked(tmp_path):
     assert nap is None
     assert log_file.exists()
     assert "no replacement" in log_file.read_text().lower()
+
+
+def test_generate_tags_with_delta():
+    tip = {
+        'race': '12:00 Test',
+        'name': 'Runner',
+        'confidence': 0.9,
+        'bf_sp': 6.0,
+        'realistic_odds': 4.0
+    }
+    tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
+    assert '🔥 Market Mover' in tags

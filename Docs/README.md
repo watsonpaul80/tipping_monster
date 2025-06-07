@@ -2,18 +2,21 @@
 
 This documentation set covers everything about the **Tipping Monster** project — a fully automated machine learning tip engine for UK/IRE racing.
 
+---
+
 ## 📄 Files Included
 
 - `quickstart.md` – brief overview of the repo and where to start.
 - `monster_overview.md` – full overview of the main ML pipeline, tip logic, and automation.
 - `monster_todo.md` – task tracker for main tipping logic including ROI, model training, and Telegram output.
-- `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
-- `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
 
+---
 
 ## 🔑 Environment Variables
 
 The scripts expect the following environment variables to be defined:
+
+### 🏇 Betfair API
 
 - `BF_USERNAME`
 - `BF_PASSWORD`
@@ -21,21 +24,21 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_PATH`
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
 
-Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
+SSL certificates required for Betfair API access should be generated yourself and stored **outside the repository**.
 
-## `dispatch_all_tips.py`
+### 📬 Telegram Bot
 
-`dispatch_all_tips.py` formats a day's tips and can post them to Telegram.
+To send messages via the Telegram bot:
 
-- `--telegram` sends the messages via the bot token and chat ID instead of just printing to the console.
-- `--batch-size N` controls how many tips are grouped per Telegram message (default 5).
-- Make sure `TELEGRAM_CHAT_ID` is set if you enable `--telegram`.
+- `TELEGRAM_BOT_TOKEN` *(or `TG_BOT_TOKEN`)*
+- `TELEGRAM_CHAT_ID` *(or `TG_USER_ID`)*
 
-Example:
+Both naming conventions are supported across the codebase for flexibility.
 
-```bash
-python dispatch_all_tips.py --date 2025-06-07 --telegram --batch-size 10
-```
+### 📁 Path Config (Optional)
+
+- `TIPPING_MONSTER_HOME` – manually sets the project root.  
+  If unset, scripts use:
+  ```bash
+  git rev-parse --show-toplevel
