@@ -1,5 +1,5 @@
 import pandas as pd
-from validate_features import validate_dataset_features
+from core.validate_features import validate_dataset_features
 
 
 def test_validate_dataset_features_extra_and_missing():
