@@ -71,7 +71,7 @@ utils/safecron.sh - keep
 roi/send_daily_roi_summary.py - keep
 cli/streamlit_dashboard.py - keep
 roi/tag_roi_tracker.py - keep
-cli/tmcli.py - keep
+tmcli.py - keep
 core/train_model_v6.py - keep
 core/train_modelv7.py - keep
 utils/upload_logs_to_s3.sh - keep

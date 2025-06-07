@@ -157,7 +157,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 74. **Pre-commit Hooks** — black/flake8/isort run automatically.
 75. **Central `.env` Loader** — load env vars at script start.
-76. **Unified CLI** — `cli/tmcli.py` with subcommands.
+76. **Unified CLI** — `tmcli.py` with subcommands.
 77. **GitHub Actions CI** — run tests automatically.
 78. **Tip Dataclass** — typed representation for tips.
 79. **Validate Features Utility** — check dataset vs `features.json`.
