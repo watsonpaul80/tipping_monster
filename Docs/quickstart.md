@@ -54,6 +54,14 @@ All Python code is linted with **Flake8**. Use `pre-commit` to run the linter be
 pre-commit run --files $(git ls-files '*.py')
 ```
 
+## Coding Standards
+
+All Python code is linted with **Flake8**. Use `pre-commit` to run the linter before committing:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
+
 ## Next Steps for Newcomers
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
