@@ -75,7 +75,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 ## ⚙️ SCRIPT EXPLANATIONS
 
 * `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
-* `core/run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
+* `core/run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores. It prepends the repository root to `sys.path`, so the script works when invoked from the repo root or from inside `core/`.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
