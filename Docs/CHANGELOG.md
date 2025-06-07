@@ -7,6 +7,9 @@
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 
+### Changed
+- Unified `load_env()` calls to appear once after imports in scripts.
+
 
 ## 2025-05-31
 

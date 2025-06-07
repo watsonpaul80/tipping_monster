@@ -6,15 +6,10 @@ from time import sleep
 import sys
 import argparse
 from dotenv import load_dotenv
-
-load_dotenv()
-
 from tippingmonster import send_telegram_message
 from tippingmonster.env_loader import load_env
 
-load_env()
-from tippingmonster.env_loader import load_env
-
+load_dotenv()
 load_env()
 
 # === CONFIG ===
