@@ -45,6 +45,7 @@ These times are detailed in `Docs/monster_overview.md`.
 
 ## Key Scripts
 
+
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
 - **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.

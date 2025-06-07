@@ -57,6 +57,7 @@ train_modelv7.py - keep
 upload_logs_to_s3.sh - keep
 roi_by_confidence_band.py - keep
 weekly_roi_summary.py - keep
+evaluate_self_training.py - keep
 roi/generate_subscriber_log.py - keep
 roi/generate_tip_results_csv_with_mode_FINAL.py - keep
 roi/generate_weekly_summary.py - keep

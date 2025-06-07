@@ -153,6 +153,10 @@ training dataset. Schedule this weekly for continuous learning.
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
 
 
+### Self-Training Evaluation
+
+`evaluate_self_training.py` trains models with and without past tip features and writes the ROI comparison to `logs/evaluate_self_training.csv`.
+
 ## Model Transparency and Self‑Training
 
 The pipeline uses **SHAP** to compute feature importance for each prediction. These explanations
@@ -163,4 +167,3 @@ Past tips are merged back into the training data via a self‑training loop. Res
 the dataset (`was_tipped`, `tip_profit`, `confidence_band`) so the model evolves with real world
 performance. This continuous learning drives the weekly insights sent on Telegram and keeps the
 model transparent and accountable.
-
