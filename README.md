@@ -71,8 +71,11 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python cli/tmcli.py healthcheck --date YYYY-MM-DD
-python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py pipeline --dev            # run full pipeline in dev mode
+python tmcli.py roi --date YYYY-MM-DD     # generate ROI stats
+python tmcli.py sniper --dev              # (placeholder) sniper tasks
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
 
 These wrap core scripts for ease of use.
