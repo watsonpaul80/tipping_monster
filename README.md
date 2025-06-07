@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```
 
 2. Export the required environment variables (see Docs/README.md for the full list):
-`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TG_BOT_TOKEN`, `TG_USER_ID`.
 
 3. Run the tests to confirm everything works:
 

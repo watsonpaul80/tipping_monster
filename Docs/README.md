@@ -23,6 +23,8 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TG_BOT_TOKEN`
+- `TG_USER_ID`
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 
