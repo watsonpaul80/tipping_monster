@@ -21,7 +21,11 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_PATH`
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
+ - `TG_BOT_TOKEN`
+ - `TG_USER_ID`
+
+Copy `.env.example` to `.env` for a handy starting point when setting these values locally.
+
+SSL certificates required for Betfair API access should be generated yourself and stored outside the repository.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.

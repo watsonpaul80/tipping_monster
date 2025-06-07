@@ -1,2 +1,5 @@
 logs/
 certs/
+
+__pycache__/
+*.pyc
