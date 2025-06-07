@@ -15,6 +15,7 @@ generate_weekly_summary.py
 merge_odds_into_tips.py
 model_feature_importance.py
 roi_tracker_advised.py
+roi_by_confidence_band.py
 run_inference_and_select_top1.py
 run_pipeline_with_venv.sh
 safecron.sh
@@ -28,3 +29,7 @@ healthcheck_logs.py
 ensure_sent_tips.py
 alert_if_no_sent_tips.py
 tmcli.py
+validate_tips.py
+model_drift_report.py
+evaluate_self_training.py
+
