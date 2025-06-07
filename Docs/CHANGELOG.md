@@ -128,7 +128,12 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
 
+
+## 2025-06-07 -- Script Cleanup
+- Added script_audit.txt listing unused scripts
+- Document now referenced in README files
+
 ## 2025-06-07 — CLI Helper
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
-- Added tests for new CLI commands.
+
