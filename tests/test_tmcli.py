@@ -1,8 +1,8 @@
 import json
 import os
-from datetime import date
-import sys
 import subprocess
+import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -13,8 +13,8 @@ from cli import tmcli
 def test_tmcli_healthcheck(tmp_path):
     date_str = "2025-06-06"
     logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True)
-    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
+    (logs / "inference").mkdir(parents=True, exist_ok=True)
     (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
     (logs / "inference" / f"pipeline_{date_str}.log").write_text("ok")
     (logs / "inference" / f"odds_0800_{date_str}.log").write_text("ok")
@@ -28,11 +28,14 @@ def test_tmcli_healthcheck(tmp_path):
 
 def test_tmcli_healthcheck_missing_files(tmp_path):
     date_str = "2025-06-06"
-    logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True)
-    (logs / "inference").mkdir(parents=True)
-    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
 
+    logs = tmp_path / "logs" / "dispatch"
+    logs.mkdir(parents=True)
+    (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
+    logs = tmp_path / "logs"
+    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
+    (logs / "inference").mkdir(parents=True, exist_ok=True)
+    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
     text = (tmp_path / "hc.log").read_text()
@@ -46,21 +49,41 @@ def test_tmcli_ensure_sent_tips(tmp_path):
     (pred_dir / "tips_with_odds.jsonl").write_text("tip")
 
     os.chdir(tmp_path)
-    tmcli.main([
-        "ensure-sent-tips",
-        date_str,
-        "--predictions-dir", "predictions",
-        "--dispatch-dir", "logs/dispatch",
-    ])
+    tmcli.main(
+        [
+            "ensure-sent-tips",
+            date_str,
+            "--predictions-dir",
+            "predictions",
+            "--dispatch-dir",
+            "logs/dispatch",
+        ]
+    )
     sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
     assert sent.exists()
     assert sent.read_text() == "tip"
 
 
-def test_tmcli_dispatch_tips(monkeypatch):
+def test_tmcli_dispatch_tips(monkeypatch, tmp_path):
+    date_str = "2025-06-06"
+
     calls = {}
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
+    os.chdir(tmp_path)
+    tmcli.main(
+        [
+            "ensure-sent-tips",
+            date_str,
+            "--predictions-dir",
+            "predictions",
+            "--dispatch-dir",
+            "logs/dispatch",
+        ]
+    )
+    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
+    assert not sent.exists()
 
     def fake_run(cmd, check):
         calls["cmd"] = cmd
@@ -77,7 +100,7 @@ def test_tmcli_dispatch_tips(monkeypatch):
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
 
-def test_tmcli_send_roi(monkeypatch):
+def test_tmcli_send_roi(monkeypatch, tmp_path):
     calls = {}
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
@@ -96,4 +119,36 @@ def test_tmcli_send_roi(monkeypatch):
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
+    model_path = Path(__file__).resolve().parents[1] / "tipping-monster-xgb-model.bst"
+    data_path = tmp_path / "data.jsonl"
+    with open(data_path, "w") as f:
+        json.dump(
+            {
+                "draw": 0,
+                "or": 0,
+                "rpr": 0,
+                "lbs": 0,
+                "age": 0,
+                "dist_f": 0,
+                "class": 0,
+                "going": "G",
+                "prize": 0,
+            },
+            f,
+        )
+        f.write("\n")
 
+    os.chdir(tmp_path)
+    tmcli.main(
+        [
+            "model-feature-importance",
+            "--model",
+            str(model_path),
+            "--data",
+            str(data_path),
+            "--out-dir",
+            "logs/model",
+        ]
+    )
+    out = tmp_path / "logs/model" / f"feature_importance_{date.today().isoformat()}.png"
+    assert out.exists()

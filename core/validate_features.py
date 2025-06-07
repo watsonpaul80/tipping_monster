@@ -1,8 +1,8 @@
 import argparse
 import json
 from typing import List, Tuple
+
 import pandas as pd
-import sys
 
 
 def load_dataset(path: str) -> pd.DataFrame:
@@ -15,7 +15,9 @@ def load_dataset(path: str) -> pd.DataFrame:
         raise ValueError(f"Unsupported file type: {path}")
 
 
-def validate_dataset_features(features: List[str], df: pd.DataFrame) -> Tuple[List[str], List[str]]:
+def validate_dataset_features(
+    features: List[str], df: pd.DataFrame
+) -> Tuple[List[str], List[str]]:
     """Return missing and extra feature columns compared to the DataFrame."""
     feature_set = set(features)
     data_set = set(df.columns)
@@ -25,9 +27,13 @@ def validate_dataset_features(features: List[str], df: pd.DataFrame) -> Tuple[Li
 
 
 def main(argv: List[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Validate dataset columns against features.json")
+    parser = argparse.ArgumentParser(
+        description="Validate dataset columns against features.json"
+    )
     parser.add_argument("dataset", help="CSV or JSONL dataset file")
-    parser.add_argument("--features", default="features.json", help="Path to features.json")
+    parser.add_argument(
+        "--features", default="features.json", help="Path to features.json"
+    )
     args = parser.parse_args(argv)
 
     with open(args.features) as f:

@@ -61,7 +61,7 @@ The system defines 8 core product layers:
 | 05:00 | `core/daily_upload_racecards.sh`  | Pulls today’s racecards using `rpscrape`                 |
 | 05:06 | `core/daily_flatten.sh`           | Flattens racecards to JSONL format for ML input       |
 | 08:00 | `core/fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
-| 08:05 | `core/run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race             |
+| 08:05 | `python -m core.run_inference_and_select_top1` | Runs XGBoost model + selects best per race             |
 | 08:08 | `core/merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
 | 08:10 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
@@ -75,7 +75,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 ## ⚙️ SCRIPT EXPLANATIONS
 
 * `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
-* `core/run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
+* `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).

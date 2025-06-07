@@ -12,6 +12,7 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `monster_todo_v2.md` – high-level roadmap for upcoming features.
 - `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
 - `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
+- `dev_command_reference.md` – quick list of useful developer commands.
 - `../docs/script_audit.txt` – summary of active vs. unused scripts with keep/remove/rewrite verdicts.
 - `../docs/SECURITY_REVIEW.md` – latest security audit notes.
 
@@ -29,12 +30,14 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
-- `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`)
+- `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`; ignored when `TM_DEV_MODE=1`)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_DEFAULT_REGION`
 
-Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
+Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
+Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` instead.
+Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
@@ -54,4 +57,13 @@ Example:
 python dispatch_all_tips.py --date 2025-06-07 --telegram --batch-size 10
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
+
+### Running Inference
+
+Run inference scripts from the repository root. Example:
+
+```bash
+python core/run_inference_and_select_top1.py
+```
+Running this command inside `core/` will fail with `ModuleNotFoundError` unless `PYTHONPATH=..` is configured.
 
