@@ -10,11 +10,12 @@ import tmcli
 def test_tmcli_healthcheck(tmp_path):
     date = "2025-06-06"
     logs = tmp_path / "logs"
-    logs.mkdir()
-    (logs / f"sent_tips_{date}.jsonl").write_text("ok")
-    (logs / f"pipeline_{date}.log").write_text("ok")
-    (logs / f"odds_0800_{date}.log").write_text("ok")
-    (logs / f"odds_hourly_{date}.log").write_text("ok")
+    (logs / "dispatch").mkdir(parents=True)
+    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch" / f"sent_tips_{date}.jsonl").write_text("ok")
+    (logs / "inference" / f"pipeline_{date}.log").write_text("ok")
+    (logs / "inference" / f"odds_0800_{date}.log").write_text("ok")
+    (logs / "inference" / f"odds_hourly_{date}.log").write_text("ok")
 
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date, "--out-log", "hc.log"])

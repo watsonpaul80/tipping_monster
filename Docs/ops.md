@@ -118,8 +118,8 @@ The following jobs are related to "sniper" functionality (market movement detect
 15. **Fetch Betfair Odds (08:00 Snapshot)**
     *   **Frequency:** Daily at 08:00
     *   **Purpose:** Fetches a snapshot of Betfair odds specifically at 08:00.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/odds_0800_$(date +\%F).log 2>&1`
-    *   **Log Output:** `logs/odds_0800_YYYY-MM-DD.log` (remains in root `logs/`)
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/inference/odds_0800_$(date +\%F).log 2>&1`
+    *   **Log Output:** `logs/inference/odds_0800_YYYY-MM-DD.log`
 
 16. **Morning Digest Script (`scripts/morning_digest.py`)**
     *   **Frequency:** Daily at 09:10
