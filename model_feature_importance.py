@@ -10,14 +10,17 @@ from datetime import date
 from pathlib import Path
 import tarfile
 import tempfile
+import glob
 
 import pandas as pd
 import shap
 import matplotlib.pyplot as plt
 import xgboost as xgb
 
-from tippingmonster import logs_path, repo_path, send_telegram_photo, in_dev_mode
+import boto3
 
+from tippingmonster import logs_path, repo_path, send_telegram_photo, in_dev_mode
+from validate_features import load_dataset
 
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     """Load XGBoost model and feature list from ``model_path``.
@@ -42,6 +45,16 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
         features = json.load(f)
     return model, features
 
+def load_data(paths: list[str]) -> pd.DataFrame:
+    """Load and concatenate dataset files."""
+    frames = [load_dataset(p) for p in paths]
+    return pd.concat(frames, ignore_index=True)
+
+def upload_to_s3(file_path: Path, bucket: str) -> None:
+    """Upload file to S3 under model_explainability/ with today's date."""
+    key = f"model_explainability/{date.today().isoformat()}_top_features.png"
+    boto3.client("s3").upload_file(str(file_path), bucket, key)
+    print(f"Uploaded SHAP chart to s3://{bucket}/{key}")
 
 def generate_chart(
     model_path: str,
@@ -82,7 +95,6 @@ def generate_chart(
         send_telegram_photo(out, caption=caption)
     return out
 
-
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Generate SHAP feature importance chart")
     parser.add_argument("--model", default="tipping-monster-xgb-model.bst",
@@ -90,12 +102,15 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--data", help="Input JSONL with model features")
     parser.add_argument("--out-file", help="Where to save PNG")
     parser.add_argument("--telegram", action="store_true", help="Send chart to Telegram")
+    parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
     args = parser.parse_args(argv)
 
     out = generate_chart(args.model, args.data, Path(args.out_file) if args.out_file else None,
                          telegram=args.telegram)
     print(f"📈 Feature chart saved to {out}")
 
+    if args.s3_bucket:
+        upload_to_s3(out, args.s3_bucket)
 
 if __name__ == "__main__":
     main()
