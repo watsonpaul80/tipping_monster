@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from healthcheck_logs import check_logs
+from utils.healthcheck_logs import check_logs
 
 
 def test_check_logs_with_all_files(tmp_path):
