@@ -6,6 +6,7 @@
 - NAP odds cap with override support (`dispatch_tips.py`).
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
+- Optional SHAP chart upload added in `model_feature_importance.py`.
 
 
 ## 2025-05-31
