@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -18,6 +19,8 @@ from tippingmonster import (
 
 def test_send_telegram_message(monkeypatch):
     calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
     def fake_post(url, data=None, timeout=None):
         calls["url"] = url
@@ -138,6 +141,8 @@ def test_calculate_profit_simple_win():
 
 
 def test_repo_and_logs_path_helpers():
+    os.environ.pop("TM_DEV_MODE", None)
+    os.environ.pop("TM_LOG_DIR", None)
     root = repo_root()
     assert root.is_dir()
     logs = logs_path("roi")

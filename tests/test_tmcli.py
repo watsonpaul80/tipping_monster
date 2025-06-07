@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -33,3 +34,45 @@ def test_tmcli_ensure_sent_tips(tmp_path):
     sent = tmp_path / "logs/dispatch" / f"sent_tips_{date}.jsonl"
     assert sent.exists()
     assert sent.read_text() == "tip"
+
+
+def test_tmcli_dispatch_tips(monkeypatch):
+    calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
+    def fake_run(cmd, check):
+        calls["cmd"] = cmd
+        calls["check"] = check
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    tmcli.main(["dispatch-tips", "2025-06-06", "--telegram", "--dev"])
+    assert "dispatch_tips.py" in calls["cmd"][1]
+    assert "--telegram" in calls["cmd"]
+    assert "--dev" in calls["cmd"]
+    assert os.environ["TM_DEV_MODE"] == "1"
+    assert os.environ["TM_LOG_DIR"] == "logs/dev"
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
+
+def test_tmcli_send_roi(monkeypatch):
+    calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
+    def fake_run(cmd, check):
+        calls["cmd"] = cmd
+        calls["check"] = check
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    tmcli.main(["send-roi", "--date", "2025-06-05", "--dev"])
+    assert "send_daily_roi_summary.py" in calls["cmd"][1]
+    assert "--date" in calls["cmd"]
+    assert "2025-06-05" in calls["cmd"]
+    assert os.environ["TM_DEV_MODE"] == "1"
+    assert os.environ["TM_LOG_DIR"] == "logs/dev"
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
+

@@ -15,6 +15,7 @@ from .utils import (
     send_telegram_message,
     send_telegram_photo,
 )
+from .helpers import dispatch, send_daily_roi, generate_chart
 
 # isort: on
 
@@ -27,5 +28,8 @@ __all__ = [
     "send_telegram_message",
     "send_telegram_photo",
     "calculate_profit",
+    "dispatch",
+    "send_daily_roi",
+    "generate_chart",
     "load_env",
 ]

@@ -158,3 +158,25 @@ def calculate_profit(row) -> float:
     else:
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
+
+
+def send_telegram_photo(photo_path: Path, token: str | None = None, chat_id: str | None = None) -> None:
+    """Send an image to Telegram respecting ``TM_DEV_MODE``."""
+    if in_dev_mode():
+        log_file = logs_path("telegram.log")
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[PHOTO] {photo_path}\n")
+        print(f"[DEV] Telegram photo suppressed: {photo_path}")
+        return
+
+    token = token or os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+    if os.getenv("TM_DEV"):
+        chat_id = os.getenv("TELEGRAM_DEV_CHAT_ID", chat_id)
+    if not token or not chat_id:
+        raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
+
+    url = f"https://api.telegram.org/bot{token}/sendPhoto"
+    with open(photo_path, "rb") as f:
+        requests.post(url, data={"chat_id": chat_id}, files={"photo": f}, timeout=10)
