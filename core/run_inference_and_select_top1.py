@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
-import argparse
-import json
+
+# --- Standard Library ---
 import os
 import sys
+import glob
 import tarfile
 import tempfile
-from datetime import date
 from pathlib import Path
+from datetime import date, datetime
+import argparse
+import json
 
+# --- Third-Party Libraries ---
 import boto3
 import pandas as pd
-import xgboost as xgb
-
-sys.path.append(str(Path(__file__).resolve().parents[1]))
-import glob
-from datetime import datetime
-
 import numpy as np
+import xgboost as xgb
 import orjson
 
+# --- Local Modules ---
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
 
+# --- Load Environment Variables ---
 load_env()
 
 # === ARGUMENT PARSING ===

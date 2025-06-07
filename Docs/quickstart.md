@@ -32,7 +32,7 @@ A typical daily pipeline runs the following steps:
 05:00  core/daily_upload_racecards.sh  # Pull racecards via rpscrape
 05:06  core/daily_flatten.sh           # Flatten racecards for model input
 08:00  core/fetch_betfair_odds.py      # Capture odds snapshot
-08:05  core/run_inference_and_select_top1.py  # Predict and select tips
+08:05  python -m core.run_inference_and_select_top1  # Predict and select tips
 08:08  core/merge_odds_into_tips.py    # Attach odds to tips
 08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  core/dispatch_tips.py           # Send tips to Telegram
@@ -46,6 +46,7 @@ These times are detailed in `Docs/monster_overview.md`.
 
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
+
 - **Inference:** `core/run_inference_and_select_top1.py` chooses the most recent
   `tipping-monster-xgb-model-*.tar.gz` in the repository root and downloads it
   from S3 if a path is provided. If no model is available, the script exits with
@@ -65,7 +66,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set 
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
-3. Explore the training (`core/train_model_v6.py`) and inference (`core/run_inference_and_select_top1.py`) scripts to see how predictions are generated.
+3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. Running the inference script directly requires the repo root to be on `PYTHONPATH`.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 6. Run `./dev-check.sh` followed by `make test` to verify your setup.
