@@ -6,6 +6,7 @@ import re
 
 import pandas as pd
 import requests
+from tippingmonster import tip_has_tag
 
 # === Telegram Config ===
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -67,7 +68,7 @@ def calculate_profit(row):
         return round(win_profit, 2)
 
 
-def load_tips(date_str, min_conf, use_sent):
+def load_tips(date_str, min_conf, use_sent, tag=None):
     if use_sent:
         input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
         if not os.path.exists(input_file):
@@ -83,7 +84,7 @@ def load_tips(date_str, min_conf, use_sent):
     with open(input_file, "r") as f:
         for line in f:
             tip = json.loads(line)
-            if tip.get("confidence", 0.0) >= min_conf:
+            if tip.get("confidence", 0.0) >= min_conf and (not tag or tip_has_tag(tip, tag)):
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
                 tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
                 tip["Horse"] = normalize_horse_name(tip.get("name", "Unknown"))
@@ -98,7 +99,7 @@ def load_tips(date_str, min_conf, use_sent):
     return tips
 
 
-def main(date_str, mode, min_conf, send_to_telegram, show=False):
+def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
     date_display = date_str
     results_path = f"rpscrape/data/dates/all/{date_str.replace('-', '_')}.csv"
     if not os.path.exists(results_path):
@@ -130,13 +131,11 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
         .str.replace(r"\s*\(ire\)", "", regex=True)
         .str.strip()
     )
-    results_df["Race Time"] = (
-        results_df["Race Time"].astype(str).str.strip().str.lower()
-    )
+    results_df["Race Time"] = results_df["Race Time"].astype(str).str.strip().str.lower()
 
     for source in ["sent", "all"]:
         use_sent = source == "sent"
-        tips = load_tips(date_str, min_conf, use_sent)
+        tips = load_tips(date_str, min_conf, use_sent, tag)
         if not tips:
             continue
 
@@ -155,21 +154,13 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
 
         merged_df["Position"] = merged_df["Position"].fillna("NR")
         merged_df["Profit"] = merged_df.apply(
-            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row),
-            axis=1,
+            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row), axis=1
         )
 
         num_nrs = (merged_df["Position"] == "NR").sum()
         wins = (merged_df["Position"] == "1").sum()
         places = (
-            merged_df["Position"]
-            .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
-            .sum()
-        )
-        places = (
-            merged_df["Position"]
-            .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
-            .sum()
+            merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
         )
         losses = len(merged_df) - wins - places - num_nrs
 
@@ -183,9 +174,7 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
             "Profit": round(merged_df["Profit"].sum(), 2),
         }
 
-        roi = (
-            summary["Profit"] / summary["Stake"] * 100 if summary["Stake"] > 0 else 0.0
-        )
+        roi = summary["Profit"] / summary["Stake"] * 100 if summary["Stake"] > 0 else 0.0
         strike_rate = wins / summary["Tips"] * 100 if summary["Tips"] > 0 else 0.0
         place_rate = places / summary["Tips"] * 100 if summary["Tips"] > 0 else 0.0
 
@@ -216,17 +205,13 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
                     Profit=("Profit", "sum"),
                     Wins=("Position", lambda x: (x == "1").sum()),
                 )
-                tag_summary["ROI %"] = (
-                    tag_summary["Profit"] / tag_summary["Tips"]
-                ) * 100
-                tag_summary = tag_summary.reset_index()
-                tag_summary.to_csv(tag_output, index=False)
+                tag_summary["ROI %"] = tag_summary["Profit"] / tag_summary["Tips"] * 100
+                tag_summary.reset_index().to_csv(tag_output, index=False)
                 print(f"✅ Tag ROI saved to {tag_output}")
 
         if send_to_telegram:
             message = (
-                f"📊 *Tipping Monster Daily ROI – {date_display} "
-                f"({mode.capitalize()} – {source.upper()})*\n\n"
+                f"📊 *Tipping Monster Daily ROI – {date_display} ({mode.capitalize()} – {source.upper()})*\n\n"
                 f"🏇 Tips: {summary['Tips']}  |  🟢 {wins}W  |  🟡 {places}P  |  🔴 {losses}L\n"
                 f"🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%\n"
                 f"💰 Profit: {summary['Profit']:+.2f} pts\n"
@@ -242,20 +227,13 @@ if __name__ == "__main__":
     parser.add_argument("--mode", choices=["advised", "level"], required=True)
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
-    parser.add_argument(
-        "--show",
-        action="store_true",
-        help="Show summary in CLI only",
-    )
-    parser.add_argument(
-        "--dev",
-        action="store_true",
-        help="Enable dev mode",
-    )
+    parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
+    parser.add_argument("--tag", help="Filter tips by tag (e.g. NAP)")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
 
     if args.dev:
         os.environ["TM_DEV_MODE"] = "1"
         os.environ["TM_LOG_DIR"] = "logs/dev"
 
-    main(args.date, args.mode, args.min_conf, args.telegram, args.show)
+    main(args.date, args.mode, args.min_conf, args.telegram, args.show, args.tag)

@@ -20,15 +20,16 @@ cd "$REPO_ROOT" || exit 1
 source .venv/bin/activate
 
 LOG_DIR="$REPO_ROOT/${TM_LOG_DIR:-logs}"
-mkdir -p "$LOG_DIR"
+INFER_DIR="$LOG_DIR/inference"
+mkdir -p "$INFER_DIR" "$LOG_DIR/dispatch"
 
 # 1. Upload racecards
 echo "📥 Uploading racecards..."
-bash daily_upload_racecards.sh >> "$LOG_DIR/racecards.log" 2>&1
+bash daily_upload_racecards.sh >> "$INFER_DIR/racecards.log" 2>&1
 
 # 2. Flatten racecards
 echo "🪬 Flattening racecards..."
-bash daily_flatten.sh >> "$LOG_DIR/flatten.log" 2>&1
+bash daily_flatten.sh >> "$INFER_DIR/flatten.log" 2>&1
 
 # === Wait until 08:50 before continuing ===
 TARGET_TIME="08:50"
@@ -45,7 +46,11 @@ fi
 
 # 3. Fetch Betfair odds
 echo "📈 Fetching Betfair odds..."
+<<<<<<< HEAD:run_pipeline_with_venv.sh
+.venv/bin/python fetch_betfair_odds.py >> "$INFER_DIR/odds.log" 2>&1
+=======
 .venv/bin/python core/fetch_betfair_odds.py >> "$LOG_DIR/odds.log" 2>&1
+>>>>>>> main:core/run_pipeline_with_venv.sh
 
 # 4. Run model inference (with last_class)
 echo "🧠 Running model inference..."
@@ -53,12 +58,16 @@ echo "🧠 Running model inference..."
 
 # 5. Merge odds into tips
 echo "🔗 Merging tips with odds..."
+<<<<<<< HEAD:run_pipeline_with_venv.sh
+.venv/bin/python merge_odds_into_tips.py >> "$INFER_DIR/merge.log" 2>&1
+=======
 .venv/bin/python core/merge_odds_into_tips.py >> "$LOG_DIR/merge.log" 2>&1
+>>>>>>> main:core/run_pipeline_with_venv.sh
 
 # 6. (Optional) Generate commentary
 # NOTE: The commentary script (`generate_commentary_bedrock.py`) is not included
 # in this repository. The call is disabled to avoid errors in the daily cron.
-# .venv/bin/python generate_commentary_bedrock.py >> "$LOG_DIR/commentary.log" 2>&1
+# .venv/bin/python generate_commentary_bedrock.py >> "$INFER_DIR/commentary.log" 2>&1
 
 # 7. Dispatch tips to Telegram
 echo "🚀 Dispatching tips to Telegram..."

@@ -20,15 +20,15 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### Core Pipeline & Odds Fetching
 
-1.  **Run Main Pipeline (`core/run_pipeline_with_venv.sh`)**
+1.  **Run Main Pipeline (`run_pipeline_with_venv.sh` or `tmcli.py pipeline`)**
     *   **Frequency:** Daily at 05:00
     *   **Purpose:** Executes the main data processing and tipping pipeline. This likely involves fetching racecards, running predictions, selecting tips, and preparing them for dispatch.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/core/run_pipeline_with_venv.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/run_pipeline_with_venv.sh`
+    *   **Alt:** `python tmcli.py pipeline --dev` for safe local testing.
     *   **Internal Logs:** Check `logs/inference/`, `logs/dispatch/` for detailed logs from this pipeline.
 
 2.  **Fetch Betfair Odds (Hourly)**
     *   **Frequency:** Hourly between 07:05 and 20:05
-    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
     *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_hourly /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/core/fetch_betfair_odds.py`
 
@@ -52,7 +52,8 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 5.  **Run ROI Pipeline (`roi/run_roi_pipeline.sh`)**
     *   **Frequency:** Daily at 22:50
     *   **Purpose:** Executes the ROI (Return on Investment) calculation pipeline. This likely processes sent tips and their results to generate ROI statistics.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh roi_pipeline /bin/bash /home/ec2-user/tipping-monster/roi/run_roi_pipeline.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh roi_pipeline /bin/bash /home/ec2-user/tipping-monster/run_roi_pipeline.sh`
+    *   **Alt:** `python tmcli.py roi --date $(date +\%F)`
     *   **Internal Logs:** Check `logs/roi/` for detailed ROI logs.
 
 6.  **Generate Master Subscriber Log & Upload (`generate_subscriber_log.py`)**
@@ -123,8 +124,8 @@ The following jobs are related to "sniper" functionality (market movement detect
 15. **Fetch Betfair Odds (08:00 Snapshot)**
     *   **Frequency:** Daily at 08:00
     *   **Purpose:** Fetches a snapshot of Betfair odds specifically at 08:00.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/core/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/odds_0800_$(date +\%F).log 2>&1`
-    *   **Log Output:** `logs/odds_0800_YYYY-MM-DD.log` (remains in root `logs/`)
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/inference/odds_0800_$(date +\%F).log 2>&1`
+    *   **Log Output:** `logs/inference/odds_0800_YYYY-MM-DD.log`
 
 16. **Morning Digest Script (`scripts/morning_digest.py`)**
     *   **Frequency:** Daily at 09:10

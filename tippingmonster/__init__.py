@@ -11,6 +11,7 @@ from .utils import (
     send_telegram_message,
     send_telegram_photo,
     calculate_profit,
+    tip_has_tag,
 )
 from .env_loader import load_env
 
@@ -23,5 +24,6 @@ __all__ = [
     "send_telegram_message",
     "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
     "load_env",
 ]

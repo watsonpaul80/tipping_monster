@@ -18,7 +18,8 @@ pip install -r requirements.txt
 
 ```
 BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
-TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
+TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
 The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
@@ -71,31 +72,17 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python cli/tmcli.py healthcheck --date YYYY-MM-DD
-python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py pipeline --dev            # run full pipeline in dev mode
+python tmcli.py roi --date YYYY-MM-DD     # generate ROI stats
+python tmcli.py sniper --dev              # (placeholder) sniper tasks
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
+python validate_tips.py predictions/YYYY-MM-DD/tips_with_odds.jsonl
 ```
 
 These wrap core scripts for ease of use.
 
 ---
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
 
 ## Tip Dispatch
 
@@ -135,7 +122,7 @@ To compare two model versions:
 ```bash
 make train    # train the model
 make pipeline # run the full daily pipeline
-make roi      # run ROI pipeline
+make roi      # run ROI pipeline (use ROI scripts with `--tag` to filter by tag)
 make test     # run unit tests
 ```
 
@@ -150,6 +137,27 @@ training dataset. Schedule this weekly for continuous learning.
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
 
 
+### Model Drift Report
+
+Run `model_drift_report.py` to compare SHAP feature rankings over the past week. The script writes a summary to `logs/model_drift_report.md`.
+
+=======
+### ROI by Confidence Band
+
+Use `roi_by_confidence_band.py` to break down ROI by confidence level.
+
+```bash
+python roi_by_confidence_band.py --date YYYY-MM-DD
+```
+
+The script writes two CSVs to `logs/roi/`:
+- `roi_by_confidence_band_sent.csv` – only tips sent to Telegram
+- `roi_by_confidence_band_all.csv` – every tip regardless of send status
+
+### Self-Training Evaluation
+
+`evaluate_self_training.py` trains models with and without past tip features and writes the ROI comparison to `logs/evaluate_self_training.csv`.
+
 ## Model Transparency and Self‑Training
 
 The pipeline uses **SHAP** to compute feature importance for each prediction. These explanations
@@ -160,4 +168,3 @@ Past tips are merged back into the training data via a self‑training loop. Res
 the dataset (`was_tipped`, `tip_profit`, `confidence_band`) so the model evolves with real world
 performance. This continuous learning drives the weekly insights sent on Telegram and keeps the
 model transparent and accountable.
-
