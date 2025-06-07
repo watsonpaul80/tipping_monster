@@ -1,5 +1,10 @@
 # 📅 CHANGELOG
 
+## 2025-06-08
+
+### Added
+- `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
+
 ## 2025-06-07
 
 ### Added
