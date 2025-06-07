@@ -3,7 +3,7 @@
 This milestone summarises all notable features and fixes committed to the repository so far.
 
 ## Added
-- **Command Line Wrapper** `tmcli.py` for running the pipeline, ROI tasks and (now removed) sniper jobs with `--dev` mode support【F:tmcli.py†L1-L60】.
+- **Command Line Wrapper** `cli/tmcli.py` for running the pipeline, ROI tasks and (now removed) sniper jobs with `--dev` mode support【F:cli/tmcli.py†L1-L160】.
 - **Dispatch All Tips** `dispatch_all_tips.py` to send full card tips in batches with Telegram integration【F:dispatch_all_tips.py†L1-L114】.
 - **Codex Action Logger** `codex_logger.py` to record agent actions to `logs/codex.log`【F:codex_logger.py†L1-L27】.
 - **Safe Cron Utility** `safecron.sh` validating `TG_BOT_TOKEN` and `TG_USER_ID` env vars before execution, alerting on failures【F:safecron.sh†L1-L40】.

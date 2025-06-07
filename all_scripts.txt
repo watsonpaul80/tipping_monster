@@ -52,8 +52,9 @@ upload_logs_to_s3.sh
 weekly_roi_summary.py
 healthcheck_logs.py
 ensure_sent_tips.py
-tmcli.py
+cli/tmcli.py
 validate_tips.py
+validate_features.py
 model_drift_report.py
 evaluate_self_training.py
 

@@ -12,7 +12,8 @@ See the [Docs/README.md](Docs/README.md) file for complete documentation, includ
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-# GitHub Actions also installs dependencies this way
+# GitHub Actions installs dependencies this way and caches them for
+# faster test runs
 ```
 
 2. Copy `.env.example` to `.env` and fill in your credentials:
@@ -89,39 +90,29 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI (run these commands from the repository root):
 
 ```bash
-python tmcli.py healthcheck --date YYYY-MM-DD
-python tmcli.py ensure-sent-tips YYYY-MM-DD
-python tmcli.py dispatch-tips YYYY-MM-DD --telegram
-python tmcli.py send-roi --date YYYY-MM-DD
-python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
-python tmcli.py dispatch --date YYYY-MM-DD --telegram
-python tmcli.py roi-summary --date YYYY-MM-DD --telegram
-python tmcli.py chart-fi path/to/model_dir
-python tmcli.py send-photo path/to/image.jpg
-
-
-
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
+python cli/tmcli.py healthcheck --date YYYY-MM-DD
+python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python cli/tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python cli/tmcli.py send-roi --date YYYY-MM-DD
+python cli/tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
+python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python cli/tmcli.py chart-fi path/to/model_dir
+python cli/tmcli.py send-photo path/to/image.jpg
+```
 
 ## Tip Dispatch
 
-
-
-```
-
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+actually post messages and `--explain` to append a short "Why we tipped this" summary generated from SHAP values.
 
 These commands wrap existing scripts for convenience and default locations.
-
-
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
 
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
 images with captions.
+
+
 
 
 ## Health Check
@@ -175,7 +166,10 @@ Run `compare_model_v6_v7.py` to train both model versions on the same historical
 Trained models are uploaded to S3 rather than stored in the repository. See
 [Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
 latest model tarball from the `tipping-monster` bucket. The inference scripts
-will automatically fetch the specified model if it is missing locally.
+automatically choose the newest `tipping-monster-xgb-model-*.tar.gz` in the
+repository root. If no model is found, they exit with `FileNotFoundError` and
+instruct you to download one from S3 or train locally. When a path is provided
+via `--model`, that file is downloaded if missing locally.
 
 ## Model Transparency and Self‑Training
 

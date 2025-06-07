@@ -33,5 +33,6 @@ __all__ = [
     "dispatch",
     "send_daily_roi",
     "generate_chart",
+    "tip_has_tag",
     "load_env",
 ]

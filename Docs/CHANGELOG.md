@@ -1,14 +1,17 @@
 # 📅 CHANGELOG
-## 2025-06-09
-- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
-
 
 ## 2025-06-10
 
 ### Fixed
 - Added missing `requests` import in `scripts/morning_digest.py` so Telegram posts work.
 
+## 2025-06-11
+
+### Added
+- New `tip_has_tag()` helper in `tippingmonster.utils` for tag substring checks.
+
 ## 2025-06-09
+- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
 
 ### Added
 - NAP odds cap with override support (`dispatch_tips.py`).
@@ -24,7 +27,10 @@
 ### Added
 - `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
 - `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
- - `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+- `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+
+- `validate_features.py` wraps `core.validate_features` for backward compatibility.
+
 
 ## 2025-06-07
 
@@ -44,7 +50,8 @@
 
 ## 2025-06-07 — CLI Helper
 
- - Added `tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
+
+- Added `cli/tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
 - Each command supports a `--dev` flag for safe local testing.
 - Documented CLI usage in README and ops guide.
 
