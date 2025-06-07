@@ -134,6 +134,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Document now referenced in README files
 
 ## 2025-06-07 — CLI Helper
-- Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
+- Added `tmcli.py` with `pipeline`, `roi`, `sniper` and `healthcheck` subcommands.
+- Each command supports a `--dev` flag for safe local testing.
 - Documented CLI usage in README and ops guide.
 

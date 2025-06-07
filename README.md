@@ -62,6 +62,9 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common tasks can be run via the `tmcli` helper. Example usage:
 
 ```bash
+python tmcli.py pipeline --dev            # run full pipeline in dev mode
+python tmcli.py roi --date YYYY-MM-DD     # generate ROI stats
+python tmcli.py sniper --dev              # (placeholder) sniper tasks
 python tmcli.py healthcheck --date YYYY-MM-DD
 python tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
