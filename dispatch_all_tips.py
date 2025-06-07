@@ -4,6 +4,9 @@ import argparse
 from collections import defaultdict
 from datetime import date
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
@@ -24,11 +27,9 @@ def read_tips(path):
 
 
 def send_to_telegram(text):
-    """Send a single message to Telegram."""
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    data = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"}
+    """Send a single message to Telegram using the shared helper."""
     try:
-        requests.post(url, data=data, timeout=10)
+        send_telegram_message(text, token=TELEGRAM_BOT_TOKEN, chat_id=TELEGRAM_CHAT_ID)
         print("✅ Sent to Telegram")
     except Exception as e:
         print(f"❌ Telegram error: {e}")
@@ -67,7 +68,12 @@ def main():
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--batch-size", type=int, default=40,
                         help="number of races per Telegram message")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     base = f"predictions/{args.date}"
     path = os.path.join(base, "tips_with_odds.jsonl")

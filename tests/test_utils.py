@@ -29,6 +29,23 @@ def test_send_telegram_message(monkeypatch):
     assert calls['data']['text'] == 'hi'
 
 
+def test_send_telegram_message_dev_mode(monkeypatch, tmp_path):
+    calls = {}
+
+    def fake_post(url, data=None, timeout=None):
+        calls['called'] = True
+    import requests
+    monkeypatch.setattr(requests, 'post', fake_post)
+    monkeypatch.setenv('TM_DEV_MODE', '1')
+    monkeypatch.setenv('TM_LOG_DIR', str(tmp_path / 'logs/dev'))
+
+    send_telegram_message('hello', token='TOK', chat_id='CID')
+    assert 'called' not in calls
+    log_file = repo_path('logs', 'dev', 'telegram.log')
+    assert log_file.exists()
+    assert 'hello' in log_file.read_text()
+
+
 def test_calculate_profit_win_and_place():
     row = {
         'Odds': 10.0,
@@ -62,3 +79,9 @@ def test_repo_and_logs_path_helpers():
     logs = logs_path('roi')
     assert logs == repo_path('logs', 'roi')
     assert str(logs).endswith('logs/roi')
+
+
+def test_logs_path_dev(monkeypatch):
+    monkeypatch.setenv('TM_DEV_MODE', '1')
+    p = logs_path('dispatch')
+    assert str(p).endswith('logs/dev/dispatch')

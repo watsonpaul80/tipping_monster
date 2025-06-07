@@ -1,6 +1,3 @@
-import sys
-
-from collections import defaultdict
 
 from utils.lxml_funcs import find, xpath
 
@@ -31,7 +28,11 @@ class Odds:
         rows = xpath(doc, 'div', 'RC-oddsRunnerContent__runnerRow')
 
         for row in rows:
-            name = clean_name(find(row, 'a', 'RC-oddsRunnerContent__runnerName'))
+            name = clean_name(
+                find(
+                    row,
+                    'a',
+                    'RC-oddsRunnerContent__runnerName'))
             prices = xpath(row, 'div', 'RC-oddsRunnerContent__data', 'class')
 
             odds = {}

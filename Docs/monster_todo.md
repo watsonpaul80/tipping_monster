@@ -16,17 +16,17 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 2. **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts
 
-3. **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
+3. ✅ **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
 
 4. **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency
 
-5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`, `sniper/`
+5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`
 
 6. **Script Audit** — identify redundant scripts and prune/rename as needed
 
-7. **`--dev` Flag Support Across Scripts** — override to prevent real S3 upload, redirect Telegram to personal channel, log to dev folder
+7. ✅ **`--dev` Flag Support Across Scripts** — override to prevent real S3 upload, redirect Telegram to personal channel, log to dev folder
 
-8. **NAP Sanity Filter + Override** — block NAPs over odds cap (e.g. 20/1), allow fallback tag, optional manual override field
+8. ✅ **NAP Sanity Filter + Override** — block NAPs over odds cap (e.g. 20/1), allow fallback tag, optional manual override field
 
 ---
 
@@ -79,7 +79,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
-46. Track high-delta tips separately (paused due to sniper being disabled)  
+46. Track high-delta tips separately
 47. Add `odds_delta` to ML training as signal
 
 ---
