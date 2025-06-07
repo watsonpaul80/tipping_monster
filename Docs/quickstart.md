@@ -11,6 +11,7 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 - `monster_overview.md` – full system overview with pipeline schedule and feature list.
 - `ops.md` – operations guide describing cron jobs and data flows.
 - `monster_todo.md` – feature roadmap for the tipping engine.
+- `monster_todo.md` – feature roadmap for the tipping engine.
 
 ## Project Structure
 
@@ -19,8 +20,11 @@ Key folders and scripts include:
 - `rpscrape/` – scraper for racecards and results.
 - `ROI/` and `run_roi_pipeline.sh` – scripts for ROI tracking and Telegram summaries.
 - `logs/` – organized logs for inference, ROI and dispatch processes.
+- `logs/` – organized logs for inference, ROI and dispatch processes.
 - `predictions/` – daily output tips and summaries.
 - Root‑level scripts such as `run_pipeline_with_venv.sh`, `fetch_betfair_odds.py`, and `dispatch_tips.py` drive the daily pipeline.
+
+Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
 
 A typical daily pipeline runs the following steps:
 
@@ -55,3 +59,5 @@ These times are detailed in `Docs/monster_overview.md`.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 
 With these files as a guide, you can get up to speed quickly and start contributing to the system.
+
+*Note:* Older "sniper" scripts were removed in June 2025 to streamline the project.

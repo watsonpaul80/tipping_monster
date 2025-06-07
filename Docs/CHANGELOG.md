@@ -122,3 +122,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 ## 2025-06-06 — ROI Script Consolidation
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
+
+## 2025-06-07 — Sniper Functionality Removed
+- Deleted obsolete sniper scripts and documentation
+- Purged sniper references across the project and simplified cron handling
