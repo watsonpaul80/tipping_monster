@@ -7,6 +7,7 @@
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 - Added unit tests for `tmcli` subcommands.
+- ROI trackers now support `--tag` filtering for NAP/Value tips.
 
 
 ## 2025-05-31
