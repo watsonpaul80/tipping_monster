@@ -25,7 +25,7 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
     *   **Frequency:** Daily at 05:00
     *   **Purpose:** Executes the main data processing and tipping pipeline. This likely involves fetching racecards, running predictions, selecting tips, and preparing them for dispatch.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/run_pipeline_with_venv.sh`
-    *   **Alt:** `python cli/tmcli.py pipeline --dev` for safe local testing.
+    *   **Alt:** `python cli/tmcli.py pipeline --dev` or `python -m cli.tmcli pipeline --dev` for safe local testing.
     *   **Internal Logs:** Check `logs/inference/`, `logs/dispatch/` for detailed logs from this pipeline.
 
 2.  **Fetch Betfair Odds (Hourly)**
@@ -55,7 +55,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Frequency:** Daily at 22:50
     *   **Purpose:** Executes the ROI (Return on Investment) calculation pipeline. This likely processes sent tips and their results to generate ROI statistics.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh roi_pipeline /bin/bash /home/ec2-user/tipping-monster/run_roi_pipeline.sh`
-    *   **Alt:** `python cli/tmcli.py roi --date $(date +\%F)`
+    *   **Alt:** `python cli/tmcli.py roi --date $(date +\%F)` or `python -m cli.tmcli roi --date $(date +\%F)`
     *   **Internal Logs:** Check `logs/roi/` for detailed ROI logs.
 
 6.  **Generate Master Subscriber Log & Upload (`roi/generate_subscriber_log.py`)**
@@ -104,6 +104,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Frequency:** Daily at 00:05
     *   **Purpose:** Verifies key log files exist and writes a status line to `logs/healthcheck.log`.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/cli/tmcli.py healthcheck --date $(date +\%F)`
+    *   **Alt:** `python -m cli.tmcli healthcheck --date $(date +\%F)`
 
 ---
 

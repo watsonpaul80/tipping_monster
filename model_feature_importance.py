@@ -103,6 +103,10 @@ def generate_shap_chart(
     return out
 
 
+# Backwards compatibility for older CLI imports
+generate_chart = generate_shap_chart
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate SHAP feature importance chart")
     parser.add_argument("dataset", nargs="?", default=None,

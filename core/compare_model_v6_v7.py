@@ -8,6 +8,11 @@ set and records the confidence scores for each horse in
 
 Columns: ``Race``, ``Horse``, ``v6_conf``, ``v7_conf``, ``delta``, ``winner``.
 """
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 import glob
 import os
 import pandas as pd

@@ -161,3 +161,10 @@ def calculate_profit(row) -> float:
         return round(win_profit, 2)
 
 
+def tip_has_tag(tip: dict, tag: str) -> bool:
+    """Return True if ``tag`` is found in ``tip['tags']`` (case-insensitive)."""
+    tags = tip.get("tags") or []
+    tag = tag.lower()
+    return any(tag in str(t).lower() for t in tags)
+
+

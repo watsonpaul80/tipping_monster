@@ -89,6 +89,7 @@ python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
 python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
+python -m cli.tmcli dispatch-tips --date YYYY-MM-DD --telegram
 
 
 
