@@ -9,7 +9,9 @@ from .utils import (
     predictions_path,
     in_dev_mode,
     send_telegram_message,
+    send_telegram_photo,
     calculate_profit,
+    tip_has_tag,
 )
 from .env_loader import load_env
 
@@ -20,6 +22,8 @@ __all__ = [
     "predictions_path",
     "in_dev_mode",
     "send_telegram_message",
+    "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
     "load_env",
 ]

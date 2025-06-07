@@ -4,10 +4,10 @@ from datetime import datetime
 from pathlib import Path
 
 EXPECTED_TEMPLATES = [
-    "logs/sent_tips_{date}.jsonl",
-    "logs/pipeline_{date}.log",
-    "logs/odds_0800_{date}.log",
-    "logs/odds_hourly_{date}.log",
+    "logs/dispatch/sent_tips_{date}.jsonl",
+    "logs/inference/pipeline_{date}.log",
+    "logs/inference/odds_0800_{date}.log",
+    "logs/inference/odds_hourly_{date}.log",
 ]
 
 

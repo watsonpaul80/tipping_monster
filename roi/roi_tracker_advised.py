@@ -5,6 +5,7 @@ import pandas as pd
 import json
 from datetime import datetime
 import re
+from tippingmonster import tip_has_tag
 
 # === Telegram Config ===
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -63,7 +64,9 @@ def calculate_profit(row):
         return round(win_profit, 2)
 
 
-def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False):
+
+
+def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=None):
     date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     date_display = date_obj.strftime("%Y-%m-%d")
 
@@ -88,7 +91,9 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False):
     with open(input_file, "r") as f:
         for line in f:
             tip = json.loads(line)
-            if tip.get("confidence", 0.0) >= min_conf:
+            if tip.get("confidence", 0.0) >= min_conf and (
+                not tag or tip_has_tag(tip, tag)
+            ):
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
                 tip["Course"] = " ".join(
                     tip.get("race", "??:?? Unknown").split()[1:])
@@ -226,6 +231,9 @@ if __name__ == "__main__":
         action="store_true",
         help="Use sent tips file instead of predictions")
     parser.add_argument(
+        "--tag",
+        help="Filter tips by tag (e.g. NAP)")
+    parser.add_argument(
         "--show",
         action="store_true",
         help="Show summary in CLI only")
@@ -237,4 +245,5 @@ if __name__ == "__main__":
         args.min_conf,
         args.telegram,
         args.use_sent,
-        args.show)
+        args.show,
+        args.tag)

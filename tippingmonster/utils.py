@@ -10,7 +10,9 @@ __all__ = [
     "predictions_path",
     "in_dev_mode",
     "send_telegram_message",
+    "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
@@ -74,6 +76,33 @@ def send_telegram_message(message: str, token: str | None = None, chat_id: str |
     requests.post(url, data=payload, timeout=10)
 
 
+def send_telegram_photo(path: str | Path, caption: str | None = None,
+                        token: str | None = None, chat_id: str | None = None) -> None:
+    """Send an image ``path`` to Telegram respecting dev mode."""
+    if in_dev_mode():
+        log_file = logs_path("telegram.log")
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[PHOTO] {path} {caption or ''}\n")
+        print(f"[DEV] Telegram photo suppressed: {path}")
+        return
+
+    token = token or os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+    if os.getenv("TM_DEV"):
+        chat_id = os.getenv("TELEGRAM_DEV_CHAT_ID", chat_id)
+    if not token or not chat_id:
+        raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
+
+    url = f"https://api.telegram.org/bot{token}/sendPhoto"
+    with open(path, "rb") as img:
+        files = {"photo": img}
+        data = {"chat_id": chat_id}
+        if caption:
+            data["caption"] = caption
+        requests.post(url, data=data, files=files, timeout=10)
+
+
 def _get_place_terms(runners: int, race_name: str) -> tuple[float, int]:
     """Return place fraction and number of places for each-way bets."""
     is_handicap = "hcp" in race_name.lower()
@@ -112,3 +141,10 @@ def calculate_profit(row) -> float:
     else:
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
+
+
+def tip_has_tag(tip: dict, tag: str) -> bool:
+    """Return True if ``tag`` (case-insensitive substring) is in ``tip['tags']``."""
+    tags = tip.get("tags") or []
+    tag = tag.lower()
+    return any(tag in str(t).lower() for t in tags)

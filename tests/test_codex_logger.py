@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from codex_logger import log_action
+from utils.codex_logger import log_action
 
 
 def test_log_action_creates_file(tmp_path):
