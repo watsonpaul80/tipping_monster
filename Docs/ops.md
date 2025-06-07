@@ -29,7 +29,7 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 2.  **Fetch Betfair Odds (Hourly)**
     *   **Frequency:** Hourly between 07:05 and 20:05
-    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and potentially for features like "sniper" alerts or odds comparison.
+    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_hourly /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py`
 
 ---
@@ -94,21 +94,6 @@ _All ROI-related scripts now live in the project root. The previous `ROI/` direc
 
 ---
 
-### Sniper & Morning Preparation (Currently Commented Out or Specific Logging)
-
-The following jobs are related to "sniper" functionality (market movement detection) and morning preparation tasks. Some sniper-related jobs appear to be commented out in the provided crontab.
-
-12. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
-    *   **Frequency:** Was Daily at 09:30
-    *   **Purpose:** Likely prepares data or schedules for the sniper functionality.
-    *   **Command:** `#bash /home/ec2-user/tipping-monster/safecron.sh build_sniper_intel /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py`
-    *   **Internal Logs:** Check `logs/sniper/` if re-enabled.
-
-13. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
-    *   **Frequency:** Daily at 09:35
-    *   **Purpose:** Loads sniper data and schedules the actual sniper monitoring jobs.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh`
-    *   **Internal Logs:** Check `logs/sniper/`.
 
 14. **Fetch Betfair Odds (08:00 Snapshot)**
     *   **Frequency:** Daily at 08:00
