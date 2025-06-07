@@ -12,8 +12,4 @@ certs/
 __pycache__/
 .venv/
 .env
-<<<<<<< HEAD
-=======
 monstertweeter/.env
->>>>>>> 5c9414507daf288de8ea26cce9bf4c7d8a24a540
-.venv/
