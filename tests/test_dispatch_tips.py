@@ -1,8 +1,12 @@
 import sys
 from pathlib import Path
 
-from dispatch_tips import (calculate_monster_stake, generate_tags,
-                           get_tip_composite_id, select_nap_tip)
+from core.dispatch_tips import (
+    calculate_monster_stake,
+    generate_tags,
+    get_tip_composite_id,
+    select_nap_tip,
+)
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 

@@ -14,6 +14,7 @@ generate_tip_results_csv_with_mode_FINAL.py
 generate_weekly_summary.py
 merge_odds_into_tips.py
 roi_tracker_advised.py
+roi_by_confidence_band.py
 run_inference_and_select_top1.py
 run_pipeline_with_venv.sh
 safecron.sh

@@ -8,7 +8,29 @@ CMD="$@"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
 
-LOG_DIR="$REPO_ROOT/logs"
+case "$JOB_NAME" in
+  pipeline|odds_*|upload_results|calibrate_conf|train)
+    SUBDIR="inference"
+    ;;
+  dispatch*|load_sniper_intel)
+    SUBDIR="dispatch"
+    ;;
+  roi_*|weekly_*|generate_subscriber_log)
+    SUBDIR="roi"
+    ;;
+  *sniper*)
+    SUBDIR="sniper"
+    ;;
+  *)
+    SUBDIR=""
+    ;;
+esac
+
+if [ -n "$SUBDIR" ]; then
+  LOG_DIR="$REPO_ROOT/logs/$SUBDIR"
+else
+  LOG_DIR="$REPO_ROOT/logs"
+fi
 LOG_FILE="${LOG_DIR}/${JOB_NAME}_$(date +%F).log"
 
 if [[ -z "$TG_BOT_TOKEN" || -z "$TG_USER_ID" ]]; then
