@@ -24,7 +24,8 @@
 ### Added
 - `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
 - `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
- - `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+- `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+- `validate_features.py` wraps `core.validate_features` for backward compatibility.
 
 ## 2025-06-07
 
