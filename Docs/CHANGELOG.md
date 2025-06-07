@@ -1,14 +1,19 @@
 # 📅 CHANGELOG
 
+## 2025-06-07
+
+### Added
+- NAP odds cap with override support (`dispatch_tips.py`).
+- Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
+- NAP removed entirely when no tip meets the cap, with log entry noted.
+
+
 ## 2025-05-31
 
 ### Added
-- Manual sniper fallback logic for broken racecards
-- `sniper_schedule.txt` manual injection support
 
 ### Fixed
-- Schedule builder now avoids empty output silently
-- Steam Sniper no longer fails silently when no races found
+-- Schedule builder now avoids empty output silently
 
 ### Changed
 - All scheduled snapshot jobs now log job ID + time in output
@@ -44,9 +49,8 @@
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
 
 ### ✅ Fixes & Enhancements
-- Standardized `compare_odds_to_0800.py` logic across sniper and tipping systems.
-- Clarified snapshot folder usage:
-  - Steam Sniper: `steam_sniper_intel/sniper_data/`
+-- Standardized `compare_odds_to_0800.py` logic across systems.
+-- Clarified snapshot folder usage:
   - Legacy snapshots: `odds_snapshots/`
 - Deprecated old snapshot folder (`odds_snapshots/`) for main system use.
 - Fixed bug where `compare_odds_to_0800.py` would fail if the given snapshot didn’t exist.
@@ -85,17 +89,16 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Confirmed correct place detection & profit application in win/place splits.
 
 ### 📈 Best Odds Integration
-- Fully integrated `extract_best_realistic_odds.py` into nightly pipeline.
-- Injects best available odds from sniper snapshots before ROI calculation.
+  - Fully integrated `extract_best_realistic_odds.py` into nightly pipeline.
 - Ensures accurate profit tracking for both win and place legs.
 - Backfilled recent tips (e.g., May 30) using realistic odds.
 
 ### 🧼 Cron Simplification
-- Created `run_roi_pipeline.sh` to consolidate 4 cron jobs into 1:
-  - Realistic odds injection
-  - Advised & level ROI tracking
-  - Telegram summary dispatch
-- All ROI-related logs now stored in `logs/roi/` for tidiness.
+  - Created `run_roi_pipeline.sh` to consolidate 4 cron jobs into 1:
+    - Realistic odds injection
+    - Advised & level ROI tracking
+    - Telegram summary dispatch
+  - All ROI-related logs now stored in `logs/roi/` for tidiness.
 
 ### 📊 Weekly & Daily Summary Enhancements
 - `weekly_roi_summary.py` updated to include:
@@ -111,21 +114,6 @@ Let me know if you want it appended to your existing Monster changelog file or i
 
 ## 📅 2025-06-01
 
-### 🔫 Steam Sniper
-
-- ✅ Fixed `build_sniper_schedule.py` to handle real PM race times from JSONL racecard (e.g. `"5:15 Chelmsford"`)
-- ✅ Rewrote schedule builder to:
-  - Extract HH:MM from `race` field
-  - Create T-60, T-30, T-10 snapshot times
-  - Skip times already passed
-- ✅ Snapshot times saved to `sniper_schedule.txt` (e.g. `1205`, `1420`, `1935`)
-- ✅ `run_sniper_pipeline.sh` now reads schedule and schedules `at` jobs dynamically
-- ✅ Jobs run snapshot + steamer dispatch at correct times (confirmed live via `atq`)
-- ✅ Manual rerun of `run_sniper_pipeline.sh` re-triggers job scheduling cleanly
-- ✅ Emoji and f-string syntax errors in Python 3 fixed by declaring UTF-8 encoding
-- ✅ 08:00 snapshot issue resolved with fallback check and proper delay logic
-- ✅ Telegram cap of 20 steamers per message confirmed
-- ✅ System now race-aware and tracks market shifts across full afternoon schedule
 
 ### 🧠 Tipping Monster Core
 
@@ -139,3 +127,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 ## 2025-06-06 — ROI Script Consolidation
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
+
+## 2025-06-07 — CLI Helper
+- Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
+- Documented CLI usage in README and ops guide.
+- Added tests for new CLI commands.

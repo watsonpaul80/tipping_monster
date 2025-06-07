@@ -2,7 +2,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from pathlib import Path
 import boto3
 from botocore.exceptions import NoCredentialsError, ClientError
 from dotenv import load_dotenv
@@ -41,7 +40,8 @@ df = df.sort_values("Date")
 # Sidebar filters
 st.sidebar.header("\ud83d\udd0d Filters")
 all_dates = sorted(df['Date'].dt.date.unique())
-selected_dates = st.sidebar.multiselect("Date Range", all_dates, default=all_dates[-7:])
+selected_dates = st.sidebar.multiselect(
+    "Date Range", all_dates, default=all_dates[-7:])
 filtered = df[df['Date'].dt.date.isin(selected_dates)]
 
 # Summary Metrics
@@ -49,7 +49,8 @@ st.subheader("\ud83d\udcbe Summary Stats")
 total_tips = len(filtered)
 winners = (filtered['Result'] == '1').sum()
 profit = round(filtered['Profit'].sum(), 2)
-best_profit = round(filtered['Running Profit Best Odds'].iloc[-1], 2) if not filtered.empty else 0
+best_profit = round(
+    filtered['Running Profit Best Odds'].iloc[-1], 2) if not filtered.empty else 0
 stake_total = filtered['Stake'].sum()
 roi = (profit / stake_total * 100) if stake_total else 0
 
@@ -65,7 +66,11 @@ df_plot["Date"] = pd.to_datetime(df_plot["Date"])
 
 st.subheader("\ud83d\udcca Cumulative Profit Over Time")
 fig, ax = plt.subplots()
-ax.plot(df_plot["Date"], df_plot["Running Profit"], marker="o", label="Standard Odds")
+ax.plot(
+    df_plot["Date"],
+    df_plot["Running Profit"],
+    marker="o",
+    label="Standard Odds")
 ax.set_xlabel("Date")
 ax.set_ylabel("Profit (pts)")
 ax.grid(True)
@@ -74,5 +79,5 @@ st.pyplot(fig)
 
 # Table View
 st.subheader("\ud83d\udcc4 Tips Breakdown")
-st.dataframe(filtered.sort_values(by=["Date", "Time"], ascending=[False, True]))
-
+st.dataframe(filtered.sort_values(
+    by=["Date", "Time"], ascending=[False, True]))

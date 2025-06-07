@@ -17,10 +17,22 @@ pip install -r requirements.txt
 2. Copy `.env.example` to `.env` and fill in your credentials:
 `BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and others as needed.
 
-3. Run the tests to confirm everything works:
+For local development you can copy `.env.example` to `.env` and fill in your credentials.
+
+Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and place them somewhere outside version control (for example in a local `certs/` folder).
+
+Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm_home.sh` to configure automatically).
+
+4. Run the tests to confirm everything works:
 
 ```bash
 pytest
+```
+
+5. Run the linter:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
 ```
 
 ## Usage
@@ -29,22 +41,30 @@ Launch the full daily pipeline with:
 
 ```bash
 bash run_pipeline_with_venv.sh
+# Use --dev to disable S3 uploads and Telegram posts
+bash run_pipeline_with_venv.sh --dev
 ```
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
 
-### tmcli Wrapper
+## Command Line Interface
 
-Common workflows are consolidated under a simple CLI:
+Common tasks can be run via the `tmcli` helper. Example usage:
 
 ```bash
-# Run the full pipeline
-python tmcli.py pipeline --date 2025-06-07
-
-# Run the ROI pipeline for a specific day
-python tmcli.py roi --date 2025-06-07
-
-# Build and schedule Steam Sniper jobs
-python tmcli.py sniper
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
 
+These commands wrap existing scripts for convenience and default locations.
+
+
+## Health Check
+
+To confirm all expected logs were created for a given day, run:
+
+```bash
+python healthcheck_logs.py --date YYYY-MM-DD
+```
+
+This appends a status line to `logs/healthcheck.log` and lists any missing log files.

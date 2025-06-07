@@ -1,6 +1,6 @@
 # Scrape racecards for today
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="${TM_ROOT:-$(git -C "$script_dir" rev-parse --show-toplevel)}"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$script_dir" rev-parse --show-toplevel)}"
 date_str=$(date +'%F')
 OUTPUT_FILE="today_racecards.json" # Change this line
 echo "[INFO] Running racecards.py for today (${date_str})"
