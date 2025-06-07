@@ -14,25 +14,30 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. Export the required environment variables (see Docs/README.md for the full list):
+2. Install `pre-commit` and set up the Git hooks:
 
-`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TG_BOT_TOKEN`, `TG_USER_ID`.
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+3. Export the required environment variables (see Docs/README.md for the full list):
+
+`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
 Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and place them somewhere outside version control (for example in a local `certs/` folder).
 
-`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm_home.sh` to configure automatically).
 
-
-3. Run the tests to confirm everything works:
+4. Run the tests to confirm everything works:
 
 ```bash
 pytest
 ```
 
-4. Run the linter:
+5. Run the linter:
 
 ```bash
 pre-commit run --files $(git ls-files '*.py')
@@ -71,4 +76,3 @@ python tmcli.py sniper
 # Dev mode
 python tmcli.py sniper --dev
 ```
-
