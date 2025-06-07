@@ -11,6 +11,7 @@ from .utils import (
     send_telegram_message,
     calculate_profit,
 )
+from .helpers import dispatch, send_daily_roi, generate_chart
 from .env_loader import load_env
 
 __all__ = [
@@ -21,5 +22,8 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "calculate_profit",
+    "dispatch",
+    "send_daily_roi",
+    "generate_chart",
     "load_env",
 ]
