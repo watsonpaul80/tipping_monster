@@ -29,6 +29,26 @@ def test_send_telegram_message(monkeypatch):
     assert calls['data']['text'] == 'hi'
 
 
+def test_send_telegram_message_dev(monkeypatch):
+    calls = {}
+
+    def fake_post(url, data=None, timeout=None):
+        calls['url'] = url
+        calls['data'] = data
+        calls['timeout'] = timeout
+        class Resp:
+            status_code = 200
+        return Resp()
+
+    import requests
+    monkeypatch.setattr(requests, 'post', fake_post)
+    monkeypatch.setenv('TM_DEV', '1')
+    monkeypatch.setenv('TELEGRAM_DEV_CHAT_ID', 'DEV')
+
+    send_telegram_message('hi', token='TOK', chat_id='CID')
+    assert calls['data']['chat_id'] == 'DEV'
+
+
 def test_calculate_profit_win_and_place():
     row = {
         'Odds': 10.0,

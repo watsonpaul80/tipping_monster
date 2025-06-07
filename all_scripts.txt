@@ -31,3 +31,4 @@ archive_old_logs.py
 healthcheck_logs.py
 ensure_sent_tips.py
 alert_if_no_sent_tips.py
+alert_if_bad_snapshot.py

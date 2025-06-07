@@ -41,10 +41,17 @@ Common workflows are consolidated under a simple CLI:
 # Run the full pipeline
 python tmcli.py pipeline --date 2025-06-07
 
+# Run the full pipeline in dev mode
+python tmcli.py pipeline --date 2025-06-07 --dev
+
 # Run the ROI pipeline for a specific day
 python tmcli.py roi --date 2025-06-07
+# Dev mode also supported
+python tmcli.py roi --date 2025-06-07 --dev
 
 # Build and schedule Steam Sniper jobs
 python tmcli.py sniper
+# Dev mode
+python tmcli.py sniper --dev
 ```
 
