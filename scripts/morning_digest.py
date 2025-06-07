@@ -1,10 +1,9 @@
 import os
-from pathlib import Path
 from datetime import datetime, timedelta
-from tippingmonster import send_telegram_message
-from tippingmonster.env_loader import load_env
+from pathlib import Path
 
-load_env()
+import requests
+
 from tippingmonster.env_loader import load_env
 
 load_env()
@@ -21,22 +20,28 @@ Requires the following environment variables:
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
+
 def get_repo_root() -> Path:
     env_root = os.getenv("TIPPING_MONSTER_HOME")
     if env_root:
         return Path(env_root)
     try:
         import subprocess
-        out = subprocess.check_output([
-            "git",
-            "-C",
-            str(Path(__file__).resolve().parents[1]),
-            "rev-parse",
-            "--show-toplevel",
-        ], text=True).strip()
+
+        out = subprocess.check_output(
+            [
+                "git",
+                "-C",
+                str(Path(__file__).resolve().parents[1]),
+                "rev-parse",
+                "--show-toplevel",
+            ],
+            text=True,
+        ).strip()
         return Path(out)
     except Exception:
         return Path(__file__).resolve().parents[1]
+
 
 BASE_DIR = str(get_repo_root())
 
@@ -45,7 +50,9 @@ TG_USER_ID = os.getenv("TG_USER_ID") or os.getenv("TELEGRAM_CHAT_ID")
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
 
 if not TG_USER_ID or not TG_BOT_TOKEN:
-    raise RuntimeError("Telegram credentials must be set via TG_USER_ID / TELEGRAM_CHAT_ID and TG_BOT_TOKEN / TELEGRAM_BOT_TOKEN")
+    raise RuntimeError(
+        "Telegram credentials must be set via TG_USER_ID / TELEGRAM_CHAT_ID and TG_BOT_TOKEN / TELEGRAM_BOT_TOKEN"
+    )
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
@@ -79,5 +86,5 @@ msg += "#TippingMonster"
 # === SEND TO TELEGRAM ===
 requests.post(
     f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TG_USER_ID, "text": msg}
+    data={"chat_id": TG_USER_ID, "text": msg},
 )

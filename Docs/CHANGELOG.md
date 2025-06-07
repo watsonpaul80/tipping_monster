@@ -1,5 +1,10 @@
 # 📅 CHANGELOG
 
+## 2025-06-10
+
+### Fixed
+- Added missing `requests` import in `scripts/morning_digest.py` so Telegram posts work.
+
 ## 2025-06-09
 
 ### Added

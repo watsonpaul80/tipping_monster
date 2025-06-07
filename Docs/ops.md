@@ -132,6 +132,7 @@ The following jobs are related to "sniper" functionality (market movement detect
     *   **Purpose:** Runs a morning digest script, possibly summarizing tips or other information.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/scripts/morning_digest.py >> /home/ec2-user/tipping-monster/logs/morning_digest.log 2>&1`
     *   **Log Output:** `logs/morning_digest.log` (remains in root `logs/`)
+    *   **Note:** Uses the `requests` library to post the summary to Telegram.
 
 17. **Auto Tweet Tips (`monstertweeter/auto_tweet_tips.py`)**
     *   **Frequency:** Daily at 08:15
