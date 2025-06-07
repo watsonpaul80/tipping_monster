@@ -24,6 +24,8 @@ TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET
 
 The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
 
+For local development you can copy `.env.example` to `.env` and fill in your credentials.
+
 3. Verify your development environment:
 
 ```bash
