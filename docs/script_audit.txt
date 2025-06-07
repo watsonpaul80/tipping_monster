@@ -10,47 +10,50 @@ This audit flags scripts that appear unused or outdated. Criteria:
 - **rewrite** – referenced but replaced or needs updates
 
 ### Remove
-alert_if_no_sent_tips.py - remove
-archive_old_logs.py - remove
-backfill_sent_tips_from_predictions.py - remove
-check_betfair_market_times.py - remove
-rebuild_sent_tips_from_results.py - remove
-secrets1.py - remove
+utils/alert_if_no_sent_tips.py - remove
+utils/archive_old_logs.py - remove
+utils/backfill_sent_tips_from_predictions.py - remove
+utils/check_betfair_market_times.py - remove
+utils/ensure_sent_tips.py - remove
+evaluate_steamers.py - remove
+generate_race_schedule.py - remove
+utils/healthcheck_logs.py - remove
+load_sniper_jobs.sh - remove
+utils/rebuild_sent_tips_from_results.py - remove
+utils/secrets1.py - remove
 
 ### Rewrite
 build_sniper_schedule.py - rewrite (cron entry commented out)
 
 ### Keep
-codex_logger.py - keep
-compare_odds_to_0800.py - keep
-daily_flatten.sh - keep
-daily_train.sh - keep
-daily_upload_racecards.sh - keep
-daily_upload_results.sh - keep
-dispatch_all_tips.py - keep
+utils/codex_logger.py - keep
+core/compare_odds_to_0800.py - keep
+core/daily_flatten.sh - keep
+core/daily_train.sh - keep
+core/daily_upload_racecards.sh - keep
+core/daily_upload_results.sh - keep
+core/dispatch_all_tips.py - keep
 dispatch_snipers.py - keep
-dispatch_tips.py - keep
-extract_best_realistic_odds.py - keep
-fetch_betfair_odds.py - keep
-flatten_racecards_v3.py - keep
-healthcheck_logs.py - keep
-ensure_sent_tips.py - keep
+core/dispatch_tips.py - keep
+core/extract_best_realistic_odds.py - keep
+core/fetch_betfair_odds.py - keep
+core/flatten_racecards_v3.py - keep
 generate_and_schedule_snipers.sh - keep
-generate_subscriber_log.py - keep
-generate_tip_results_csv_with_mode_FINAL.py - keep
-generate_weekly_summary.py - keep
-merge_odds_into_tips.py - keep
-roi_tracker_advised.py - keep
-run_inference_and_select_top1.py - keep
-run_pipeline_with_venv.sh - keep
-run_roi_pipeline.sh - keep
-safecron.sh - keep
-send_daily_roi_summary.py - keep
-streamlit_dashboard.py - keep
-tag_roi_tracker.py - keep
-tmcli.py - keep
-train_model_v6.py - keep
-train_modelv7.py - keep
-upload_logs_to_s3.sh - keep
-weekly_roi_summary.py - keep
+roi/generate_subscriber_log.py - keep
+roi/generate_tip_results_csv_with_mode_FINAL.py - keep
+roi/generate_weekly_summary.py - keep
+core/merge_odds_into_tips.py - keep
+roi/roi_tracker_advised.py - keep
+core/run_inference_and_select_top1.py - keep
+core/run_pipeline_with_venv.sh - keep
+roi/run_roi_pipeline.sh - keep
+utils/safecron.sh - keep
+roi/send_daily_roi_summary.py - keep
+cli/streamlit_dashboard.py - keep
+roi/tag_roi_tracker.py - keep
+cli/tmcli.py - keep
+core/train_model_v6.py - keep
+core/train_modelv7.py - keep
+utils/upload_logs_to_s3.sh - keep
+roi/weekly_roi_summary.py - keep
 

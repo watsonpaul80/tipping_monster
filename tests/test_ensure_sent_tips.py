@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from ensure_sent_tips import ensure_sent_tips
+from utils.ensure_sent_tips import ensure_sent_tips
 
 
 def test_ensure_creates_file(tmp_path):
