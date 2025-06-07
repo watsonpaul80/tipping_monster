@@ -7,6 +7,7 @@ from datetime import datetime
 
 import pandas as pd
 import requests
+from tippingmonster import tip_has_tag
 
 # === Telegram Config ===
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -68,7 +69,7 @@ def calculate_profit(row):
         return round(win_profit, 2)
 
 
-def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=False):
+def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=None):
     date_obj = datetime.strptime(date_str, "%Y-%m-%d")
     date_display = date_obj.strftime("%Y-%m-%d")
 
@@ -93,11 +94,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=Fa
     with open(input_file, "r") as f:
         for line in f:
             tip = json.loads(line)
-            if tip.get("confidence", 0.0) >= min_conf:
-                if tag and not any(
-                    tag.lower() in t.lower() for t in tip.get("tags", [])
-                ):
-                    continue
+            if tip.get("confidence", 0.0) >= min_conf and (not tag or tip_has_tag(tip, tag)):
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
                 tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
                 tip["Horse"] = normalize_horse_name(tip.get("name", "Unknown"))
@@ -112,10 +109,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=Fa
                 tips.append(tip)
 
     if not tips:
-        print(
-            f"{date_display}   Tips: 0    Wins: 0   Places: 0   "
-            f"Stake: 0.00 Profit: 0.00 ROI: 0.00%"
-        )
+        print(f"{date_display}   Tips: 0    Wins: 0   Places: 0   Stake: 0.00 Profit: 0.00 ROI: 0.00%")
         return
 
     tips_df = pd.DataFrame(tips)
@@ -146,9 +140,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=Fa
             .str.replace(r"\s*\(ire\)", "", regex=True)
             .str.strip()
         )
-        results_df["Race Time"] = (
-            results_df["Race Time"].astype(str).str.strip().str.lower()
-        )
+        results_df["Race Time"] = results_df["Race Time"].astype(str).str.strip().str.lower()
 
     except Exception as e:
         print(f"Error reading results CSV: {e}")
@@ -173,11 +165,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=Fa
 
     num_nrs = (merged_df["Position"] == "NR").sum()
     wins = (merged_df["Position"] == "1").sum()
-    places = (
-        merged_df["Position"]
-        .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
-        .sum()
-    )
+    places = merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
     losses = len(merged_df) - wins - places - num_nrs
 
     summary = {
@@ -207,17 +195,8 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, tag=None, show=Fa
     output_path = f"logs/roi/tips_results_{date_str}_{mode}.csv"
     merged_df[
         [
-            "Date",
-            "Race Time",
-            "Course",
-            "Horse",
-            "Odds",
-            "odds_delta",
-            "Confidence",
-            "Position",
-            "Mode",
-            "Stake",
-            "Profit",
+            "Date", "Race Time", "Course", "Horse", "Odds", "odds_delta",
+            "Confidence", "Position", "Mode", "Stake", "Profit",
         ]
     ].to_csv(output_path, index=False)
     print(f"✅ Saved: {output_path}")
@@ -239,13 +218,9 @@ if __name__ == "__main__":
     parser.add_argument("--mode", choices=["advised", "level"], required=True)
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
-    parser.add_argument(
-        "--use_sent",
-        action="store_true",
-        help="Use sent tips file instead of predictions",
-    )
+    parser.add_argument("--use_sent", action="store_true", help="Use sent tips file instead of predictions")
+    parser.add_argument("--tag", help="Filter tips by tag (e.g. NAP)")
     parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
-    parser.add_argument("--tag", default=None, help="Filter tips by tag substring")
     args = parser.parse_args()
 
     main(
@@ -254,6 +229,6 @@ if __name__ == "__main__":
         args.min_conf,
         args.telegram,
         args.use_sent,
-        args.tag,
-        args.show,
+        show=args.show,
+        tag=args.tag,
     )
