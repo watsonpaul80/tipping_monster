@@ -6,7 +6,14 @@ import pytest
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from tippingmonster import send_telegram_message, calculate_profit, repo_root, repo_path, logs_path
+from tippingmonster import (
+    send_telegram_message,
+    calculate_profit,
+    repo_root,
+    repo_path,
+    logs_path,
+    tip_has_tag,
+)
 
 
 def test_send_telegram_message(monkeypatch):
@@ -85,3 +92,9 @@ def test_logs_path_dev(monkeypatch):
     monkeypatch.setenv('TM_DEV_MODE', '1')
     p = logs_path('dispatch')
     assert str(p).endswith('logs/dev/dispatch')
+
+
+def test_tip_has_tag_basic():
+    tip = {'tags': ['🧠 Monster NAP', '⚡ Fresh']}
+    assert tip_has_tag(tip, 'NAP')
+    assert not tip_has_tag(tip, 'Value')

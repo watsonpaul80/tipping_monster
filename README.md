@@ -85,7 +85,7 @@ For convenience you can use the provided `Makefile`:
 ```bash
 make train    # train the model
 make pipeline # run the full daily pipeline
-make roi      # run ROI pipeline
+make roi      # run ROI pipeline (use ROI scripts with `--tag` to filter by tag)
 make test     # run unit tests
 ```
 

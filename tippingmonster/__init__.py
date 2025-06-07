@@ -10,6 +10,7 @@ from .utils import (
     in_dev_mode,
     send_telegram_message,
     calculate_profit,
+    tip_has_tag,
 )
 from .env_loader import load_env
 
@@ -21,5 +22,6 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "calculate_profit",
+    "tip_has_tag",
     "load_env",
 ]
