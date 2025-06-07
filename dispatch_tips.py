@@ -180,7 +180,6 @@ def format_tip_message(tip, max_id):
     parts.append("-" * 30)
     return "\n".join(parts)
 
-
 def send_to_telegram(text):
     if LOG_TO_CLI_ONLY:
         print(text)
@@ -206,6 +205,11 @@ def main():
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--dev", action="store_true", help="Enable dev mode")
+    parser.add_argument(
+        "--explain",
+        action="store_true",
+        help="Append a short SHAP explanation to each tip",
+    )
     parser.add_argument(
         "--explain",
         action="store_true",
@@ -239,6 +243,15 @@ def main():
         except Exception as e:
             print(f"⚠️ Failed to generate explanations: {e}")
 
+    explanations = {}
+    if args.explain:
+        try:
+            from explain_model_decision import generate_explanations
+
+            explanations = generate_explanations(PREDICTIONS_PATH)
+        except Exception as e:
+            print(f"⚠️ Failed to generate explanations: {e}")
+
     nap_log = logs_path(f"nap_override_{args.date}.log")
     nap_tip, max_conf = select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=str(nap_log))
     max_id = get_tip_composite_id(nap_tip) if nap_tip else None
@@ -255,6 +268,9 @@ def main():
         tip["stake"] = stake
         if tip.get("odds_drifted") and tip.get("confidence", 0.0) >= 0.95:
             tip["monster_mode"] = True
+        if args.explain:
+            tip_id = get_tip_composite_id(tip)
+            tip["explanation"] = explanations.get(tip_id, "")
         if args.explain:
             tip_id = get_tip_composite_id(tip)
             tip["explanation"] = explanations.get(tip_id, "")
