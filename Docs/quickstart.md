@@ -46,7 +46,10 @@ These times are detailed in `Docs/monster_overview.md`.
 
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
-- **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions. The script adds the repository root to `sys.path`, so you can run it from either the project root or the `core/` directory.
+- **Inference:** `core/run_inference_and_select_top1.py` chooses the most recent
+  `tipping-monster-xgb-model-*.tar.gz` in the repository root and downloads it
+  from S3 if a path is provided. If no model is available, the script exits with
+  `FileNotFoundError`.
 - **Important:** run this script from the **repository root**:
 
 ```bash

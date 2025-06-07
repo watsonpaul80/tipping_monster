@@ -25,7 +25,12 @@ from tippingmonster.env_loader import load_env
 load_env()
 
 # === ARGUMENT PARSING ===
-latest_model = sorted(glob.glob("tipping-monster-xgb-model-*.tar.gz"))[-1]
+models = sorted(glob.glob("tipping-monster-xgb-model-*.tar.gz"))
+if not models:
+    raise FileNotFoundError(
+        "No model tarball found. Download one from S3 or run training."
+    )
+latest_model = models[-1]
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--model", default=latest_model, help="Path to model .tar.gz (S3-relative or local)"
