@@ -23,6 +23,18 @@ def test_tmcli_healthcheck(tmp_path):
     assert text.endswith("OK")
 
 
+def test_tmcli_healthcheck_missing_files(tmp_path):
+    date = "2025-06-06"
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / f"sent_tips_{date}.jsonl").write_text("ok")
+
+    os.chdir(tmp_path)
+    tmcli.main(["healthcheck", "--date", date, "--out-log", "hc.log"])
+    text = (tmp_path / "hc.log").read_text()
+    assert text.count("MISSING") == 3
+
+
 def test_tmcli_ensure_sent_tips(tmp_path):
     date = "2025-06-06"
     pred_dir = tmp_path / "predictions" / date
@@ -45,7 +57,27 @@ def test_tmcli_ensure_sent_tips(tmp_path):
     assert sent.read_text() == "tip"
 
 
-def test_tmcli_dispatch_tips(tmp_path, monkeypatch):
+def test_tmcli_ensure_sent_tips_missing_pred(tmp_path):
+    date = "2025-06-06"
+    pred_dir = tmp_path / "predictions" / date
+    pred_dir.mkdir(parents=True)
+
+    os.chdir(tmp_path)
+    tmcli.main(
+        [
+            "ensure-sent-tips",
+            date,
+            "--predictions-dir",
+            "predictions",
+            "--dispatch-dir",
+            "logs/dispatch",
+        ]
+    )
+    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date}.jsonl"
+    assert not sent.exists()
+
+
+def test_tmcli_dispatch_tips(tmp_path):
     date = "2025-06-06"
     root = Path(__file__).resolve().parents[1]
     pred_dir = root / "predictions" / date
@@ -63,7 +95,7 @@ def test_tmcli_dispatch_tips(tmp_path, monkeypatch):
     os.environ.pop("TM_DEV_MODE", None)
 
 
-def test_tmcli_send_roi(tmp_path, monkeypatch):
+def test_tmcli_send_roi(tmp_path):
     date = "2025-06-06"
     root = Path(__file__).resolve().parents[1]
     roi_dir = root / "logs" / "roi"
