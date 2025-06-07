@@ -17,11 +17,19 @@ pip install -r requirements.txt
 2. Copy `.env.example` to `.env` and fill in your credentials:
 `BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and others as needed.
 
+
+3. Verify your development environment:
+
+```bash
+./dev-check.sh
+```
+
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
 Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and place them somewhere outside version control (for example in a local `certs/` folder).
 
 Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm_home.sh` to configure automatically).
+
 
 4. Run the tests to confirm everything works:
 
@@ -68,6 +76,18 @@ python healthcheck_logs.py --date YYYY-MM-DD
 ```
 
 
+### Make Targets
+
+For convenience you can use the provided `Makefile`:
+
+```bash
+make train    # train the model
+make pipeline # run the full daily pipeline
+make roi      # run ROI pipeline
+make test     # run unit tests
+```
+=======
+
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same
@@ -75,4 +95,5 @@ historical dataset. The script logs the confidence difference and ROI
 summary to `logs/compare_model_v6_v7.csv`.
 
 This appends a status line to `logs/healthcheck.log` and lists any missing log files.
+
 
