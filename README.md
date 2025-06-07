@@ -76,6 +76,7 @@ python tmcli.py roi --date YYYY-MM-DD     # generate ROI stats
 python tmcli.py sniper --dev              # (placeholder) sniper tasks
 python tmcli.py healthcheck --date YYYY-MM-DD
 python tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py validate-tips --date YYYY-MM-DD
 ```
 
 These wrap core scripts for ease of use.
