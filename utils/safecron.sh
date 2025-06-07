@@ -33,18 +33,13 @@ else
 fi
 LOG_FILE="${LOG_DIR}/${JOB_NAME}_$(date +%F).log"
 
+# Validate Telegram credentials before running anything
 if [[ -z "$TG_BOT_TOKEN" || -z "$TG_USER_ID" ]]; then
   echo "Error: TG_BOT_TOKEN and TG_USER_ID must be set" >&2
   exit 1
 fi
 
 mkdir -p "$LOG_DIR"
-
-# Validate Telegram credentials before running anything
-if [[ -z "$TG_BOT_TOKEN" || -z "$TG_USER_ID" ]]; then
-  echo "Error: TG_BOT_TOKEN and TG_USER_ID must be set" >&2
-  exit 1
-fi
 
 # Function to send telegram alert on failure
 send_telegram_alert() {

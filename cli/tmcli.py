@@ -2,11 +2,12 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from utils.healthcheck_logs import check_logs
-from utils.ensure_sent_tips import ensure_sent_tips
-from model_feature_importance import generate_chart
 from core.dispatch_tips import main as dispatch_main
+from model_feature_importance import generate_chart
 from roi.send_daily_roi_summary import send_daily_roi
+from utils.ensure_sent_tips import ensure_sent_tips
+from utils.healthcheck_logs import check_logs
+from utils.validate_tips import main as validate_tips_main
 
 
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
@@ -41,6 +42,13 @@ def main(argv=None) -> None:
     parser_sent.add_argument("--predictions-dir", default="predictions")
     parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
 
+    # validate-tips subcommand
+    parser_validate = subparsers.add_parser(
+        "validate-tips", help="Validate tips JSON for a given date"
+    )
+    parser_validate.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_validate.add_argument("--predictions-dir", default="predictions")
+
     # model-feature-importance subcommand
     parser_feat = subparsers.add_parser(
         "model-feature-importance",
@@ -70,12 +78,14 @@ def main(argv=None) -> None:
 
     if args.command == "healthcheck":
         check_logs(Path(args.out_log), args.date)
+
     elif args.command == "ensure-sent-tips":
         ensure_sent_tips(
             args.date,
             Path(args.predictions_dir),
             Path(args.dispatch_dir),
         )
+
     elif args.command == "model-feature-importance":
         out = generate_chart(
             args.model,
@@ -84,15 +94,21 @@ def main(argv=None) -> None:
             telegram=args.telegram,
         )
         print(out)
+
     elif args.command == "dispatch-tips":
         dispatch(
             date=args.date or date.today().isoformat(),
             telegram=args.telegram,
             dev=args.dev,
         )
+
+    elif args.command == "validate-tips":
+        argv = ["--date", args.date] if args.date else []
+        argv += ["--predictions-dir", args.predictions_dir]
+        validate_tips_main(argv)
+
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
-
 
 if __name__ == "__main__":
     main()
