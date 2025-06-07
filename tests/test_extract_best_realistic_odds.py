@@ -1,6 +1,7 @@
-from extract_best_realistic_odds import extract_race_key
 import sys
+from pathlib import Path
 
+from extract_best_realistic_odds import extract_race_key
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
