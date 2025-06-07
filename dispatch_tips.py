@@ -8,15 +8,10 @@ from datetime import date
 from time import sleep
 
 from dotenv import load_dotenv
-
-load_dotenv()
-
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 
-load_env()
-from tippingmonster.env_loader import load_env
-
+load_dotenv()
 load_env()
 
 # === CONFIG ===

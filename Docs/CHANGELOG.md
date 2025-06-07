@@ -8,6 +8,9 @@
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 - `dispatch_tips.py` now uses Python logging and supports `--debug`.
 
+### Changed
+- Unified `load_env()` calls to appear once after imports in scripts.
+
 
 ## 2025-05-31
 
