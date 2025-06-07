@@ -78,7 +78,7 @@ All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now 
 * `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
 * `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-* `dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TELEGRAM_CHAT_ID` is set).
+* `dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
 * `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
 * `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
