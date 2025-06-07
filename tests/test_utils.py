@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -12,10 +12,6 @@ from tippingmonster import (
     repo_root,
     send_telegram_message,
     send_telegram_photo,
-    calculate_profit,
-    repo_root,
-    repo_path,
-    logs_path,
     tip_has_tag,
 )
 
@@ -49,6 +45,8 @@ def test_send_telegram_message(monkeypatch):
 
 def test_send_telegram_photo(monkeypatch, tmp_path):
     calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
     def fake_post(url, data=None, files=None, timeout=None):
         calls["url"] = url
@@ -156,12 +154,12 @@ def test_repo_and_logs_path_helpers():
 
 
 def test_logs_path_dev(monkeypatch):
-    monkeypatch.setenv('TM_DEV_MODE', '1')
-    p = logs_path('dispatch')
-    assert str(p).endswith('logs/dev/dispatch')
+    monkeypatch.setenv("TM_DEV_MODE", "1")
+    p = logs_path("dispatch")
+    assert str(p).endswith("logs/dev/dispatch")
 
 
 def test_tip_has_tag_basic():
-    tip = {'tags': ['🧠 Monster NAP', '⚡ Fresh']}
-    assert tip_has_tag(tip, 'NAP')
-    assert not tip_has_tag(tip, 'Value')
+    tip = {"tags": ["🧠 Monster NAP", "⚡ Fresh"]}
+    assert tip_has_tag(tip, "NAP")
+    assert not tip_has_tag(tip, "Value")

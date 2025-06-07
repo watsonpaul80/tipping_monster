@@ -29,6 +29,7 @@ __all__ = [
     "send_telegram_message",
     "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
     "dispatch",
     "send_daily_roi",
     "generate_chart",
