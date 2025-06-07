@@ -1,7 +1,7 @@
 import json
 import os
-from datetime import date
 import sys
+from datetime import date
 import subprocess
 from pathlib import Path
 
@@ -28,11 +28,14 @@ def test_tmcli_healthcheck(tmp_path):
 
 def test_tmcli_healthcheck_missing_files(tmp_path):
     date_str = "2025-06-06"
+
+    logs = tmp_path / "logs" / "dispatch"
+    logs.mkdir(parents=True)
+    (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
     logs = tmp_path / "logs"
     (logs / "dispatch").mkdir(parents=True)
     (logs / "inference").mkdir(parents=True)
     (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
-
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
     text = (tmp_path / "hc.log").read_text()
@@ -46,12 +49,16 @@ def test_tmcli_ensure_sent_tips(tmp_path):
     (pred_dir / "tips_with_odds.jsonl").write_text("tip")
 
     os.chdir(tmp_path)
-    tmcli.main([
-        "ensure-sent-tips",
-        date_str,
-        "--predictions-dir", "predictions",
-        "--dispatch-dir", "logs/dispatch",
-    ])
+    tmcli.main(
+        [
+            "ensure-sent-tips",
+            date_str,
+            "--predictions-dir",
+            "predictions",
+            "--dispatch-dir",
+            "logs/dispatch",
+        ]
+    )
     sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
     assert sent.exists()
     assert sent.read_text() == "tip"
@@ -62,9 +69,24 @@ def test_tmcli_dispatch_tips(monkeypatch):
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
+    os.chdir(tmp_path)
+    tmcli.main(
+        [
+            "ensure-sent-tips",
+            date_str,
+            "--predictions-dir",
+            "predictions",
+            "--dispatch-dir",
+            "logs/dispatch",
+        ]
+    )
+    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
+    assert not sent.exists()
+
     def fake_run(cmd, check):
         calls["cmd"] = cmd
         calls["check"] = check
+
 
     monkeypatch.setattr(subprocess, "run", fake_run)
     tmcli.main(["dispatch-tips", "2025-06-06", "--telegram", "--dev"])
@@ -97,3 +119,17 @@ def test_tmcli_send_roi(monkeypatch):
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
 
+    os.chdir(tmp_path)
+    tmcli.main(
+        [
+            "model-feature-importance",
+            "--model",
+            str(model_path),
+            "--data",
+            str(data_path),
+            "--out-dir",
+            "logs/model",
+        ]
+    )
+    out = tmp_path / "logs/model" / f"feature_importance_{date.today().isoformat()}.png"
+    assert out.exists()

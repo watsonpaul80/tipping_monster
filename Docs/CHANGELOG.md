@@ -3,6 +3,11 @@
 - Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
 
 
+## 2025-06-10
+
+### Fixed
+- Added missing `requests` import in `scripts/morning_digest.py` so Telegram posts work.
+
 ## 2025-06-09
 
 ### Added
