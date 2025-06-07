@@ -1,14 +1,14 @@
 import os
 from pathlib import Path
 from datetime import datetime, timedelta
-
 from tippingmonster import send_telegram_message
 
-"""Send a morning digest to Telegram.
+"""
+Send a morning digest to Telegram.
 
 Requires the following environment variables:
-    TG_USER_ID    - Telegram user ID to send the message to
-    TG_BOT_TOKEN  - Bot token used for authentication
+    TELEGRAM_CHAT_ID or TG_USER_ID    - Telegram user ID to send the message to
+    TELEGRAM_BOT_TOKEN or TG_BOT_TOKEN  - Bot token used for authentication
 """
 
 # === CONFIG ===
@@ -34,11 +34,12 @@ def get_repo_root() -> Path:
 
 BASE_DIR = str(get_repo_root())
 
-# Read Telegram credentials from environment variables
-# Required variables: TG_USER_ID, TG_BOT_TOKEN
-TG_USER_ID = os.getenv("TG_USER_ID")
-TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+# === ENV VARS ===
+TG_USER_ID = os.getenv("TG_USER_ID") or os.getenv("TELEGRAM_CHAT_ID")
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN")
 
+if not TG_USER_ID or not TG_BOT_TOKEN:
+    raise RuntimeError("Telegram credentials must be set via TG_USER_ID / TELEGRAM_CHAT_ID and TG_BOT_TOKEN / TELEGRAM_BOT_TOKEN")
 
 # === FILE PATHS ===
 output_path = f"{BASE_DIR}/predictions/{TODAY}/output.jsonl"
@@ -68,4 +69,3 @@ msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
 send_telegram_message(msg, token=TG_BOT_TOKEN, chat_id=TG_USER_ID)
-
