@@ -29,9 +29,12 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_DEFAULT_REGION`
+
+Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
