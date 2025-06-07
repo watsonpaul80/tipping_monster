@@ -8,6 +8,7 @@ import tempfile
 import xgboost as xgb
 from datetime import date
 import boto3
+from model_fetcher import download_if_missing
 import orjson
 import numpy as np
 import glob
@@ -25,15 +26,15 @@ input_path = args.input or f"rpscrape/batch_inputs/{date_str}.jsonl"
 output_path = f"predictions/{date_str}/output.jsonl"
 os.makedirs(f"predictions/{date_str}", exist_ok=True)
 
-model_path = args.model
+model_arg = args.model
 bucket = "tipping-monster"
 
 # === DOWNLOAD MODEL FROM S3 IF MISSING ===
-if not os.path.exists(model_path):
-    print(f"Downloading model from S3: {model_path}")
-    s3 = boto3.client("s3")
-    local_model_file = os.path.basename(model_path)
-    s3.download_file(bucket, model_path, local_model_file)
+if os.path.exists(model_arg):
+    model_path = model_arg
+else:
+    local_model_file = os.path.basename(model_arg)
+    download_if_missing(bucket, model_arg, local_model_file)
     model_path = local_model_file
 
 # === EXTRACT MODEL TAR ===
