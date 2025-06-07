@@ -35,14 +35,22 @@ def predictions_path(date: str) -> Path:
     return repo_path("predictions", date)
 
 
-def send_telegram_message(message: str, token: str | None = None, chat_id: str | None = None) -> None:
+def send_telegram_message(
+    message: str,
+    token: str | None = None,
+    chat_id: str | None = None,
+) -> None:
     """Send ``message`` to Telegram using bot ``token`` and ``chat_id``.
 
     The environment variables ``TELEGRAM_BOT_TOKEN`` and ``TELEGRAM_CHAT_ID``
-    are used if ``token`` or ``chat_id`` are not provided.
+    are used if ``token`` or ``chat_id`` are not provided. When the ``TM_DEV``
+    environment variable is set, ``TELEGRAM_DEV_CHAT_ID`` is used instead of
+    ``TELEGRAM_CHAT_ID`` to avoid messaging the production channel.
     """
     token = token or os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+    if os.getenv("TM_DEV"):
+        chat_id = os.getenv("TELEGRAM_DEV_CHAT_ID", chat_id)
     if not token or not chat_id:
         raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
 
