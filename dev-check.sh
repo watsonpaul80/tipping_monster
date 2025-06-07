@@ -41,7 +41,7 @@ fi
 if [ -n "$VIRTUAL_ENV" ]; then
   print_ok "virtual environment activated"
 else
-  print_err "activate your virtualenv (. ./venv/bin/activate)"
+  print_err "activate your virtualenv (. .venv/bin/activate)"
 fi
 
 # Check .env file
