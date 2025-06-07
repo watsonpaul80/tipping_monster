@@ -9,7 +9,6 @@ from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
 
-
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(
         description="Tipping Monster command line interface"
@@ -69,12 +68,14 @@ def main(argv=None) -> None:
 
     if args.command == "healthcheck":
         check_logs(Path(args.out_log), args.date)
+
     elif args.command == "ensure-sent-tips":
         ensure_sent_tips(
             args.date,
             Path(args.predictions_dir),
             Path(args.dispatch_dir),
         )
+
     elif args.command == "model-feature-importance":
         out = generate_chart(
             args.model,
@@ -83,19 +84,21 @@ def main(argv=None) -> None:
             telegram=args.telegram,
         )
         print(out)
+
     elif args.command == "dispatch-tips":
         dispatch(
             date=args.date or date.today().isoformat(),
             telegram=args.telegram,
             dev=args.dev,
         )
+
     elif args.command == "validate-tips":
         argv = ["--date", args.date] if args.date else []
         argv += ["--predictions-dir", args.predictions_dir]
         validate_tips_main(argv)
+
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
-
 
 if __name__ == "__main__":
     main()

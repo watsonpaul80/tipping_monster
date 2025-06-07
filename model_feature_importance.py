@@ -43,8 +43,12 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     return model, features
 
 
-def generate_chart(model_path: str, data_path: str | None = None,
-                    out_file: Path | None = None, telegram: bool = False) -> Path:
+def generate_chart(
+    model_path: str,
+    data_path: str | None = None,
+    out: Path | None = None,
+    telegram: bool = False,
+) -> Path:
     """Create a SHAP bar chart of the top 10 features.
 
     Returns the path to the saved PNG file.
@@ -67,17 +71,16 @@ def generate_chart(model_path: str, data_path: str | None = None,
                       max_display=10, show=False, plot_type="bar")
     plt.tight_layout()
 
-    if out_file is None:
-        out_file = logs_path("model", f"feature_importance_{date.today().isoformat()}.png")
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(out_file)
+    if out is None:
+        out = logs_path("model", f"feature_importance_{date.today().isoformat()}.png")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(out)
     plt.close()
 
     if telegram:
         caption = f"Top model features {date.today().isoformat()}"
-        send_telegram_photo(out_file, caption=caption)
-
-    return out_file
+        send_telegram_photo(out, caption=caption)
+    return out
 
 
 def main(argv: list[str] | None = None) -> None:
