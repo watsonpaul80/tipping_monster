@@ -27,7 +27,8 @@ send_telegram_alert() {
     -d text=$'⚠️ *Cron Failure Detected*\n*Job:* \`'"$JOB_NAME"$'\`\n*Exit Code:* '"$STATUS"$'\n*Time:* '"$(date)"$'\n*Log:*\n```\n'"$LOG_TAIL"$'\n```'
 }
 
-# Run the provided command and capture the exit status
+
+# Run the provided command and capture its exit status
 eval "$CMD" >> "$LOG_FILE" 2>&1
 STATUS=$?
 

@@ -39,7 +39,7 @@ ROI_PATH = str(repo_path("logs", "roi", f"tips_results_{YESTERDAY}_advised.csv")
 tips = []
 if os.path.exists(TIPS_PATH):
     with open(TIPS_PATH, "r") as f:
-        tips = [json.loads(line.strip()) for line in f if line.strip()]
+    tips = [json.loads(line.strip()) for line in f if line.strip()]
     tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:4]
 
 # === Load ROI summary ===

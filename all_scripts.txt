@@ -9,6 +9,7 @@ daily_upload_results.sh
 dispatch_tips.py
 fetch_betfair_odds.py
 flatten_racecards_v3.py
+generate_race_schedule.py
 generate_tip_results_csv_with_mode_FINAL.py
 generate_weekly_summary.py
 merge_odds_into_tips.py
