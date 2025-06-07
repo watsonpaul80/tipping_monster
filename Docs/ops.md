@@ -21,11 +21,11 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 ### Core Pipeline & Odds Fetching
 
 
-1.  **Run Main Pipeline (`core/run_pipeline_with_venv.sh` or `tmcli.py pipeline`)**
+1.  **Run Main Pipeline (`run_pipeline_with_venv.sh` or `cli/tmcli.py pipeline`)**
     *   **Frequency:** Daily at 05:00
     *   **Purpose:** Executes the main data processing and tipping pipeline. This likely involves fetching racecards, running predictions, selecting tips, and preparing them for dispatch.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/core/run_pipeline_with_venv.sh`
-    *   **Alt:** `python tmcli.py pipeline --dev` for safe local testing.
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/run_pipeline_with_venv.sh`
+    *   **Alt:** `python cli/tmcli.py pipeline --dev` for safe local testing.
     *   **Internal Logs:** Check `logs/inference/`, `logs/dispatch/` for detailed logs from this pipeline.
 
 2.  **Fetch Betfair Odds (Hourly)**
@@ -103,9 +103,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 13. **Healthcheck Logs (`cli/tmcli.py healthcheck`)**
     *   **Frequency:** Daily at 00:05
     *   **Purpose:** Verifies key log files exist and writes a status line to `logs/healthcheck.log`.
-
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/cli/tmcli.py healthcheck --date $(date +\%F)`
-
 
 ---
 

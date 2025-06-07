@@ -91,11 +91,6 @@ python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
 
 
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
 
 Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
@@ -103,9 +98,7 @@ summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
+
 
 ```
 
