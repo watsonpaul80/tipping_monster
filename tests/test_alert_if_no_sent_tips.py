@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from alert_if_no_sent_tips import alert_if_no_sent_tips
+from utils.alert_if_no_sent_tips import alert_if_no_sent_tips
 
 
 def test_alert_when_missing(tmp_path):
