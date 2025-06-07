@@ -21,12 +21,12 @@ BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
 TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
-The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
+The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
 
 3. Verify your development environment:
 
 ```bash
-./dev-check.sh
+./utils/dev-check.sh
 ```
 
 Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and store them securely outside version control (e.g., in a `certs/` folder).
@@ -34,7 +34,7 @@ Private SSL keys are not included in the repository. Generate your own Betfair c
 Optionally, set `TIPPING_MONSTER_HOME` to the repository root:
 
 ```bash
-source set_tm_home.sh
+source utils/set_tm_home.sh
 ```
 
 4. Run tests to confirm everything is working:
@@ -84,25 +84,25 @@ These wrap core scripts for ease of use.
 
 ## Tip Dispatch
 
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
 summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
 summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
 summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
 summary generated from SHAP values.
 
@@ -111,7 +111,7 @@ summary generated from SHAP values.
 To confirm all expected logs were created for a given day:
 
 ```bash
-python healthcheck_logs.py --date YYYY-MM-DD
+python utils/healthcheck_logs.py --date YYYY-MM-DD
 ```
 
 This writes a status summary to `logs/healthcheck.log`.

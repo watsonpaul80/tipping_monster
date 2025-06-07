@@ -117,11 +117,11 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 
 | Script                                      | Purpose                                                                         |
 |---------------------------------------------|---------------------------------------------------------------------------------|
-| `roi_tracker_advised.py`                    | Main daily tracker – filters, calculates profit, generates tip results CSV      |
-| `weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
-| `send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
-| `generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
-| `generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
+| `roi/roi_tracker_advised.py`                    | Main daily tracker – filters, calculates profit, generates tip results CSV      |
+| `roi/weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
+| `roi/send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
+| `roi/generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
+| `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
 | `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
@@ -140,9 +140,9 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 | Step | Time | Script | What It Does |
 |------|------|--------|--------------|
 | 1 | 22:50 | `extract_best_realistic_odds.py` | Injects best realistic odds into tip records from latest snapshot before race |
-| 2 | 22:51 | `roi_tracker_advised.py` (x2) | Generates `tips_results_DATE.csv` files for both `--mode advised` and `--mode level` |
-| 3 | 22:52 | `send_daily_roi_summary.py` | Sends formatted daily ROI summary to Telegram |
-| 4 | Sunday 23:58 | `weekly_roi_summary.py --telegram` | Sends full weekly ROI breakdown to Telegram |
+| 2 | 22:51 | `roi/roi_tracker_advised.py` (x2) | Generates `tips_results_DATE.csv` files for both `--mode advised` and `--mode level` |
+| 3 | 22:52 | `roi/send_daily_roi_summary.py` | Sends formatted daily ROI summary to Telegram |
+| 4 | Sunday 23:58 | `roi/weekly_roi_summary.py --telegram` | Sends full weekly ROI breakdown to Telegram |
 
 ---
 
@@ -165,23 +165,23 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 Run manually:
 ```bash
 # Daily ROI pipeline (default date = today)
-bash run_roi_pipeline.sh
+bash roi/run_roi_pipeline.sh
 
 # Weekly summary (current ISO week)
-./weekly_roi_summary.py --week $(date +%G-W%V) --telegram
+roi/weekly_roi_summary.py --week $(date +%G-W%V) --telegram
 # or
-python weekly_roi_summary.py --week $(date +%G-W%V) --telegram
+python roi/weekly_roi_summary.py --week $(date +%G-W%V) --telegram
 ```
 
 Automated by cron:
 ```cron
 # 📊 ROI Pipeline (Realistic Odds → ROI → Telegram)
-50 22 * * * bash safecron.sh roi_pipeline /bin/bash run_roi_pipeline.sh
+50 22 * * * bash utils/safecron.sh roi_pipeline /bin/bash roi/run_roi_pipeline.sh
 
 # 📤 Weekly ROI Summary to Telegram
-58 23 * * 0 bash safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
+58 23 * * 0 bash utils/safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python roi/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
 # 📊 Weekly SHAP Feature Chart
-55 23 * * 0 bash safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python model_feature_importance.py --telegram
+55 23 * * 0 bash utils/safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python model_feature_importance.py --telegram
 ```
 
 ---
@@ -223,7 +223,7 @@ The foundational elements and automated processes that power Tipping Monster are
     * **`23:59`**: Send ROI summary to Telegram
     * **`23:56`**: Track bankroll and cumulative profit
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
-* **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `backup_to_s3.sh`.
+* **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `utils/backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
     * **Security:** AES-256 Server-side encryption is enabled for all backups.
     * **Location:** Backups stored in the `tipping-monster-backups` S3 bucket.
@@ -311,11 +311,11 @@ We're now focused solely on advised mode for all ROI tracking.
 
 🗂️ ROI Scripts
 Script	Purpose	Scope
-tag_roi_tracker.py	Tracks ROI by tag	✅ Sent + All tips
-send_daily_roi_summary.py	Sends daily Telegram ROI	✅ Sent only
-roi_tracker_advised.py	CLI tracker for daily PnL	✅ Sent only
-weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
-generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
+roi/tag_roi_tracker.py	Tracks ROI by tag	✅ Sent + All tips
+roi/send_daily_roi_summary.py	Sends daily Telegram ROI	✅ Sent only
+roi/roi_tracker_advised.py	CLI tracker for daily PnL	✅ Sent only
+roi/weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
+roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
