@@ -18,7 +18,7 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 Key folders and scripts include:
 
 - `rpscrape/` – scraper for racecards and results.
-- `ROI/` and `run_roi_pipeline.sh` – scripts for ROI tracking and Telegram summaries.
+- ROI tracking scripts (e.g., `roi_tracker_advised.py`, `send_daily_roi_summary.py`) and `run_roi_pipeline.sh` send performance updates via Telegram.
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `predictions/` – daily output tips and summaries.
@@ -48,6 +48,22 @@ These times are detailed in `Docs/monster_overview.md`.
 - **Inference:** `run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
 - **Odds Integration:** `fetch_betfair_odds.py` grabs odds snapshots; `merge_odds_into_tips.py` merges them with tips; `extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `dispatch_tips.py` formats tips for Telegram. `roi_tracker_advised.py` and `send_daily_roi_summary.py` track daily performance and report ROI.
+
+## Coding Standards
+
+All Python code is linted with **Flake8**. Use `pre-commit` to run the linter before committing:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
+
+## Coding Standards
+
+All Python code is linted with **Flake8**. Use `pre-commit` to run the linter before committing:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
 
 ## Next Steps for Newcomers
 

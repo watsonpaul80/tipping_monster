@@ -3,7 +3,7 @@ import os
 import json
 import argparse
 from datetime import date
-from pathlib import Path
+
 
 def get_earliest_snapshot_path(snapshot_dir="odds_snapshots"):
     today = date.today().isoformat()
@@ -13,13 +13,15 @@ def get_earliest_snapshot_path(snapshot_dir="odds_snapshots"):
     ]
     if not snapshot_files:
         raise FileNotFoundError("⚠️ No snapshot files found for today")
-    
+
     earliest = sorted(snapshot_files)[0]
     return os.path.join(snapshot_dir, earliest)
+
 
 def load_snapshot(file_path):
     with open(file_path) as f:
         return json.load(f)
+
 
 def find_steamers(snapshot_earlier, snapshot_later, drop_pct=30.0):
     early_map = {
@@ -47,10 +49,19 @@ def find_steamers(snapshot_earlier, snapshot_later, drop_pct=30.0):
 
     return steamers
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--snapshot", type=str, required=True, help="Path to current snapshot JSON")
-    parser.add_argument("--label", type=str, default="current", help="Label to save output under")
+    parser.add_argument(
+        "--snapshot",
+        type=str,
+        required=True,
+        help="Path to current snapshot JSON")
+    parser.add_argument(
+        "--label",
+        type=str,
+        default="current",
+        help="Label to save output under")
     args = parser.parse_args()
 
     base_dir = "odds_snapshots"
@@ -73,6 +84,6 @@ def main():
 
     print(f"✅ Found {len(steamers)} steamers. Saved to {out_path}")
 
+
 if __name__ == "__main__":
     main()
-

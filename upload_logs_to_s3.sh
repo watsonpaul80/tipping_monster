@@ -1,25 +1,35 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
-LOG_DIR="$REPO_ROOT/logs"
+REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+LOG_DIR="$REPO_ROOT/${TM_LOG_DIR:-logs}"
 S3_BUCKET="tipping-monster"
 S3_PREFIX="logs-archive"
 TMP_ZIP="/tmp/tipping-monster-logs-$(date +%F).zip"
+
+DEV_MODE=0
+if [ "$1" = "--dev" ]; then
+    DEV_MODE=1
+    export TM_DEV_MODE=1
+    export TM_LOG_DIR="logs/dev"
+    LOG_DIR="$REPO_ROOT/logs/dev"
+fi
 
 # Zip all logs older than 7 days
 find "$LOG_DIR" -type f -name "*.log" -mtime +7 -print0 | zip -@ "$TMP_ZIP"
 
 if [ -f "$TMP_ZIP" ]; then
-    aws s3 cp "$TMP_ZIP" "s3://$S3_BUCKET/$S3_PREFIX/$(basename $TMP_ZIP)"
-    if [ $? -eq 0 ]; then
-        echo "Uploaded $TMP_ZIP to s3://$S3_BUCKET/$S3_PREFIX/"
-        # Optional: delete zipped file after upload
-        rm "$TMP_ZIP"
-        # Optional: delete local logs after successful upload
-        find "$LOG_DIR" -type f -name "*.log" -mtime +7 -delete
+    if [ "$DEV_MODE" -eq 0 ]; then
+        aws s3 cp "$TMP_ZIP" "s3://$S3_BUCKET/$S3_PREFIX/$(basename $TMP_ZIP)"
+        if [ $? -eq 0 ]; then
+            echo "Uploaded $TMP_ZIP to s3://$S3_BUCKET/$S3_PREFIX/"
+            rm "$TMP_ZIP"
+            find "$LOG_DIR" -type f -name "*.log" -mtime +7 -delete
+        else
+            echo "Upload failed!"
+        fi
     else
-        echo "Upload failed!"
+        echo "[DEV] Skipping S3 upload"
     fi
 else
     echo "No logs to zip/upload."

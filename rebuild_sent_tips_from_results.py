@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-import os
 import json
 import pandas as pd
 from pathlib import Path
@@ -7,8 +5,10 @@ from pathlib import Path
 RESULTS_DIR = Path("logs")
 OUT_DIR = RESULTS_DIR
 
+
 def find_result_files():
     return sorted(RESULTS_DIR.glob("tips_results_2025-05-*.csv"))
+
 
 def convert_to_jsonl(df, date, output_path):
     fields = [
@@ -26,6 +26,7 @@ def convert_to_jsonl(df, date, output_path):
             f.write(json.dumps(tip) + "\n")
     print(f"✅ Wrote: {output_path}")
 
+
 def backfill_all():
     for file in find_result_files():
         date_str = file.stem.split("_")[2]
@@ -36,6 +37,6 @@ def backfill_all():
         df = pd.read_csv(file)
         convert_to_jsonl(df, date_str, output_path)
 
+
 if __name__ == "__main__":
     backfill_all()
-

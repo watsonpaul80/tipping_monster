@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 from datetime import datetime
 import re
-from difflib import get_close_matches
 
 # === PATHS ===
 today = datetime.utcnow().date().isoformat()
@@ -26,6 +25,8 @@ with open(tips_file) as f:
     tips = [json.loads(line) for line in f]
 
 # === NORMALIZATION ===
+
+
 def standardize_course_only(race: str) -> str:
     """Return course name only, lowercased and stripped."""
     race = race.strip().lower().replace("(aw)", "").strip()
@@ -36,6 +37,7 @@ def standardize_course_only(race: str) -> str:
     elif match2:
         return match2.group(1).strip()
     return race
+
 
 print("\n[🧪] Sample standardization output for debugging:\n")
 
@@ -78,4 +80,3 @@ if unmatched:
     print("[!] Unmatched tips:")
     for u in unmatched:
         print(f"   - {u}")
-
