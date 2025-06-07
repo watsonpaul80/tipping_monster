@@ -277,6 +277,7 @@ The foundational elements and automated processes that power Tipping Monster are
 ## ✅ FILES TO REFERENCE
 
 * `monster_todo.md` – full backlog + roadmap
+* `monster_todo_v2.md` – high-level roadmap for upcoming features
 * `TIPPING_MONSTER_PRODUCTS.md` – tip product layer logic
 * `logs/roi/tips_results_*.csv` – ROI by day
 * `logs/dispatch/sent_tips_*.jsonl` – actual sent Telegram tips
