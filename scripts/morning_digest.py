@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
-import requests
+import requests  # HTTP requests for Telegram API
 
 from tippingmonster.env_loader import load_env
 
