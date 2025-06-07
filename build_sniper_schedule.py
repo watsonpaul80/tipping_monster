@@ -4,7 +4,24 @@ from pathlib import Path
 from generate_race_schedule import generate_schedule_times
 
 # === CONFIG ===
-REPO_ROOT = Path(os.getenv("TM_ROOT", Path(__file__).resolve().parent))
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parent),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parent
+
+REPO_ROOT = get_repo_root()
 SCRIPT_PATH = REPO_ROOT / "steam_sniper_auto_workflow.sh"
 SCHEDULE_PATH = "steam_sniper_schedule.sh"
 

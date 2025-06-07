@@ -6,7 +6,7 @@ shift
 CMD="$@"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
 
 LOG_DIR="$REPO_ROOT/logs"
 LOG_FILE="${LOG_DIR}/${JOB_NAME}_$(date +%F).log"
