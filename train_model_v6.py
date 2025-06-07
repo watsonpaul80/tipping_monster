@@ -5,6 +5,7 @@ import tarfile
 import shutil
 import pandas as pd
 import xgboost as xgb
+import argparse
 from datetime import date
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
@@ -108,10 +109,20 @@ def train_model(df, feature_cols):
             json.dump(feature_cols, f)
         tar.add("features.json")
     print(f"📦 Model saved and packaged as {tar_path}")
-    boto3.client("s3").upload_file(tar_path, BUCKET, f"models/{tar_path}")
-    print(f"✅ Model uploaded to S3: models/{tar_path}")
+    if os.getenv("TM_DEV_MODE") == "1":
+        print(f"[DEV] Skipping S3 upload of {tar_path}")
+    else:
+        boto3.client("s3").upload_file(tar_path, BUCKET, f"models/{tar_path}")
+        print(f"✅ Model uploaded to S3: models/{tar_path}")
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
+    args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+
     s3_keys = [
         "results/gb-flat-2015-2025.csv",
         "results/gb-jumps-2015-2025.csv",
@@ -123,7 +134,8 @@ if __name__ == "__main__":
     print("🛠 Preprocessing...")
     df = preprocess(df)
     # Find all tip log files you want to merge in
-    tip_logs = sorted(glob.glob("logs/roi/tips_results_*_advised.csv"))
+    log_base = os.getenv("TM_LOG_DIR", "logs")
+    tip_logs = sorted(glob.glob(f"{log_base}/roi/tips_results_*_advised.csv"))
     if tip_logs:
         print(f"📝 Injecting tip logs: {tip_logs[-3:]} ...")
         df = merge_tip_logs(df, tip_logs)

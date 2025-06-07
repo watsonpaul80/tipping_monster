@@ -29,6 +29,8 @@ Launch the full daily pipeline with:
 
 ```bash
 bash run_pipeline_with_venv.sh
+# Use --dev to disable S3 uploads and Telegram posts
+bash run_pipeline_with_venv.sh --dev
 ```
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.

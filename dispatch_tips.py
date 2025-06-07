@@ -6,7 +6,7 @@ from time import sleep
 import sys
 import argparse
 
-from tippingmonster import send_telegram_message
+from tippingmonster import send_telegram_message, logs_path, in_dev_mode
 
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
@@ -112,11 +112,18 @@ def main():
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+
+    if args.dev:
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")

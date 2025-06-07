@@ -16,7 +16,12 @@ def format_steamer(s):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", required=True)
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     if not Path(args.source).exists():
         print(f"[!] No steamers file: {args.source}")

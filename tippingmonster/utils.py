@@ -8,12 +8,18 @@ __all__ = [
     "repo_path",
     "logs_path",
     "predictions_path",
+    "in_dev_mode",
     "send_telegram_message",
     "calculate_profit",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
 BASE_DIR = Path(os.getenv("TM_ROOT", Path(__file__).resolve().parents[1]))
+
+
+def in_dev_mode() -> bool:
+    """Return True if TM_DEV_MODE environment variable is set to "1"."""
+    return os.getenv("TM_DEV_MODE") == "1"
 
 def repo_root() -> Path:
     """Return the repository root as a ``Path`` object."""
@@ -26,8 +32,9 @@ def repo_path(*parts: str) -> Path:
 
 
 def logs_path(*parts: str) -> Path:
-    """Convenience helper for ``logs/`` paths relative to the repository root."""
-    return repo_path("logs", *parts)
+    """Return a path under ``logs/`` or ``logs/dev/`` when in dev mode."""
+    base = "logs/dev" if in_dev_mode() else "logs"
+    return repo_path(base, *parts)
 
 
 def predictions_path(date: str) -> Path:
@@ -36,11 +43,20 @@ def predictions_path(date: str) -> Path:
 
 
 def send_telegram_message(message: str, token: str | None = None, chat_id: str | None = None) -> None:
-    """Send ``message`` to Telegram using bot ``token`` and ``chat_id``.
+    """Send ``message`` to Telegram unless ``TM_DEV_MODE`` is active.
 
     The environment variables ``TELEGRAM_BOT_TOKEN`` and ``TELEGRAM_CHAT_ID``
     are used if ``token`` or ``chat_id`` are not provided.
+    In dev mode the message is printed and appended to ``logs/dev/telegram.log``
+    instead of being sent.
     """
+    if in_dev_mode():
+        log_file = logs_path("telegram.log")
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(message + "\n")
+        print(f"[DEV] Telegram message suppressed: {message}")
+        return
     token = token or os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
