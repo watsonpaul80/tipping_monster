@@ -64,6 +64,8 @@ Common tasks can be run via the `tmcli` helper. Example usage:
 ```bash
 python tmcli.py healthcheck --date YYYY-MM-DD
 python tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py dispatch-tips --date YYYY-MM-DD --telegram
+python tmcli.py send-roi --date YYYY-MM-DD
 ```
 
 These commands wrap existing scripts for convenience and default locations.
