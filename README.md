@@ -173,7 +173,10 @@ Run `compare_model_v6_v7.py` to train both model versions on the same historical
 Trained models are uploaded to S3 rather than stored in the repository. See
 [Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
 latest model tarball from the `tipping-monster` bucket. The inference scripts
-will automatically fetch the specified model if it is missing locally.
+automatically choose the newest `tipping-monster-xgb-model-*.tar.gz` in the
+repository root. If no model is found, they exit with `FileNotFoundError` and
+instruct you to download one from S3 or train locally. When a path is provided
+via `--model`, that file is downloaded if missing locally.
 
 ## Model Transparency and Self‑Training
 
