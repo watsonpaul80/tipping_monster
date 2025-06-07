@@ -3,13 +3,18 @@ import os
 import sys
 import argparse
 import pandas as pd
-import requests
+from tippingmonster import send_telegram_message
 from datetime import datetime
 
 # === ARGPARSE SETUP ===
 parser = argparse.ArgumentParser()
 parser.add_argument("--date", type=str, help="Date in YYYY-MM-DD format", default=None)
+parser.add_argument("--dev", action="store_true", help="Enable dev mode")
 args = parser.parse_args()
+
+if args.dev:
+    os.environ["TM_DEV_MODE"] = "1"
+    os.environ["TM_LOG_DIR"] = "logs/dev"
 
 # === CONFIG ===
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -43,13 +48,9 @@ msg = (
 )
 
 # === SEND TO TELEGRAM ===
-resp = requests.post(
-    f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-    data={"chat_id": CHAT_ID, "text": msg, "parse_mode": "Markdown"}
-)
-
-if resp.status_code == 200:
+try:
+    send_telegram_message(msg, token=TOKEN, chat_id=CHAT_ID)
     print(f"✅ Sent ROI summary to Telegram: {DATE}")
-else:
-    print(f"❌ Failed to send: {resp.text}")
+except Exception as e:
+    print(f"❌ Failed to send Telegram message: {e}")
 

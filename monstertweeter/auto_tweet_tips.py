@@ -28,8 +28,8 @@ if not os.path.exists(tips_path):
 with open(tips_path, "r") as f:
     tips = [json.loads(line.strip()) for line in f]
 
-# === Filter top 5 (non-sniper) tips ===
-top_tips = sorted([t for t in tips if not t.get("is_sniper")], key=lambda x: x["confidence"], reverse=True)[:5]
+# === Filter top 5 tips ===
+top_tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:5]
 
 if not top_tips:
     print("[!] No valid tips to tweet.")
@@ -43,7 +43,7 @@ roi_summary = ""
 try:
     if os.path.exists(roi_path):
         df = pd.read_csv(roi_path)
-        total_staked = df['Staked'].sum()
+        total_staked = df['Stake'].sum()
         profit = df['Profit'].sum()
         roi = (profit / total_staked) * 100 if total_staked > 0 else 0
         roi_summary = f"📈 Yday ROI: {roi:.1f}% ({profit:+.2f} pts)"
@@ -70,7 +70,7 @@ for tip in top_tips:
 
 footer = (
     f"📊 Total: {len(top_tips)} Tips | Conf ≥ 80%\n"
-    f"🧠 ROI tracked | Sniper Alerts WIP\n"
+    f"🧠 ROI tracked\n"
     f"Join the Telegram stable 🧠🐎👇\n"
     f"https://t.me/tippingmonsterai\n"
     f"#TippingMonster #HorseRacing #BettingTips #AIpunter"

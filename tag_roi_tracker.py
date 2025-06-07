@@ -1,61 +1,15 @@
+#!/usr/bin/env python3
 import argparse
 import os
 import pandas as pd
 import json
 from datetime import datetime
-import requests
 import re
 
-# === Telegram Config ===
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tipping Monster channel
-
-def send_telegram_message(message):
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": message,
-        "parse_mode": "Markdown",
-        "disable_web_page_preview": True,
-    }
-    requests.post(url, data=payload)
-
-def get_place_terms(row):
-    try:
-        runners = int(row.get("Runners", 0))
-        is_handicap = "hcp" in str(row.get("Race Name", "")).lower()
-        if is_handicap:
-            if runners >= 16:
-                return (0.25, 4)
-            elif 12 <= runners <= 15:
-                return (0.25, 3)
-        if runners >= 8:
-            return (0.20, 3)
-        elif 5 <= runners <= 7:
-            return (0.25, 2)
-    except Exception:
-        pass
-    return (0.0, 1)  # Win only fallback
+from tippingmonster import send_telegram_message, calculate_profit
 
 def normalize_horse_name(name):
     return re.sub(r"\s*\(.*?\)", "", str(name)).strip().lower()
-
-def calculate_profit(row):
-    odds = row["Odds"]
-    position = str(row["Position"]).lower()
-    stake = row["Stake"]
-
-    if odds >= 5.0:
-        win_stake = 0.5
-        place_stake = 0.5
-        place_fraction, place_places = get_place_terms(row)
-
-        win_profit = (odds - 1) * win_stake if position == "1" else 0.0
-        place_profit = ((odds * place_fraction) - 1) * place_stake if position.isdigit() and int(position) <= place_places and place_places > 1 else 0.0
-        return round(win_profit + place_profit, 2)
-    else:
-        win_profit = (odds - 1) * stake if position == "1" else -stake
-        return round(win_profit, 2)
 
 def load_tips(date_str, min_conf, use_sent):
     if use_sent:
@@ -193,7 +147,12 @@ if __name__ == "__main__":
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     main(args.date, args.mode, args.min_conf, args.telegram, args.show)
 

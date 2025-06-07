@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
 import os
 import json
 from datetime import date
-import requests
 from time import sleep
 import sys
 import argparse
+
+from tippingmonster import send_telegram_message, logs_path, in_dev_mode
 
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
@@ -49,6 +51,17 @@ def generate_tags(tip, max_id, max_val):
         tags.append("❗ Confidence 90%+")
     if tip.get("monster_mode"):
         tags.append("💥 Monster Mode")
+    delta = tip.get("odds_delta")
+    if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
+        try:
+            delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
+        except Exception:
+            delta = None
+    if delta is not None:
+        if delta <= -1.0:
+            tags.append("🔥 Market Mover")
+        elif delta >= 1.0:
+            tags.append("❄️ Drifter")
     return tags or ["🎯 Solid pick"]
 
 def read_tips(path):
@@ -91,11 +104,8 @@ def send_to_telegram(text):
     if LOG_TO_CLI_ONLY:
         print(text)
         return
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    data = {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"}
     try:
-        r = requests.post(url, data=data)
-        r.raise_for_status()
+        send_telegram_message(text, token=TELEGRAM_BOT_TOKEN, chat_id=TELEGRAM_CHAT_ID)
         print("✅ Sent to Telegram")
     except Exception as e:
         print(f"❌ Telegram error: {e}")
@@ -113,11 +123,18 @@ def main():
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+
+    if args.dev:
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")

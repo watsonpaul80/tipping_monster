@@ -23,7 +23,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Weekly and daily ROI summaries
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
-* ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`, `sniper/`)
+* ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
@@ -78,6 +78,7 @@ All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now 
 * `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
 * `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
+* `dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TELEGRAM_CHAT_ID` is set).
 * `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
 * `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
@@ -167,6 +168,8 @@ Run manually:
 bash run_roi_pipeline.sh
 
 # Weekly summary (current ISO week)
+./weekly_roi_summary.py --week $(date +%G-W%V) --telegram
+# or
 python weekly_roi_summary.py --week $(date +%G-W%V) --telegram
 ```
 
@@ -264,9 +267,8 @@ The foundational elements and automated processes that power Tipping Monster are
 | Folder                      | Purpose            |
 |-----------------------------|--------------------|
 | `predictions/YYYY-MM-DD/`   | Tips + summaries |
-| `logs/`                     | Main directory for categorized log subfolders (roi, dispatch, inference, sniper, etc.) |
+| `logs/`                     | Main directory for categorized log subfolders (roi, dispatch, inference, etc.) |
 | `odds_snapshots/`           | Betfair snapshots  |
-| `steam_sniper_intel/`       | Steamer outputs    |
 
 ---
 
