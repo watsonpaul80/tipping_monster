@@ -16,7 +16,7 @@ ROI is tracked across the following dimensions:
 |--------|-------------|
 | `extract_best_realistic_odds.py` | Applies realistic odds to tips from snapshot |
 | `generate_tip_results_csv_with_mode_FINAL.py` | Creates ROI-per-tip logs with profit calculations |
-| `tag_roi_tracker.py` | Builds tag ROI summaries for both sent and all tips |
+| `tag_roi_tracker.py` | Builds tag ROI summaries for both sent and all tips (use `--tag NAP` to filter) |
 | `calibrate_confidence_daily.py` | Tracks ROI per confidence band daily |
 | `roi_by_confidence_band.py` | Aggregates ROI across all tips by confidence band |
 | `weekly_roi_summary.py` | Sends weekly Telegram summary |

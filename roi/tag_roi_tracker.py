@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import argparse
-import os
-import pandas as pd
 import json
-import requests
+import os
 import re
+
+import pandas as pd
+import requests
 
 # === Telegram Config ===
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tipping Monster channel
-
 
 
 def send_telegram_message(message):
@@ -21,7 +21,6 @@ def send_telegram_message(message):
         "disable_web_page_preview": True,
     }
     requests.post(url, data=payload)
-
 
 
 def get_place_terms(row):
@@ -42,10 +41,8 @@ def get_place_terms(row):
     return (0.0, 1)  # Win only fallback
 
 
-
 def normalize_horse_name(name):
     return re.sub(r"\s*\(.*?\)", "", str(name)).strip().lower()
-
 
 
 def calculate_profit(row):
@@ -59,18 +56,23 @@ def calculate_profit(row):
         place_fraction, place_places = get_place_terms(row)
 
         win_profit = (odds - 1) * win_stake if position == "1" else 0.0
-        place_profit = ((odds * place_fraction) - 1) * place_stake if position.isdigit(
-        ) and int(position) <= place_places and place_places > 1 else 0.0
-        place_profit = ((odds * place_fraction) - 1) * place_stake if position.isdigit(
-        ) and int(position) <= place_places and place_places > 1 else 0.0
+        place_profit = (
+            ((odds * place_fraction) - 1) * place_stake
+            if position.isdigit() and int(position) <= place_places and place_places > 1
+            else 0.0
+        )
+        place_profit = (
+            ((odds * place_fraction) - 1) * place_stake
+            if position.isdigit() and int(position) <= place_places and place_places > 1
+            else 0.0
+        )
         return round(win_profit + place_profit, 2)
     else:
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
 
 
-
-def load_tips(date_str, min_conf, use_sent):
+def load_tips(date_str, min_conf, use_sent, tag=None):
     if use_sent:
         input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
         if not os.path.exists(input_file):
@@ -87,11 +89,13 @@ def load_tips(date_str, min_conf, use_sent):
         for line in f:
             tip = json.loads(line)
             if tip.get("confidence", 0.0) >= min_conf:
+                if tag and not any(
+                    tag.lower() in t.lower() for t in tip.get("tags", [])
+                ):
+                    continue
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
-                tip["Course"] = " ".join(
-                    tip.get("race", "??:?? Unknown").split()[1:])
-                tip["Course"] = " ".join(
-                    tip.get("race", "??:?? Unknown").split()[1:])
+                tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
+                tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
                 tip["Horse"] = normalize_horse_name(tip.get("name", "Unknown"))
                 tip["Confidence"] = tip.get("confidence", 0.0)
                 bf_sp = tip.get("bf_sp", tip.get("odds", 0.0))
@@ -104,8 +108,7 @@ def load_tips(date_str, min_conf, use_sent):
     return tips
 
 
-
-def main(date_str, mode, min_conf, send_to_telegram, show=False):
+def main(date_str, mode, min_conf, send_to_telegram, tag=None, show=False):
     date_display = date_str
     results_path = f"rpscrape/data/dates/all/{date_str.replace('-', '_')}.csv"
     if not os.path.exists(results_path):
@@ -113,44 +116,57 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
         return
 
     results_df = pd.read_csv(results_path)
-    results_df.rename(columns={
-        "off": "Race Time",
-        "course": "Course",
-        "horse": "Horse",
-        "num": "Runners",
-        "pos": "Position",
-        "race_name": "Race Name",
-        "type": "Race Type",
-        "class": "Class",
-        "rating_band": "Rating Band"
-    }, inplace=True)
+    results_df.rename(
+        columns={
+            "off": "Race Time",
+            "course": "Course",
+            "horse": "Horse",
+            "num": "Runners",
+            "pos": "Position",
+            "race_name": "Race Name",
+            "type": "Race Type",
+            "class": "Class",
+            "rating_band": "Rating Band",
+        },
+        inplace=True,
+    )
 
     results_df["Horse"] = results_df["Horse"].apply(normalize_horse_name)
-    results_df["Course"] = results_df["Course"].astype(str).str.strip(
-    ).str.lower().str.replace(r"\s*\(ire\)", "", regex=True).str.strip()
-    results_df["Race Time"] = results_df["Race Time"].astype(
-        str).str.strip().str.lower()
-    results_df["Course"] = results_df["Course"].astype(str).str.strip(
-    ).str.lower().str.replace(r"\s*\(ire\)", "", regex=True).str.strip()
-    results_df["Race Time"] = results_df["Race Time"].astype(
-        str).str.strip().str.lower()
+    results_df["Course"] = (
+        results_df["Course"]
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .str.replace(r"\s*\(ire\)", "", regex=True)
+        .str.strip()
+    )
+    results_df["Race Time"] = (
+        results_df["Race Time"].astype(str).str.strip().str.lower()
+    )
+    results_df["Course"] = (
+        results_df["Course"]
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .str.replace(r"\s*\(ire\)", "", regex=True)
+        .str.strip()
+    )
+    results_df["Race Time"] = (
+        results_df["Race Time"].astype(str).str.strip().str.lower()
+    )
 
     for source in ["sent", "all"]:
-        use_sent = (source == "sent")
-        tips = load_tips(date_str, min_conf, use_sent)
+        use_sent = source == "sent"
+        tips = load_tips(date_str, min_conf, use_sent, tag)
         if not tips:
             continue
 
         tips_df = pd.DataFrame(tips)
         tips_df["Horse"] = tips_df["Horse"].astype(str).str.strip().str.lower()
-        tips_df["Course"] = tips_df["Course"].astype(
-            str).str.strip().str.lower()
-        tips_df["Race Time"] = tips_df["Race Time"].astype(
-            str).str.strip().str.lower()
-        tips_df["Course"] = tips_df["Course"].astype(
-            str).str.strip().str.lower()
-        tips_df["Race Time"] = tips_df["Race Time"].astype(
-            str).str.strip().str.lower()
+        tips_df["Course"] = tips_df["Course"].astype(str).str.strip().str.lower()
+        tips_df["Race Time"] = tips_df["Race Time"].astype(str).str.strip().str.lower()
+        tips_df["Course"] = tips_df["Course"].astype(str).str.strip().str.lower()
+        tips_df["Race Time"] = tips_df["Race Time"].astype(str).str.strip().str.lower()
 
         merged_df = pd.merge(
             tips_df,
@@ -162,16 +178,26 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
 
         merged_df["Position"] = merged_df["Position"].fillna("NR")
         merged_df["Profit"] = merged_df.apply(
-            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row), axis=1)
+            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row),
+            axis=1,
+        )
         merged_df["Profit"] = merged_df.apply(
-            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row), axis=1)
+            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row),
+            axis=1,
+        )
 
         num_nrs = (merged_df["Position"] == "NR").sum()
         wins = (merged_df["Position"] == "1").sum()
-        places = merged_df["Position"].apply(
-            lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
-        places = merged_df["Position"].apply(
-            lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
+        places = (
+            merged_df["Position"]
+            .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
+            .sum()
+        )
+        places = (
+            merged_df["Position"]
+            .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
+            .sum()
+        )
         losses = len(merged_df) - wins - places - num_nrs
 
         summary = {
@@ -184,26 +210,20 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
             "Profit": round(merged_df["Profit"].sum(), 2),
         }
 
-        roi = (summary["Profit"] / summary["Stake"]) * \
-            100 if summary["Stake"] > 0 else 0.0
-        strike_rate = (
-            wins /
-            summary["Tips"] *
-            100) if summary["Tips"] > 0 else 0.0
-        place_rate = (
-            places /
-            summary["Tips"] *
-            100) if summary["Tips"] > 0 else 0.0
-        roi = (summary["Profit"] / summary["Stake"]) * \
-            100 if summary["Stake"] > 0 else 0.0
-        strike_rate = (
-            wins /
-            summary["Tips"] *
-            100) if summary["Tips"] > 0 else 0.0
-        place_rate = (
-            places /
-            summary["Tips"] *
-            100) if summary["Tips"] > 0 else 0.0
+        roi = (
+            (summary["Profit"] / summary["Stake"]) * 100
+            if summary["Stake"] > 0
+            else 0.0
+        )
+        strike_rate = (wins / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
+        place_rate = (places / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
+        roi = (
+            (summary["Profit"] / summary["Stake"]) * 100
+            if summary["Stake"] > 0
+            else 0.0
+        )
+        strike_rate = (wins / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
+        place_rate = (places / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
 
         output_path = f"logs/roi/tips_results_{date_str}_{mode}_{source}.csv"
         merged_df["Mode"] = mode
@@ -213,27 +233,41 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
         tag_output = f"logs/roi/tag_roi_summary_{source}.csv"
         if "tags" in merged_df.columns:
             merged_df["tags"] = merged_df["tags"].apply(
-                lambda x: x if isinstance(x, list) else [])
+                lambda x: x if isinstance(x, list) else []
+            )
             merged_df["tags"] = merged_df["tags"].apply(
-                lambda x: x if isinstance(x, list) else [])
+                lambda x: x if isinstance(x, list) else []
+            )
             all_rows = []
             for _, row in merged_df.iterrows():
                 for tag in row["tags"]:
                     all_rows.append(
-                        {"Tag": tag, "Profit": row["Profit"], "Position": row["Position"]})
+                        {
+                            "Tag": tag,
+                            "Profit": row["Profit"],
+                            "Position": row["Position"],
+                        }
+                    )
                     all_rows.append(
-                        {"Tag": tag, "Profit": row["Profit"], "Position": row["Position"]})
+                        {
+                            "Tag": tag,
+                            "Profit": row["Profit"],
+                            "Position": row["Position"],
+                        }
+                    )
             tag_df = pd.DataFrame(all_rows)
             if not tag_df.empty:
                 tag_summary = tag_df.groupby("Tag").agg(
                     Tips=("Profit", "count"),
                     Profit=("Profit", "sum"),
-                    Wins=("Position", lambda x: (x == "1").sum())
+                    Wins=("Position", lambda x: (x == "1").sum()),
                 )
                 tag_summary["ROI %"] = (
-                    tag_summary["Profit"] / tag_summary["Tips"]) * 100
+                    tag_summary["Profit"] / tag_summary["Tips"]
+                ) * 100
                 tag_summary["ROI %"] = (
-                    tag_summary["Profit"] / tag_summary["Tips"]) * 100
+                    tag_summary["Profit"] / tag_summary["Tips"]
+                ) * 100
                 tag_summary = tag_summary.reset_index()
                 tag_summary.to_csv(tag_output, index=False)
                 print(f"✅ Tag ROI saved to {tag_output}")
@@ -260,25 +294,14 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
             send_telegram_message(message)
 
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", required=True, help="Date in YYYY-MM-DD")
     parser.add_argument("--mode", choices=["advised", "level"], required=True)
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
-    parser.add_argument(
-        "--show",
-        action="store_true",
-        help="Show summary in CLI only")
-    parser.add_argument(
-        "--show",
-        action="store_true",
-        help="Show summary in CLI only")
+    parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
+    parser.add_argument("--tag", default=None, help="Filter tips by tag substring")
     args = parser.parse_args()
 
-    if args.dev:
-        os.environ["TM_DEV_MODE"] = "1"
-        os.environ["TM_LOG_DIR"] = "logs/dev"
-
-    main(args.date, args.mode, args.min_conf, args.telegram, args.show)
+    main(args.date, args.mode, args.min_conf, args.telegram, args.tag, args.show)

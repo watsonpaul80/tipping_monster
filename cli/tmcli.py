@@ -2,8 +2,11 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from utils.healthcheck_logs import check_logs
+from core.dispatch_tips import main as dispatch_main
+from model_feature_importance import generate_chart
+from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
+from utils.healthcheck_logs import check_logs
 
 
 def main(argv=None) -> None:
@@ -73,11 +76,12 @@ def main(argv=None) -> None:
         )
         print(out)
     elif args.command == "dispatch-tips":
-        dispatch(
-            date=args.date or date.today().isoformat(),
-            telegram=args.telegram,
-            dev=args.dev,
-        )
+        argv = ["--date", args.date or date.today().isoformat()]
+        if args.telegram:
+            argv.append("--telegram")
+        if args.dev:
+            argv.append("--dev")
+        dispatch_main(argv)
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
 

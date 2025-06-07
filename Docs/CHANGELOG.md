@@ -1,5 +1,11 @@
 # 📅 CHANGELOG
 
+## 2025-06-09
+
+### Added
+- `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter
+  tips by tag substring.
+
 ## 2025-06-07
 
 ### Added
