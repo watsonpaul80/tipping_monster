@@ -140,3 +140,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 ## 2025-06-06 — ROI Script Consolidation
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
+
+## 2025-06-07 -- Script Cleanup
+- Added script_audit.txt listing unused scripts
+- Document now referenced in README files
