@@ -77,15 +77,15 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python tmcli.py healthcheck --date YYYY-MM-DD
-python tmcli.py ensure-sent-tips YYYY-MM-DD
-python tmcli.py dispatch-tips YYYY-MM-DD --telegram
-python tmcli.py send-roi --date YYYY-MM-DD
-python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
-python tmcli.py dispatch --date YYYY-MM-DD --telegram
-python tmcli.py roi-summary --date YYYY-MM-DD --telegram
-python tmcli.py chart-fi path/to/model_dir
-python tmcli.py send-photo path/to/image.jpg
+python cli/tmcli.py healthcheck --date YYYY-MM-DD
+python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python cli/tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python cli/tmcli.py send-roi --date YYYY-MM-DD
+python cli/tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
+python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python cli/tmcli.py chart-fi path/to/model_dir
+python cli/tmcli.py send-photo path/to/image.jpg
 
 ```
 
