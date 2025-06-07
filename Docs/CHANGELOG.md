@@ -137,3 +137,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
 
+## 2025-06-08
+
+### Added
+- `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
+
