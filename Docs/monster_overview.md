@@ -85,6 +85,8 @@ All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now 
 * `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
 * `generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `send_telegram_photo.py`: Uploads an image to Telegram for manual posts.
+* Most CLI commands accept `--dev` to log to `logs/dev` instead of sending messages.
 
 ---
 
