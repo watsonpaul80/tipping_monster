@@ -21,7 +21,6 @@ pip install -r requirements.txt
 Create a `.env` file in the repository root with these variables. The `dev-check` script looks for `.env` in this location.
 
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
-=======
 3. Verify your development environment:
 
 ```bash
