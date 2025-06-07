@@ -92,3 +92,14 @@ make test     # run unit tests
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+
+## Model Transparency and Self‑Training
+
+The pipeline uses **SHAP** to compute feature importance for each prediction. These explanations
+reveal why the model tipped a runner, surfacing the top factors driving confidence. We log global
+feature importance during training and publish per‑tip explanations in the weekly summary.
+
+Past tips are merged back into the training data via a self‑training loop. Results are appended to
+the dataset (`was_tipped`, `tip_profit`, `confidence_band`) so the model evolves with real world
+performance. This continuous learning drives the weekly insights sent on Telegram and keeps the
+model transparent and accountable.
