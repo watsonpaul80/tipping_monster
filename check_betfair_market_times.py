@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # check_betfair_market_times.py
 import datetime
 import pytz

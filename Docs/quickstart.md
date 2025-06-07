@@ -11,6 +11,7 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 - `monster_overview.md` – full system overview with pipeline schedule and feature list.
 - `ops.md` – operations guide describing cron jobs and data flows.
 - `monster_todo.md` – feature roadmap for the tipping engine.
+- `monster_todo.md` – feature roadmap for the tipping engine.
 
 ## Project Structure
 
@@ -50,6 +51,7 @@ These times are detailed in `Docs/monster_overview.md`.
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
 3. Explore the training (`train_model_v6.py`) and inference (`run_inference_and_select_top1.py`) scripts to see how predictions are generated.
+4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
 4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 

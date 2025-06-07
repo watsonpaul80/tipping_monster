@@ -43,7 +43,7 @@ roi_summary = ""
 try:
     if os.path.exists(roi_path):
         df = pd.read_csv(roi_path)
-        total_staked = df['Staked'].sum()
+        total_staked = df['Stake'].sum()
         profit = df['Profit'].sum()
         roi = (profit / total_staked) * 100 if total_staked > 0 else 0
         roi_summary = f"📈 Yday ROI: {roi:.1f}% ({profit:+.2f} pts)"
@@ -70,7 +70,7 @@ for tip in top_tips:
 
 footer = (
     f"📊 Total: {len(top_tips)} Tips | Conf ≥ 80%\n"
-    f"🧠 ROI tracked | Sniper Alerts WIP\n"
+    f"🧠 ROI tracked\n"
     f"Join the Telegram stable 🧠🐎👇\n"
     f"https://t.me/tippingmonsterai\n"
     f"#TippingMonster #HorseRacing #BettingTips #AIpunter"

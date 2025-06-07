@@ -16,12 +16,15 @@ pip install -r requirements.txt
 
 2. Export the required environment variables (see Docs/README.md for the full list):
 `BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm_home.sh` to configure automatically).
 
 3. Run the tests to confirm everything works:
 
 ```bash
 pytest
 ```
+
+4. Python cache artifacts (`*.pyc` files and `__pycache__/` directories) are ignored via `.gitignore`.
 
 ## Usage
 
@@ -32,4 +35,26 @@ bash run_pipeline_with_venv.sh
 ```
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
+
+### tmcli Wrapper
+
+Common workflows are consolidated under a simple CLI:
+
+```bash
+# Run the full pipeline
+python tmcli.py pipeline --date 2025-06-07
+
+# Run the full pipeline in dev mode
+python tmcli.py pipeline --date 2025-06-07 --dev
+
+# Run the ROI pipeline for a specific day
+python tmcli.py roi --date 2025-06-07
+# Dev mode also supported
+python tmcli.py roi --date 2025-06-07 --dev
+
+# Build and schedule Steam Sniper jobs
+python tmcli.py sniper
+# Dev mode
+python tmcli.py sniper --dev
+```
 

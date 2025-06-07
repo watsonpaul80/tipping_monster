@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 from datetime import datetime, timedelta
-import requests
+
+from tippingmonster import send_telegram_message
 
 """Send a morning digest to Telegram.
 
@@ -13,7 +14,25 @@ Requires the following environment variables:
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
+
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parents[1]),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parents[1]
+
+BASE_DIR = str(get_repo_root())
 
 # Read Telegram credentials from environment variables
 # Required variables: TG_USER_ID, TG_BOT_TOKEN
@@ -48,8 +67,5 @@ else:
 msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
-requests.post(
-    f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TELEGRAM_CHAT_ID, "text": msg}
-)
+send_telegram_message(msg, token=TG_BOT_TOKEN, chat_id=TG_USER_ID)
 

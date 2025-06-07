@@ -153,3 +153,17 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
     - Plot profit curves, emoji stats, ROI by tag (sent only)  
     - Hide any non-sent tips or internals  
     - Add summary header: Tips, Wins, ROI, Profit.
+
+
+74. **Pre-commit Hooks** — black/flake8/isort run automatically.
+75. **Central `.env` Loader** — load env vars at script start.
+76. **Unified CLI** — `tmcli.py` with subcommands.
+77. **GitHub Actions CI** — run tests automatically.
+78. **Tip Dataclass** — typed representation for tips.
+79. **Validate Features Utility** — check dataset vs `features.json`.
+80. **Inference Unit Tests** — ensure `run_inference_and_select_top1.py`.
+81. **Model Download Helper** — `model_fetcher.py` for S3.
+82. **Stats API** — expose JSON endpoints for ROI and tips.
+83. **Telegram Sandbox** — dev channel for testing dispatch.
+84. **Typed Dataset Schema** — enforce columns with `pandera`.
+85. **Rolling 30-Day ROI** — auto-generated summary in logs.
