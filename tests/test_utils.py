@@ -8,6 +8,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from tippingmonster import (
     send_telegram_message,
+    send_telegram_photo,
     calculate_profit,
     repo_root,
     repo_path,

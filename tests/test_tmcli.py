@@ -14,10 +14,10 @@ def test_tmcli_healthcheck(tmp_path):
     logs = tmp_path / "logs"
     (logs / "dispatch").mkdir(parents=True)
     (logs / "inference").mkdir(parents=True)
-    (logs / "dispatch" / f"sent_tips_{date}.jsonl").write_text("ok")
-    (logs / "inference" / f"pipeline_{date}.log").write_text("ok")
-    (logs / "inference" / f"odds_0800_{date}.log").write_text("ok")
-    (logs / "inference" / f"odds_hourly_{date}.log").write_text("ok")
+    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
+    (logs / "inference" / f"pipeline_{date_str}.log").write_text("ok")
+    (logs / "inference" / f"odds_0800_{date_str}.log").write_text("ok")
+    (logs / "inference" / f"odds_hourly_{date_str}.log").write_text("ok")
 
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
@@ -28,8 +28,9 @@ def test_tmcli_healthcheck(tmp_path):
 def test_tmcli_healthcheck_missing_files(tmp_path):
     date_str = "2025-06-06"
     logs = tmp_path / "logs"
-    logs.mkdir()
-    (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
+    (logs / "dispatch").mkdir(parents=True)
+    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
 
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
