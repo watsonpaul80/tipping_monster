@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from alert_if_bad_snapshot import alert_if_bad_snapshot
+from utils.alert_if_bad_snapshot import alert_if_bad_snapshot
 
 
 def test_alert_when_missing(tmp_path):

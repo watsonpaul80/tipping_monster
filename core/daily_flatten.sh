@@ -8,7 +8,7 @@ INPUT="$REPO_ROOT/rpscrape/racecards/${DATE}.json"
 OUTPUT="$REPO_ROOT/rpscrape/batch_inputs/${DATE}.jsonl"
 
 # Flatten the racecard
-python "$REPO_ROOT/flatten_racecards_v3.py" "$INPUT" "$OUTPUT"
+python "$REPO_ROOT/core/flatten_racecards_v3.py" "$INPUT" "$OUTPUT"
 
 # Upload to S3
 aws s3 cp "$OUTPUT" "s3://tipping-monster/batch_inputs/${DATE}.jsonl"
