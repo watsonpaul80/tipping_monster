@@ -5,7 +5,6 @@ from pathlib import Path
 import requests  # HTTP requests for Telegram API
 
 from tippingmonster.env_loader import load_env
-
 load_env()
 
 """

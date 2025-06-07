@@ -1,4 +1,7 @@
 # 📅 CHANGELOG
+## 2025-06-09
+- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
+
 
 ## 2025-06-10
 
@@ -8,15 +11,20 @@
 ## 2025-06-09
 
 ### Added
+- NAP odds cap with override support (`dispatch_tips.py`).
+- Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
+- NAP removed entirely when no tip meets the cap, with log entry noted.
+- Optional SHAP chart upload added in `model_feature_importance.py`.
 - `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter tips by tag substring.
-- Removed duplicate arguments and calculations in `tag_roi_tracker.py`. Added `--dev` option.
+- Removed duplicate arguments and calculations in `tag_roi_tracker.py`.
+- Added `--dev` option.
 
 ## 2025-06-08
 
 ### Added
 - `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
 - `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
-- `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+- `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
 
 ## 2025-06-07
 
@@ -26,6 +34,7 @@
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 - `validate_tips.py` for verifying tips files before dispatch.
 - Added unit tests for `tmcli` subcommands.
+- Added unit test for `roi_by_confidence_band.summarise`.
 - ROI trackers now support `--tag` filtering for NAP/Value tips.
 
 ## 2025-06-07 — Script Cleanup
@@ -35,7 +44,7 @@
 
 ## 2025-06-07 — CLI Helper
 
-- Added `tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
+- Added `cli/tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
 - Each command supports a `--dev` flag for safe local testing.
 - Documented CLI usage in README and ops guide.
 
@@ -115,4 +124,3 @@
 - Verified full odds snapshot → comparison → steamer flow.
 
 ---
-

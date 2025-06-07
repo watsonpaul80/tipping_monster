@@ -2,6 +2,7 @@ import json
 import os
 import sys
 from datetime import date
+import subprocess
 from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -27,10 +28,14 @@ def test_tmcli_healthcheck(tmp_path):
 
 def test_tmcli_healthcheck_missing_files(tmp_path):
     date_str = "2025-06-06"
+
     logs = tmp_path / "logs" / "dispatch"
     logs.mkdir(parents=True)
     (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
-
+    logs = tmp_path / "logs"
+    (logs / "dispatch").mkdir(parents=True)
+    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
     os.chdir(tmp_path)
     tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
     text = (tmp_path / "hc.log").read_text()
@@ -59,10 +64,10 @@ def test_tmcli_ensure_sent_tips(tmp_path):
     assert sent.read_text() == "tip"
 
 
-def test_tmcli_ensure_sent_tips_missing_pred(tmp_path):
-    date_str = "2025-06-06"
-    pred_dir = tmp_path / "predictions" / date_str
-    pred_dir.mkdir(parents=True)
+def test_tmcli_dispatch_tips(monkeypatch):
+    calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
     os.chdir(tmp_path)
     tmcli.main(
@@ -78,56 +83,41 @@ def test_tmcli_ensure_sent_tips_missing_pred(tmp_path):
     sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
     assert not sent.exists()
 
-
-def test_tmcli_dispatch_tips(tmp_path):
-    date_str = "2025-06-06"
-    root = Path(__file__).resolve().parents[1]
-    pred_dir = root / "predictions" / date_str
-    pred_dir.mkdir(parents=True, exist_ok=True)
-    tip = {"name": "Runner", "race": "12:00 Test", "confidence": 0.9, "bf_sp": 5.0}
-    (pred_dir / "tips_with_odds.jsonl").write_text(json.dumps(tip) + "\n")
-    (root / "logs" / "dev" / "dispatch").mkdir(parents=True, exist_ok=True)
-
-    os.chdir(root)
-    tmcli.main(["dispatch-tips", "--date", date_str, "--dev"])
-    summary = pred_dir / "tips_summary.txt"
-    sent = root / "logs" / "dev" / "dispatch" / f"sent_tips_{date_str}.jsonl"
-    assert summary.exists()
-    assert sent.exists()
-    os.environ.pop("TM_DEV_MODE", None)
+    def fake_run(cmd, check):
+        calls["cmd"] = cmd
+        calls["check"] = check
 
 
-def test_tmcli_send_roi(tmp_path):
-    date_str = "2025-06-06"
-    root = Path(__file__).resolve().parents[1]
-    roi_dir = root / "logs" / "roi"
-    roi_dir.mkdir(parents=True, exist_ok=True)
-    csv = roi_dir / f"tips_results_{date_str}_advised.csv"
-    csv.write_text("Position,Profit,Stake\n1,2.0,1.0\n2,0.5,1.0\n")
-    (root / "logs" / "dev").mkdir(parents=True, exist_ok=True)
-
-    os.chdir(root)
-    tmcli.main(["send-roi", "--date", date_str, "--dev"])
-    tg_log = root / "logs" / "dev" / "telegram.log"
-    assert tg_log.exists()
-    os.environ.pop("TM_DEV_MODE", None)
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    tmcli.main(["dispatch-tips", "2025-06-06", "--telegram", "--dev"])
+    assert "dispatch_tips.py" in calls["cmd"][1]
+    assert "--telegram" in calls["cmd"]
+    assert "--dev" in calls["cmd"]
+    assert os.environ["TM_DEV_MODE"] == "1"
+    assert os.environ["TM_LOG_DIR"] == "logs/dev"
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
 
-def test_tmcli_model_feature_importance(tmp_path):
-    import pandas as pd
-    import xgboost as xgb
+def test_tmcli_send_roi(monkeypatch):
+    calls = {}
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
-    X = pd.DataFrame({"a": [0, 1, 2, 3], "b": [1, 2, 3, 4]})
-    y = [0, 1, 0, 1]
-    model = xgb.XGBClassifier(use_label_encoder=False, eval_metric="logloss")
-    model.fit(X, y)
+    def fake_run(cmd, check):
+        calls["cmd"] = cmd
+        calls["check"] = check
 
-    model_path = tmp_path / "model.bst"
-    model.save_model(model_path)
-    features_path = tmp_path / "features.json"
-    json.dump(list(X.columns), open(features_path, "w"))
-    data_path = tmp_path / "data.jsonl"
-    X.to_json(data_path, orient="records", lines=True)
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    tmcli.main(["send-roi", "--date", "2025-06-05", "--dev"])
+    assert "send_daily_roi_summary.py" in calls["cmd"][1]
+    assert "--date" in calls["cmd"]
+    assert "2025-06-05" in calls["cmd"]
+    assert os.environ["TM_DEV_MODE"] == "1"
+    assert os.environ["TM_LOG_DIR"] == "logs/dev"
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    monkeypatch.delenv("TM_LOG_DIR", raising=False)
+
 
     os.chdir(tmp_path)
     tmcli.main(

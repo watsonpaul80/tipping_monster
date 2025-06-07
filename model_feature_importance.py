@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-"""Generate SHAP feature importance charts for the current model."""
+"""Generate and optionally upload SHAP feature importance chart."""
 
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import os
-from datetime import date
-from pathlib import Path
 import tarfile
 import tempfile
+from datetime import date
+from pathlib import Path
 
+import boto3
+import matplotlib.pyplot as plt
 import pandas as pd
 import shap
-import matplotlib.pyplot as plt
 import xgboost as xgb
 
-from tippingmonster import logs_path, repo_path, send_telegram_photo, in_dev_mode
+from validate_features import load_dataset
+from tippingmonster import logs_path, repo_path, send_telegram_photo
 
 
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
@@ -43,7 +46,20 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     return model, features
 
 
-def generate_chart(
+def load_data(paths: list[str]) -> pd.DataFrame:
+    """Load and concatenate dataset files."""
+    frames = [load_dataset(p) for p in paths]
+    return pd.concat(frames, ignore_index=True)
+
+
+def upload_to_s3(file_path: Path, bucket: str) -> None:
+    """Upload file to S3 under model_explainability/ with today's date."""
+    key = f"model_explainability/{date.today().isoformat()}_top_features.png"
+    boto3.client("s3").upload_file(str(file_path), bucket, key)
+    print(f"Uploaded SHAP chart to s3://{bucket}/{key}")
+
+
+def generate_shap_chart(
     model_path: str,
     data_path: str | None = None,
     out: Path | None = None,
@@ -59,8 +75,12 @@ def generate_chart(
         latest = sorted(Path("rpscrape/batch_inputs").glob("*.jsonl"))[-1]
         data_path = str(latest)
 
-    with open(data_path) as f:
-        df = pd.DataFrame(json.loads(line) for line in f)
+    # Allow glob patterns for data_path
+    data_paths = sorted(glob.glob(data_path))
+    if not data_paths:
+        raise FileNotFoundError(f"No dataset files found for pattern: {data_path}")
+
+    df = load_data(data_paths)
     X = df[features].apply(pd.to_numeric, errors="coerce").fillna(-1)
 
     explainer = shap.TreeExplainer(model)
@@ -68,7 +88,7 @@ def generate_chart(
 
     plt.clf()
     shap.summary_plot(shap_values, X, feature_names=features,
-                      max_display=10, show=False, plot_type="bar")
+                     max_display=10, show=False, plot_type="bar")
     plt.tight_layout()
 
     if out is None:
@@ -83,19 +103,33 @@ def generate_chart(
     return out
 
 
-def main(argv: list[str] | None = None) -> None:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Generate SHAP feature importance chart")
+    parser.add_argument("dataset", nargs="?", default=None,
+                        help="Dataset CSV or JSONL (glob pattern allowed). If not provided, uses the latest batch input.")
     parser.add_argument("--model", default="tipping-monster-xgb-model.bst",
                         help="Path to model .bst or .tar.gz")
-    parser.add_argument("--data", help="Input JSONL with model features")
     parser.add_argument("--out-file", help="Where to save PNG")
     parser.add_argument("--telegram", action="store_true", help="Send chart to Telegram")
+    parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
     args = parser.parse_args(argv)
 
-    out = generate_chart(args.model, args.data, Path(args.out_file) if args.out_file else None,
-                         telegram=args.telegram)
-    print(f"📈 Feature chart saved to {out}")
+    try:
+        out = generate_shap_chart(
+            args.model,
+            args.dataset,
+            Path(args.out_file) if args.out_file else None,
+            telegram=args.telegram,
+        )
+        print(f"📈 Feature chart saved to {out}")
+
+        if args.s3_bucket:
+            upload_to_s3(out, args.s3_bucket)
+        return 0
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

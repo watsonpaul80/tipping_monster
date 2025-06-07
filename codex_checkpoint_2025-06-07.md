@@ -3,7 +3,7 @@
 This milestone summarises all notable features and fixes committed to the repository so far.
 
 ## Added
-- **Command Line Wrapper** `tmcli.py` for running the pipeline, ROI tasks and (now removed) sniper jobs with `--dev` mode support【F:tmcli.py†L1-L60】.
+- **Command Line Wrapper** `cli/tmcli.py` for running the pipeline, ROI tasks and (now removed) sniper jobs with `--dev` mode support【F:cli/tmcli.py†L1-L60】.
 - **Dispatch All Tips** `dispatch_all_tips.py` to send full card tips in batches with Telegram integration【F:dispatch_all_tips.py†L1-L114】.
 - **Codex Action Logger** `codex_logger.py` to record agent actions to `logs/codex.log`【F:codex_logger.py†L1-L27】.
 - **Safe Cron Utility** `safecron.sh` validating `TG_BOT_TOKEN` and `TG_USER_ID` env vars before execution, alerting on failures【F:safecron.sh†L1-L40】.
@@ -11,7 +11,7 @@ This milestone summarises all notable features and fixes committed to the reposi
 - **Python Package** `tippingmonster` containing utility functions such as Telegram messaging and profit calculation【F:tippingmonster/utils.py†L1-L66】【F:tippingmonster/utils.py†L67-L109】.
 - **Feature Validation** script `validate_features.py` ensuring datasets match `features.json` columns【F:validate_features.py†L1-L50】.
 - **Sent Tips Helper** `ensure_sent_tips.py` to recreate `sent_tips_DATE.jsonl` if missing【F:ensure_sent_tips.py†L8-L26】.
-- **Dispatch Alerts** `alert_if_no_sent_tips.py` and `alert_if_bad_snapshot.py` warn when no tips are sent or odds snapshots are incomplete【F:alert_if_no_sent_tips.py†L7-L18】【F:alert_if_bad_snapshot.py†L7-L29】.
+- **Dispatch Alerts** `alert_if_no_sent_tips.py` (removed later) and `alert_if_bad_snapshot.py` warned when no tips were sent or odds snapshots were incomplete.
 - **Log Healthcheck** `healthcheck_logs.py` verifies expected logs exist each day【F:healthcheck_logs.py†L14-L28】.
 - **Archive Old Logs** `archive_old_logs.py` compresses logs older than N days for cleanup【F:archive_old_logs.py†L8-L26】.
 - **Model Drift Report** `model_drift_report.py` detects SHAP feature drift and writes a markdown summary.
