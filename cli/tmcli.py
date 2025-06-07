@@ -1,5 +1,7 @@
 import argparse
-from datetime import date
+import os
+import subprocess
+from datetime import date, datetime
 from pathlib import Path
 
 from core.dispatch_tips import main as dispatch_main
@@ -8,6 +10,27 @@ from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def valid_date(value: str) -> str:
+    """Return ``value`` if it matches ``YYYY-MM-DD`` else raise ``ArgumentTypeError``."""
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            f"Invalid date: {value}. Use YYYY-MM-DD"
+        ) from exc
+    return value
+
+
+def run_command(cmd: list[str], dev: bool) -> None:
+    """Run ``cmd`` with optional ``TM_DEV_MODE`` set."""
+    env = os.environ.copy()
+    if dev:
+        env["TM_DEV_MODE"] = "1"
+    subprocess.run(cmd, check=True, env=env)
 
 
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
@@ -24,6 +47,31 @@ def main(argv=None) -> None:
         description="Tipping Monster command line interface"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # pipeline subcommand
+    parser_pipe = subparsers.add_parser("pipeline", help="Run the full daily pipeline")
+    parser_pipe.add_argument(
+        "--dev",
+        action="store_true",
+        help="Enable development mode (no Telegram/S3 uploads)",
+    )
+
+    # roi subcommand
+    parser_roi_pipe = subparsers.add_parser(
+        "roi", help="Run ROI pipeline for a given date"
+    )
+    parser_roi_pipe.add_argument("--date", type=valid_date, help="Date YYYY-MM-DD")
+    parser_roi_pipe.add_argument(
+        "--dev", action="store_true", help="Enable development mode"
+    )
+
+    # sniper subcommand (placeholder)
+    parser_sniper = subparsers.add_parser(
+        "sniper", help="Run sniper jobs (if available)"
+    )
+    parser_sniper.add_argument(
+        "--dev", action="store_true", help="Enable development mode for sniper jobs"
+    )
 
     # healthcheck subcommand
     parser_health = subparsers.add_parser(
@@ -76,7 +124,22 @@ def main(argv=None) -> None:
 
     args = parser.parse_args(argv)
 
-    if args.command == "healthcheck":
+    if args.command == "pipeline":
+        cmd = [str(ROOT / "core" / "run_pipeline_with_venv.sh")]
+        if args.dev:
+            cmd.append("--dev")
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "roi":
+        cmd = [str(ROOT / "roi" / "run_roi_pipeline.sh")]
+        if args.date:
+            cmd.append(args.date)
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "sniper":
+        raise RuntimeError("Sniper functionality is not included in this distribution")
+
+    elif args.command == "healthcheck":
         check_logs(Path(args.out_log), args.date)
 
     elif args.command == "ensure-sent-tips":
@@ -109,6 +172,7 @@ def main(argv=None) -> None:
 
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
+
 
 if __name__ == "__main__":
     main()

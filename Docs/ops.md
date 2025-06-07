@@ -20,11 +20,11 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 ### Core Pipeline & Odds Fetching
 
-1.  **Run Main Pipeline (`core/run_pipeline_with_venv.sh` or `tmcli.py pipeline`)**
+1.  **Run Main Pipeline (`core/run_pipeline_with_venv.sh` or `cli/tmcli.py pipeline`)**
     *   **Frequency:** Daily at 05:00
     *   **Purpose:** Executes the main data processing and tipping pipeline. This likely involves fetching racecards, running predictions, selecting tips, and preparing them for dispatch.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/core/run_pipeline_with_venv.sh`
-    *   **Alt:** `python tmcli.py pipeline --dev` for safe local testing.
+    *   **Alt:** `python cli/tmcli.py pipeline --dev` for safe local testing.
     *   **Internal Logs:** Check `logs/inference/`, `logs/dispatch/` for detailed logs from this pipeline.
 
 2.  **Fetch Betfair Odds (Hourly)**
@@ -54,7 +54,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Frequency:** Daily at 22:50
     *   **Purpose:** Executes the ROI (Return on Investment) calculation pipeline. This likely processes sent tips and their results to generate ROI statistics.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh roi_pipeline /bin/bash /home/ec2-user/tipping-monster/roi/run_roi_pipeline.sh`
-    *   **Alt:** `python tmcli.py roi --date $(date +\%F)`
+    *   **Alt:** `python cli/tmcli.py roi --date $(date +\%F)`
     *   **Internal Logs:** Check `logs/roi/` for detailed ROI logs.
 
 6.  **Generate Master Subscriber Log & Upload (`roi/generate_subscriber_log.py`)**
@@ -99,10 +99,10 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Command:** `find /home/ec2-user/tipping-monster/logs/ -type f -name "*.log" -mtime +14 -delete`
     *   **Note:** Ensure this crontab line is updated as per `Docs/instructions.md`.
 
-13. **Healthcheck Logs (`tmcli.py healthcheck`)**
+13. **Healthcheck Logs (`cli/tmcli.py healthcheck`)**
     *   **Frequency:** Daily at 00:05
     *   **Purpose:** Verifies key log files exist and writes a status line to `logs/healthcheck.log`.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/tmcli.py healthcheck --date $(date +\%F)`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/cli/tmcli.py healthcheck --date $(date +\%F)`
 
 ---
 
