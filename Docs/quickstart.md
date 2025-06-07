@@ -21,6 +21,7 @@ Key folders and scripts include:
 - `logs/` – organized logs for inference, ROI, dispatch and sniper processes.
 - `predictions/` – daily output tips and summaries.
 - Root‑level scripts such as `run_pipeline_with_venv.sh`, `fetch_betfair_odds.py`, and `dispatch_tips.py` drive the daily pipeline.
+- `tmcli.py` – command-line helper wrapping common tasks like `healthcheck`.
 
 A typical daily pipeline runs the following steps:
 

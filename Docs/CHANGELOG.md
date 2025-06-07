@@ -140,3 +140,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 ## 2025-06-06 — ROI Script Consolidation
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
+
+## 2025-06-07 — CLI Helper
+- Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
+- Documented CLI usage in README and ops guide.
+- Added tests for new CLI commands.
