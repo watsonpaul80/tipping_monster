@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import pandas as pd
 import numpy as np
 import json
@@ -7,7 +8,12 @@ import argparse
 
 # === ARGUMENTS ===
 parser = argparse.ArgumentParser()
-parser.add_argument("--date", help="Target date (YYYY-MM-DD). Defaults to yesterday.")
+parser.add_argument(
+    "--date",
+    help=(
+        "Target date (YYYY-MM-DD). Defaults to yesterday."
+    ),
+)
 args = parser.parse_args()
 
 if args.date:
@@ -29,23 +35,28 @@ CSV_OUTPUT = Path("logs/roi/monster_confidence_per_day_with_roi.csv")
 bins = [(round(c, 2), round(c + 0.1, 2)) for c in np.arange(0.5, 0.99, 0.1)]
 bins.append((0.99, 1.01))
 
+
 def clean_time(t):
     t = str(t).strip()
     try:
         return datetime.strptime(t, "%I:%M").strftime("%H:%M")
-    except:
+    except Exception:
         try:
             return datetime.strptime(t, "%H:%M").strftime("%H:%M")
-        except:
+        except Exception:
             return t
+
 
 def clean_course(name):
     return name.strip().lower().split(" (")[0]
 
+
 def clean_horse(name):
     return name.lower().split(" (")[0].strip()
 
+
 # === MAIN ===
+
 per_day_data = []
 current = START_DATE
 
@@ -65,7 +76,11 @@ while current <= END_DATE:
     df_results["clean_course"] = df_results["course"].apply(clean_course)
     df_results["clean_time"] = df_results["off"].apply(clean_time)
     df_results["horse_lower"] = df_results["horse"].apply(clean_horse)
-    df_results["pos"] = pd.to_numeric(df_results["pos"], errors="coerce").fillna(99).astype(int)
+    df_results["pos"] = (
+        pd.to_numeric(df_results["pos"], errors="coerce")
+        .fillna(99)
+        .astype(int)
+    )
 
     daily_bins = {f"{low:.2f}–{high:.2f}": {
         "tips": 0, "wins": 0, "places": 0,
@@ -82,8 +97,12 @@ while current <= END_DATE:
             odds = float(tip.get("bf_sp", 0))
 
             bin_key = next(
-                (f"{low:.2f}–{high:.2f}" for (low, high) in bins if low <= conf < high),
-                None
+                (
+                    f"{low:.2f}–{high:.2f}"
+                    for (low, high) in bins
+                    if low <= conf < high
+                ),
+                None,
             )
             if not bin_key:
                 continue
@@ -103,8 +122,14 @@ while current <= END_DATE:
             win_pnl = (odds - 1) * STAKE if is_win else -STAKE
 
             if odds >= 5.0:
-                place_pnl = ((odds * PLACE_ODDS_FRACTION) - 1) * (STAKE / 2) if is_place else -(STAKE / 2)
-                ew_pnl = place_pnl + (STAKE / 2 if is_win else -(STAKE / 2))
+                place_pnl = (
+                    (odds * PLACE_ODDS_FRACTION - 1) * (STAKE / 2)
+                    if is_place
+                    else -(STAKE / 2)
+                )
+                ew_pnl = place_pnl + (
+                    STAKE / 2 if is_win else -(STAKE / 2)
+                )
             else:
                 ew_pnl = 0.0
 
@@ -152,9 +177,11 @@ if CSV_OUTPUT.exists():
         existing = existing[~existing["Date"].isin(df["Date"])]
         df = pd.concat([existing, df], ignore_index=True)
     else:
-        print("⚠️ No new data to append or missing 'Date' column in new DataFrame.")
+        print(
+            "⚠️ No new data to append or missing "
+            "'Date' column in new DataFrame."
+        )
         df = existing
 
 df.to_csv(CSV_OUTPUT, index=False)
 print(f"✅ Overwrote ROI report with deduplicated data to {CSV_OUTPUT}")
-

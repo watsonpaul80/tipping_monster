@@ -1,6 +1,8 @@
 #!/bin/bash
 
-LOG_DIR="/home/ec2-user/tipping-monster/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+LOG_DIR="$REPO_ROOT/logs"
 S3_BUCKET="tipping-monster"
 S3_PREFIX="logs-archive"
 TMP_ZIP="/tmp/tipping-monster-logs-$(date +%F).zip"

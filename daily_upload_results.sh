@@ -2,12 +2,14 @@
 set -euo pipefail
 
 TODAY=$(date +"%Y/%m/%d")
-OUTPUT_CSV="/home/ec2-user/tipping-monster/rpscrape/data/dates/all/$(date +"%Y_%m_%d").csv"
-SCRIPT_DIR="/home/ec2-user/tipping-monster/rpscrape/scripts"
-VENV="/home/ec2-user/tipping-monster/.venv/bin/activate"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+OUTPUT_CSV="$REPO_ROOT/rpscrape/data/dates/all/$(date +"%Y_%m_%d").csv"
+SCRIPT_PATH="$REPO_ROOT/rpscrape/scripts"
+VENV="$REPO_ROOT/.venv/bin/activate"
 
 source "$VENV"
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_PATH"
 
 echo "📅 Scraping results for $TODAY"
 python rpscrape.py -d "$TODAY"

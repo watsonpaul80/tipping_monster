@@ -6,11 +6,15 @@ from pathlib import Path
 from datetime import datetime
 
 def extract_race_key(race_str):
+    """Parse a race string like '15:30 Chelmsford' into minutes and course."""
     try:
         time_part, course = race_str.split(" ", 1)
         h, m = map(int, time_part.strip().split(":"))
-        return h * 60 + m, course.strip().lower()
-    except:
+        course = course.strip().lower()
+        if not course:
+            return None, None
+        return h * 60 + m, course
+    except Exception:
         return None, None
 
 def load_snapshots(date_str):

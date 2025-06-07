@@ -30,7 +30,7 @@ A typical daily pipeline runs the following steps:
 08:00  fetch_betfair_odds.py      # Capture odds snapshot
 08:05  run_inference_and_select_top1.py  # Predict and select tips
 08:08  merge_odds_into_tips.py    # Attach odds to tips
-08:10  generate_commentary_bedrock.py (optional)
+08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  dispatch_tips.py           # Send tips to Telegram
 23:30  rpscrape (results cron)    # Get results for today
 23:55  roi_tracker_advised.py     # Link tips to results and calc profit
@@ -50,6 +50,7 @@ These times are detailed in `Docs/monster_overview.md`.
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
 3. Explore the training (`train_model_v6.py`) and inference (`run_inference_and_select_top1.py`) scripts to see how predictions are generated.
+4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
 4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 

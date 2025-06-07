@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import argparse
 from datetime import datetime
@@ -40,6 +41,7 @@ def main(date_str: str, mode: str):
     df[["level_stake", "level_profit"]] = df.apply(calculate_level_stakes, axis=1)
 
     # Save cleaned file
+    os.makedirs(LOGS_DIR, exist_ok=True)
     output_file = os.path.join(LOGS_DIR, f"tips_results_{date_str}_{mode}.csv")
     df.to_csv(output_file, index=False)
     print(f"✅ Level stakes file saved: {output_file}")

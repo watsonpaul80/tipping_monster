@@ -1,4 +1,6 @@
 # Scrape racecards for today
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$script_dir" rev-parse --show-toplevel)}"
 date_str=$(date +'%F')
 OUTPUT_FILE="today_racecards.json" # Change this line
 echo "[INFO] Running racecards.py for today (${date_str})"
@@ -17,10 +19,10 @@ if [ ! -s "$OUTPUT_FILE" ]; then
 fi
 
 # Ingest this JSON file into the database
-cd /home/ec2-user/tipping-monster || { echo "Cannot cd to project root" >&2; exit 1; } #This cd is not needed
+cd "$REPO_ROOT" || { echo "Cannot cd to project root" >&2; exit 1; }
 echo "[INFO] Ingesting racecards JSON into DB"
 # change the file path here
-if python ingest_racecards.py --file /home/ec2-user/tipping-monster/rpscrape/scripts/"$OUTPUT_FILE"; then
+if python ingest_racecards.py --file "$script_dir/$OUTPUT_FILE"; then
   echo "[INFO] Finished ingesting racecards at $(date +'%Y-%m-%d %H:%M:%S')"
 else
   echo "[ERROR] Ingestion failed for $OUTPUT_FILE" >&2

@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 import os
 import pandas as pd
 import argparse
 from datetime import datetime, timedelta
-import requests
+
+from tippingmonster import send_telegram_message
 
 def get_week_dates(iso_week):
     year, week = iso_week.split("-W")
@@ -19,11 +21,6 @@ def load_week_data(week_dates, mode="advised"):
             rows.append(df)
     return pd.concat(rows) if rows else pd.DataFrame()
 
-def send_to_telegram(msg, token, chat_id):
-    requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
-    )
 
 def main(week, send_telegram=False):
     mode = "advised"
@@ -86,7 +83,7 @@ def main(week, send_telegram=False):
 🪙 Staked: {stake:.2f} pts\n"""
         for _, row in summary.iterrows():
             msg += f"\n📆 {row.Date} → {int(row.Tips)} tips, 🟢 {int(row.Wins)}W, 🟡 {int(row.Places)}P, ROI: {row.ROI:.2f}%"
-        send_to_telegram(msg, TOKEN, CHAT_ID)
+        send_telegram_message(msg, token=TOKEN, chat_id=CHAT_ID)
         print("✅ Sent to Telegram")
 
 if __name__ == "__main__":

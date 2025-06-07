@@ -1,11 +1,31 @@
+#!/usr/bin/env python3
 
 import os
+from pathlib import Path
 import pandas as pd
 from datetime import datetime
 
 # === CONFIG ===
-LOG_DIR = "/home/ec2-user/tipping-monster/logs"
-OUT_DIR = os.path.join(LOG_DIR, "weekly_summaries")
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parent),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parent
+
+REPO_ROOT = get_repo_root()
+LOG_DIR = REPO_ROOT / "logs"
+OUT_DIR = LOG_DIR / "weekly_summaries"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # === GROUP FILES ===

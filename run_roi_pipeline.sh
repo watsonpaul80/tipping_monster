@@ -8,10 +8,13 @@ else
     DATE=$(date +%F)
 fi
 
-PYTHON="/home/ec2-user/tipping-monster/.venv/bin/python"
-LOGDIR="/home/ec2-user/tipping-monster/logs/roi"
-SENT_TIPS="logs/dispatch/sent_tips_${DATE}.jsonl"
-PREDICTIONS="predictions/${DATE}/tips_with_odds.jsonl"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+
+PYTHON="$REPO_ROOT/.venv/bin/python"
+LOGDIR="$REPO_ROOT/logs/roi"
+SENT_TIPS="$REPO_ROOT/logs/dispatch/sent_tips_${DATE}.jsonl"
+PREDICTIONS="$REPO_ROOT/predictions/${DATE}/tips_with_odds.jsonl"
 
 mkdir -p $LOGDIR
 
