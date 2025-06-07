@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from .utils import (
     repo_root,
     repo_path,

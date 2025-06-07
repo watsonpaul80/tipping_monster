@@ -14,8 +14,7 @@ This documentation set covers everything about the **Tipping Monster** project �
 
 ## 🔑 Environment Variables
 
-The scripts expect the following environment variables to be defined
-(see `.env.example` for a template):
+Create a `.env` file (see `.env.example`) with the following variables:
 
 - `BF_USERNAME`
 - `BF_PASSWORD`
@@ -25,6 +24,8 @@ The scripts expect the following environment variables to be defined
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
-- `TM_ROOT` *(optional)*
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_DEFAULT_REGION`
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.

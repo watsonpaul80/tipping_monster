@@ -4,7 +4,9 @@ import argparse
 from collections import defaultdict
 from datetime import date
 import requests
-from tippingmonster import send_telegram_message, logs_path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")

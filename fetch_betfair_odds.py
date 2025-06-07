@@ -6,6 +6,9 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 import pytz
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from tippingmonster.env_loader import load_env
 

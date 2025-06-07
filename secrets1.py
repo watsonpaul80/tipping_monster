@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BF_USERNAME = os.getenv("BF_USERNAME")
 BF_PASSWORD = os.getenv("BF_PASSWORD")

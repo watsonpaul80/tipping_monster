@@ -5,9 +5,9 @@ import argparse
 import pandas as pd
 from tippingmonster import send_telegram_message
 from datetime import datetime
-from tippingmonster.env_loader import load_env
+from dotenv import load_dotenv
 
-load_env()
+load_dotenv()
 
 # === ARGPARSE SETUP ===
 parser = argparse.ArgumentParser()

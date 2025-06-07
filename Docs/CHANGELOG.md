@@ -19,6 +19,32 @@
 - All scheduled snapshot jobs now log job ID + time in output
 
 
+## [2025-05-31] 🔫 Steam Sniper V1 — Stable Launch
+
+### ✅ Major Fixes
+- Fixed critical issue where sniper jobs failed due to early race schedule creation.
+- Updated cron to build sniper schedule at 09:30 (after racecards are ready).
+- Fallback parsing for both `3:15` and `15:15` time formats in racecards.
+
+### ✅ Core Features Completed
+- Fully automated snapshot scheduling and fetching based on race times.
+- Snapshot comparison now dynamically finds earliest available file (not just 08:00).
+- Odds progression shown in clean format: `20/1 → 10/1 → 7/1`.
+- Past races filtered out from dispatch automatically.
+- Volume filtering removed due to Betfair API call limits.
+- Telegram dispatch batches alerts in groups (up to 20) with dryrun support.
+
+### 🧪 Manual Testing
+- Dry-run mode added for safe CLI output testing.
+- Successfully tested full sniper pipeline: fetch → merge → detect → dispatch.
+
+### 📂 New Files / Scripts
+- `compare_sniper_odds.py`: Replaces old snapshot comparison logic.
+
+### 🏼 Next Up
+- ROI tracking for steamers
+- LLM commentary
+- ML-based filtering in V2
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
 
