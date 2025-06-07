@@ -67,4 +67,12 @@ To confirm all expected logs were created for a given day, run:
 python healthcheck_logs.py --date YYYY-MM-DD
 ```
 
+
+### Model Comparison
+
+Run `compare_model_v6_v7.py` to train both model versions on the same
+historical dataset. The script logs the confidence difference and ROI
+summary to `logs/compare_model_v6_v7.csv`.
+
 This appends a status line to `logs/healthcheck.log` and lists any missing log files.
+

@@ -46,6 +46,7 @@ These times are detailed in `Docs/monster_overview.md`.
 ## Key Scripts
 
 - **Training:** `train_model_v6.py` and `train_modelv7.py` load historical data and produce an XGBoost model.
+- **Model Comparison:** `compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
 - **Inference:** `run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
 - **Odds Integration:** `fetch_betfair_odds.py` grabs odds snapshots; `merge_odds_into_tips.py` merges them with tips; `extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `dispatch_tips.py` formats tips for Telegram. `roi_tracker_advised.py` and `send_daily_roi_summary.py` track daily performance and report ROI.

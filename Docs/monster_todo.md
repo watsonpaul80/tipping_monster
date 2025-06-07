@@ -16,7 +16,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 2. **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts
 
-3. **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
+3. ✅ **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
 
 4. **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency
 
