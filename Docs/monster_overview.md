@@ -167,6 +167,8 @@ Run manually:
 bash run_roi_pipeline.sh
 
 # Weekly summary (current ISO week)
+./weekly_roi_summary.py --week $(date +%G-W%V) --telegram
+# or
 python weekly_roi_summary.py --week $(date +%G-W%V) --telegram
 ```
 
