@@ -81,6 +81,12 @@ These wrap core scripts for ease of use.
 
 ---
 
+## Tip Dispatch
+
+Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+actually post messages and `--explain` to append a short "Why we tipped this"
+summary generated from SHAP values.
+
 ## Health Check
 
 To confirm all expected logs were created for a given day:

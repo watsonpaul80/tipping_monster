@@ -171,12 +171,14 @@ def format_tip_message(tip, max_id):
         f"📊 Confidence: {conf}% | Odds: {odds} | Stake: {stake_pts:.2f} pts{ew_label}"
     )
     tags = " | ".join(tip.get("tags", []))
-    comment = (
-        f"✍️ {tip['commentary']}"
-        if LLM_COMMENTARY_ENABLED and tip.get("commentary")
-        else "💬 Commentary coming soon..."
-    )
-    return f"{header}\n{title}\n{stats}\n{tags}\n{comment}\n{'-'*30}"
+    comment = f"✍️ {tip['commentary']}" if LLM_COMMENTARY_ENABLED and tip.get("commentary") else "💬 Commentary coming soon..."
+    expl = tip.get("explanation")
+    explain_line = f"💡 Why we tipped this: {expl}" if expl else ""
+    parts = [header, title, stats, tags, comment]
+    if explain_line:
+        parts.append(explain_line)
+    parts.append("-" * 30)
+    return "\n".join(parts)
 
 
 def send_to_telegram(text):
@@ -197,16 +199,19 @@ def send_batched_messages(tips, batch_size):
         send_to_telegram(batch)
         sleep(1.5)
 
-
-def dispatch(
-    date: str = DEFAULT_DATE,
-    *,
-    mode: str = "advised",
-    min_conf: float = 0.80,
-    telegram: bool = False,
-    dev: bool = False,
-) -> None:
-    """Format today's tips and optionally send them to Telegram."""
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--date", default=DEFAULT_DATE)
+    parser.add_argument("--mode", default="advised")
+    parser.add_argument("--min_conf", type=float, default=0.80)
+    parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
+    parser.add_argument(
+        "--explain",
+        action="store_true",
+        help="Append a short SHAP explanation to each tip",
+    )
+    args = parser.parse_args()
 
     if dev:
         os.environ["TM_DEV_MODE"] = "1"
@@ -225,10 +230,17 @@ def dispatch(
         print("⚠️ No valid tips to process.")
         sys.exit(1)
 
-    nap_log = logs_path(f"nap_override_{date}.log")
-    nap_tip, max_conf = select_nap_tip(
-        tips, odds_cap=NAP_ODDS_CAP, log_path=str(nap_log)
-    )
+    explanations = {}
+    if args.explain:
+        try:
+            from explain_model_decision import generate_explanations
+
+            explanations = generate_explanations(PREDICTIONS_PATH)
+        except Exception as e:
+            print(f"⚠️ Failed to generate explanations: {e}")
+
+    nap_log = logs_path(f"nap_override_{args.date}.log")
+    nap_tip, max_conf = select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=str(nap_log))
     max_id = get_tip_composite_id(nap_tip) if nap_tip else None
 
     enriched = []
@@ -243,6 +255,9 @@ def dispatch(
         tip["stake"] = stake
         if tip.get("odds_drifted") and tip.get("confidence", 0.0) >= 0.95:
             tip["monster_mode"] = True
+        if args.explain:
+            tip_id = get_tip_composite_id(tip)
+            tip["explanation"] = explanations.get(tip_id, "")
         enriched.append(tip)
 
     print(f"DEBUG: {len(enriched)} tips after enrichment")

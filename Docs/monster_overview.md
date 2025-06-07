@@ -234,7 +234,7 @@ The foundational elements and automated processes that power Tipping Monster are
 ## 🚧 PLANNED ENHANCEMENTS
 
 ### 🔜 v7 Features
-* SHAP-based tip explanations (Top 5 feature impact per tip in .md + Telegram)
+* SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
 * Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
