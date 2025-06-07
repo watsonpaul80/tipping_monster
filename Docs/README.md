@@ -55,3 +55,12 @@ python dispatch_all_tips.py --date 2025-06-07 --telegram --batch-size 10
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 
+### Running Inference
+
+Run inference scripts from the repository root. Example:
+
+```bash
+python core/run_inference_and_select_top1.py
+```
+Running this command inside `core/` will fail with `ModuleNotFoundError` unless `PYTHONPATH=..` is configured.
+

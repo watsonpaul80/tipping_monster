@@ -47,6 +47,12 @@ These times are detailed in `Docs/monster_overview.md`.
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
 - **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
+- **Important:** run this script from the **repository root**:
+
+```bash
+python core/run_inference_and_select_top1.py
+```
+Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
 - **Odds Integration:** `core/fetch_betfair_odds.py` grabs odds snapshots; `core/merge_odds_into_tips.py` merges them with tips; `core/extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `core/dispatch_tips.py` formats tips for Telegram. `roi/roi_tracker_advised.py` and `roi/send_daily_roi_summary.py` track daily performance and report ROI.
 - **Explainability:** `model_feature_importance.py` plots SHAP values and can upload the chart to S3.
