@@ -36,20 +36,20 @@ A typical daily pipeline runs the following steps:
 08:08  core/merge_odds_into_tips.py    # Attach odds to tips
 08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  core/dispatch_tips.py           # Send tips to Telegram
-23:30  rpscrape (results cron)    # Get results for today
-23:55  roi/roi_tracker_advised.py     # Link tips to results and calc profit
+23:30  rpscrape (results cron)         # Get results for today
+23:55  roi/roi_tracker_advised.py      # Link tips to results and calc profit
 23:59  roi/send_daily_roi_summary.py  # Telegram summary of ROI
 ```
 These times are detailed in `Docs/monster_overview.md`.
 
 ## Key Scripts
 
-
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
 - **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
 - **Odds Integration:** `core/fetch_betfair_odds.py` grabs odds snapshots; `core/merge_odds_into_tips.py` merges them with tips; `core/extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `core/dispatch_tips.py` formats tips for Telegram. `roi/roi_tracker_advised.py` and `roi/send_daily_roi_summary.py` track daily performance and report ROI.
+- **Explainability:** `model_feature_importance.py` plots SHAP values and can upload the chart to S3.
 - **Steam Sniper:** Scripts like `build_sniper_schedule.py` detect market steamers from Betfair odds.
 
 ## Next Steps for Newcomers

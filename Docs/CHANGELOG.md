@@ -1,8 +1,15 @@
 # 📅 CHANGELOG
+## 2025-06-09
+- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
+
 
 ## 2025-06-09
 
 ### Added
+- NAP odds cap with override support (`dispatch_tips.py`).
+- Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
+- NAP removed entirely when no tip meets the cap, with log entry noted.
+- Optional SHAP chart upload added in `model_feature_importance.py`.
 - `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter tips by tag substring.
 - Removed duplicate arguments and calculations in `tag_roi_tracker.py`. Added `--dev` option.
 
@@ -110,4 +117,3 @@
 - Verified full odds snapshot → comparison → steamer flow.
 
 ---
-

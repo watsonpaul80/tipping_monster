@@ -2,7 +2,7 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [docs/script_audit.txt](docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
 
 ## Setup
 
@@ -12,6 +12,7 @@ See the [Docs/README.md](Docs/README.md) file for complete documentation, includ
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+# GitHub Actions also installs dependencies this way
 ```
 
 2. Copy `.env.example` to `.env` and fill in your credentials:
@@ -22,12 +23,14 @@ TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
 TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
-The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
+The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
+
+For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
 3. Verify your development environment:
 
 ```bash
-./dev-check.sh
+./utils/dev-check.sh
 ```
 
 Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and store them securely outside version control (e.g., in a `certs/` folder).
@@ -35,7 +38,7 @@ Private SSL keys are not included in the repository. Generate your own Betfair c
 Optionally, set `TIPPING_MONSTER_HOME` to the repository root:
 
 ```bash
-source set_tm_home.sh
+source utils/set_tm_home.sh
 ```
 
 4. Run tests to confirm everything is working:
@@ -63,6 +66,8 @@ bash core/run_pipeline_with_venv.sh
 bash core/run_pipeline_with_venv.sh --dev
 ```
 
+Most Python scripts accept a `--debug` flag for verbose logging.
+
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
 
 ---
@@ -72,30 +77,54 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python tmcli.py pipeline --dev            # run full pipeline in dev mode
-python tmcli.py roi --date YYYY-MM-DD     # generate ROI stats
-python tmcli.py sniper --dev              # (placeholder) sniper tasks
 python tmcli.py healthcheck --date YYYY-MM-DD
 python tmcli.py ensure-sent-tips YYYY-MM-DD
-python validate_tips.py predictions/YYYY-MM-DD/tips_with_odds.jsonl
-```
+python tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python tmcli.py send-roi --date YYYY-MM-DD
+python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python tmcli.py dispatch --date YYYY-MM-DD --telegram
+python tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python tmcli.py chart-fi path/to/model_dir
+python tmcli.py send-photo path/to/image.jpg
 
-These wrap core scripts for ease of use.
 
----
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+actually post messages and `--explain` to append a short "Why we tipped this"
+summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
 summary generated from SHAP values.
+
+## Tip Dispatch
+
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+actually post messages and `--explain` to append a short "Why we tipped this"
+summary generated from SHAP values.
+
+```
+
+
+These commands wrap existing scripts for convenience and default locations.
+
+
+Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
+actually post messages and `--explain` to append a short "Why we tipped this"
+summary generated from SHAP values.
+
+The `tippingmonster` package also exposes handy helpers like
+`send_telegram_message()` and the new `send_telegram_photo()` for posting
+images with captions.
+
 
 ## Health Check
 
 To confirm all expected logs were created for a given day:
 
 ```bash
-python healthcheck_logs.py --date YYYY-MM-DD
+python utils/healthcheck_logs.py --date YYYY-MM-DD
 ```
 
 This writes a status summary to `logs/healthcheck.log`.
@@ -136,27 +165,12 @@ training dataset. Schedule this weekly for continuous learning.
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
 
+## Model Files
 
-### Model Drift Report
-
-Run `model_drift_report.py` to compare SHAP feature rankings over the past week. The script writes a summary to `logs/model_drift_report.md`.
-
-=======
-### ROI by Confidence Band
-
-Use `roi_by_confidence_band.py` to break down ROI by confidence level.
-
-```bash
-python roi_by_confidence_band.py --date YYYY-MM-DD
-```
-
-The script writes two CSVs to `logs/roi/`:
-- `roi_by_confidence_band_sent.csv` – only tips sent to Telegram
-- `roi_by_confidence_band_all.csv` – every tip regardless of send status
-
-### Self-Training Evaluation
-
-`evaluate_self_training.py` trains models with and without past tip features and writes the ROI comparison to `logs/evaluate_self_training.csv`.
+Trained models are uploaded to S3 rather than stored in the repository. See
+[Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
+latest model tarball from the `tipping-monster` bucket. The inference scripts
+will automatically fetch the specified model if it is missing locally.
 
 ## Model Transparency and Self‑Training
 
