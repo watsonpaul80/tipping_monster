@@ -28,7 +28,7 @@ def _apply_dev_env(dev: bool) -> None:
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
     """Run ``dispatch_tips.py`` for ``date``."""
     _apply_dev_env(dev)
-    cmd = [sys.executable, str(repo_path("dispatch_tips.py")), "--date", date]
+    cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
     if telegram:
         cmd.append("--telegram")
     if dev:
@@ -39,7 +39,7 @@ def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
 def send_daily_roi(date: str | None = None, dev: bool = False) -> None:
     """Send the daily ROI summary via ``send_daily_roi_summary.py``."""
     _apply_dev_env(dev)
-    cmd = [sys.executable, str(repo_path("send_daily_roi_summary.py"))]
+    cmd = [sys.executable, str(repo_path("roi", "send_daily_roi_summary.py"))]
     if date:
         cmd += ["--date", date]
     if dev:
