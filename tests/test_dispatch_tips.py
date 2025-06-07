@@ -1,11 +1,9 @@
+from dispatch_tips import calculate_monster_stake
 import sys
 from pathlib import Path
 
-import pytest
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-
-from dispatch_tips import calculate_monster_stake
 
 
 def test_calculate_monster_stake_above_threshold():
