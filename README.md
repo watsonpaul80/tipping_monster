@@ -149,6 +149,17 @@ training dataset. Schedule this weekly for continuous learning.
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
 
+### ROI by Confidence Band
+
+Use `roi_by_confidence_band.py` to break down ROI by confidence level.
+
+```bash
+python roi_by_confidence_band.py --date YYYY-MM-DD
+```
+
+The script writes two CSVs to `logs/roi/`:
+- `roi_by_confidence_band_sent.csv` – only tips sent to Telegram
+- `roi_by_confidence_band_all.csv` – every tip regardless of send status
 
 ## Model Transparency and Self‑Training
 
