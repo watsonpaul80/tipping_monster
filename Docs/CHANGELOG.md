@@ -1,4 +1,7 @@
 # 📅 CHANGELOG
+## 2025-06-09
+- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
+
 
 ## 2025-06-09
 
@@ -25,6 +28,7 @@
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 - `validate_tips.py` for verifying tips files before dispatch.
 - Added unit tests for `tmcli` subcommands.
+- Added unit test for `roi_by_confidence_band.summarise`.
 - ROI trackers now support `--tag` filtering for NAP/Value tips.
 
 ## 2025-06-07 — Script Cleanup
