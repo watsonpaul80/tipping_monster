@@ -14,9 +14,8 @@ This documentation set covers everything about the **Tipping Monster** project �
 
 ## 🔑 Environment Variables
 
-The scripts expect the following environment variables to be defined:
-
-### 🏇 Betfair API
+The scripts expect the following environment variables to be defined
+(see `.env.example` for a template):
 
 - `BF_USERNAME`
 - `BF_PASSWORD`
@@ -24,21 +23,8 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_PATH`
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `TM_ROOT` *(optional)*
 
-SSL certificates required for Betfair API access should be generated yourself and stored **outside the repository**.
-
-### 📬 Telegram Bot
-
-To send messages via the Telegram bot:
-
-- `TELEGRAM_BOT_TOKEN` *(or `TG_BOT_TOKEN`)*
-- `TELEGRAM_CHAT_ID` *(or `TG_USER_ID`)*
-
-Both naming conventions are supported across the codebase for flexibility.
-
-### 📁 Path Config (Optional)
-
-- `TIPPING_MONSTER_HOME` – manually sets the project root.  
-  If unset, scripts use:
-  ```bash
-  git rev-parse --show-toplevel
+Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.

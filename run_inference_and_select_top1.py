@@ -13,6 +13,10 @@ import orjson
 import numpy as np
 import glob
 
+from tippingmonster.env_loader import load_env
+
+load_env()
+
 # === ARGUMENT PARSING ===
 latest_model = sorted(glob.glob("tipping-monster-xgb-model-*.tar.gz"))[-1]
 parser = argparse.ArgumentParser()
