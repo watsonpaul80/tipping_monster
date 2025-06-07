@@ -8,6 +8,8 @@ import argparse
 
 from tippingmonster import send_telegram_message, logs_path
 
+NAP_ODDS_CAP = 21.0  # 20/1 in decimal
+
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
 
@@ -79,7 +81,9 @@ def log_nap_override(original: dict, new: dict | None, path: str) -> None:
     with open(path, "a", encoding="utf-8") as f:
         f.write(msg + "\n")
 
-def select_nap_tip(tips: list[dict], odds_cap: float, log_path: str) -> tuple[dict, float]:
+def select_nap_tip(
+    tips: list[dict], odds_cap: float = NAP_ODDS_CAP, log_path: str = ""
+) -> tuple[dict | None, float]:
     """Return the tip to mark as NAP and its confidence.
 
     If the top-confidence tip exceeds ``odds_cap`` and does not have
@@ -95,12 +99,13 @@ def select_nap_tip(tips: list[dict], odds_cap: float, log_path: str) -> tuple[di
     for tip in sorted_tips:
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         if tip.get("override_nap") or odds <= odds_cap:
-            if tip is not top_tip:
+            if tip is not top_tip and log_path:
                 log_nap_override(top_tip, tip, log_path)
             return tip, tip.get("confidence", 0.0)
 
-    # No tip qualifies under the cap; default to top tip without logging
-    return top_tip, top_tip.get("confidence", 0.0)
+    if log_path:
+        log_nap_override(top_tip, None, log_path)
+    return None, 0.0
 
 def format_tip_message(tip, max_id):
     race_info = tip.get("race", "")
@@ -168,7 +173,7 @@ def main():
         sys.exit(1)
 
     nap_log = logs_path(f"nap_override_{args.date}.log")
-    nap_tip, max_conf = select_nap_tip(tips, odds_cap=21.0, log_path=str(nap_log))
+    nap_tip, max_conf = select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=str(nap_log))
     max_id = get_tip_composite_id(nap_tip) if nap_tip else None
 
     enriched = []

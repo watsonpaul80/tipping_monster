@@ -56,3 +56,15 @@ def test_select_nap_tip_normal(tmp_path):
     nap, conf = select_nap_tip(tips, odds_cap=21.0, log_path=str(log_file))
     assert nap["name"] == "A"
     assert not log_file.exists() or log_file.read_text() == ""
+
+
+def test_select_nap_tip_all_blocked(tmp_path):
+    tips = [
+        {"name": "Longshot", "race": "1", "confidence": 0.9, "odds": 30.0},
+        {"name": "Second", "race": "2", "confidence": 0.85, "odds": 25.0},
+    ]
+    log_file = tmp_path / "nap.log"
+    nap, conf = select_nap_tip(tips, odds_cap=21.0, log_path=str(log_file))
+    assert nap is None
+    assert log_file.exists()
+    assert "no replacement" in log_file.read_text().lower()
