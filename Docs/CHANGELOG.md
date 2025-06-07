@@ -1,4 +1,7 @@
 # 📅 CHANGELOG
+## 2025-06-09
+- Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
+
 
 ## 2025-06-09
 
