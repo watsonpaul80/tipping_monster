@@ -23,6 +23,8 @@ pip install -r requirements.txt
 pytest
 ```
 
+4. Python cache artifacts (`*.pyc` files and `__pycache__/` directories) are ignored via `.gitignore`.
+
 ## Usage
 
 Launch the full daily pipeline with:
