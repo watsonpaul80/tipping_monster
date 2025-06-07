@@ -70,7 +70,10 @@ def calculate_profit(row):
 
 
 
-def load_tips(date_str, min_conf, use_sent):
+from tippingmonster import tip_has_tag
+
+
+def load_tips(date_str, min_conf, use_sent, tag=None):
     if use_sent:
         input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
         if not os.path.exists(input_file):
@@ -86,7 +89,9 @@ def load_tips(date_str, min_conf, use_sent):
     with open(input_file, "r") as f:
         for line in f:
             tip = json.loads(line)
-            if tip.get("confidence", 0.0) >= min_conf:
+            if tip.get("confidence", 0.0) >= min_conf and (
+                not tag or tip_has_tag(tip, tag)
+            ):
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
                 tip["Course"] = " ".join(
                     tip.get("race", "??:?? Unknown").split()[1:])
@@ -105,7 +110,7 @@ def load_tips(date_str, min_conf, use_sent):
 
 
 
-def main(date_str, mode, min_conf, send_to_telegram, show=False):
+def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
     date_display = date_str
     results_path = f"rpscrape/data/dates/all/{date_str.replace('-', '_')}.csv"
     if not os.path.exists(results_path):
@@ -137,7 +142,7 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False):
 
     for source in ["sent", "all"]:
         use_sent = (source == "sent")
-        tips = load_tips(date_str, min_conf, use_sent)
+        tips = load_tips(date_str, min_conf, use_sent, tag)
         if not tips:
             continue
 
@@ -272,6 +277,9 @@ if __name__ == "__main__":
         action="store_true",
         help="Show summary in CLI only")
     parser.add_argument(
+        "--tag",
+        help="Filter tips by tag (e.g. NAP)")
+    parser.add_argument(
         "--show",
         action="store_true",
         help="Show summary in CLI only")
@@ -281,4 +289,4 @@ if __name__ == "__main__":
         os.environ["TM_DEV_MODE"] = "1"
         os.environ["TM_LOG_DIR"] = "logs/dev"
 
-    main(args.date, args.mode, args.min_conf, args.telegram, args.show)
+    main(args.date, args.mode, args.min_conf, args.telegram, args.show, args.tag)
