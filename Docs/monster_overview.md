@@ -58,33 +58,33 @@ The system defines 8 core product layers:
 
 | Time  | Script                        | Purpose                                                    |
 |-------|-------------------------------|------------------------------------------------------------|
-| 05:00 | `daily_upload_racecards.sh`  | Pulls today’s racecards using `rpscrape`                 |
-| 05:06 | `daily_flatten.sh`           | Flattens racecards to JSONL format for ML input       |
-| 08:00 | `fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
-| 08:05 | `run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race             |
-| 08:08 | `merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
+| 05:00 | `core/daily_upload_racecards.sh`  | Pulls today’s racecards using `rpscrape`                 |
+| 05:06 | `core/daily_flatten.sh`           | Flattens racecards to JSONL format for ML input       |
+| 08:00 | `core/fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
+| 08:05 | `core/run_inference_and_select_top1.py` | Runs XGBoost model + selects best per race             |
+| 08:08 | `core/merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
 | 08:10 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
-| 08:12 | `dispatch_tips.py`           | Sends formatted tips to Telegram                       |
+| 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
-| 23:55 | `roi_tracker_advised.py`     | Links tips to results and calculates profit            |
-| 23:59 | `send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
-All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now live in the project root.
+| 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
+| 23:59 | `roi/send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
+Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 ---
 
 ## ⚙️ SCRIPT EXPLANATIONS
 
-* `train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
-* `run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
-* `merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
-* `dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-* `dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
-* `roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
-* `calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
-* `weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
-* `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
-* `generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
-* `send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
+* `core/run_inference_and_select_top1.py`: Uses the model to predict a winner per race with confidence scores.
+* `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
+* `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
+* `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
+* `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
+* `roi/calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
+* `roi/weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
+* `roi/generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
+* `roi/generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
+* `roi/send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
 
 ---
 

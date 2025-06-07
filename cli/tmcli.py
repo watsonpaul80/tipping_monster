@@ -2,11 +2,8 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from dispatch_tips import dispatch
-from ensure_sent_tips import ensure_sent_tips
-from healthcheck_logs import check_logs
-from send_daily_roi_summary import send_daily_roi
-from model_feature_importance import generate_chart
+from utils.healthcheck_logs import check_logs
+from utils.ensure_sent_tips import ensure_sent_tips
 
 
 def main(argv=None) -> None:

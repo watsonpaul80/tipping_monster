@@ -56,9 +56,10 @@ pre-commit run --files $(git ls-files '*.py')
 Launch the full daily pipeline with:
 
 ```bash
-bash run_pipeline_with_venv.sh
-# Dev mode: disables S3 uploads and Telegram posts
-bash run_pipeline_with_venv.sh --dev
+# Launch the full pipeline from the core directory
+bash core/run_pipeline_with_venv.sh
+# Use --dev to disable S3 uploads and Telegram posts
+bash core/run_pipeline_with_venv.sh --dev
 ```
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
@@ -70,11 +71,8 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python tmcli.py healthcheck --date YYYY-MM-DD
-python tmcli.py ensure-sent-tips YYYY-MM-DD
-python tmcli.py dispatch-tips --date YYYY-MM-DD --telegram
-python tmcli.py send-roi --date YYYY-MM-DD
-python tmcli.py model-feature-importance --telegram
+python cli/tmcli.py healthcheck --date YYYY-MM-DD
+python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
 
 These wrap core scripts for ease of use.

@@ -9,7 +9,7 @@ import argparse
 from datetime import date
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
-from validate_features import validate_dataset_features
+from core.validate_features import validate_dataset_features
 import boto3
 import tempfile
 import json
@@ -28,6 +28,8 @@ def load_all_results(s3_keys):
     return pd.concat(dfs, ignore_index=True)
 
 def merge_tip_logs(base_df, tip_files):
+    """Injects tip confidence and tip result/profit for self-training."""
+    # Add columns
     base_df["was_tipped"] = 0
     base_df["tip_confidence"] = None
     base_df["tip_profit"] = None
@@ -45,6 +47,7 @@ def merge_tip_logs(base_df, tip_files):
             base_df.loc[mask, "was_tipped"] = 1
             base_df.loc[mask, "tip_confidence"] = row.get("Confidence", None)
             base_df.loc[mask, "tip_profit"] = row.get("Profit", None)
+            # Banding: for confidence analysis
             conf = row.get("Confidence", None)
             if pd.notnull(conf):
                 conf = float(conf)
@@ -60,6 +63,7 @@ def merge_tip_logs(base_df, tip_files):
     return base_df
 
 def preprocess(df):
+    # Standard cleaning
     df["horse"] = df["horse"].astype(str).str.strip().str.replace(r" \([A-Z]{2,3}\)", "", regex=True)
     df["course"] = df["course"].astype(str).str.strip()
     df["trainer"] = df["trainer"].astype(str).str.strip()
@@ -80,15 +84,12 @@ def preprocess(df):
 
 def train_model(df, feature_cols):
     print(f"\n🧠 Using features: {feature_cols}")
-    print(f"📘 Rows before training: {len(df)}")
+    print(f"📊 Rows before training: {len(df)}")
     missing, extra = validate_dataset_features(feature_cols, df)
     if missing:
         raise ValueError(f"Missing required feature columns: {missing}")
     if extra:
         print(f"Ignoring extra columns: {extra}")
-    df["was_tipped"] = df["was_tipped"].fillna(0).astype(int)
-    df["tip_confidence"] = df["tip_confidence"].fillna(0.0)
-    df["tip_profit"] = df["tip_profit"].fillna(0.0)
     X = df[feature_cols]
     y = df["won"]
     print("Target label distribution:\n", y.value_counts())
@@ -100,7 +101,7 @@ def train_model(df, feature_cols):
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
     print(f"✅ Accuracy: {acc:.4f}")
-    print("\n📘 Classification Report:\n" + classification_report(y_test, preds, zero_division=0))
+    print("\n📊 Classification Report:\n" + classification_report(y_test, preds, zero_division=0))
 
     date_str = date.today().isoformat()
     dated_file = f"tipping-monster-xgb-model-{date_str}.bst"
@@ -109,6 +110,7 @@ def train_model(df, feature_cols):
     tar_path = f"tipping-monster-xgb-model-{date_str}.tar.gz"
     with tarfile.open(tar_path, "w:gz") as tar:
         tar.add("tipping-monster-xgb-model.bst")
+        # Save the feature list too
         with open("features.json", "w") as f:
             json.dump(feature_cols, f)
         tar.add("features.json")
@@ -135,8 +137,9 @@ if __name__ == "__main__":
     ]
     print("📅 Downloading historical data from S3...")
     df = load_all_results(s3_keys)
-    print("🔧 Preprocessing...")
+    print("🛠 Preprocessing...")
     df = preprocess(df)
+    # Find all tip log files you want to merge in
     log_base = os.getenv("TM_LOG_DIR", "logs")
     tip_logs = sorted(glob.glob(f"{log_base}/roi/tips_results_*_advised.csv"))
     if tip_logs:
@@ -147,7 +150,8 @@ if __name__ == "__main__":
     feature_cols = [
         "draw", "or", "rpr", "lbs", "age", "dist_f",
         "class", "going", "prize",
-        "was_tipped", "tip_confidence", "tip_profit"
+        # Uncomment to use tip info for training (self-training)
+        # "was_tipped", "tip_confidence", "tip_profit"
     ]
     print("🚀 Training model...")
     train_model(df, feature_cols)

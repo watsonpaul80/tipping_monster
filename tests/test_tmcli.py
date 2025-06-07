@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-import tmcli
+from cli import tmcli
 
 
 def test_tmcli_healthcheck(tmp_path):
