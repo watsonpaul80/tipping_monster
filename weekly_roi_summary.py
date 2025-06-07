@@ -3,6 +3,9 @@ import os
 import pandas as pd
 import argparse
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from tippingmonster import send_telegram_message
 

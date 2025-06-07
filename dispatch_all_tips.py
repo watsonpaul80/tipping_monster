@@ -4,6 +4,9 @@ import argparse
 from collections import defaultdict
 from datetime import date
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")

@@ -3,6 +3,9 @@ import json
 import argparse
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from tippingmonster import send_telegram_message
 

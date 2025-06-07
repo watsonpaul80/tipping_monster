@@ -14,8 +14,8 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. Export the required environment variables (see Docs/README.md for the full list):
-`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+2. Copy `.env.example` to `.env` and fill in your credentials:
+`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and others as needed.
 
 3. Run the tests to confirm everything works:
 

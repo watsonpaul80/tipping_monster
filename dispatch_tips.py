@@ -5,6 +5,9 @@ from datetime import date
 from time import sleep
 import sys
 import argparse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from tippingmonster import send_telegram_message
 

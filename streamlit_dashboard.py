@@ -5,20 +5,23 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import boto3
 from botocore.exceptions import NoCredentialsError, ClientError
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 st.set_page_config(page_title="Tipping Monster P&L", layout="wide")
 
-# === AWS S3 SETTINGS FROM STREAMLIT SECRETS ===
-secrets = st.secrets["aws"]
-bucket = secrets["bucket"]
-key = secrets["object"]
+# === AWS S3 SETTINGS ===
+bucket = os.getenv("S3_BUCKET")
+key = os.getenv("S3_OBJECT")
 
 # Download from S3 into local file
 s3 = boto3.client(
     "s3",
-    aws_access_key_id=secrets["aws_access_key_id"],
-    aws_secret_access_key=secrets["aws_secret_access_key"],
-    region_name=secrets["region"]
+    aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+    region_name=os.getenv("AWS_DEFAULT_REGION")
 )
 
 try:

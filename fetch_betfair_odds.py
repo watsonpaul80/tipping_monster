@@ -7,6 +7,9 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 import pytz
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import betfairlightweight
 from betfairlightweight import filters
