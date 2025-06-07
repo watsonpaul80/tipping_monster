@@ -28,7 +28,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
 * ✅ Smart Class Tracking: Real-time class-drop tracking via `last_class`
-* ✅ Model Management: Latest model detection, S3 upload, and prediction output streamlined
+* ✅ Model Management: Latest model detection, S3 upload, and prediction output streamlined. Trained models are stored in the `tipping-monster` S3 bucket and downloaded on demand.
 * ✅ Data Preparation: Flattened JSONL format for optimized inference input
 * ✅ Dynamic Staking: A sophisticated confidence-based staking model
 * ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
@@ -85,6 +85,8 @@ All ROI-related scripts (e.g. `dispatch_tips.py`, `roi_tracker_advised.py`) now 
 * `generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
 * `generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `send_telegram_photo.py`: Uploads an image to Telegram for manual posts.
+* Most CLI commands accept `--dev` to log to `logs/dev` instead of sending messages.
 
 ---
 
