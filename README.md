@@ -12,7 +12,8 @@ See the [Docs/README.md](Docs/README.md) file for complete documentation, includ
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-# GitHub Actions also installs dependencies this way
+# GitHub Actions installs dependencies this way and caches them for
+# faster test runs
 ```
 
 2. Copy `.env.example` to `.env` and fill in your credentials:
