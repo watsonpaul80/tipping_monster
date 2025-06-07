@@ -14,6 +14,7 @@ from .utils import (
     repo_root,
     send_telegram_message,
     send_telegram_photo,
+    tip_has_tag,
 )
 from .helpers import dispatch, send_daily_roi, generate_chart
 
@@ -31,5 +32,6 @@ __all__ = [
     "dispatch",
     "send_daily_roi",
     "generate_chart",
+    "tip_has_tag",
     "load_env",
 ]

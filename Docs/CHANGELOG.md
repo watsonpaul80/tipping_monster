@@ -8,6 +8,11 @@
 ### Fixed
 - Added missing `requests` import in `scripts/morning_digest.py` so Telegram posts work.
 
+## 2025-06-11
+
+### Added
+- New `tip_has_tag()` helper in `tippingmonster.utils` for tag substring checks.
+
 ## 2025-06-09
 
 ### Added
