@@ -4,7 +4,8 @@
 
 ### Added
 - `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter tips by tag substring.
-- Removed duplicate arguments and calculations in `tag_roi_tracker.py`. Added `--dev` option.
+- Removed duplicate arguments and calculations in `tag_roi_tracker.py`.
+- Added `--dev` option.
 
 ## 2025-06-08
 
