@@ -24,7 +24,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 6. **Script Audit** — identify redundant scripts and prune/rename as needed
 
-7. **`--dev` Flag Support Across Scripts** — override to prevent real S3 upload, redirect Telegram to personal channel, log to dev folder
+7. ✅ **`--dev` Flag Support Across Scripts** — override to prevent real S3 upload, redirect Telegram to personal channel, log to dev folder
 
 8. **NAP Sanity Filter + Override** — block NAPs over odds cap (e.g. 20/1), allow fallback tag, optional manual override field
 

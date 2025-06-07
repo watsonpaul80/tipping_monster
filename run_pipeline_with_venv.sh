@@ -4,6 +4,13 @@
 
 echo "🔄 Starting full pipeline: $(date)"
 
+DEV_MODE=0
+if [ "$1" = "--dev" ]; then
+    DEV_MODE=1
+    export TM_DEV_MODE=1
+    export TM_LOG_DIR="logs/dev"
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
 
@@ -12,7 +19,7 @@ cd "$REPO_ROOT" || exit 1
 # Activate virtual environment
 source .venv/bin/activate
 
-LOG_DIR="$REPO_ROOT/logs"
+LOG_DIR="$REPO_ROOT/${TM_LOG_DIR:-logs}"
 mkdir -p "$LOG_DIR"
 
 # 1. Upload racecards
@@ -67,16 +74,22 @@ echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 # Optional: Alert if no tips were dispatched
 if [ "$SENT_COUNT" -eq 0 ]; then
     echo "⚠️ Warning: No tips were dispatched today." >> "$DISPATCH_LOG"
-    curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-        -d chat_id="${TELEGRAM_CHAT_ID}" \
-        -d parse_mode="Markdown" \
-        -d text="⚠️ *No tips were dispatched this morning.*\nCheck logs: \`$DISPATCH_LOG\`"
+    if [ "$DEV_MODE" -eq 0 ]; then
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d parse_mode="Markdown" \
+            -d text="⚠️ *No tips were dispatched this morning.*\nCheck logs: \`$DISPATCH_LOG\`"
+    fi
 fi
 
 # 8. Upload logs and dispatched tips to S3
-echo "🗂️ Uploading tips and logs to S3..."
-aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+if [ "$DEV_MODE" -eq 0 ]; then
+    echo "🗂️ Uploading tips and logs to S3..."
+    aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
+    aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+else
+    echo "[DEV] Skipping S3 uploads"
+fi
 
 echo "✅ Pipeline complete: $(date)"
 
