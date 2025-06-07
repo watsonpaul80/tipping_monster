@@ -18,47 +18,47 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 Key folders and scripts include:
 
 - `rpscrape/` – scraper for racecards and results.
-- ROI tracking scripts (e.g., `roi_tracker_advised.py`, `send_daily_roi_summary.py`) and `run_roi_pipeline.sh` send performance updates via Telegram.
+- ROI tracking scripts (e.g., `roi/roi_tracker_advised.py`, `roi/send_daily_roi_summary.py`) and `roi/run_roi_pipeline.sh` send performance updates via Telegram.
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `predictions/` – daily output tips and summaries.
-- Root‑level scripts such as `run_pipeline_with_venv.sh`, `fetch_betfair_odds.py`, and `dispatch_tips.py` drive the daily pipeline.
-- `tmcli.py` – command-line helper wrapping common tasks like `healthcheck`.
+- Core scripts such as `core/run_pipeline_with_venv.sh`, `core/fetch_betfair_odds.py`, and `core/dispatch_tips.py` drive the daily pipeline.
+- `cli/tmcli.py` – command-line helper wrapping common tasks like `healthcheck`.
 
 Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
 
 A typical daily pipeline runs the following steps:
 
 ```
-05:00  daily_upload_racecards.sh  # Pull racecards via rpscrape
-05:06  daily_flatten.sh           # Flatten racecards for model input
-08:00  fetch_betfair_odds.py      # Capture odds snapshot
-08:05  run_inference_and_select_top1.py  # Predict and select tips
-08:08  merge_odds_into_tips.py    # Attach odds to tips
+05:00  core/daily_upload_racecards.sh  # Pull racecards via rpscrape
+05:06  core/daily_flatten.sh           # Flatten racecards for model input
+08:00  core/fetch_betfair_odds.py      # Capture odds snapshot
+08:05  core/run_inference_and_select_top1.py  # Predict and select tips
+08:08  core/merge_odds_into_tips.py    # Attach odds to tips
 08:10  [disabled] generate_commentary_bedrock.py  # Script not included
-08:12  dispatch_tips.py           # Send tips to Telegram
+08:12  core/dispatch_tips.py           # Send tips to Telegram
 23:30  rpscrape (results cron)    # Get results for today
-23:55  roi_tracker_advised.py     # Link tips to results and calc profit
-23:59  send_daily_roi_summary.py  # Telegram summary of ROI
+23:55  roi/roi_tracker_advised.py     # Link tips to results and calc profit
+23:59  roi/send_daily_roi_summary.py  # Telegram summary of ROI
 ```
 These times are detailed in `Docs/monster_overview.md`.
 
 ## Key Scripts
 
-- **Training:** `train_model_v6.py` and `train_modelv7.py` load historical data and produce an XGBoost model.
-- **Model Comparison:** `compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
-- **Inference:** `run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
-- **Odds Integration:** `fetch_betfair_odds.py` grabs odds snapshots; `merge_odds_into_tips.py` merges them with tips; `extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
-- **Dispatch & ROI:** `dispatch_tips.py` formats tips for Telegram. `roi_tracker_advised.py` and `send_daily_roi_summary.py` track daily performance and report ROI.
+- **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
+- **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
+- **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
+- **Odds Integration:** `core/fetch_betfair_odds.py` grabs odds snapshots; `core/merge_odds_into_tips.py` merges them with tips; `core/extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
+- **Dispatch & ROI:** `core/dispatch_tips.py` formats tips for Telegram. `roi/roi_tracker_advised.py` and `roi/send_daily_roi_summary.py` track daily performance and report ROI.
 - **Steam Sniper:** Scripts like `build_sniper_schedule.py` detect market steamers from Betfair odds.
 
 ## Next Steps for Newcomers
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
-3. Explore the training (`train_model_v6.py`) and inference (`run_inference_and_select_top1.py`) scripts to see how predictions are generated.
-4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
-4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
+3. Explore the training (`core/train_model_v6.py`) and inference (`core/run_inference_and_select_top1.py`) scripts to see how predictions are generated.
+4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
+4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 6. Run `./dev-check.sh` followed by `make test` to verify your setup.
 

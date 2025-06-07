@@ -1,8 +1,8 @@
 import argparse
 from pathlib import Path
 
-from healthcheck_logs import check_logs
-from ensure_sent_tips import ensure_sent_tips
+from utils.healthcheck_logs import check_logs
+from utils.ensure_sent_tips import ensure_sent_tips
 
 
 def main(argv=None) -> None:
