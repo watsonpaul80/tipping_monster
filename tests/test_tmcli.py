@@ -1,68 +1,35 @@
+import os
 import sys
 from pathlib import Path
-import subprocess
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from tmcli import main
+import tmcli
 
 
-def test_pipeline_subcommand(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["pipeline", "--date", "2025-06-07"])
-    assert calls[0][0] == ["bash", "run_pipeline_with_venv.sh"]
-    assert calls[0][1]["TM_DATE"] == "2025-06-07"
+def test_tmcli_healthcheck(tmp_path):
+    date = "2025-06-06"
+    logs = tmp_path / "logs"
+    logs.mkdir()
+    (logs / f"sent_tips_{date}.jsonl").write_text("ok")
+    (logs / f"pipeline_{date}.log").write_text("ok")
+    (logs / f"odds_0800_{date}.log").write_text("ok")
+    (logs / f"odds_hourly_{date}.log").write_text("ok")
+
+    os.chdir(tmp_path)
+    tmcli.main(["healthcheck", "--date", date, "--out-log", "hc.log"])
+    text = (tmp_path / "hc.log").read_text().strip()
+    assert text.endswith("OK")
 
 
-def test_pipeline_dev_flag(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["pipeline", "--date", "2025-06-07", "--dev"])
-    env = calls[0][1]
-    assert env["TM_DATE"] == "2025-06-07"
-    assert env["TM_DEV"] == "1"
+def test_tmcli_ensure_sent_tips(tmp_path):
+    date = "2025-06-06"
+    pred_dir = tmp_path / "predictions" / date
+    pred_dir.mkdir(parents=True)
+    (pred_dir / "tips_with_odds.jsonl").write_text("tip")
 
-
-def test_roi_subcommand(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["roi", "--date", "2025-06-07"])
-    assert calls[0][0] == ["bash", "run_roi_pipeline.sh", "2025-06-07"]
-    assert calls[0][1]["DATE"] == "2025-06-07"
-
-
-def test_roi_dev_flag(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["roi", "--date", "2025-06-07", "--dev"])
-    env = calls[0][1]
-    assert env["DATE"] == "2025-06-07"
-    assert env["TM_DEV"] == "1"
-
-
-def test_sniper_subcommand(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["sniper"])
-    assert calls[0][0] == ["bash", "generate_and_schedule_snipers.sh"]
-
-
-def test_sniper_dev_flag(monkeypatch):
-    calls = []
-    def fake_run(cmd, check=True, env=None):
-        calls.append((cmd, env))
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    main(["sniper", "--dev"])
-    assert calls[0][0] == ["bash", "generate_and_schedule_snipers.sh"]
-    assert calls[0][1]["TM_DEV"] == "1"
+    os.chdir(tmp_path)
+    tmcli.main(["ensure-sent-tips", date, "--predictions-dir", "predictions", "--dispatch-dir", "logs/dispatch"])
+    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date}.jsonl"
+    assert sent.exists()
+    assert sent.read_text() == "tip"

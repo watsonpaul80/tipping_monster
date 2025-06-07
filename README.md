@@ -55,24 +55,24 @@ bash run_pipeline_with_venv.sh --dev
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
 
-### tmcli Wrapper
+## Command Line Interface
 
-Common workflows are consolidated under a simple CLI:
+Common tasks can be run via the `tmcli` helper. Example usage:
 
 ```bash
-# Run the full pipeline
-python tmcli.py pipeline --date 2025-06-07
-
-# Run the full pipeline in dev mode
-python tmcli.py pipeline --date 2025-06-07 --dev
-
-# Run the ROI pipeline for a specific day
-python tmcli.py roi --date 2025-06-07
-# Dev mode also supported
-python tmcli.py roi --date 2025-06-07 --dev
-
-# Build and schedule Steam Sniper jobs
-python tmcli.py sniper
-# Dev mode
-python tmcli.py sniper --dev
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
+
+These commands wrap existing scripts for convenience and default locations.
+
+
+## Health Check
+
+To confirm all expected logs were created for a given day, run:
+
+```bash
+python healthcheck_logs.py --date YYYY-MM-DD
+```
+
+This appends a status line to `logs/healthcheck.log` and lists any missing log files.
