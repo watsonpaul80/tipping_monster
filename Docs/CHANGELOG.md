@@ -102,6 +102,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Removed duplicate scripts from `ROI/` directory.
 - Canonical versions kept in project root.
 
-## 2025-06-07 — Sniper Removal
-- Removed all Steam Sniper scripts, logs and documentation.
-- Updated docs and scripts to drop sniper references.
+
+## 2025-06-07 — Sniper Functionality Removed
+- Deleted obsolete sniper scripts and documentation
+- Purged sniper references across the project and simplified cron handling
+
