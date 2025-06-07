@@ -2,12 +2,22 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from core.dispatch_tips import main as dispatch
+from core.dispatch_tips import main as dispatch_main
 from model_feature_importance import generate_chart
 from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
+
+
+def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+    args = ["--date", date]
+    if telegram:
+        args.append("--telegram")
+    if dev:
+        args.append("--dev")
+    dispatch_main(args)
+
 
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(
