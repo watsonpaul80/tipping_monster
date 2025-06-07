@@ -15,7 +15,7 @@ tips = []
 if os.path.exists(TIPS_PATH):
     with open(TIPS_PATH, "r") as f:
         tips = [json.loads(line.strip()) for line in f if line.strip()]
-    tips = sorted([t for t in tips if not t.get("is_sniper")], key=lambda x: x["confidence"], reverse=True)[:4]
+    tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:4]
 
 # === Load ROI summary ===
 roi_summary = "📊 ROI Yday: No data"
