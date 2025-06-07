@@ -11,6 +11,8 @@ from pathlib import Path
 from ensure_sent_tips import ensure_sent_tips
 from healthcheck_logs import check_logs
 
+from utils.validate_tips import main as validate_tips_main
+
 ROOT = Path(__file__).resolve().parent
 
 
@@ -96,6 +98,13 @@ def main(argv=None) -> None:
     parser_sent.add_argument("--predictions-dir", default="predictions")
     parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
 
+    # validate-tips subcommand
+    parser_validate = subparsers.add_parser(
+        "validate-tips", help="Validate tips JSON for a given date"
+    )
+    parser_validate.add_argument("--date", type=valid_date, help="Date YYYY-MM-DD")
+    parser_validate.add_argument("--predictions-dir", default="predictions")
+
     args = parser.parse_args(argv)
 
     try:
@@ -121,6 +130,9 @@ def main(argv=None) -> None:
                 Path(args.predictions_dir),
                 Path(args.dispatch_dir),
             )
+        elif args.command == "validate-tips":
+            argv = ["--date", args.date, "--predictions-dir", args.predictions_dir]
+            validate_tips_main(argv)
     except Exception as exc:
         raise SystemExit(f"Error: {exc}") from exc
 

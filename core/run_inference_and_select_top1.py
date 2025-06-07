@@ -12,6 +12,7 @@ from core.model_fetcher import download_if_missing
 import orjson
 import numpy as np
 import glob
+from datetime import datetime
 
 from tippingmonster.env_loader import load_env
 
@@ -183,9 +184,6 @@ def make_json_safe(obj):
 
 
 # === LAST CLASS LOGIC ===
-from datetime import datetime
-import pandas as pd
-import glob
 
 def load_combined_results():
     master_paths = (
