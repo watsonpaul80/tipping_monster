@@ -92,3 +92,8 @@ make test     # run unit tests
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+
+### Model Drift Report
+
+Run `model_drift_report.py` to compare SHAP feature rankings over the past week. The script writes a summary to `logs/model_drift_report.md`.
+

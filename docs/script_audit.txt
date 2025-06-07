@@ -56,4 +56,5 @@ train_model_v6.py - keep
 train_modelv7.py - keep
 upload_logs_to_s3.sh - keep
 weekly_roi_summary.py - keep
+model_drift_report.py - keep
 
