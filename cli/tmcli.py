@@ -1,6 +1,9 @@
 import argparse
 from datetime import date
 from pathlib import Path
+import sys
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from core.dispatch_tips import main as dispatch_main
 from model_feature_importance import generate_chart
