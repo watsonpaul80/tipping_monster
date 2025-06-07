@@ -9,6 +9,7 @@ from .utils import (
     predictions_path,
     in_dev_mode,
     send_telegram_message,
+    send_telegram_photo,
     calculate_profit,
     tip_has_tag,
 )
@@ -21,6 +22,7 @@ __all__ = [
     "predictions_path",
     "in_dev_mode",
     "send_telegram_message",
+    "send_telegram_photo",
     "calculate_profit",
     "tip_has_tag",
     "load_env",

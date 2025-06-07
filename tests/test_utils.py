@@ -53,6 +53,44 @@ def test_send_telegram_message_dev_mode(monkeypatch, tmp_path):
     assert 'hello' in log_file.read_text()
 
 
+def test_send_telegram_photo(monkeypatch, tmp_path):
+    calls = {}
+
+    def fake_post(url, data=None, files=None, timeout=None):
+        calls['url'] = url
+        calls['data'] = data
+        calls['files'] = bool(files)
+
+    import requests
+    monkeypatch.setattr(requests, 'post', fake_post)
+
+    img = tmp_path / 'img.png'
+    img.write_bytes(b'data')
+
+    send_telegram_photo(img, caption='cap', token='TOK', chat_id='CID')
+    assert calls['url'] == 'https://api.telegram.org/botTOK/sendPhoto'
+    assert calls['data']['chat_id'] == 'CID'
+    assert calls['files']
+
+
+def test_send_telegram_photo_dev_mode(monkeypatch, tmp_path):
+    def fake_post(*a, **k):
+        raise RuntimeError('called')
+
+    import requests
+    monkeypatch.setattr(requests, 'post', fake_post)
+    monkeypatch.setenv('TM_DEV_MODE', '1')
+    monkeypatch.setenv('TM_LOG_DIR', str(tmp_path / 'logs/dev'))
+
+    img = tmp_path / 'img.png'
+    img.write_bytes(b'data')
+    send_telegram_photo(img, caption='hi', token='TOK', chat_id='CID')
+    assert not (tmp_path / 'called').exists()
+    log_file = repo_path('logs', 'dev', 'telegram.log')
+    assert log_file.exists()
+    assert 'PHOTO' in log_file.read_text()
+
+
 def test_calculate_profit_win_and_place():
     row = {
         'Odds': 10.0,
