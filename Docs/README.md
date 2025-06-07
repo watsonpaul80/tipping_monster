@@ -7,8 +7,6 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `quickstart.md` – brief overview of the repo and where to start.
 - `monster_overview.md` – full overview of the main ML pipeline, tip logic, and automation.
 - `monster_todo.md` – task tracker for main tipping logic including ROI, model training, and Telegram output.
-- `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
-- `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
 
 
 ## 🔑 Environment Variables
@@ -23,6 +21,7 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TIPPING_MONSTER_HOME` (optional) – path to the project root. If unset, scripts use `git rev-parse --show-toplevel`.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
 

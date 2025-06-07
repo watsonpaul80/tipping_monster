@@ -51,6 +51,17 @@ def generate_tags(tip, max_id, max_val):
         tags.append("❗ Confidence 90%+")
     if tip.get("monster_mode"):
         tags.append("💥 Monster Mode")
+    delta = tip.get("odds_delta")
+    if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
+        try:
+            delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
+        except Exception:
+            delta = None
+    if delta is not None:
+        if delta <= -1.0:
+            tags.append("🔥 Market Mover")
+        elif delta >= 1.0:
+            tags.append("❄️ Drifter")
     return tags or ["🎯 Solid pick"]
 
 def read_tips(path):

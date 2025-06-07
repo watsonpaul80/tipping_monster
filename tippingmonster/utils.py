@@ -59,6 +59,8 @@ def send_telegram_message(message: str, token: str | None = None, chat_id: str |
         return
     token = token or os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+    if os.getenv("TM_DEV"):
+        chat_id = os.getenv("TELEGRAM_DEV_CHAT_ID", chat_id)
     if not token or not chat_id:
         raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
 

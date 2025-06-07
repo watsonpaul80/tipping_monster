@@ -20,7 +20,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 4. **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency
 
-5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`, `sniper/`
+5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`
 
 6. **Script Audit** — identify redundant scripts and prune/rename as needed
 
@@ -79,7 +79,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
-46. Track high-delta tips separately (paused due to sniper being disabled)  
+46. Track high-delta tips separately
 47. Add `odds_delta` to ML training as signal
 
 ---

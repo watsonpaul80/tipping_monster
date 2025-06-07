@@ -8,7 +8,28 @@ from datetime import date, timedelta
 from tippingmonster import repo_path
 
 # === Config ===
+<<<<<<< HEAD
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parent),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parent
+
+BASE_DIR = str(get_repo_root())
+=======
 BASE_DIR = repo_path()
+>>>>>>> 349c480117f6ad4ee9dc5b1823b33ef8c00d1b0b
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
 TIPS_PATH = str(repo_path("logs", "dispatch", f"sent_tips_{TODAY}.jsonl"))
@@ -18,8 +39,8 @@ ROI_PATH = str(repo_path("logs", "roi", f"tips_results_{YESTERDAY}_advised.csv")
 tips = []
 if os.path.exists(TIPS_PATH):
     with open(TIPS_PATH, "r") as f:
-        tips = [json.loads(line.strip()) for line in f if line.strip()]
-    tips = sorted([t for t in tips if not t.get("is_sniper")], key=lambda x: x["confidence"], reverse=True)[:4]
+    tips = [json.loads(line.strip()) for line in f if line.strip()]
+    tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:4]
 
 # === Load ROI summary ===
 roi_summary = "📊 ROI Yday: No data"
