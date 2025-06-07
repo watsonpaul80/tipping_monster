@@ -19,11 +19,14 @@ pip install -r requirements.txt
 
 ```
 BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
-TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_DEV_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
 TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
+
+Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
 The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
+
 
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
