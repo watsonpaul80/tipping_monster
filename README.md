@@ -32,7 +32,11 @@ Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm
 pytest
 ```
 
-4. Python cache artifacts (`*.pyc` files and `__pycache__/` directories) are ignored via `.gitignore`.
+4. Run the linter:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
 
 ## Usage
 
