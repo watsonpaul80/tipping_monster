@@ -7,13 +7,7 @@ from pathlib import Path
 from datetime import datetime
 import pytz
 from dotenv import load_dotenv
-
-load_dotenv()
-
 from tippingmonster.env_loader import load_env
-
-load_env()
-
 import betfairlightweight
 from betfairlightweight import filters
 from utils.secrets1 import (
@@ -22,6 +16,9 @@ from utils.secrets1 import (
     BF_APP_KEY,
     BF_CERT_DIR
 )
+
+load_dotenv()
+load_env()
 
 
 def main():
