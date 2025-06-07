@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import os
 import tarfile
@@ -7,6 +8,7 @@ import xgboost as xgb
 from datetime import date
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
+from validate_features import validate_dataset_features
 import boto3
 import tempfile
 import json
@@ -78,6 +80,11 @@ def preprocess(df):
 def train_model(df, feature_cols):
     print(f"\n🧠 Using features: {feature_cols}")
     print(f"📘 Rows before training: {len(df)}")
+    missing, extra = validate_dataset_features(feature_cols, df)
+    if missing:
+        raise ValueError(f"Missing required feature columns: {missing}")
+    if extra:
+        print(f"Ignoring extra columns: {extra}")
     df["was_tipped"] = df["was_tipped"].fillna(0).astype(int)
     df["tip_confidence"] = df["tip_confidence"].fillna(0.0)
     df["tip_profit"] = df["tip_profit"].fillna(0.0)

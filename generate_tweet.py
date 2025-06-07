@@ -1,10 +1,14 @@
+#!/usr/bin/env python3
 import os
 import json
 from pathlib import Path
 import pandas as pd
 from datetime import date, timedelta
 
+from tippingmonster import repo_path
+
 # === Config ===
+<<<<<<< HEAD
 def get_repo_root() -> Path:
     env_root = os.getenv("TIPPING_MONSTER_HOME")
     if env_root:
@@ -23,10 +27,13 @@ def get_repo_root() -> Path:
         return Path(__file__).resolve().parent
 
 BASE_DIR = str(get_repo_root())
+=======
+BASE_DIR = repo_path()
+>>>>>>> 349c480117f6ad4ee9dc5b1823b33ef8c00d1b0b
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
-TIPS_PATH = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
-ROI_PATH = f"{BASE_DIR}/logs/roi/tips_results_{YESTERDAY}_advised.csv"
+TIPS_PATH = str(repo_path("logs", "dispatch", f"sent_tips_{TODAY}.jsonl"))
+ROI_PATH = str(repo_path("logs", "roi", f"tips_results_{YESTERDAY}_advised.csv"))
 
 # === Load tips ===
 tips = []
@@ -40,7 +47,7 @@ roi_summary = "📊 ROI Yday: No data"
 if os.path.exists(ROI_PATH):
     try:
         df = pd.read_csv(ROI_PATH)
-        total_staked = df['Staked'].sum()
+        total_staked = df['Stake'].sum()
         profit = df['Profit'].sum()
         roi = (profit / total_staked) * 100 if total_staked > 0 else 0
         roi_summary = f"📊 ROI Yday: {roi:.1f}% ({profit:+.2f} pts)"

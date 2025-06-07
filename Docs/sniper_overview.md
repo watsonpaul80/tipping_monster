@@ -46,15 +46,16 @@ Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%
 # 2. Launch pipeline jobs via `at`
 6 8 * * * /home/ec2-user/tipping-monster/steam_sniper_intel/run_sniper_pipeline.sh
 🗂️ Key Files
-File	Purpose
-build_sniper_schedule.py	Generates snapshot times from racecard
-run_sniper_pipeline.sh	Schedules fetch/dispatch jobs via at
-fetch_betfair_odds.py	Captures odds snapshots
-compare_odds_to_0800.py	Finds steamers vs baseline
-dispatch_snipers.py	Sends Telegram alerts
-sniper_schedule.txt	List of HHMM-formatted snapshot times
-odds_snapshots/*.json	Raw odds snapshots
-steamers_*.json	Steamers detected at each timepoint
+| File | Purpose |
+| ---- | ------- |
+| build_sniper_schedule.py | Generates snapshot times from racecard |
+| run_sniper_pipeline.sh | Schedules fetch/dispatch jobs via at |
+| fetch_betfair_odds.py | Captures odds snapshots |
+| compare_odds_to_0800.py | Finds steamers vs baseline |
+| dispatch_snipers.py | Sends Telegram alerts |
+| sniper_schedule.txt | List of HHMM-formatted snapshot times |
+| odds_snapshots/*.json | Raw odds snapshots |
+| steamers_*.json | Steamers detected at each timepoint |
 
 ✅ Example Flow
 08:00 →  build_sniper_schedule.py

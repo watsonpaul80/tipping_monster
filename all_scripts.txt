@@ -9,6 +9,7 @@ daily_upload_racecards.sh
 daily_upload_results.sh
 dispatch_snipers.py
 dispatch_tips.py
+dispatch_all_tips.py
 evaluate_steamers.py
 fetch_betfair_odds.py
 flatten_racecards_v3.py
@@ -31,3 +32,4 @@ archive_old_logs.py
 healthcheck_logs.py
 ensure_sent_tips.py
 alert_if_no_sent_tips.py
+alert_if_bad_snapshot.py

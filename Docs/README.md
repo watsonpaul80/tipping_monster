@@ -26,3 +26,17 @@ The scripts expect the following environment variables to be defined:
 - `TIPPING_MONSTER_HOME` (optional) – path to the project root. If unset, scripts use `git rev-parse --show-toplevel`.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.
+
+## `dispatch_all_tips.py`
+
+`dispatch_all_tips.py` formats a day's tips and can post them to Telegram.
+
+- `--telegram` sends the messages via the bot token and chat ID instead of just printing to the console.
+- `--batch-size N` controls how many tips are grouped per Telegram message (default 5).
+- Make sure `TELEGRAM_CHAT_ID` is set if you enable `--telegram`.
+
+Example:
+
+```bash
+python dispatch_all_tips.py --date 2025-06-07 --telegram --batch-size 10
+```

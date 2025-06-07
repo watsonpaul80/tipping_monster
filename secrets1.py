@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 
 BF_USERNAME = os.getenv("BF_USERNAME")
