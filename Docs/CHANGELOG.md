@@ -7,6 +7,10 @@
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
 - Telegram photo helper `send_telegram_photo` in `tippingmonster.utils`.
+- `dispatch_tips.py` now uses Python logging and supports `--debug`.
+
+### Changed
+- Unified `load_env()` calls to appear once after imports in scripts.
 
 
 ## 2025-05-31
@@ -42,7 +46,7 @@
 ### 📂 New Files / Scripts
 - `compare_sniper_odds.py`: Replaces old snapshot comparison logic.
 
-### 🏼 Next Up
+### 👌 Next Up
 - ROI tracking for steamers
 - LLM commentary
 - ML-based filtering in V2
@@ -79,7 +83,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Telegram output supports inline summaries and detailed daily breakdowns.
 
 
-## 🗓️ 2025-05-31 — ROI Accuracy Overhaul + Pipeline Simplification
+## 🗏️ 2025-05-31 — ROI Accuracy Overhaul + Pipeline Simplification
 
 ### ✅ ROI & Place Logic Fixes
 - Updated `roi_tracker_advised.py` to correctly calculate each-way (EW) place profit.
@@ -94,7 +98,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Ensures accurate profit tracking for both win and place legs.
 - Backfilled recent tips (e.g., May 30) using realistic odds.
 
-### 🧼 Cron Simplification
+### 🗄 Cron Simplification
   - Created `run_roi_pipeline.sh` to consolidate 4 cron jobs into 1:
     - Realistic odds injection
     - Advised & level ROI tracking
@@ -103,15 +107,15 @@ Let me know if you want it appended to your existing Monster changelog file or i
 
 ### 📊 Weekly & Daily Summary Enhancements
 - `weekly_roi_summary.py` updated to include:
-  - Place count (🥈)
+  - Place count (🧈)
   - Improved formatting for Telegram summary
 - `send_daily_roi_summary.py` now shows:
-  - 🏇 Tips, 🥇 Wins, 🥈 Places, 📈 ROI, and 💰 Profit
+  - 🏇 Tips, 🏈 Wins, 🧈 Places, 📈 ROI, and 💰 Profit
 - Added `--show` mode to support local CLI use without Telegram.
 
 ---
 
-# 🧾 TIPPING MONSTER — MASTER CHANGELOG
+# 💾 TIPPING MONSTER — MASTER CHANGELOG
 
 ## 📅 2025-06-01
 
@@ -138,3 +142,9 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
 
+
+## 2025-06-07 — CLI Expansion
+- Added feature-importance charting command (`chart-fi`).
+- Added `dispatch` subcommand to send tips.
+- Added `roi-summary` subcommand for daily ROI updates.
+- Added `send-photo` helper to post images to Telegram.

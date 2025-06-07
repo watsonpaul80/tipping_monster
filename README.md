@@ -2,7 +2,7 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [docs/script_audit.txt](docs/script_audit.txt).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt).
 
 ## Setup
 
@@ -55,6 +55,8 @@ bash run_pipeline_with_venv.sh
 bash run_pipeline_with_venv.sh --dev
 ```
 
+Most Python scripts accept a `--debug` flag for verbose logging.
+
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
 
 ## Command Line Interface
@@ -64,6 +66,10 @@ Common tasks can be run via the `tmcli` helper. Example usage:
 ```bash
 python tmcli.py healthcheck --date YYYY-MM-DD
 python tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py dispatch --date YYYY-MM-DD --telegram
+python tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python tmcli.py chart-fi path/to/model_dir
+python tmcli.py send-photo path/to/image.jpg
 ```
 
 These commands wrap existing scripts for convenience and default locations.
@@ -96,6 +102,13 @@ make test     # run unit tests
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+
+## Model Files
+
+Trained models are uploaded to S3 rather than stored in the repository. See
+[Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
+latest model tarball from the `tipping-monster` bucket. The inference scripts
+will automatically fetch the specified model if it is missing locally.
 
 ## Model Transparency and Self‑Training
 

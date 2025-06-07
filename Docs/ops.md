@@ -29,7 +29,6 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 2.  **Fetch Betfair Odds (Hourly)**
     *   **Frequency:** Hourly between 07:05 and 20:05
     *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
-    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_hourly /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py`
 
 ---
