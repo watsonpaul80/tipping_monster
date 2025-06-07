@@ -112,6 +112,8 @@ Use `--telegram` to actually post messages and `--explain` to append a short "Wh
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
 images with captions.
+It also includes `tip_has_tag()` for quickly checking if a tip has a
+particular tag substring.
 
 ## Health Check
 
