@@ -10,8 +10,8 @@ Most detailed documentation lives in the `Docs/` directory. The main files are:
 
 - `monster_overview.md` – full system overview with pipeline schedule and feature list.
 - `ops.md` – operations guide describing cron jobs and data flows.
-- `monster_todo.md` – feature roadmap for the tipping engine.
-- `monster_todo.md` – feature roadmap for the tipping engine.
+- `monster_todo.md` – detailed backlog for the tipping engine.
+- `monster_todo_v2.md` – high-level roadmap for upcoming features.
 
 ## Project Structure
 

@@ -2,7 +2,7 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [docs/script_audit.txt](docs/script_audit.txt).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [docs/script_audit.txt](docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
 
 ## Setup
 
@@ -15,25 +15,29 @@ pip install -r requirements.txt
 ```
 
 2. Copy `.env.example` to `.env` and fill in your credentials:
-`BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and others as needed.
 
+```
+BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
+```
 
-Create a `.env` file in the repository root with these variables. The `dev-check` script looks for `.env` in this location.
+The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
 
-For local development you can copy `.env.example` to `.env` and fill in your credentials.
-=======
 3. Verify your development environment:
 
 ```bash
 ./dev-check.sh
 ```
 
+Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and store them securely outside version control (e.g., in a `certs/` folder).
 
-Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and place them somewhere outside version control (for example in a local `certs/` folder).
+Optionally, set `TIPPING_MONSTER_HOME` to the repository root:
 
-Optionally set `TIPPING_MONSTER_HOME` to the repository root (run `source set_tm_home.sh` to configure automatically).
+```bash
+source set_tm_home.sh
+```
 
-4. Run the tests to confirm everything works:
+4. Run tests to confirm everything is working:
 
 ```bash
 pytest
@@ -44,6 +48,8 @@ pytest
 ```bash
 pre-commit run --files $(git ls-files '*.py')
 ```
+
+---
 
 ## Usage
 
@@ -56,40 +62,54 @@ bash core/run_pipeline_with_venv.sh
 bash core/run_pipeline_with_venv.sh --dev
 ```
 
-This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
+This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
 
-## Command Line Interface
+---
 
-Common tasks can be run via the `tmcli` helper. Example usage:
+## Command Line Interface (tmcli)
+
+Common workflows via CLI:
 
 ```bash
 python cli/tmcli.py healthcheck --date YYYY-MM-DD
 python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
 ```
 
-These commands wrap existing scripts for convenience and default locations.
+These wrap core scripts for ease of use.
+
+---
 
 ## Health Check
 
-To confirm all expected logs were created for a given day, run:
+To confirm all expected logs were created for a given day:
 
 ```bash
 python healthcheck_logs.py --date YYYY-MM-DD
 ```
 
-This appends a status line to `logs/healthcheck.log` and lists any missing log files.
+This writes a status summary to `logs/healthcheck.log`.
 
-### Make Targets
+---
 
-For convenience you can use the provided `Makefile`:
+## Make Targets
+
+For convenience:
 
 ```bash
-make train    # train the model
-make pipeline # run the full daily pipeline
-make roi      # run ROI pipeline
-make test     # run unit tests
+make train       # Train the model
+make pipeline    # Run full daily pipeline
+make roi         # Run ROI pipeline
+make test        # Run unit tests
 ```
 
-### Model Comparison
+---
 
-Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+## Model Comparison
+
+To compare two model versions:
+
+```bash
+python compare_model_v6_v7.py
+```
+
+This logs confidence and ROI differences to `logs/compare_model_v6_v7.csv`.

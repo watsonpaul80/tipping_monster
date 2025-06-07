@@ -72,27 +72,32 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Purpose:** Sends a summary of the week's ROI to a Telegram channel.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/roi/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram`
 
+9.  **Generate Weekly SHAP Chart (`model_feature_importance.py`)**
+    *   **Frequency:** Weekly, Sunday at 23:55
+    *   **Purpose:** Creates a SHAP feature importance chart and posts it to Telegram.
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/model_feature_importance.py --telegram`
+
 ---
 
 ### System Maintenance
 
-9.  **Backup to S3 (`backup_to_s3.sh`)**
+10. **Backup to S3 (`backup_to_s3.sh`)**
     *   **Frequency:** Daily at 02:10
     *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/backup_to_s3.sh`
 
-10. **Upload Logs to S3 (`upload_logs_to_s3.sh`)**
+11. **Upload Logs to S3 (`upload_logs_to_s3.sh`)**
     *   **Frequency:** Daily at 04:00
     *   **Purpose:** Uploads the `logs/` directory (and its new subdirectories) to S3.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh upload_logs /bin/bash /home/ec2-user/tipping-monster/upload_logs_to_s3.sh`
 
-11. **Delete Old Log Files**
+12. **Delete Old Log Files**
     *   **Frequency:** Daily at 03:00
     *   **Purpose:** Deletes `.log` files older than 14 days from `logs/` and its subdirectories.
     *   **Command:** `find /home/ec2-user/tipping-monster/logs/ -type f -name "*.log" -mtime +14 -delete`
     *   **Note:** Ensure this crontab line is updated as per `Docs/instructions.md`.
 
-12. **Healthcheck Logs (`tmcli.py healthcheck`)**
+13. **Healthcheck Logs (`tmcli.py healthcheck`)**
     *   **Frequency:** Daily at 00:05
     *   **Purpose:** Verifies key log files exist and writes a status line to `logs/healthcheck.log`.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/tmcli.py healthcheck --date $(date +\%F)`
@@ -103,13 +108,13 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 
 The following jobs are related to "sniper" functionality (market movement detection) and morning preparation tasks. Some sniper-related jobs appear to be commented out in the provided crontab.
 
-13. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
+14. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
     *   **Frequency:** Was Daily at 09:30
     *   **Purpose:** Likely prepares data or schedules for the sniper functionality.
     *   **Command:** `#bash /home/ec2-user/tipping-monster/safecron.sh build_sniper_intel /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py`
     *   **Internal Logs:** Check `logs/sniper/` if re-enabled.
 
-14. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
+15. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
     *   **Frequency:** Daily at 09:35
     *   **Purpose:** Loads sniper data and schedules the actual sniper monitoring jobs.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh`

@@ -180,6 +180,8 @@ Automated by cron:
 
 # 📤 Weekly ROI Summary to Telegram
 58 23 * * 0 bash safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
+# 📊 Weekly SHAP Feature Chart
+55 23 * * 0 bash safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python model_feature_importance.py --telegram
 ```
 
 ---
@@ -275,6 +277,7 @@ The foundational elements and automated processes that power Tipping Monster are
 ## ✅ FILES TO REFERENCE
 
 * `monster_todo.md` – full backlog + roadmap
+* `monster_todo_v2.md` – high-level roadmap for upcoming features
 * `TIPPING_MONSTER_PRODUCTS.md` – tip product layer logic
 * `logs/roi/tips_results_*.csv` – ROI by day
 * `logs/dispatch/sent_tips_*.jsonl` – actual sent Telegram tips
