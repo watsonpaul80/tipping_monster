@@ -6,6 +6,7 @@
 - NAP odds cap with override support (`dispatch_tips.py`).
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
+- `dispatch_tips.py` now uses Python logging and supports `--debug`.
 
 ### Changed
 - Unified `load_env()` calls to appear once after imports in scripts.
@@ -140,3 +141,9 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
 
+
+## 2025-06-07 — CLI Expansion
+- Added feature-importance charting command (`chart-fi`).
+- Added `dispatch` subcommand to send tips.
+- Added `roi-summary` subcommand for daily ROI updates.
+- Added `send-photo` helper to post images to Telegram.
