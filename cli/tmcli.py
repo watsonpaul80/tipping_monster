@@ -2,21 +2,10 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from core.dispatch_tips import main as dispatch_main
-from model_feature_importance import generate_chart
-from roi.send_daily_roi_summary import send_daily_roi
+from tippingmonster.helpers import dispatch, send_daily_roi, generate_chart
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
-
-
-def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
-    args = ["--date", date]
-    if telegram:
-        args.append("--telegram")
-    if dev:
-        args.append("--dev")
-    dispatch_main(args)
 
 
 def main(argv=None) -> None:
@@ -63,7 +52,7 @@ def main(argv=None) -> None:
     parser_dispatch = subparsers.add_parser(
         "dispatch-tips", help="Format and optionally send today's tips"
     )
-    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_dispatch.add_argument("date", help="Date YYYY-MM-DD")
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
 
@@ -97,7 +86,7 @@ def main(argv=None) -> None:
 
     elif args.command == "dispatch-tips":
         dispatch(
-            date=args.date or date.today().isoformat(),
+            date=args.date,
             telegram=args.telegram,
             dev=args.dev,
         )
