@@ -1,27 +1,18 @@
 #!/usr/bin/env python3
 import argparse
 import json
-<<<<<<< HEAD:dispatch_tips.py
-import logging
-=======
->>>>>>> main:core/dispatch_tips.py
 import os
 import sys
 from datetime import date
 from time import sleep
 
 from dotenv import load_dotenv
-from tippingmonster import logs_path, send_telegram_message
-from tippingmonster.env_loader import load_env
 
 load_dotenv()
-<<<<<<< HEAD:dispatch_tips.py
-=======
 
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 
->>>>>>> main:core/dispatch_tips.py
 load_env()
 
 # === CONFIG ===
@@ -35,7 +26,6 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 LOG_TO_CLI_ONLY = False
 LLM_COMMENTARY_ENABLED = True
-
 
 
 def calculate_monster_stake(
@@ -61,12 +51,8 @@ def generate_tags(tip, max_id, max_val):
             tags.append("⚡ Fresh")
         elif d > 180:
             tags.append("🚫 Layoff")
-<<<<<<< HEAD:dispatch_tips.py
     except:
         pass
-=======
-    except: pass
->>>>>>> main:core/dispatch_tips.py
     try:
         if float(tip.get("lbs", 999)) < 135:
             tags.append("🪶 Light Weight")
@@ -87,7 +73,8 @@ def generate_tags(tip, max_id, max_val):
     if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
         try:
             delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
-        except: delta = None
+        except:
+            delta = None
     if delta is not None:
         if delta <= -1.0:
             tags.append("🔥 Market Mover")
@@ -116,22 +103,10 @@ def log_nap_override(original: dict, new: dict | None, path: str) -> None:
     else:
         new_name = new.get("name", "Unknown")
         new_odds = new.get("bf_sp") or new.get("odds")
-<<<<<<< HEAD:dispatch_tips.py
-        msg = f"Blocked NAP: {orig_name} @ {orig_odds} -> " f"{new_name} @ {new_odds}"
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(msg + "\n")
-
-
-def select_nap_tip(
-    tips: list[dict], odds_cap: float = NAP_ODDS_CAP, log_path: str = ""
-) -> tuple[dict | None, float]:
-    """Return the tip to mark as NAP and its confidence.
-=======
         msg = f"Blocked NAP: {orig_name} @ {orig_odds} -> {new_name} @ {new_odds}"
     with open(path, "a", encoding="utf-8") as f:
         f.write(msg + "\n")
 
->>>>>>> main:core/dispatch_tips.py
 
 def select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=""):
     if not tips:
@@ -178,15 +153,11 @@ def format_tip_message(tip, max_id):
         f"📊 Confidence: {conf}% | Odds: {odds} | Stake: {stake_pts:.2f} pts{ew_label}"
     )
     tags = " | ".join(tip.get("tags", []))
-<<<<<<< HEAD:dispatch_tips.py
     comment = (
         f"✍️ {tip['commentary']}"
         if LLM_COMMENTARY_ENABLED and tip.get("commentary")
         else "💬 Commentary coming soon..."
     )
-    return f"{header}\n{title}\n{stats}\n{tags}\n{comment}\n{'-'*30}"
-=======
-    comment = f"✍️ {tip['commentary']}" if LLM_COMMENTARY_ENABLED and tip.get("commentary") else "💬 Commentary coming soon..."
     explain = tip.get("explanation")
     explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
     parts = [header, title, stats, tags, comment]
@@ -194,8 +165,6 @@ def format_tip_message(tip, max_id):
         parts.append(explain_line)
     parts.append("-" * 30)
     return "\n".join(parts)
-
->>>>>>> main:core/dispatch_tips.py
 
 
 def send_to_telegram(text):
@@ -217,30 +186,17 @@ def send_batched_messages(tips, batch_size):
         sleep(1.5)
 
 
-<<<<<<< HEAD:dispatch_tips.py
-def main():
-=======
 def main(argv=None):
->>>>>>> main:core/dispatch_tips.py
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=TODAY)
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
-<<<<<<< HEAD:dispatch_tips.py
-    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
-    parser.add_argument("--debug", action="store_true", help="Enable debug logging")
-    args = parser.parse_args()
-=======
     parser.add_argument("--dev", action="store_true")
-    parser.add_argument("--explain", action="store_true", help="Include SHAP explanations")
-    args = parser.parse_args(argv)
->>>>>>> main:core/dispatch_tips.py
-
-    logging.basicConfig(
-        level=logging.DEBUG if args.debug else logging.INFO,
-        format="%(levelname)s: %(message)s",
+    parser.add_argument(
+        "--explain", action="store_true", help="Include SHAP explanations"
     )
+    args = parser.parse_args(argv)
 
     if args.dev:
         os.environ["TM_DEV_MODE"] = "1"
@@ -263,6 +219,7 @@ def main(argv=None):
     if args.explain:
         try:
             from explain_model_decision import generate_explanations
+
             explanations = generate_explanations(predictions_path)
         except Exception as e:
             print(f"⚠️ Failed to generate SHAP explanations: {e}")
@@ -290,29 +247,14 @@ def main(argv=None):
             tip["explanation"] = explanations.get(tip_id, "")
         enriched.append(tip)
 
-<<<<<<< HEAD:dispatch_tips.py
-    logging.debug(f"{len(enriched)} tips after enrichment")
-
-=======
->>>>>>> main:core/dispatch_tips.py
     formatted = []
     for t in sorted(enriched, key=lambda x: x.get("race_time", "99:99")):
         msg = format_tip_message(t, max_id)
         if msg:
             formatted.append(msg)
 
-<<<<<<< HEAD:dispatch_tips.py
-    logging.debug(f"{len(formatted)} messages formatted")
-
-    if not formatted:
-        print("⚠️ No tips qualified after formatting.")
-        return
-
-    with open(SUMMARY_PATH, "w") as f:
-=======
     os.makedirs(os.path.dirname(summary_path), exist_ok=True)
     with open(summary_path, "w") as f:
->>>>>>> main:core/dispatch_tips.py
         f.write("\n\n".join(formatted))
     with open(sent_path, "w") as f:
         for tip in enriched:
@@ -326,7 +268,6 @@ def main(argv=None):
         send_batched_messages(formatted, TELEGRAM_BATCH_SIZE)
     else:
         print("ℹ️ Telegram not triggered. Use `--telegram`.")
-    
 
 
 if __name__ == "__main__":
