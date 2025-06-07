@@ -46,15 +46,23 @@ fi
 
 # 3. Fetch Betfair odds
 echo "📈 Fetching Betfair odds..."
+<<<<<<< HEAD:run_pipeline_with_venv.sh
 .venv/bin/python fetch_betfair_odds.py >> "$INFER_DIR/odds.log" 2>&1
+=======
+.venv/bin/python core/fetch_betfair_odds.py >> "$LOG_DIR/odds.log" 2>&1
+>>>>>>> main:core/run_pipeline_with_venv.sh
 
 # 4. Run model inference (with last_class)
 echo "🧠 Running model inference..."
-.venv/bin/python run_inference_and_select_top1.py >> "$LOG_DIR/inference/inference.log" 2>&1
+.venv/bin/python core/run_inference_and_select_top1.py >> "$LOG_DIR/inference/inference.log" 2>&1
 
 # 5. Merge odds into tips
 echo "🔗 Merging tips with odds..."
+<<<<<<< HEAD:run_pipeline_with_venv.sh
 .venv/bin/python merge_odds_into_tips.py >> "$INFER_DIR/merge.log" 2>&1
+=======
+.venv/bin/python core/merge_odds_into_tips.py >> "$LOG_DIR/merge.log" 2>&1
+>>>>>>> main:core/run_pipeline_with_venv.sh
 
 # 6. (Optional) Generate commentary
 # NOTE: The commentary script (`generate_commentary_bedrock.py`) is not included
@@ -65,7 +73,7 @@ echo "🔗 Merging tips with odds..."
 echo "🚀 Dispatching tips to Telegram..."
 TODAY=$(date +%F)
 DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
-.venv/bin/python dispatch_tips.py --min_conf 0.80 --telegram >> "$DISPATCH_LOG" 2>&1
+.venv/bin/python core/dispatch_tips.py --min_conf 0.80 --telegram >> "$DISPATCH_LOG" 2>&1
 
 # Confirm how many tips were sent
 SENT_TIPS_PATH="$REPO_ROOT/logs/dispatch/sent_tips_${TODAY}.jsonl"
