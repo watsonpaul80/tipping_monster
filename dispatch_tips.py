@@ -6,7 +6,10 @@ from time import sleep
 import sys
 import argparse
 
-from tippingmonster import send_telegram_message, logs_path, in_dev_mode
+from tippingmonster import send_telegram_message
+from tippingmonster.env_loader import load_env
+
+load_env()
 
 # === CONFIG ===
 NAP_ODDS_CAP = 21.0  # 20/1 in decimal
