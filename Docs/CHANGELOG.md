@@ -6,6 +6,7 @@
 - NAP odds cap with override support (`dispatch_tips.py`).
 - Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
 - NAP removed entirely when no tip meets the cap, with log entry noted.
+- Added unit tests for `tmcli` subcommands.
 
 
 ## 2025-05-31
@@ -136,4 +137,8 @@ Let me know if you want it appended to your existing Monster changelog file or i
 ## 2025-06-07 — CLI Helper
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
+
+## 2025-06-08 — Telegram CLI
+- `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line
+  Telegram posts.
 

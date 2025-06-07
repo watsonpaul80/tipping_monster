@@ -10,5 +10,5 @@ rm -f "$REPO_ROOT/models/model-*.json"
 rm -f "$REPO_ROOT/models/model-*.bst"
 rm -f "$REPO_ROOT/models/model-*.tar.gz"
 
-python train_model_v6.py >> "$LOG_DIR/train_$(date +%F).log" 2>&1
+python core/train_model_v6.py >> "$LOG_DIR/train_$(date +%F).log" 2>&1
 
