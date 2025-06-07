@@ -1,6 +1,5 @@
 backup_to_s3.sh
 calibrate_confidence_daily.py
-check_betfair_market_times.py
 compare_odds_to_0800.py
 daily_flatten.sh
 daily_train.sh
@@ -9,7 +8,6 @@ daily_upload_results.sh
 dispatch_tips.py
 fetch_betfair_odds.py
 flatten_racecards_v3.py
-generate_race_schedule.py
 generate_tip_results_csv_with_mode_FINAL.py
 generate_weekly_summary.py
 merge_odds_into_tips.py
@@ -17,13 +15,10 @@ roi_tracker_advised.py
 run_inference_and_select_top1.py
 run_pipeline_with_venv.sh
 safecron.sh
-secrets1.py
 send_daily_roi_summary.py
 train_model_v6.py
 upload_logs_to_s3.sh
 weekly_roi_summary.py
-archive_old_logs.py
 healthcheck_logs.py
 ensure_sent_tips.py
-alert_if_no_sent_tips.py
 tmcli.py

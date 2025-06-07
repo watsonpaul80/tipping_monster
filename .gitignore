@@ -2,3 +2,4 @@ logs/
 certs/
 __pycache__/
 .env
+.venv/
