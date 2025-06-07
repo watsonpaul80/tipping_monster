@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import argparse
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -26,10 +27,25 @@ def archive_logs(log_dir: Path, days: int, archive_dir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Archive logs older than N days into zip files")
-    parser.add_argument("--log-dir", default="logs", help="Path to logs directory")
-    parser.add_argument("--days", type=int, default=14, help="Archive files older than this many days")
-    parser.add_argument("--archive-dir", default="logs/archive", help="Where to store zipped logs")
+    parser = argparse.ArgumentParser(
+        description="Archive logs older than N days into zip files"
+    )
+    parser.add_argument(
+        "--log-dir",
+        default="logs",
+        help="Path to logs directory",
+    )
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=14,
+        help="Archive files older than this many days",
+    )
+    parser.add_argument(
+        "--archive-dir",
+        default="logs/archive",
+        help="Where to store zipped logs",
+    )
     args = parser.parse_args()
 
     archive_logs(Path(args.log_dir), args.days, Path(args.archive_dir))
