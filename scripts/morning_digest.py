@@ -13,7 +13,25 @@ Requires the following environment variables:
 # === CONFIG ===
 TODAY = datetime.now().strftime("%Y-%m-%d")
 YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parents[1]))
+
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parents[1]),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parents[1]
+
+BASE_DIR = str(get_repo_root())
 
 # Read Telegram credentials from environment variables
 # Required variables: TG_USER_ID, TG_BOT_TOKEN

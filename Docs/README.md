@@ -23,5 +23,6 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TIPPING_MONSTER_HOME` (optional) – path to the project root. If unset, scripts use `git rev-parse --show-toplevel`.
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.

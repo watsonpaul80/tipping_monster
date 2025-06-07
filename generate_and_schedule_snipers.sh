@@ -2,7 +2,7 @@
 # Run this at 05:10 daily (manually or via cron)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="${TM_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
+REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
 
 cd "$REPO_ROOT/steam_sniper_intel" || exit 1
 

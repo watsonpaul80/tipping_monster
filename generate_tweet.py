@@ -5,7 +5,24 @@ import pandas as pd
 from datetime import date, timedelta
 
 # === Config ===
-BASE_DIR = os.getenv("TM_ROOT", str(Path(__file__).resolve().parent))
+def get_repo_root() -> Path:
+    env_root = os.getenv("TIPPING_MONSTER_HOME")
+    if env_root:
+        return Path(env_root)
+    try:
+        import subprocess
+        out = subprocess.check_output([
+            "git",
+            "-C",
+            str(Path(__file__).resolve().parent),
+            "rev-parse",
+            "--show-toplevel",
+        ], text=True).strip()
+        return Path(out)
+    except Exception:
+        return Path(__file__).resolve().parent
+
+BASE_DIR = str(get_repo_root())
 TODAY = date.today().isoformat()
 YESTERDAY = (date.today() - timedelta(days=1)).isoformat()
 TIPS_PATH = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
