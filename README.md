@@ -93,6 +93,13 @@ make test     # run unit tests
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
 
+## Model Files
+
+Trained models are uploaded to S3 rather than stored in the repository. See
+[Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
+latest model tarball from the `tipping-monster` bucket. The inference scripts
+will automatically fetch the specified model if it is missing locally.
+
 ## Model Transparency and Self‑Training
 
 The pipeline uses **SHAP** to compute feature importance for each prediction. These explanations
