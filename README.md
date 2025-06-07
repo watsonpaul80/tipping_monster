@@ -14,10 +14,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-2. Export the required environment variables (see Docs/README.md for the full list):
+2. Install `pre-commit` and set up the Git hooks:
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+3. Export the required environment variables (see Docs/README.md for the full list):
 `BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 
-3. Run the tests to confirm everything works:
+4. Run the tests to confirm everything works:
 
 ```bash
 pytest
@@ -32,4 +39,3 @@ bash run_pipeline_with_venv.sh
 ```
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
-
