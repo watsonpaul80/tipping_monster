@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import argparse
 import json
+<<<<<<< HEAD:dispatch_tips.py
 import logging
+=======
+>>>>>>> main:core/dispatch_tips.py
 import os
 import sys
 from datetime import date
@@ -12,21 +15,27 @@ from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 
 load_dotenv()
+<<<<<<< HEAD:dispatch_tips.py
+=======
+
+from tippingmonster import logs_path, send_telegram_message
+from tippingmonster.env_loader import load_env
+
+>>>>>>> main:core/dispatch_tips.py
 load_env()
 
 # === CONFIG ===
 NAP_ODDS_CAP = 21.0  # 20/1 in decimal
 TODAY = date.today().isoformat()
-DEFAULT_DATE = TODAY
+PT_SIZE = 1
+TELEGRAM_BATCH_SIZE = 5
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-SEND_TO_TELEGRAM = True
 LOG_TO_CLI_ONLY = False
 LLM_COMMENTARY_ENABLED = True
-PT_SIZE = 1
-TELEGRAM_BATCH_SIZE = 5
+
 
 
 def calculate_monster_stake(
@@ -52,8 +61,12 @@ def generate_tags(tip, max_id, max_val):
             tags.append("⚡ Fresh")
         elif d > 180:
             tags.append("🚫 Layoff")
+<<<<<<< HEAD:dispatch_tips.py
     except:
         pass
+=======
+    except: pass
+>>>>>>> main:core/dispatch_tips.py
     try:
         if float(tip.get("lbs", 999)) < 135:
             tags.append("🪶 Light Weight")
@@ -74,8 +87,7 @@ def generate_tags(tip, max_id, max_val):
     if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
         try:
             delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
-        except Exception:
-            delta = None
+        except: delta = None
     if delta is not None:
         if delta <= -1.0:
             tags.append("🔥 Market Mover")
@@ -96,7 +108,6 @@ def read_tips(path):
 
 
 def log_nap_override(original: dict, new: dict | None, path: str) -> None:
-    """Append a NAP override message to ``path``."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     orig_name = original.get("name", "Unknown")
     orig_odds = original.get("bf_sp") or original.get("odds")
@@ -105,6 +116,7 @@ def log_nap_override(original: dict, new: dict | None, path: str) -> None:
     else:
         new_name = new.get("name", "Unknown")
         new_odds = new.get("bf_sp") or new.get("odds")
+<<<<<<< HEAD:dispatch_tips.py
         msg = f"Blocked NAP: {orig_name} @ {orig_odds} -> " f"{new_name} @ {new_odds}"
     with open(path, "a", encoding="utf-8") as f:
         f.write(msg + "\n")
@@ -114,24 +126,24 @@ def select_nap_tip(
     tips: list[dict], odds_cap: float = NAP_ODDS_CAP, log_path: str = ""
 ) -> tuple[dict | None, float]:
     """Return the tip to mark as NAP and its confidence.
+=======
+        msg = f"Blocked NAP: {orig_name} @ {orig_odds} -> {new_name} @ {new_odds}"
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(msg + "\n")
 
-    If the top-confidence tip exceeds ``odds_cap`` and does not have
-    ``override_nap`` set, the next highest qualifying tip becomes the NAP.
-    Any blocked/reassigned NAP is logged to ``log_path``.
-    """
+>>>>>>> main:core/dispatch_tips.py
+
+def select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=""):
     if not tips:
         return None, 0.0
-
     sorted_tips = sorted(tips, key=lambda x: x.get("confidence", 0.0), reverse=True)
     top_tip = sorted_tips[0]
-
     for tip in sorted_tips:
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         if tip.get("override_nap") or odds <= odds_cap:
             if tip is not top_tip and log_path:
                 log_nap_override(top_tip, tip, log_path)
             return tip, tip.get("confidence", 0.0)
-
     if log_path:
         log_nap_override(top_tip, None, log_path)
     return None, 0.0
@@ -145,7 +157,6 @@ def format_tip_message(tip, max_id):
     else:
         race_time = tip.get("race_time", "??:??")
         course = race_info or "Unknown"
-
     horse = tip.get("name", "Unknown Horse")
     raw_odds = tip.get("bf_sp") or tip.get("odds", "N/A")
     odds = f"{raw_odds:.1f}" if isinstance(raw_odds, (float, int)) else str(raw_odds)
@@ -167,12 +178,24 @@ def format_tip_message(tip, max_id):
         f"📊 Confidence: {conf}% | Odds: {odds} | Stake: {stake_pts:.2f} pts{ew_label}"
     )
     tags = " | ".join(tip.get("tags", []))
+<<<<<<< HEAD:dispatch_tips.py
     comment = (
         f"✍️ {tip['commentary']}"
         if LLM_COMMENTARY_ENABLED and tip.get("commentary")
         else "💬 Commentary coming soon..."
     )
     return f"{header}\n{title}\n{stats}\n{tags}\n{comment}\n{'-'*30}"
+=======
+    comment = f"✍️ {tip['commentary']}" if LLM_COMMENTARY_ENABLED and tip.get("commentary") else "💬 Commentary coming soon..."
+    explain = tip.get("explanation")
+    explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
+    parts = [header, title, stats, tags, comment]
+    if explain_line:
+        parts.append(explain_line)
+    parts.append("-" * 30)
+    return "\n".join(parts)
+
+>>>>>>> main:core/dispatch_tips.py
 
 
 def send_to_telegram(text):
@@ -194,15 +217,25 @@ def send_batched_messages(tips, batch_size):
         sleep(1.5)
 
 
+<<<<<<< HEAD:dispatch_tips.py
 def main():
+=======
+def main(argv=None):
+>>>>>>> main:core/dispatch_tips.py
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", default=DEFAULT_DATE)
+    parser.add_argument("--date", default=TODAY)
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
+<<<<<<< HEAD:dispatch_tips.py
     parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
+=======
+    parser.add_argument("--dev", action="store_true")
+    parser.add_argument("--explain", action="store_true", help="Include SHAP explanations")
+    args = parser.parse_args(argv)
+>>>>>>> main:core/dispatch_tips.py
 
     logging.basicConfig(
         level=logging.DEBUG if args.debug else logging.INFO,
@@ -211,22 +244,28 @@ def main():
 
     if args.dev:
         os.environ["TM_DEV_MODE"] = "1"
-
-    if args.dev:
         os.environ["TM_LOG_DIR"] = "logs/dev"
 
-    PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
-    SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
+    predictions_path = f"predictions/{args.date}/tips_with_odds.jsonl"
+    summary_path = f"predictions/{args.date}/tips_summary.txt"
+    sent_path = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
 
-    if not os.path.exists(PREDICTIONS_PATH):
-        print(f"❌ No tips file found at {PREDICTIONS_PATH}")
+    if not os.path.exists(predictions_path):
+        print(f"❌ No tips file found at {predictions_path}")
         sys.exit(1)
 
-    tips = read_tips(PREDICTIONS_PATH)
+    tips = read_tips(predictions_path)
     if not tips:
         print("⚠️ No valid tips to process.")
         sys.exit(1)
+
+    explanations = {}
+    if args.explain:
+        try:
+            from explain_model_decision import generate_explanations
+            explanations = generate_explanations(predictions_path)
+        except Exception as e:
+            print(f"⚠️ Failed to generate SHAP explanations: {e}")
 
     nap_log = logs_path(f"nap_override_{args.date}.log")
     nap_tip, max_conf = select_nap_tip(
@@ -246,16 +285,23 @@ def main():
         tip["stake"] = stake
         if tip.get("odds_drifted") and tip.get("confidence", 0.0) >= 0.95:
             tip["monster_mode"] = True
+        if args.explain:
+            tip_id = get_tip_composite_id(tip)
+            tip["explanation"] = explanations.get(tip_id, "")
         enriched.append(tip)
 
+<<<<<<< HEAD:dispatch_tips.py
     logging.debug(f"{len(enriched)} tips after enrichment")
 
+=======
+>>>>>>> main:core/dispatch_tips.py
     formatted = []
     for t in sorted(enriched, key=lambda x: x.get("race_time", "99:99")):
         msg = format_tip_message(t, max_id)
         if msg:
             formatted.append(msg)
 
+<<<<<<< HEAD:dispatch_tips.py
     logging.debug(f"{len(formatted)} messages formatted")
 
     if not formatted:
@@ -263,19 +309,24 @@ def main():
         return
 
     with open(SUMMARY_PATH, "w") as f:
+=======
+    os.makedirs(os.path.dirname(summary_path), exist_ok=True)
+    with open(summary_path, "w") as f:
+>>>>>>> main:core/dispatch_tips.py
         f.write("\n\n".join(formatted))
-    with open(SENT_TIPS_PATH, "w") as f:
+    with open(sent_path, "w") as f:
         for tip in enriched:
             json.dump(tip, f)
             f.write("\n")
 
-    print(f"📄 Saved tip summary and sent_tips to {SENT_TIPS_PATH}")
+    print(f"📄 Tip summary and sent tips saved to: {sent_path}")
 
-    if args.telegram and not LOG_TO_CLI_ONLY:
-        print("📤 Sending batches to Telegram...")
+    if args.telegram:
+        print("📤 Sending to Telegram...")
         send_batched_messages(formatted, TELEGRAM_BATCH_SIZE)
-    elif not args.telegram:
-        print("ℹ️ Telegram sending not triggered (run with `--telegram`)")
+    else:
+        print("ℹ️ Telegram not triggered. Use `--telegram`.")
+    
 
 
 if __name__ == "__main__":

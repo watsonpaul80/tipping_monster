@@ -8,7 +8,7 @@ import tempfile
 import xgboost as xgb
 from datetime import date
 import boto3
-from model_fetcher import download_if_missing
+from core.model_fetcher import download_if_missing
 import orjson
 import numpy as np
 import glob

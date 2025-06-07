@@ -2,6 +2,12 @@
 # check_betfair_market_times.py
 import datetime
 import pytz
+from betfairlightweight import APIClient, filters
+from tippingmonster.env_loader import load_env
+
+load_env()
+
+from utils.secrets1 import BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_DIR
 from dotenv import load_dotenv
 
 load_dotenv()

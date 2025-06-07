@@ -12,6 +12,7 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "send_telegram_photo",
+    "send_telegram_photo",
     "calculate_profit",
 ]
 
