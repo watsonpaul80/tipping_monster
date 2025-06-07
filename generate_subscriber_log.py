@@ -1,9 +1,8 @@
+#!/usr/bin/env python3
 import argparse
 import json
-import os
 import pandas as pd
 from pathlib import Path
-from datetime import datetime
 
 # === CONFIG ===
 PRED_DIR = Path("logs/dispatch")
@@ -11,6 +10,7 @@ RESULTS_DIR = Path("rpscrape/data/dates/all")
 OUTPUT_DIR = Path("logs/roi")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 MASTER_LOG = OUTPUT_DIR / "master_subscriber_log.csv"
+
 
 def load_tips(date_str):
     tips_path = PRED_DIR / f"sent_tips_{date_str}.jsonl"
@@ -20,6 +20,7 @@ def load_tips(date_str):
     with open(tips_path, "r") as f:
         return [json.loads(line) for line in f]
 
+
 def load_results(date_str):
     path = RESULTS_DIR / f"{date_str.replace('-', '_')}.csv"
     if not path.exists():
@@ -27,12 +28,15 @@ def load_results(date_str):
         return pd.DataFrame()
     df = pd.read_csv(path)
     df["course"] = df["course"].astype(str).str.strip().str.lower()
-    df["horse"] = df["horse"].astype(str).str.lower().str.replace(r" \(.*\)", "", regex=True).str.strip()
+    df["horse"] = df["horse"].astype(str).str.lower().str.replace(
+        r" \(.*\)", "", regex=True).str.strip()
     df["off"] = df["off"].astype(str).str.strip()
     return df
 
+
 def normalize(text):
     return str(text).lower().strip().replace(" (ire)", "").replace(" (gb)", "")
+
 
 def main(date_str):
     tips = load_tips(date_str)
@@ -45,14 +49,13 @@ def main(date_str):
         race = tip.get("race", "??:?? Unknown")
         try:
             time_str, meeting = race.split(" ", 1)
-        except:
+        except BaseException:
             time_str, meeting = "??:??", "Unknown"
 
         horse = tip.get("name", "Unknown")
         sp = float(tip.get("bf_sp") or 0)
         odds = float(tip.get("odds") or tip.get("bf_sp") or 0)
         best_odds = float(tip.get("realistic_odds") or odds)
-        conf = tip.get("confidence", 0.0)
         ew = odds >= 5.0 or tip.get("each_way", False)
         ew_flag = "EW" if ew else "Win"
         stake = 1.0
@@ -75,21 +78,25 @@ def main(date_str):
                 try:
                     pos = int(pos_raw)
                     result = str(pos)
-                except:
+                except BaseException:
                     result = str(pos_raw).strip().upper()
 
         # Profit logic
         if result != "NR":
             if ew:
                 win = (sp - 1) * 0.5 if result == "1" else 0
-                place = ((sp * 0.2) - 1) * 0.5 if result.isdigit() and int(result) <= 3 else -0.5
+                place = ((sp * 0.2) - 1) * \
+                    0.5 if result.isdigit() and int(result) <= 3 else -0.5
                 profit = round(win + place, 2)
                 win_b = (best_odds - 1) * 0.5 if result == "1" else 0
-                place_b = ((best_odds * 0.2) - 1) * 0.5 if result.isdigit() and int(result) <= 3 else -0.5
+                place_b = ((best_odds * 0.2) - 1) * \
+                    0.5 if result.isdigit() and int(result) <= 3 else -0.5
                 profit_best = round(win_b + place_b, 2)
             else:
-                profit = round((sp - 1) * stake if result == "1" else -stake, 2)
-                profit_best = round((best_odds - 1) * stake if result == "1" else -stake, 2)
+                profit = round(
+                    (sp - 1) * stake if result == "1" else -stake, 2)
+                profit_best = round(
+                    (best_odds - 1) * stake if result == "1" else -stake, 2)
 
         running_profit += profit
         running_best_profit += profit_best
@@ -116,7 +123,8 @@ def main(date_str):
 
     if MASTER_LOG.exists():
         df_master = pd.read_csv(MASTER_LOG)
-        df_master = df_master[~((df_master['Date'] == date_str) & (df_master['Horse'].isin(df_new['Horse'])))]
+        df_master = df_master[~((df_master['Date'] == date_str) & (
+            df_master['Horse'].isin(df_new['Horse'])))]
         df_master = pd.concat([df_master, df_new], ignore_index=True)
     else:
         df_master = df_new
@@ -124,9 +132,9 @@ def main(date_str):
     df_master.to_csv(MASTER_LOG, index=False)
     print(f"✅ Updated master log: {MASTER_LOG}")
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", required=True, help="YYYY-MM-DD")
     args = parser.parse_args()
     main(args.date)
-

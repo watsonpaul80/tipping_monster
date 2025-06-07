@@ -40,8 +40,10 @@ class Race:
         self.race_info['region'] = get_region(self.race_info['course_id'])
         self.race_info['race_id'] = url_split[7]
         self.race_info['going'] = find(
-            self.doc, 'span', 'rp-raceTimeCourseName_condition', property='class'
-        )
+            self.doc,
+            'span',
+            'rp-raceTimeCourseName_condition',
+            property='class')
         self.race_info['surface'] = get_surface(self.race_info['going'])
         self.race_info['off'] = find(self.doc, 'span', 'text-raceTime')
         self.race_info['race_name'] = find(
@@ -56,7 +58,8 @@ class Race:
             self.race_info['class'] = self.get_race_class()
 
         self.race_info['pattern'] = self.get_race_pattern()
-        self.race_info['race_name'] = self.clean_race_name(self.race_info['race_name'])
+        self.race_info['race_name'] = self.clean_race_name(
+            self.race_info['race_name'])
         self.race_info['age_band'], self.race_info['rating_band'] = self.parse_race_bands()
 
         if self.race_info['class'] == '' and self.race_info['rating_band'] != '':
@@ -72,7 +75,12 @@ class Race:
         self.race_info['type'] = self.get_race_type()
         self.race_info['ran'] = self.get_num_runners()
 
-        pedigree = Pedigree(xpath(self.doc, 'tr', 'block-pedigreeInfoFullResults', fn='/td'))
+        pedigree = Pedigree(
+            xpath(
+                self.doc,
+                'tr',
+                'block-pedigreeInfoFullResults',
+                fn='/td'))
 
         self.runner_info['sire_id'] = pedigree.id_sires
         self.runner_info['sire'] = pedigree.sires
@@ -107,13 +115,18 @@ class Race:
         self.runner_info['hg'] = self.get_headgear()
 
         self.runner_info['wgt'], self.runner_info['lbs'] = self.get_weights()
-        self.runner_info['or'] = xpath(self.doc, 'td', 'OR', 'data-ending', fn='/text()')
-        self.runner_info['rpr'] = xpath(self.doc, 'td', 'RPR', 'data-ending', fn='/text()')
-        self.runner_info['ts'] = xpath(self.doc, 'td', 'TS', 'data-ending', fn='/text()')
-        self.runner_info['silk_url'] = xpath(self.doc, 'img', 'rp-horseTable__silk', 'class', fn='/@src')
+        self.runner_info['or'] = xpath(
+            self.doc, 'td', 'OR', 'data-ending', fn='/text()')
+        self.runner_info['rpr'] = xpath(
+            self.doc, 'td', 'RPR', 'data-ending', fn='/text()')
+        self.runner_info['ts'] = xpath(
+            self.doc, 'td', 'TS', 'data-ending', fn='/text()')
+        self.runner_info['silk_url'] = xpath(
+            self.doc, 'img', 'rp-horseTable__silk', 'class', fn='/@src')
 
         self.runner_info['time'] = self.get_finishing_times()
-        self.runner_info['secs'] = self.time_to_seconds(self.runner_info['time'])
+        self.runner_info['secs'] = self.time_to_seconds(
+            self.runner_info['time'])
 
         self.clean_non_completions()
 
@@ -186,7 +199,8 @@ class Race:
                 self.runner_info['btn'][i] = '-'
 
     def clean_race_name(self, race_name):
-        clean_name = lambda race, x: race.replace(x, '').strip()
+        def clean_name(race, x):
+            return race.replace(x, '').strip()
 
         if 'class' in race_name.lower():
             match = search(regex_class, race_name)
@@ -243,13 +257,13 @@ class Race:
         )
 
     def distance_to_furlongs(self, distance):
-        dist = ''.join(
-            [d.strip().replace('¼', '.25').replace('½', '.5').replace('¾', '.75') for d in distance]
-        )
+        dist = ''.join([d.strip().replace('¼', '.25').replace(
+            '½', '.5').replace('¾', '.75') for d in distance])
 
         if 'm' in dist:
             if len(dist) > 2:
-                dist = int(dist.split('m')[0]) * 8 + float(dist.split('m')[1].strip('f'))
+                dist = int(dist.split('m')[0]) * 8 + \
+                    float(dist.split('m')[1].strip('f'))
             else:
                 dist = int(dist.split('m')[0]) * 8
         else:
@@ -291,7 +305,7 @@ class Race:
     def get_class_from_rating(self):
         try:
             upper_rating = int(self.race_ratings.split('-')[1])
-        except:
+        except BaseException:
             return ''
 
         race_class = ''
@@ -323,18 +337,19 @@ class Race:
 
     def get_comments(self):
         def clean_comment(x):
-            return x.strip().replace('  ', '').replace(',', ' -').replace('\n', ' ').replace('\r', '')
+            return x.strip().replace('  ', '').replace(
+                ',', ' -').replace('\n', ' ').replace('\r', '')
 
-        coms = self.doc.xpath("//tr[@class='rp-horseTable__commentRow ng-cloak']/td/text()")
+        coms = self.doc.xpath(
+            "//tr[@class='rp-horseTable__commentRow ng-cloak']/td/text()")
         return [clean_comment(com) for com in coms]
 
     def get_course(self, course_url):
         course = find(self.doc, 'h1', 'RC-courseHeader__name')
         if course == '':
             try:
-                course = self.doc.xpath("//a[contains(@class, 'rp-raceTimeCourseName__name')]/text()")[
-                    0
-                ].strip()
+                course = self.doc.xpath(
+                    "//a[contains(@class, 'rp-raceTimeCourseName__name')]/text()")[0].strip()
             except IndexError:
                 course = course_url.title()
 
@@ -348,7 +363,11 @@ class Race:
         btn = []
         ovr_btn = []
 
-        for x in xpath(self.doc, 'span', 'rp-horseTable__pos__length', 'class'):
+        for x in xpath(
+            self.doc,
+            'span',
+            'rp-horseTable__pos__length',
+                'class'):
             distances = x.findall('span')
 
             if len(distances) == 2:
@@ -394,8 +413,14 @@ class Race:
         return ovr_btn, btn
 
     def get_draws(self):
-        draws = xpath(self.doc, 'sup', 'rp-horseTable__pos__draw', 'class', fn='/text()')
-        return [draw.replace('\xa0', ' ').strip().strip('()') for draw in draws]
+        draws = xpath(
+            self.doc,
+            'sup',
+            'rp-horseTable__pos__draw',
+            'class',
+            fn='/text()')
+        return [draw.replace('\xa0', ' ').strip().strip('()')
+                for draw in draws]
 
     def get_finishing_times(self):
         # adjust overall distance beaten when margins under a quarter length not accounted for
@@ -404,7 +429,8 @@ class Race:
 
         btn_adj = []
 
-        for btn, ovr_btn in zip(self.runner_info['btn'], self.runner_info['ovr_btn']):
+        for btn, ovr_btn in zip(
+                self.runner_info['btn'], self.runner_info['ovr_btn']):
             try:
                 if float(ovr_btn) > 1 and float(btn) < 0.25:
                     btn_adj.append(str(float(btn) + float(ovr_btn)))
@@ -429,12 +455,13 @@ class Race:
     def get_headgear(self):
         headgear = []
 
-        for horse in self.doc.xpath("//td[contains(@class, 'rp-horseTable__wgt')]"):
+        for horse in self.doc.xpath(
+                "//td[contains(@class, 'rp-horseTable__wgt')]"):
             hg = horse.find('span[@class="rp-horseTable__headGear"]')
             if hg is not None:
                 try:
                     headgear.append(headgear.text + hg[1].text.strip())
-                except:
+                except BaseException:
                     headgear.append(hg.text)
             else:
                 headgear.append('')
@@ -454,7 +481,8 @@ class Race:
         return [jockey_id.split('/')[3] for jockey_id in jockey_ids[::2]]
 
     def get_ids_owner(self):
-        owner_ids = self.doc.xpath("//a[@data-test-selector='link-silk']/@href")
+        owner_ids = self.doc.xpath(
+            "//a[@data-test-selector='link-silk']/@href")
         return [owner_id.split('/')[3] for owner_id in owner_ids]
 
     def get_ids_trainer(self):
@@ -477,14 +505,20 @@ class Race:
 
     def get_names_owner(self):
         owners = self.doc.xpath("//a[@data-test-selector='link-silk']/@href")
-        return [owner.split('/')[4].replace('-', ' ').title() for owner in owners]
+        return [owner.split('/')[4].replace('-', ' ').title()
+                for owner in owners]
 
     def get_names_trainer(self):
         trainers = xpath(self.doc, 'a', 'link-trainerName', fn='/text()')
         return [self.clean(trainer.strip()) for trainer in trainers[::2][::2]]
 
     def get_nationaliies(self):
-        nats = xpath(self.doc, 'span', 'rp-horseTable__horse__country', 'class', fn='/text()')
+        nats = xpath(
+            self.doc,
+            'span',
+            'rp-horseTable__horse__country',
+            'class',
+            fn='/text()')
         nationalities = []
 
         for nat in nats:
@@ -496,7 +530,10 @@ class Race:
         return nationalities
 
     def get_num_runners(self):
-        ran = find(self.doc, 'span', 'rp-raceInfo__value rp-raceInfo__value_black')
+        ran = find(
+            self.doc,
+            'span',
+            'rp-raceInfo__value rp-raceInfo__value_black')
 
         if ran is not None:
             return ran.replace('ran', '').strip()
@@ -504,7 +541,12 @@ class Race:
         return None
 
     def get_numbers(self):
-        nums = xpath(self.doc, 'span', 'rp-horseTable__saddleClothNo', 'class', fn='/text()')
+        nums = xpath(
+            self.doc,
+            'span',
+            'rp-horseTable__saddleClothNo',
+            'class',
+            fn='/text()')
         return [num.strip('.') for num in nums]
 
     def get_positions(self):
@@ -594,7 +636,8 @@ class Race:
         if 'Forte Mile' in self.race_info['race_name'] and '(Group' in self.race_info['race_name']:
             return 'Group 2'
 
-        if any(x in self.race_info['race_name'].lower() for x in {'listed race', '(listed'}):
+        if any(x in self.race_info['race_name'].lower()
+               for x in {'listed race', '(listed'}):
             return 'Listed'
 
         return ''
@@ -615,12 +658,18 @@ class Race:
 
         if race_type == '':
             if self.race_info['dist_m'] >= 2400:
-                if any(x in race for x in {'national hunt flat', 'nh flat race', 'mares flat race'}):
+                if any(
+                    x in race for x in {
+                        'national hunt flat',
+                        'nh flat race',
+                        'mares flat race'}):
                     race_type = 'NH Flat'
                 if any(
-                    x in race
-                    for x in {'inh bumper', ' sales bumper', 'kepak flat race', 'i.n.h. flat race'}
-                ):
+                    x in race for x in {
+                        'inh bumper',
+                        ' sales bumper',
+                        'kepak flat race',
+                        'i.n.h. flat race'}):
                     race_type = 'NH Flat'
                 if any(x in race for x in {' hurdle', '(hurdle)'}):
                     race_type = 'Hurdle'
@@ -658,7 +707,12 @@ class Race:
         return sexs
 
     def get_starting_prices(self):
-        sps = xpath(self.doc, 'span', 'rp-horseTable__horse__price', 'class', fn='/text()')
+        sps = xpath(
+            self.doc,
+            'span',
+            'rp-horseTable__horse__price',
+            'class',
+            fn='/text()')
         return [sp.replace('No Odds', '').strip() for sp in sps]
 
     def get_weights(self):
@@ -685,7 +739,8 @@ class Race:
         if winning_time[0] in {'0.0.00s', '0.00s'}:
             try:
                 fast_by = time_info[n - 2].text.split('(')[1].lower()
-                winning_time = fast_by.replace('fast by', '').strip().strip(')').split()
+                winning_time = fast_by.replace(
+                    'fast by', '').strip().strip(')').split()
             except IndexError:
                 winning_time = None
 
@@ -694,9 +749,8 @@ class Race:
 
         if len(winning_time) > 1:
             try:
-                winning_time = float(winning_time[0].replace('m', '')) * 60 + float(
-                    winning_time[1].strip('s')
-                )
+                winning_time = float(winning_time[0].replace(
+                    'm', '')) * 60 + float(winning_time[1].strip('s'))
                 winning_time = round(winning_time, 2)
             except ValueError:
                 print('Winning Time Error: ', self.url)
@@ -712,7 +766,11 @@ class Race:
         return winning_time
 
     def parse_race_bands(self):
-        band = find(self.doc, 'span', 'rp-raceTimeCourseName_ratingBandAndAgesAllowed', property='class')
+        band = find(
+            self.doc,
+            'span',
+            'rp-raceTimeCourseName_ratingBandAndAgesAllowed',
+            property='class')
         bands = band.strip('()').split(',')
 
         band_age = ''
@@ -733,14 +791,18 @@ class Race:
         return band_age.strip('()'), band_rating
 
     def sex_restricted(self):
-        if any(x in self.race_info['race_name'] for x in {'entire colts & fillies', 'colts & fillies'}):
+        if any(
+            x in self.race_info['race_name'] for x in {
+                'entire colts & fillies',
+                'colts & fillies'}):
             return 'C & F'
         elif any(x in self.race_info['race_name'] for x in {'Fillies & Mares', 'Filles & Mares'}):
             return 'F & M'
         elif any(x in self.race_info['race_name'] for x in {'Fillies'}):
             return 'F'
         elif any(
-            x in self.race_info['race_name'] for x in {'Colts & Geldings', 'Colts/Geldings', '(C & G)'}
+            x in self.race_info['race_name']
+            for x in {'Colts & Geldings', 'Colts/Geldings', '(C & G)'}
         ):
             return 'C & G'
         elif '(Mares & Geldings)' in self.race_info['race_name']:

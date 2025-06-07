@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 # check_betfair_market_times.py
 import datetime
 import pytz
 from betfairlightweight import APIClient, filters
 from secrets1 import BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_DIR
+
 
 def main():
     print("🔎 Checking Betfair market start times (UTC vs BST)...")
@@ -49,6 +51,6 @@ def main():
 
     trading.logout()
 
+
 if __name__ == "__main__":
     main()
-

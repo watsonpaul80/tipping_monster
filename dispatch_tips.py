@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import json
 from datetime import date
@@ -5,8 +6,10 @@ from time import sleep
 import sys
 import argparse
 
-from tippingmonster import send_telegram_message
+from tippingmonster import send_telegram_message, logs_path, in_dev_mode
 
+# === CONFIG ===
+NAP_ODDS_CAP = 21.0  # 20/1 in decimal
 TODAY = date.today().isoformat()
 DEFAULT_DATE = TODAY
 
@@ -50,6 +53,17 @@ def generate_tags(tip, max_id, max_val):
         tags.append("❗ Confidence 90%+")
     if tip.get("monster_mode"):
         tags.append("💥 Monster Mode")
+    delta = tip.get("odds_delta")
+    if delta is None and "realistic_odds" in tip and "bf_sp" in tip:
+        try:
+            delta = float(tip["realistic_odds"]) - float(tip["bf_sp"])
+        except Exception:
+            delta = None
+    if delta is not None:
+        if delta <= -1.0:
+            tags.append("🔥 Market Mover")
+        elif delta >= 1.0:
+            tags.append("❄️ Drifter")
     return tags or ["🎯 Solid pick"]
 
 def read_tips(path):
@@ -60,6 +74,49 @@ def read_tips(path):
                 tips.append(json.loads(line.strip()))
             except: pass
     return tips
+
+def log_nap_override(original: dict, new: dict | None, path: str) -> None:
+    """Append a NAP override message to ``path``."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    orig_name = original.get("name", "Unknown")
+    orig_odds = original.get("bf_sp") or original.get("odds")
+    if new is None:
+        msg = f"Blocked NAP: {orig_name} @ {orig_odds} (no replacement)"
+    else:
+        new_name = new.get("name", "Unknown")
+        new_odds = new.get("bf_sp") or new.get("odds")
+        msg = (
+            f"Blocked NAP: {orig_name} @ {orig_odds} -> "
+            f"{new_name} @ {new_odds}"
+        )
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(msg + "\n")
+
+def select_nap_tip(
+    tips: list[dict], odds_cap: float = NAP_ODDS_CAP, log_path: str = ""
+) -> tuple[dict | None, float]:
+    """Return the tip to mark as NAP and its confidence.
+
+    If the top-confidence tip exceeds ``odds_cap`` and does not have
+    ``override_nap`` set, the next highest qualifying tip becomes the NAP.
+    Any blocked/reassigned NAP is logged to ``log_path``.
+    """
+    if not tips:
+        return None, 0.0
+
+    sorted_tips = sorted(tips, key=lambda x: x.get("confidence", 0.0), reverse=True)
+    top_tip = sorted_tips[0]
+
+    for tip in sorted_tips:
+        odds = tip.get("bf_sp") or tip.get("odds", 0.0)
+        if tip.get("override_nap") or odds <= odds_cap:
+            if tip is not top_tip and log_path:
+                log_nap_override(top_tip, tip, log_path)
+            return tip, tip.get("confidence", 0.0)
+
+    if log_path:
+        log_nap_override(top_tip, None, log_path)
+    return None, 0.0
 
 def format_tip_message(tip, max_id):
     race_info = tip.get("race", "")
@@ -111,11 +168,18 @@ def main():
     parser.add_argument("--mode", default="advised")
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+
+    if args.dev:
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     PREDICTIONS_PATH = f"predictions/{args.date}/tips_with_odds.jsonl"
     SUMMARY_PATH = f"predictions/{args.date}/tips_summary.txt"
-    SENT_TIPS_PATH = f"logs/dispatch/sent_tips_{args.date}.jsonl"
+    SENT_TIPS_PATH = logs_path("dispatch", f"sent_tips_{args.date}.jsonl")
 
     if not os.path.exists(PREDICTIONS_PATH):
         print(f"❌ No tips file found at {PREDICTIONS_PATH}")
@@ -126,12 +190,9 @@ def main():
         print("⚠️ No valid tips to process.")
         sys.exit(1)
 
-    max_conf, max_id = 0.0, None
-    for t in tips:
-        conf = t.get("confidence", 0.0)
-        cid = get_tip_composite_id(t)
-        if conf > max_conf:
-            max_conf, max_id = conf, cid
+    nap_log = logs_path(f"nap_override_{args.date}.log")
+    nap_tip, max_conf = select_nap_tip(tips, odds_cap=NAP_ODDS_CAP, log_path=str(nap_log))
+    max_id = get_tip_composite_id(nap_tip) if nap_tip else None
 
     enriched = []
     for tip in tips:

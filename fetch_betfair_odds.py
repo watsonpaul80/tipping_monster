@@ -1,5 +1,5 @@
+#!/usr/bin/env python3
 import boto3
-import os
 import json
 import time
 import argparse
@@ -16,10 +16,15 @@ from secrets1 import (
     BF_CERT_DIR
 )
 
+
 def main():
     # === Parse --label for snapshot override ===
     parser = argparse.ArgumentParser()
-    parser.add_argument("--label", type=str, help="Override timestamp label (e.g. 1445)", default=None)
+    parser.add_argument(
+        "--label",
+        type=str,
+        help="Override timestamp label (e.g. 1445)",
+        default=None)
     args = parser.parse_args()
 
     # === Use local time (BST)
@@ -55,10 +60,8 @@ def main():
 
         print("[+] Fetching markets...")
         markets = trading.betting.list_market_catalogue(
-            filter=market_filter,
-            max_results=1000,
-            market_projection=['EVENT', 'RUNNER_METADATA', 'MARKET_START_TIME', 'RUNNER_DESCRIPTION']
-        )
+            filter=market_filter, max_results=1000, market_projection=[
+                'EVENT', 'RUNNER_METADATA', 'MARKET_START_TIME', 'RUNNER_DESCRIPTION'])
 
         print(f"[+] Found {len(markets)} markets")
 
@@ -76,9 +79,8 @@ def main():
             print(f"[+] Fetching batch {i//batch_size + 1}")
             try:
                 price_data = trading.betting.list_market_book(
-                    market_ids=batch,
-                    price_projection=filters.price_projection(price_data=['EX_BEST_OFFERS'])
-                )
+                    market_ids=batch, price_projection=filters.price_projection(
+                        price_data=['EX_BEST_OFFERS']))
                 all_price_data.extend(price_data)
                 time.sleep(0.5)
             except Exception as e:
@@ -133,6 +135,6 @@ def main():
         trading.logout()
         print("[+] Logged out")
 
+
 if __name__ == "__main__":
     main()
-

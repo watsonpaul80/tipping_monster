@@ -1,14 +1,17 @@
+#!/usr/bin/env python3
 import os
 import pandas as pd
 import argparse
 from datetime import datetime, timedelta
+import requests
 
-from tippingmonster import send_telegram_message
 
 def get_week_dates(iso_week):
     year, week = iso_week.split("-W")
     monday = datetime.strptime(f"{year}-W{week}-1", "%G-W%V-%u")
-    return [(monday + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
+    return [(monday + timedelta(days=i)).strftime("%Y-%m-%d")
+            for i in range(7)]
+
 
 def load_week_data(week_dates, mode="advised"):
     rows = []
@@ -19,6 +22,13 @@ def load_week_data(week_dates, mode="advised"):
             df["Date"] = date_str
             rows.append(df)
     return pd.concat(rows) if rows else pd.DataFrame()
+
+
+def send_to_telegram(msg, token, chat_id):
+    requests.post(
+        f"https://api.telegram.org/bot{token}/sendMessage",
+        data={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
+    )
 
 
 def main(week, send_telegram=False):
@@ -51,7 +61,10 @@ def main(week, send_telegram=False):
     strike_rate = (wins / tips * 100) if tips else 0
     place_rate = (places / tips * 100) if tips else 0
 
-    print(f"\n📅 *Week: {week}*\n💰 *Mode: {mode.capitalize()}* → ROI: {roi:.2f}%, Profit: {profit:+.2f} pts ({stake:.2f} staked)")
+    print(
+        f"\n📅 *Week: {week}*\n💰 *Mode: {mode.capitalize()}* → "
+        f"ROI: {roi:.2f}%, Profit: {profit:+.2f} pts ({stake:.2f} staked)"
+    )
 
     summary = (
         df.groupby("Date", as_index=False)
@@ -61,34 +74,55 @@ def main(week, send_telegram=False):
               "Profit": "sum",
               "Stake": "sum"
           })
-          .rename(columns={"Horse": "Tips"})
+        .rename(columns={"Horse": "Tips"})
     )
 
-    summary["Wins"] = summary["Position"].apply(lambda x: sum(1 for p in x if str(p).isdigit() and int(p) == 1))
-    summary["Places"] = summary["Position"].apply(lambda x: sum(1 for p in x if str(p).isdigit() and 2 <= int(p) <= 4))
+    summary["Wins"] = summary["Position"].apply(
+        lambda x: sum(1 for p in x if str(p).isdigit() and int(p) == 1))
+    summary["Places"] = summary["Position"].apply(lambda x: sum(
+        1 for p in x if str(p).isdigit() and 2 <= int(p) <= 4))
     summary.drop(columns="Position", inplace=True)
-    summary["ROI"] = summary.apply(lambda row: (row.Profit / row.Stake * 100) if row.Stake else 0, axis=1)
+    summary["ROI"] = summary.apply(
+        lambda row: (
+            row.Profit /
+            row.Stake *
+            100) if row.Stake else 0,
+        axis=1)
 
     for _, row in summary.iterrows():
-        print(f"📆 {row.Date} → Tips: {int(row.Tips)} | 🥇 Wins: {int(row.Wins)} | 🥈 Places: {int(row.Places)} | Profit: {row.Profit:+.2f} pts | ROI: {row.ROI:.2f}%")
+        print(
+            f"📆 {row.Date} → Tips: {int(row.Tips)} | 🥇 Wins: {int(row.Wins)} "
+            f"| 🥈 Places: {int(row.Places)} | Profit: {row.Profit:+.2f} pts "
+            f"| ROI: {row.ROI:.2f}%"
+        )
 
     if send_telegram:
-        msg = f"""*📊 Weekly ROI Summary ({week}) – {mode.capitalize()}*
-
-🏇 Tips: {tips}  |  🟢 {wins}W  |  🟡 {places}P  |  🔴 {tips - wins - places}L
-🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%
-💰 Profit: {profit:+.2f} pts
-📈 ROI: {roi:.2f}%
-🪙 Staked: {stake:.2f} pts\n"""
+        msg = (
+            f"*📊 Weekly ROI Summary ({week}) – {mode.capitalize()}*\n\n"
+            f"🏇 Tips: {tips}  |  🟢 {wins}W  |  🟡 {places}P  |  "
+            f"🔴 {tips - wins - places}L\n"
+            f"🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%\n"
+            f"💰 Profit: {profit:+.2f} pts\n"
+            f"📈 ROI: {roi:.2f}%\n"
+            f"🪙 Staked: {stake:.2f} pts\n"
+        )
         for _, row in summary.iterrows():
-            msg += f"\n📆 {row.Date} → {int(row.Tips)} tips, 🟢 {int(row.Wins)}W, 🟡 {int(row.Places)}P, ROI: {row.ROI:.2f}%"
-        send_telegram_message(msg, token=TOKEN, chat_id=CHAT_ID)
+            msg += (
+                f"\n📆 {row.Date} → {int(row.Tips)} tips, "
+                f"🟢 {int(row.Wins)}W, 🟡 {int(row.Places)}P, "
+                f"ROI: {row.ROI:.2f}%"
+            )
+        send_to_telegram(msg, TOKEN, CHAT_ID)
         print("✅ Sent to Telegram")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--week", required=True)
     parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
     main(args.week, send_telegram=args.telegram)
-

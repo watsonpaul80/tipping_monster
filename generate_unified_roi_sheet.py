@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 import os
 import pandas as pd
 from glob import glob
 
 OUTPUT_PATH = "logs/roi/unified_roi_sheet.csv"
+
 
 def load_and_flag(path, sent=False):
     if not os.path.exists(path):
@@ -11,12 +13,12 @@ def load_and_flag(path, sent=False):
     df["sent"] = sent
     return df
 
+
 def main():
     all_files = sorted(glob("logs/roi/tips_results_2025-*-advised.csv"))
     merged_rows = []
 
     for all_path in all_files:
-        date = all_path.split("_")[2]  # e.g. 2025-06-03
         sent_path = all_path.replace("_advised.csv", "_advised_sent.csv")
 
         df_all = load_and_flag(all_path, sent=False)
@@ -37,6 +39,6 @@ def main():
     else:
         print("⚠️ No data found to merge.")
 
+
 if __name__ == "__main__":
     main()
-

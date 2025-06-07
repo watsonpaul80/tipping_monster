@@ -69,7 +69,10 @@ def get_race_urls(tracks, years, code):
             for race in races:
                 race_date = race['raceDatetime'][:10]
                 race_id = race['raceInstanceUid']
-                url = f'{url_result}/{race_list.course_id}/{race_list.course_name}/{race_date}/{race_id}'
+                url = (
+                    f'{url_result}/{race_list.course_id}/'
+                    f'{race_list.course_name}/{race_date}/{race_id}'
+                )
                 urls.add(url.replace(' ', '-').replace("'", ''))
 
     return sorted(list(urls))
@@ -95,7 +98,13 @@ def get_race_urls_date(dates, region):
     return sorted(list(urls))
 
 
-def scrape_races(races, folder_name, file_name, file_extension, code, file_writer):
+def scrape_races(
+        races,
+        folder_name,
+        file_name,
+        file_extension,
+        code,
+        file_writer):
     out_dir = f'../data/{folder_name}/{code}'
 
     if not os.path.exists(out_dir):
@@ -119,14 +128,17 @@ def scrape_races(races, folder_name, file_name, file_extension, code, file_write
                 if race.race_info['type'] != 'Flat':
                     continue
             elif code == 'jumps':
-                if race.race_info['type'] not in {'Chase', 'Hurdle', 'NH Flat'}:
+                if race.race_info['type'] not in {
+                        'Chase', 'Hurdle', 'NH Flat'}:
                     continue
 
             for row in race.csv_data:
                 csv.write(row + '\n')
 
         print(
-            f'Finished scraping.\n{file_name}.{file_extension} saved in rpscrape/{out_dir.lstrip("../")}'
+            'Finished scraping.\n'
+            f'{file_name}.{file_extension} saved in '
+            f'rpscrape/{out_dir.lstrip("../")}'
         )
 
 
@@ -162,11 +174,18 @@ def main():
             file_name = args.date.replace('/', '_')
             races = get_race_urls_date(parser.dates, args.region)
         else:
-            folder_name = args.region if args.region else course_name(args.course)
+            folder_name = args.region if args.region else course_name(
+                args.course)
             file_name = args.year
             races = get_race_urls(parser.tracks, parser.years, args.type)
 
-        scrape_races(races, folder_name, file_name, file_extension, args.type, file_writer)
+        scrape_races(
+            races,
+            folder_name,
+            file_name,
+            file_extension,
+            args.type,
+            file_writer)
     else:
         if sys.platform == 'linux':
             import readline
@@ -177,13 +196,15 @@ def main():
 
         while True:
             args = input('[rpscrape]> ').lower().strip()
-            args = parser.parse_args_interactive([arg.strip() for arg in args.split()])
+            args = parser.parse_args_interactive(
+                [arg.strip() for arg in args.split()])
 
             if args:
                 if 'dates' in args:
                     races = get_race_urls_date(args['dates'], args['region'])
                 else:
-                    races = get_race_urls(args['tracks'], args['years'], args['type'])
+                    races = get_race_urls(
+                        args['tracks'], args['years'], args['type'])
 
                 scrape_races(
                     races,
