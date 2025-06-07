@@ -55,6 +55,8 @@ bash run_pipeline_with_venv.sh
 bash run_pipeline_with_venv.sh --dev
 ```
 
+Most Python scripts accept a `--debug` flag for verbose logging.
+
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram and uploads logs to S3. Individual scripts can be executed separately for custom workflows.
 
 ## Command Line Interface
