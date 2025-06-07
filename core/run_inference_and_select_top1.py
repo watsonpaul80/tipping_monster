@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
+import argparse
 import json
 import os
-import pandas as pd
-import argparse
+import sys
 import tarfile
 import tempfile
-import xgboost as xgb
 from datetime import date
+from pathlib import Path
+
 import boto3
-from core.model_fetcher import download_if_missing
-import orjson
-import numpy as np
+import pandas as pd
+import xgboost as xgb
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 import glob
 from datetime import datetime
 
+import numpy as np
+import orjson
+
+from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
 
 load_env()
@@ -26,7 +32,9 @@ if not models:
     )
 latest_model = models[-1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--model", default=latest_model, help="Path to model .tar.gz (S3-relative or local)")
+parser.add_argument(
+    "--model", default=latest_model, help="Path to model .tar.gz (S3-relative or local)"
+)
 parser.add_argument("--input", default=None, help="Path to input JSONL")
 args = parser.parse_args()
 
@@ -82,6 +90,7 @@ X = X.apply(pd.to_numeric, errors="coerce").fillna(-1)
 df["confidence"] = model.predict_proba(X)[:, 1]
 top_tips = df.sort_values("confidence", ascending=False).groupby("race").head(1)
 
+
 # === SORT BY RACE TIME ===
 def extract_race_sort_key(race):
     try:
@@ -91,8 +100,10 @@ def extract_race_sort_key(race):
     except:
         return 9999
 
+
 top_tips["sort_key"] = top_tips["race"].apply(extract_race_sort_key)
 top_tips = top_tips.sort_values("sort_key").drop(columns="sort_key")
+
 
 # === COMMENTARY GENERATOR ===
 def generate_reason(tip):
@@ -134,6 +145,7 @@ def generate_reason(tip):
     else:
         return "💬 Monster likes it — data suggests an edge."
 
+
 # === TAG GENERATOR ===
 def generate_tags(tip):
     tags = []
@@ -174,6 +186,7 @@ def generate_tags(tip):
         tags.append("❗ Confidence 90%+")
     return tags
 
+
 # === JSON SAFE CONVERSION ===
 def make_json_safe(obj):
     if isinstance(obj, (np.float32, np.float64)):
@@ -190,15 +203,19 @@ def make_json_safe(obj):
 
 # === LAST CLASS LOGIC ===
 
+
 def load_combined_results():
-    master_paths = (
-        glob.glob("rpscrape/data/regions/gb/*/2015-2025.csv")
-        + glob.glob("rpscrape/data/regions/ire/*/2015-2025.csv")
+    master_paths = glob.glob("rpscrape/data/regions/gb/*/2015-2025.csv") + glob.glob(
+        "rpscrape/data/regions/ire/*/2015-2025.csv"
     )
     master_frames = []
     for path in master_paths:
         try:
-            df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
+            df = pd.read_csv(
+                path,
+                usecols=["date", "course", "off", "class", "horse"],
+                parse_dates=["date"],
+            )
             master_frames.append(df)
         except:
             continue
@@ -206,23 +223,39 @@ def load_combined_results():
     recent_frames = []
     for path in recent_paths:
         try:
-            df = pd.read_csv(path, usecols=["date", "course", "off", "class", "horse"], parse_dates=["date"])
+            df = pd.read_csv(
+                path,
+                usecols=["date", "course", "off", "class", "horse"],
+                parse_dates=["date"],
+            )
             recent_frames.append(df)
         except:
             continue
     combined = pd.concat(master_frames + recent_frames, ignore_index=True)
-    combined["horse_clean"] = combined["horse"].astype(str).str.lower().str.replace(r" \([A-Z]{2,3}\)", "", regex=True).str.strip()
-    combined["class_num"] = combined["class"].astype(str).str.extract(r"(\d+)").fillna(-1).astype(float)
+    combined["horse_clean"] = (
+        combined["horse"]
+        .astype(str)
+        .str.lower()
+        .str.replace(r" \([A-Z]{2,3}\)", "", regex=True)
+        .str.strip()
+    )
+    combined["class_num"] = (
+        combined["class"].astype(str).str.extract(r"(\d+)").fillna(-1).astype(float)
+    )
     combined = combined.dropna(subset=["date", "class_num"])
     return combined
 
+
 def get_last_class(horse_name, today_date, combined_df):
-    horse_key = str(horse_name).lower().strip().replace(" (IRE)", "").replace(" (GB)", "")
+    horse_key = (
+        str(horse_name).lower().strip().replace(" (IRE)", "").replace(" (GB)", "")
+    )
     df = combined_df[combined_df["horse_clean"] == horse_key]
     df = df[df["date"] < pd.Timestamp(today_date)]
     if df.empty:
         return None
     return df.sort_values("date", ascending=False).iloc[0]["class_num"]
+
 
 # === LOAD COMBINED RESULTS FOR LAST_CLASS ===
 combined_results_df = load_combined_results()

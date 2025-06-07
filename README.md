@@ -2,7 +2,7 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
 
 ## Setup
 
@@ -24,7 +24,8 @@ TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET
 ```
 
 
-Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
+Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
+Set `TM_DEV_MODE=1` to suppress Telegram sends entirely and write logs to `logs/dev/` instead. Any script executed with the `--dev` flag automatically sets this variable.
 The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
 
 
@@ -66,6 +67,7 @@ Launch the full daily pipeline with:
 # Launch the full pipeline from the core directory
 bash core/run_pipeline_with_venv.sh
 # Use --dev to disable S3 uploads and Telegram posts
+# (sets `TM_DEV_MODE=1`)
 bash core/run_pipeline_with_venv.sh --dev
 ```
 
@@ -84,18 +86,18 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 
 ## Command Line Interface (tmcli)
 
-Common workflows via CLI:
+Common workflows via CLI (run these commands from the repository root):
 
 ```bash
-python cli/tmcli.py healthcheck --date YYYY-MM-DD
-python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
-python cli/tmcli.py dispatch-tips YYYY-MM-DD --telegram
-python cli/tmcli.py send-roi --date YYYY-MM-DD
-python cli/tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
-python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
-python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
-python cli/tmcli.py chart-fi path/to/model_dir
-python cli/tmcli.py send-photo path/to/image.jpg
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python tmcli.py send-roi --date YYYY-MM-DD
+python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python tmcli.py dispatch --date YYYY-MM-DD --telegram
+python tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python tmcli.py chart-fi path/to/model_dir
+python tmcli.py send-photo path/to/image.jpg
 
 
 

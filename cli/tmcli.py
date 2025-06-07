@@ -1,22 +1,37 @@
 import argparse
+import os
+import subprocess
+import sys
 from datetime import date
 from pathlib import Path
 
-from core.dispatch_tips import main as dispatch_main
 from model_feature_importance import generate_chart
-from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
+from tippingmonster import repo_path
 
 
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
-    args = ["--date", date]
+    cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
     if telegram:
-        args.append("--telegram")
+        cmd.append("--telegram")
     if dev:
-        args.append("--dev")
-    dispatch_main(args)
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def send_roi(date: str | None = None, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("roi", "send_daily_roi_summary.py"))]
+    if date:
+        cmd += ["--date", date]
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
 
 
 def main(argv=None) -> None:
@@ -63,7 +78,8 @@ def main(argv=None) -> None:
     parser_dispatch = subparsers.add_parser(
         "dispatch-tips", help="Format and optionally send today's tips"
     )
-    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_dispatch.add_argument("date", nargs="?", help="Date YYYY-MM-DD")
+    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", dest="date_opt", default=None)
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
 
@@ -96,8 +112,9 @@ def main(argv=None) -> None:
         print(out)
 
     elif args.command == "dispatch-tips":
+        date_arg = args.date or args.date_opt
         dispatch(
-            date=args.date or date.today().isoformat(),
+            date=date_arg or date.today().isoformat(),
             telegram=args.telegram,
             dev=args.dev,
         )
@@ -108,7 +125,7 @@ def main(argv=None) -> None:
         validate_tips_main(argv)
 
     elif args.command == "send-roi":
-        send_daily_roi(date=args.date, dev=args.dev)
+        send_roi(date=args.date, dev=args.dev)
 
 if __name__ == "__main__":
     main()

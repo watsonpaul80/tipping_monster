@@ -18,7 +18,7 @@ import pandas as pd
 import shap
 import xgboost as xgb
 
-from validate_features import load_dataset
+from core.validate_features import load_dataset
 from tippingmonster import logs_path, repo_path, send_telegram_photo
 
 
@@ -101,6 +101,16 @@ def generate_shap_chart(
         caption = f"Top model features {date.today().isoformat()}"
         send_telegram_photo(out, caption=caption)
     return out
+
+
+def generate_chart(
+    model_path: str,
+    data_path: str | None = None,
+    out: Path | None = None,
+    telegram: bool = False,
+) -> Path:
+    """Alias for :func:`generate_shap_chart`."""
+    return generate_shap_chart(model_path, data_path, out, telegram)
 
 
 def main(argv: list[str] | None = None) -> int:
