@@ -6,6 +6,7 @@ from .utils import (
     send_telegram_message,
     calculate_profit,
 )
+from .env_loader import load_env
 
 __all__ = [
     "repo_root",
@@ -14,4 +15,5 @@ __all__ = [
     "predictions_path",
     "send_telegram_message",
     "calculate_profit",
+    "load_env",
 ]

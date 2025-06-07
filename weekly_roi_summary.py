@@ -4,6 +4,9 @@ import argparse
 from datetime import datetime, timedelta
 
 from tippingmonster import send_telegram_message
+from tippingmonster.env_loader import load_env
+
+load_env()
 
 def get_week_dates(iso_week):
     year, week = iso_week.split("-W")

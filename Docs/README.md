@@ -13,7 +13,8 @@ This documentation set covers everything about the **Tipping Monster** project �
 
 ## 🔑 Environment Variables
 
-The scripts expect the following environment variables to be defined:
+The scripts expect the following environment variables to be defined
+(see `.env.example` for a template):
 
 - `BF_USERNAME`
 - `BF_PASSWORD`
@@ -23,5 +24,6 @@ The scripts expect the following environment variables to be defined:
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+- `TM_ROOT` *(optional)*
 
 Built by Paul. Maintained by Monster. Improved by chaos. 🧠🐎.

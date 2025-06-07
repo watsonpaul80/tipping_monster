@@ -3,6 +3,9 @@ from pathlib import Path
 from datetime import datetime, timedelta
 
 from tippingmonster import send_telegram_message
+from tippingmonster.env_loader import load_env
+
+load_env()
 
 """Send a morning digest to Telegram.
 

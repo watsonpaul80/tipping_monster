@@ -7,6 +7,10 @@ from pathlib import Path
 from datetime import datetime
 import pytz
 
+from tippingmonster.env_loader import load_env
+
+load_env()
+
 import betfairlightweight
 from betfairlightweight import filters
 from secrets1 import (

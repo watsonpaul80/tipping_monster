@@ -4,6 +4,9 @@ import os
 from pathlib import Path
 
 from tippingmonster import send_telegram_message
+from tippingmonster.env_loader import load_env
+
+load_env()
 
 def format_steamer(s):
     return (
