@@ -1,7 +1,8 @@
-from dispatch_tips import calculate_monster_stake
 import sys
 from pathlib import Path
 
+from dispatch_tips import (calculate_monster_stake, generate_tags,
+                           get_tip_composite_id, select_nap_tip)
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
@@ -70,11 +71,11 @@ def test_select_nap_tip_all_blocked(tmp_path):
 
 def test_generate_tags_with_delta():
     tip = {
-        'race': '12:00 Test',
-        'name': 'Runner',
-        'confidence': 0.9,
-        'bf_sp': 6.0,
-        'realistic_odds': 4.0
+        "race": "12:00 Test",
+        "name": "Runner",
+        "confidence": 0.9,
+        "bf_sp": 6.0,
+        "realistic_odds": 4.0,
     }
     tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
-    assert '🔥 Market Mover' in tags
+    assert "🔥 Market Mover" in tags

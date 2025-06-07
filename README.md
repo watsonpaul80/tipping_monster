@@ -17,6 +17,8 @@ pip install -r requirements.txt
 2. Copy `.env.example` to `.env` and fill in your credentials:
 `BF_USERNAME`, `BF_PASSWORD`, `BF_APP_KEY`, `BF_CERT_PATH`, `BF_KEY_PATH`, `BF_CERT_DIR`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and others as needed.
 
+Create a `.env` file in the repository root with these variables. The `dev-check` script looks for `.env` in this location.
+
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
 Private SSL keys are not included in the repository. Generate your own Betfair certificate and key files and place them somewhere outside version control (for example in a local `certs/` folder).
