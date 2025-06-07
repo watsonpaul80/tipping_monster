@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import json
-import os
 import argparse
 from pathlib import Path
 from datetime import datetime
+
 
 def extract_race_key(race_str):
     """Parse a race string like '15:30 Chelmsford' into minutes and course."""
@@ -17,6 +17,7 @@ def extract_race_key(race_str):
     except Exception:
         return None, None
 
+
 def load_snapshots(date_str):
     snapshot_dir = Path("odds_snapshots")
     data_by_time = []
@@ -29,12 +30,12 @@ def load_snapshots(date_str):
             with open(file) as f:
                 data = json.load(f)
                 data_by_time.append((snapshot_time, data))
-        except:
+        except BaseException:
             continue
     return sorted(data_by_time)
 
+
 def find_best_odds(race_time_minutes, course, horse_name, snapshots):
-    best_snapshot = None
     for label_minutes, runners in reversed(snapshots):
         if label_minutes >= race_time_minutes:
             continue
@@ -44,6 +45,7 @@ def find_best_odds(race_time_minutes, course, horse_name, snapshots):
             if snap_course == course and snap_name == horse_name:
                 return r.get("price")
     return None
+
 
 def main(date_str):
     sent_tips_path = Path(f"logs/dispatch/sent_tips_{date_str}.jsonl")
@@ -67,7 +69,8 @@ def main(date_str):
             race_minutes, course = extract_race_key(race)
             if race_minutes is None:
                 continue
-            realistic_odds = find_best_odds(race_minutes, course, name, snapshots)
+            realistic_odds = find_best_odds(
+                race_minutes, course, name, snapshots)
             if realistic_odds:
                 tip["realistic_odds"] = realistic_odds
             else:
@@ -80,8 +83,12 @@ def main(date_str):
 
     print(f"✅ Realistic odds injected and saved to: {output_path}")
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", help="Date string in YYYY-MM-DD format", default=datetime.now().strftime("%Y-%m-%d"))
+    parser.add_argument(
+        "--date",
+        help="Date string in YYYY-MM-DD format",
+        default=datetime.now().strftime("%Y-%m-%d"))
     args = parser.parse_args()
     main(args.date)

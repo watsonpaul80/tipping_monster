@@ -48,8 +48,11 @@ telegram_log = f"{BASE_DIR}/logs/dispatch/sent_tips_{TODAY}.jsonl"
 roi_path = f"{BASE_DIR}/logs/roi/tips_results_{YESTERDAY}_advised.csv"
 
 # === STATUS CHECKS ===
+
+
 def check_file(path):
     return "✅" if os.path.exists(path) else "❌"
+
 
 # === SUMMARY MESSAGE ===
 msg = (
@@ -68,4 +71,7 @@ else:
 msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
-send_telegram_message(msg, token=TG_BOT_TOKEN, chat_id=TG_USER_ID)
+requests.post(
+    f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
+    data={"chat_id": TG_USER_ID, "text": msg}
+)
