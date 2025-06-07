@@ -1,11 +1,8 @@
-from pathlib import Path
-import os
+from extract_best_realistic_odds import extract_race_key
 import sys
 
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-
-from extract_best_realistic_odds import extract_race_key
 
 
 def test_extract_race_key_normal_case():
@@ -32,4 +29,3 @@ def test_extract_race_key_bad_time_returns_none():
 def test_extract_race_key_empty_course_returns_none():
     minutes, course = extract_race_key("15:30   ")
     assert minutes is None and course is None
-

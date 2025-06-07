@@ -1,37 +1,53 @@
 import os
 import sys
+from datetime import datetime
 
 from argparse import ArgumentParser
 
-from utils.course import *
-from utils.date import *
-from utils.region import *
+from utils.course import (
+    courses,
+    course_name,
+    course_search,
+    print_courses,
+    valid_course,
+)
+from utils.date import (
+    check_date,
+    get_dates,
+    parse_years,
+    valid_years,
+)
+from utils.region import (
+    print_regions,
+    region_search,
+    valid_region,
+)
 
 
 help = (
-    f'Run:\n'
-    f'\t./rpscrape.py\n'
-    f'\t[rpscrape]> [region|course] [year|range] [flat|jumps]\n\n'
-    f'\tRegions have alphabetic codes\n'
-    f'\tCourses have numeric codes\n\n'
-    f'Examples:\n'
-    f'\t[rpscrape]> ire 1999 flat\n'
-    f'\t[rpscrape]> gb 2015-2018 jumps\n'
-    f'\t[rpscrape]> 533 1998-2018 flat\n'
+    'Run:\n'
+    '\t./rpscrape.py\n'
+    '\t[rpscrape]> [region|course] [year|range] [flat|jumps]\n\n'
+    '\tRegions have alphabetic codes\n'
+    '\tCourses have numeric codes\n\n'
+    'Examples:\n'
+    '\t[rpscrape]> ire 1999 flat\n'
+    '\t[rpscrape]> gb 2015-2018 jumps\n'
+    '\t[rpscrape]> 533 1998-2018 flat\n'
 )
 
 
 options = (
-    f'\t{"regions": <20} List all available region codes\n'
-    f'\t{"regions [search]": <20} Search for specific region code\n\n'
-    f'\t{"courses": <20} List all courses\n'
-    f'\t{"courses [search]": <20} Search for specific course\n'
-    f'\t{"courses [region]": <20} List courses in region - e.g courses ire\n\n'
-    f'\t{"-d, date": <20} Scrape race by date - e.g -d 2019/12/17 gb\n\n'
-    f'\t{"help": <20} Show help\n'
-    f'\t{"options": <20} Show options\n'
-    f'\t{"cls, clear": <20} Clear screen\n'
-    f'\t{"q, quit, exit": <20} Quit\n'
+    "\t{:<20} List all available region codes\n".format("regions") +
+    "\t{:<20} Search for specific region code\n\n".format("regions [search]") +
+    "\t{:<20} List all courses\n".format("courses") +
+    "\t{:<20} Search for specific course\n".format("courses [search]") +
+    "\t{:<20} List courses in region - e.g courses ire\n\n".format("courses [region]") +
+    "\t{:<20} Scrape race by date - e.g -d 2019/12/17 gb\n\n".format("-d, date") +
+    "\t{:<20} Show help\n".format("help") +
+    "\t{:<20} Show options\n".format("options") +
+    "\t{:<20} Clear screen\n".format("cls, clear") +
+    "\t{:<20} Quit\n".format("q, quit, exit")
 )
 
 
@@ -45,16 +61,35 @@ INFO = {
 
 
 ERROR = {
-    'arg_len': 'Error: Too many arguments.\n\tUsage:\n\t\t[rpscrape]> [region|course] [year|range] [flat|jumps]',
+    'arg_len': (
+        'Error: Too many arguments.\n\tUsage:\n\t\t[rpscrape]> '
+        '[region|course] [year|range] [flat|jumps]'
+    ),
     'incompatible': 'Arguments incompatible.\n',
     'incompatible_course': 'Choose course or region, not both.',
     'invalid_c_or_r': 'Invalid course or region',
-    'invalid_course': 'Invalid Course code.\n\nExamples:\n\t\t-c 20\n\t\t-c 1083',
-    'invalid_date': 'Invalid date. Format:\n\t\t-d YYYY/MM/DD\n\nExamples:\n\t\t-d 2020/01/19\n\t\t2020/01/19-2020/01/29',
-    'invalid_region': 'Invalid Region code. \n\nExamples:\n\t\t-r gb\n\t\t-r ire',
-    'invalid_region_int': 'Invalid Region code. \n\nExamples:\n\t\t2020/01/19 gb\n\t\t2021/07/11 ire',
-    'invalid_type': 'Invalid type.\n\nMust be either flat or jumps.\n\nExamples:\n\t\t-t flat\n\t\t-t jumps',
-    'invalid_year': 'Invalid year.\n\nFormat:\n\t\tYYYY\n\nExamples:\n\t\t-y 2015\n\t\t-y 2012-2017',
+    'invalid_course': (
+        'Invalid Course code.\n\nExamples:\n\t\t-c 20\n\t\t-c 1083'
+    ),
+    'invalid_date': (
+        'Invalid date. Format:\n\t\t-d YYYY/MM/DD\n\nExamples:'
+        '\n\t\t-d 2020/01/19\n\t\t2020/01/19-2020/01/29'
+    ),
+    'invalid_region': (
+        'Invalid Region code. \n\nExamples:\n\t\t-r gb\n\t\t-r ire'
+    ),
+    'invalid_region_int': (
+        'Invalid Region code. \n\nExamples:\n\t\t2020/01/19 gb\n\t\t'
+        '2021/07/11 ire'
+    ),
+    'invalid_type': (
+        'Invalid type.\n\nMust be either flat or jumps.\n\nExamples:'
+        '\n\t\t-t flat\n\t\t-t jumps'
+    ),
+    'invalid_year': (
+        'Invalid year.\n\nFormat:\n\t\tYYYY\n\nExamples:\n\t\t-y 2015'
+        '\n\t\t-y 2012-2017'
+    ),
     'invalid_year_int': 'Invalid year. Must be in range 1988-'
 }
 
@@ -69,11 +104,36 @@ class ArgParser:
         self.add_arguments()
 
     def add_arguments(self):
-        self.parser.add_argument('-d', '--date',    metavar='', type=str, help=INFO['date'])
-        self.parser.add_argument('-c', '--course',  metavar='', type=str, help=INFO['course'])
-        self.parser.add_argument('-r', '--region',  metavar='', type=str, help=INFO['region'])
-        self.parser.add_argument('-y', '--year',    metavar='', type=str, help=INFO['year'])
-        self.parser.add_argument('-t', '--type',    metavar='', type=str, help=INFO['type'])
+        self.parser.add_argument(
+            '-d',
+            '--date',
+            metavar='',
+            type=str,
+            help=INFO['date'])
+        self.parser.add_argument(
+            '-c',
+            '--course',
+            metavar='',
+            type=str,
+            help=INFO['course'])
+        self.parser.add_argument(
+            '-r',
+            '--region',
+            metavar='',
+            type=str,
+            help=INFO['region'])
+        self.parser.add_argument(
+            '-y',
+            '--year',
+            metavar='',
+            type=str,
+            help=INFO['year'])
+        self.parser.add_argument(
+            '-t',
+            '--type',
+            metavar='',
+            type=str,
+            help=INFO['type'])
 
     def parse_args(self, arg_list):
         args = self.parser.parse_args(args=arg_list)
@@ -88,7 +148,9 @@ class ArgParser:
             self.dates = get_dates(args.date)
 
         if args.course and args.region:
-            self.parser.error(ERROR['incompatible'] + ERROR['incompatible_course'])
+            self.parser.error(
+                ERROR['incompatible'] +
+                ERROR['incompatible_course'])
 
         if args.region:
             if not valid_region(args.region):

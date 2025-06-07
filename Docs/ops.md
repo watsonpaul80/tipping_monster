@@ -12,9 +12,9 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 - **Command:** The actual command executed.
 - **Log Output:** Where the primary output or errors of the cron command itself are logged (if specified). Internal script logging is now more organized within `logs/` subdirectories.
 
-> **Environment Note:** Telegram alerts depend on `TG_BOT_TOKEN` and
-> `TG_USER_ID` being set. Export these variables wherever cron runs (e.g.,
-> in your crontab or shell profile).
+> **Environment Note:** Telegram alerts depend on `TELEGRAM_BOT_TOKEN` and
+> `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
+> automatically.
 
 ---
 
@@ -28,7 +28,8 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 2.  **Fetch Betfair Odds (Hourly)**
     *   **Frequency:** Hourly between 07:05 and 20:05
-    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and potentially for features like "sniper" alerts or odds comparison.
+    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
+    *   **Purpose:** Fetches updated odds from Betfair. This is crucial for monitoring market changes and odds comparison.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_hourly /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py`
 
 ---
@@ -91,37 +92,42 @@ _All ROI-related scripts now live in the project root. The previous `ROI/` direc
     *   **Command:** `find /home/ec2-user/tipping-monster/logs/ -type f -name "*.log" -mtime +14 -delete`
     *   **Note:** Ensure this crontab line is updated as per `Docs/instructions.md`.
 
+12. **Healthcheck Logs (`tmcli.py healthcheck`)**
+    *   **Frequency:** Daily at 00:05
+    *   **Purpose:** Verifies key log files exist and writes a status line to `logs/healthcheck.log`.
+    *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/tmcli.py healthcheck --date $(date +\%F)`
+
 ---
 
 ### Sniper & Morning Preparation (Currently Commented Out or Specific Logging)
 
 The following jobs are related to "sniper" functionality (market movement detection) and morning preparation tasks. Some sniper-related jobs appear to be commented out in the provided crontab.
 
-12. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
+13. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
     *   **Frequency:** Was Daily at 09:30
     *   **Purpose:** Likely prepares data or schedules for the sniper functionality.
     *   **Command:** `#bash /home/ec2-user/tipping-monster/safecron.sh build_sniper_intel /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py`
     *   **Internal Logs:** Check `logs/sniper/` if re-enabled.
 
-13. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
+14. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
     *   **Frequency:** Daily at 09:35
     *   **Purpose:** Loads sniper data and schedules the actual sniper monitoring jobs.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh`
     *   **Internal Logs:** Check `logs/sniper/`.
 
-14. **Fetch Betfair Odds (08:00 Snapshot)**
+15. **Fetch Betfair Odds (08:00 Snapshot)**
     *   **Frequency:** Daily at 08:00
     *   **Purpose:** Fetches a snapshot of Betfair odds specifically at 08:00.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/odds_0800_$(date +\%F).log 2>&1`
     *   **Log Output:** `logs/odds_0800_YYYY-MM-DD.log` (remains in root `logs/`)
 
-15. **Morning Digest Script (`scripts/morning_digest.py`)**
+16. **Morning Digest Script (`scripts/morning_digest.py`)**
     *   **Frequency:** Daily at 09:10
     *   **Purpose:** Runs a morning digest script, possibly summarizing tips or other information.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/scripts/morning_digest.py >> /home/ec2-user/tipping-monster/logs/morning_digest.log 2>&1`
     *   **Log Output:** `logs/morning_digest.log` (remains in root `logs/`)
 
-16. **Auto Tweet Tips (`monstertweeter/auto_tweet_tips.py`)**
+17. **Auto Tweet Tips (`monstertweeter/auto_tweet_tips.py`)**
     *   **Frequency:** Daily at 08:15
     *   **Purpose:** Automatically tweets selected tips.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/monstertweeter/auto_tweet_tips.py >> /home/ec2-user/tipping-monster/logs/twitter_post.log 2>&1`
@@ -131,13 +137,13 @@ The following jobs are related to "sniper" functionality (market movement detect
 
 ### Optional Model Training & S3 Upload
 
-17. **Daily Model Training (`daily_train.sh`)**
+18. **Daily Model Training (`daily_train.sh`)**
     *   **Frequency:** Daily at 03:00
     *   **Purpose:** Performs daily model retraining.
     *   **Command:** `bash /home/ec2-user/tipping-monster/safecron.sh train /bin/bash /home/ec2-user/tipping-monster/daily_train.sh`
     *   **Log Output:** The script itself logs to `logs/train.log` and `logs/train_YYYY-MM-DD.log` (remains in root `logs/`).
 
-18. **S3 Upload of `master_subscriber_log.csv` (Redundant?)**
+19. **S3 Upload of `master_subscriber_log.csv` (Redundant?)**
     *   **Frequency:** Daily at 23:59
     *   **Purpose:** Uploads `master_subscriber_log.csv` (now from `logs/roi/`) to S3. This appears similar to job #6.
     *   **Command:** `/usr/local/bin/aws s3 cp /home/ec2-user/tipping-monster/logs/roi/master_subscriber_log.csv s3://tipping-monster-data/ --region eu-west-2 >> /home/ec2-user/tipping-monster/logs/s3_upload.log 2>&1`
