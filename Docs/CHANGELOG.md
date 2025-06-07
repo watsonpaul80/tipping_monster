@@ -24,7 +24,7 @@
 ### Added
 - `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
 - `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
-- `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
+ - `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
 
 ## 2025-06-07
 
@@ -44,7 +44,7 @@
 
 ## 2025-06-07 — CLI Helper
 
-- Added `cli/tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
+ - Added `tmcli.py` with `pipeline`, `roi`, `sniper`, and `healthcheck` subcommands.
 - Each command supports a `--dev` flag for safe local testing.
 - Documented CLI usage in README and ops guide.
 
