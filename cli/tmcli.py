@@ -1,22 +1,58 @@
 import argparse
-from datetime import date
+import os
+import subprocess
+import sys
+from datetime import date, datetime
 from pathlib import Path
 
-from core.dispatch_tips import main as dispatch_main
 from model_feature_importance import generate_chart
-from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
+from tippingmonster import repo_path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def valid_date(value: str) -> str:
+    """Return ``value`` if it matches ``YYYY-MM-DD`` else raise ``ArgumentTypeError``."""
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            f"Invalid date: {value}. Use YYYY-MM-DD"
+        ) from exc
+    return value
+
+
+def run_command(cmd: list[str], dev: bool) -> None:
+    """Run ``cmd`` with optional ``TM_DEV_MODE`` set."""
+    env = os.environ.copy()
+    if dev:
+        env["TM_DEV_MODE"] = "1"
+    subprocess.run(cmd, check=True, env=env)
 
 
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
-    args = ["--date", date]
+    cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
     if telegram:
-        args.append("--telegram")
+        cmd.append("--telegram")
     if dev:
-        args.append("--dev")
-    dispatch_main(args)
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def send_roi(date: str | None = None, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("roi", "send_daily_roi_summary.py"))]
+    if date:
+        cmd += ["--date", date]
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
 
 
 def main(argv=None) -> None:
@@ -24,6 +60,31 @@ def main(argv=None) -> None:
         description="Tipping Monster command line interface"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # pipeline subcommand
+    parser_pipe = subparsers.add_parser("pipeline", help="Run the full daily pipeline")
+    parser_pipe.add_argument(
+        "--dev",
+        action="store_true",
+        help="Enable development mode (no Telegram/S3 uploads)",
+    )
+
+    # roi subcommand
+    parser_roi_pipe = subparsers.add_parser(
+        "roi", help="Run ROI pipeline for a given date"
+    )
+    parser_roi_pipe.add_argument("--date", type=valid_date, help="Date YYYY-MM-DD")
+    parser_roi_pipe.add_argument(
+        "--dev", action="store_true", help="Enable development mode"
+    )
+
+    # sniper subcommand (placeholder)
+    parser_sniper = subparsers.add_parser(
+        "sniper", help="Run sniper jobs (if available)"
+    )
+    parser_sniper.add_argument(
+        "--dev", action="store_true", help="Enable development mode for sniper jobs"
+    )
 
     # healthcheck subcommand
     parser_health = subparsers.add_parser(
@@ -63,7 +124,8 @@ def main(argv=None) -> None:
     parser_dispatch = subparsers.add_parser(
         "dispatch-tips", help="Format and optionally send today's tips"
     )
-    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_dispatch.add_argument("date", nargs="?", help="Date YYYY-MM-DD")
+    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", dest="date_opt", default=None)
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
 
@@ -76,7 +138,22 @@ def main(argv=None) -> None:
 
     args = parser.parse_args(argv)
 
-    if args.command == "healthcheck":
+    if args.command == "pipeline":
+        cmd = [str(ROOT / "core" / "run_pipeline_with_venv.sh")]
+        if args.dev:
+            cmd.append("--dev")
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "roi":
+        cmd = [str(ROOT / "roi" / "run_roi_pipeline.sh")]
+        if args.date:
+            cmd.append(args.date)
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "sniper":
+        raise RuntimeError("Sniper functionality is not included in this distribution")
+
+    elif args.command == "healthcheck":
         check_logs(Path(args.out_log), args.date)
 
     elif args.command == "ensure-sent-tips":
@@ -96,8 +173,9 @@ def main(argv=None) -> None:
         print(out)
 
     elif args.command == "dispatch-tips":
+        date_arg = args.date or args.date_opt
         dispatch(
-            date=args.date or date.today().isoformat(),
+            date=date_arg or date.today().isoformat(),
             telegram=args.telegram,
             dev=args.dev,
         )
@@ -108,7 +186,8 @@ def main(argv=None) -> None:
         validate_tips_main(argv)
 
     elif args.command == "send-roi":
-        send_daily_roi(date=args.date, dev=args.dev)
+        send_roi(date=args.date, dev=args.dev)
+
 
 if __name__ == "__main__":
     main()
