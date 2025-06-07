@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # generate_race_schedule.py
 import json
 from datetime import datetime, timedelta
