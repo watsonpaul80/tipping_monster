@@ -122,19 +122,19 @@ The following jobs are related to "sniper" functionality (market movement detect
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh`
     *   **Internal Logs:** Check `logs/sniper/`.
 
-15. **Fetch Betfair Odds (08:00 Snapshot)**
+16. **Fetch Betfair Odds (08:00 Snapshot)**
     *   **Frequency:** Daily at 08:00
     *   **Purpose:** Fetches a snapshot of Betfair odds specifically at 08:00.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh odds_0800 /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/core/fetch_betfair_odds.py --label 0800 >> /home/ec2-user/tipping-monster/logs/inference/odds_0800_$(date +\%F).log 2>&1`
     *   **Log Output:** `logs/inference/odds_0800_YYYY-MM-DD.log`
 
-16. **Morning Digest Script (`scripts/morning_digest.py`)**
+17. **Morning Digest Script (`scripts/morning_digest.py`)**
     *   **Frequency:** Daily at 09:10
     *   **Purpose:** Runs a morning digest script, possibly summarizing tips or other information.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/scripts/morning_digest.py >> /home/ec2-user/tipping-monster/logs/morning_digest.log 2>&1`
     *   **Log Output:** `logs/morning_digest.log` (remains in root `logs/`)
 
-17. **Auto Tweet Tips (`monstertweeter/auto_tweet_tips.py`)**
+18. **Auto Tweet Tips (`monstertweeter/auto_tweet_tips.py`)**
     *   **Frequency:** Daily at 08:15
     *   **Purpose:** Automatically tweets selected tips.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/monstertweeter/auto_tweet_tips.py >> /home/ec2-user/tipping-monster/logs/twitter_post.log 2>&1`
@@ -144,13 +144,13 @@ The following jobs are related to "sniper" functionality (market movement detect
 
 ### Optional Model Training & S3 Upload
 
-18. **Daily Model Training (`core/daily_train.sh`)**
+19. **Daily Model Training (`core/daily_train.sh`)**
     *   **Frequency:** Daily at 03:00
     *   **Purpose:** Performs daily model retraining.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh train /bin/bash /home/ec2-user/tipping-monster/core/daily_train.sh`
     *   **Log Output:** The script itself logs to `logs/train.log` and `logs/train_YYYY-MM-DD.log` (remains in root `logs/`).
 
-19. **S3 Upload of `master_subscriber_log.csv` (Redundant?)**
+20. **S3 Upload of `master_subscriber_log.csv` (Redundant?)**
     *   **Frequency:** Daily at 23:59
     *   **Purpose:** Uploads `master_subscriber_log.csv` (now from `logs/roi/`) to S3. This appears similar to job #6.
     *   **Command:** `/usr/local/bin/aws s3 cp /home/ec2-user/tipping-monster/logs/roi/master_subscriber_log.csv s3://tipping-monster-data/ --region eu-west-2 >> /home/ec2-user/tipping-monster/logs/s3_upload.log 2>&1`
