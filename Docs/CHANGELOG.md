@@ -137,3 +137,7 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
 
+## 2025-06-08 — Telegram CLI
+- `tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line
+  Telegram posts.
+
