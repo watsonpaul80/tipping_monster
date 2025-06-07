@@ -12,6 +12,11 @@ from tippingmonster import (
     repo_root,
     send_telegram_message,
     send_telegram_photo,
+    calculate_profit,
+    repo_root,
+    repo_path,
+    logs_path,
+    tip_has_tag,
 )
 
 # isort: on
@@ -151,6 +156,12 @@ def test_repo_and_logs_path_helpers():
 
 
 def test_logs_path_dev(monkeypatch):
-    monkeypatch.setenv("TM_DEV_MODE", "1")
-    p = logs_path("dispatch")
-    assert str(p).endswith("logs/dev/dispatch")
+    monkeypatch.setenv('TM_DEV_MODE', '1')
+    p = logs_path('dispatch')
+    assert str(p).endswith('logs/dev/dispatch')
+
+
+def test_tip_has_tag_basic():
+    tip = {'tags': ['🧠 Monster NAP', '⚡ Fresh']}
+    assert tip_has_tag(tip, 'NAP')
+    assert not tip_has_tag(tip, 'Value')

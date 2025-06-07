@@ -11,11 +11,12 @@ def test_check_logs_with_all_files(tmp_path):
     date = "2025-06-06"
     # create expected files
     logs = tmp_path / "logs"
-    logs.mkdir()
-    (logs / f"sent_tips_{date}.jsonl").write_text("ok")
-    (logs / f"pipeline_{date}.log").write_text("ok")
-    (logs / f"odds_0800_{date}.log").write_text("ok")
-    (logs / f"odds_hourly_{date}.log").write_text("ok")
+    (logs / "dispatch").mkdir(parents=True)
+    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch" / f"sent_tips_{date}.jsonl").write_text("ok")
+    (logs / "inference" / f"pipeline_{date}.log").write_text("ok")
+    (logs / "inference" / f"odds_0800_{date}.log").write_text("ok")
+    (logs / "inference" / f"odds_hourly_{date}.log").write_text("ok")
 
     out_log = tmp_path / "healthcheck.log"
     os.chdir(tmp_path)
@@ -28,9 +29,10 @@ def test_check_logs_missing_file(tmp_path):
     date = "2025-06-06"
     # create some but not all
     logs = tmp_path / "logs"
-    logs.mkdir()
-    (logs / f"sent_tips_{date}.jsonl").write_text("ok")
-    (logs / f"pipeline_{date}.log").write_text("ok")
+    (logs / "dispatch").mkdir(parents=True)
+    (logs / "inference").mkdir(parents=True)
+    (logs / "dispatch" / f"sent_tips_{date}.jsonl").write_text("ok")
+    (logs / "inference" / f"pipeline_{date}.log").write_text("ok")
     # no odds files
 
     out_log = tmp_path / "healthcheck.log"

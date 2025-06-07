@@ -14,6 +14,7 @@ __all__ = [
     "send_telegram_photo",
     "send_telegram_photo",
     "calculate_profit",
+    "tip_has_tag",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.

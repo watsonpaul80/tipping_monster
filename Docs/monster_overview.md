@@ -79,7 +79,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
-* `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV.
+* `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV. Uses the `requests` library to send ROI summaries to Telegram.
 * `roi/calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `roi/weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
 * `roi/generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
@@ -317,6 +317,7 @@ roi_tracker_advised.py	CLI tracker for daily PnL	✅ Sent only
 weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
 generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
+roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files
@@ -326,6 +327,7 @@ logs/roi/tips_results_YYYY-MM-DD_advised_all.csv	ROI per tip (all tips)
 logs/roi/tag_roi_summary_sent.csv	ROI by tag for sent tips
 logs/roi/tag_roi_summary_all.csv	ROI by tag for all tips
 logs/roi/monster_confidence_per_day_with_roi.csv	ROI by confidence bin
+logs/roi/roi_by_confidence_band_sent.csv        ROI by confidence band
 logs/roi/unified_roi_sheet.csv	Full tip log with Date/Week/Month
 
 🔍 Analysis Levels

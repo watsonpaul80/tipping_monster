@@ -23,7 +23,7 @@ Key folders and scripts include:
 - `logs/` – organized logs for inference, ROI and dispatch processes.
 - `predictions/` – daily output tips and summaries.
 - Core scripts such as `core/run_pipeline_with_venv.sh`, `core/fetch_betfair_odds.py`, and `core/dispatch_tips.py` drive the daily pipeline.
-- `cli/tmcli.py` – command-line helper wrapping common tasks like `healthcheck`.
+- `cli/tmcli.py` – command-line helper with `pipeline`, `roi`, `sniper` and `healthcheck` commands.
 
 Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
 
@@ -45,6 +45,7 @@ These times are detailed in `Docs/monster_overview.md`.
 
 ## Key Scripts
 
+
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
 - **Inference:** `core/run_inference_and_select_top1.py` downloads the latest model, predicts on flattened racecards and uploads predictions.
@@ -56,10 +57,10 @@ These times are detailed in `Docs/monster_overview.md`.
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
-3. Explore the training (`core/train_model_v6.py`) and inference (`core/run_inference_and_select_top1.py`) scripts to see how predictions are generated.
-4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
-4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
-5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
+3. Explore the training (`train_model_v6.py`) and inference (`run_inference_and_select_top1.py`) scripts to see how predictions are generated.
+4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
+4. Review the ROI scripts (e.g., `roi_tracker_advised.py`) and `run_roi_pipeline.sh` to understand profit tracking.
+5. Check the TODO lists in `Docs/monster_todo.md`, `Docs/monster_todo_v2.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 6. Run `./dev-check.sh` followed by `make test` to verify your setup.
 
 With these files as a guide, you can get up to speed quickly and start contributing to the system.
