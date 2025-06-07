@@ -14,11 +14,6 @@ alert_if_no_sent_tips.py - remove
 archive_old_logs.py - remove
 backfill_sent_tips_from_predictions.py - remove
 check_betfair_market_times.py - remove
-ensure_sent_tips.py - remove
-evaluate_steamers.py - remove
-generate_race_schedule.py - remove
-healthcheck_logs.py - remove
-load_sniper_jobs.sh - remove
 rebuild_sent_tips_from_results.py - remove
 secrets1.py - remove
 
@@ -38,6 +33,8 @@ dispatch_tips.py - keep
 extract_best_realistic_odds.py - keep
 fetch_betfair_odds.py - keep
 flatten_racecards_v3.py - keep
+healthcheck_logs.py - keep
+ensure_sent_tips.py - keep
 generate_and_schedule_snipers.sh - keep
 generate_subscriber_log.py - keep
 generate_tip_results_csv_with_mode_FINAL.py - keep
