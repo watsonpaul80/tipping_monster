@@ -92,3 +92,7 @@ make test     # run unit tests
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+
+### Self-Training Evaluation
+
+`evaluate_self_training.py` trains models with and without past tip features and writes the ROI comparison to `logs/evaluate_self_training.csv`.
