@@ -7,6 +7,7 @@ from pathlib import Path
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
+
 def send_telegram_message(msg):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {
@@ -19,12 +20,14 @@ def send_telegram_message(msg):
     except Exception as e:
         print(f"[!] Failed to send message: {e}")
 
+
 def format_steamer(s):
     return (
         f"🏇 *{s['horse']}*\n"
         f"📍 {s['race']}\n"
         f"📉 *{s['old_price']}* → *{s['new_price']}* (-{s['drop_pct']}%)\n"
     )
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -53,6 +56,6 @@ def main():
     if batch:
         send_telegram_message("🔥 *Steam Sniper Alerts*\n\n" + "\n".join(batch))
 
+
 if __name__ == "__main__":
     main()
-

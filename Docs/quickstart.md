@@ -46,6 +46,14 @@ These times are detailed in `Docs/monster_overview.md`.
 - **Dispatch & ROI:** `dispatch_tips.py` formats tips for Telegram. `roi_tracker_advised.py` and `send_daily_roi_summary.py` track daily performance and report ROI.
 - **Steam Sniper:** Scripts like `build_sniper_schedule.py` and `dispatch_snipers.py` detect market steamers from Betfair odds.
 
+## Coding Standards
+
+All Python code is linted with **Flake8**. Use `pre-commit` to run the linter before committing:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
+
 ## Next Steps for Newcomers
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.

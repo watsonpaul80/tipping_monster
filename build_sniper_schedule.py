@@ -15,4 +15,3 @@ with open(SCHEDULE_PATH, "w") as f:
         f.write(f"echo '{str(SCRIPT_PATH)}' | at {time_str}\n")
 
 print(f"✅ Saved sniper script: {SCHEDULE_PATH}")
-

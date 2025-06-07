@@ -23,6 +23,12 @@ pip install -r requirements.txt
 pytest
 ```
 
+4. Run the linter:
+
+```bash
+pre-commit run --files $(git ls-files '*.py')
+```
+
 ## Usage
 
 Launch the full daily pipeline with:

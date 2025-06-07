@@ -182,8 +182,10 @@ import pandas as pd
 import glob
 
 def load_combined_results():
-    master_paths = glob.glob("rpscrape/data/regions/gb/*/2015-2025.csv") + \
-                   glob.glob("rpscrape/data/regions/ire/*/2015-2025.csv")
+    master_paths = (
+        glob.glob("rpscrape/data/regions/gb/*/2015-2025.csv")
+        + glob.glob("rpscrape/data/regions/ire/*/2015-2025.csv")
+    )
     master_frames = []
     for path in master_paths:
         try:
