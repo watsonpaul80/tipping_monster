@@ -2,11 +2,12 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from core.dispatch_tips import main as dispatch_main
+from core.dispatch_tips import main as dispatch
 from model_feature_importance import generate_chart
 from roi.send_daily_roi_summary import send_daily_roi
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
+from utils.validate_tips import main as validate_tips_main
 
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(
@@ -30,6 +31,13 @@ def main(argv=None) -> None:
     parser_sent.add_argument("date", help="Date YYYY-MM-DD")
     parser_sent.add_argument("--predictions-dir", default="predictions")
     parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
+
+    # validate-tips subcommand
+    parser_validate = subparsers.add_parser(
+        "validate-tips", help="Validate tips JSON for a given date"
+    )
+    parser_validate.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_validate.add_argument("--predictions-dir", default="predictions")
 
     # model-feature-importance subcommand
     parser_feat = subparsers.add_parser(
@@ -78,12 +86,16 @@ def main(argv=None) -> None:
         print(out)
 
     elif args.command == "dispatch-tips":
-        dispatch_args = ["--date", args.date or date.today().isoformat()]
-        if args.telegram:
-            dispatch_args.append("--telegram")
-        if args.dev:
-            dispatch_args.append("--dev")
-        dispatch_main(dispatch_args)
+        dispatch(
+            date=args.date or date.today().isoformat(),
+            telegram=args.telegram,
+            dev=args.dev,
+        )
+
+    elif args.command == "validate-tips":
+        argv = ["--date", args.date] if args.date else []
+        argv += ["--predictions-dir", args.predictions_dir]
+        validate_tips_main(argv)
 
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
