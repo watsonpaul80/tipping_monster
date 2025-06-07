@@ -74,6 +74,10 @@ python tmcli.py send-photo path/to/image.jpg
 
 These commands wrap existing scripts for convenience and default locations.
 
+The `tippingmonster` package also exposes handy helpers like
+`send_telegram_message()` and the new `send_telegram_photo()` for posting
+images with captions.
+
 ## Health Check
 
 To confirm all expected logs were created for a given day, run:
