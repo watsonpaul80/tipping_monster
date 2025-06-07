@@ -1,5 +1,12 @@
 # 📅 CHANGELOG
 
+## 2025-06-07
+
+### Added
+- NAP odds cap with override support (`dispatch_tips.py`).
+- Blocked or reassigned NAPs logged to `logs/nap_override_YYYY-MM-DD.log`.
+
+
 ## 2025-05-31
 
 ### Added
