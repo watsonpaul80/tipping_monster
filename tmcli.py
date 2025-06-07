@@ -6,6 +6,7 @@ from dispatch_tips import dispatch
 from ensure_sent_tips import ensure_sent_tips
 from healthcheck_logs import check_logs
 from send_daily_roi_summary import send_daily_roi
+from model_feature_importance import generate_chart
 
 
 def main(argv=None) -> None:
@@ -30,6 +31,16 @@ def main(argv=None) -> None:
     parser_sent.add_argument("date", help="Date YYYY-MM-DD")
     parser_sent.add_argument("--predictions-dir", default="predictions")
     parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
+
+    # model-feature-importance subcommand
+    parser_feat = subparsers.add_parser(
+        "model-feature-importance",
+        help="Generate SHAP feature importance chart",
+    )
+    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst")
+    parser_feat.add_argument("--data", help="Input JSONL with features")
+    parser_feat.add_argument("--out-dir", default="logs/model")
+    parser_feat.add_argument("--telegram", action="store_true")
 
     # dispatch-tips subcommand
     parser_dispatch = subparsers.add_parser(
@@ -56,6 +67,14 @@ def main(argv=None) -> None:
             Path(args.predictions_dir),
             Path(args.dispatch_dir),
         )
+    elif args.command == "model-feature-importance":
+        out = generate_chart(
+            args.model,
+            args.data,
+            Path(args.out_dir) / f"feature_importance_{date.today().isoformat()}.png",
+            telegram=args.telegram,
+        )
+        print(out)
     elif args.command == "dispatch-tips":
         dispatch(
             date=args.date or date.today().isoformat(),
