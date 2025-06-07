@@ -1,3 +1,6 @@
 logs/
 certs/
 __pycache__/
+client-*.pem
+client-*.key
+client-*.csr
