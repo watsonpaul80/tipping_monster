@@ -137,3 +137,9 @@ Let me know if you want it appended to your existing Monster changelog file or i
 - Added `tmcli.py` with `healthcheck` and `ensure-sent-tips` subcommands.
 - Documented CLI usage in README and ops guide.
 
+
+## 2025-06-07 — CLI Expansion
+- Added feature-importance charting command (`chart-fi`).
+- Added `dispatch` subcommand to send tips.
+- Added `roi-summary` subcommand for daily ROI updates.
+- Added `send-photo` helper to post images to Telegram.
