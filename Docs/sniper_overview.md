@@ -37,7 +37,7 @@ Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%
 
 ---
 
-## 🔧 Cron Setup
+## 🛠️ Cron Setup
 
 ```cron
 # 1. Build sniper schedule (after racecards are ready)
@@ -45,14 +45,13 @@ Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%
 
 # 2. Launch pipeline jobs via `at`
 6 8 * * * /home/ec2-user/tipping-monster/steam_sniper_intel/run_sniper_pipeline.sh
-🗂️ Key Files
+📂 Key Files
 | File | Purpose |
 | ---- | ------- |
 | build_sniper_schedule.py | Generates snapshot times from racecard |
 | run_sniper_pipeline.sh | Schedules fetch/dispatch jobs via at |
 | fetch_betfair_odds.py | Captures odds snapshots |
 | compare_odds_to_0800.py | Finds steamers vs baseline |
-| dispatch_snipers.py | Sends Telegram alerts |
 | sniper_schedule.txt | List of HHMM-formatted snapshot times |
 | odds_snapshots/*.json | Raw odds snapshots |
 | steamers_*.json | Steamers detected at each timepoint |
@@ -62,7 +61,7 @@ Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%
 08:01 →  run_sniper_pipeline.sh
 12:55 →  fetch_betfair_odds.py --label 1255
 12:55 →  compare_odds_to_0800.py
-12:55 →  dispatch_snipers.py
+```
 
 ---
 
@@ -82,3 +81,4 @@ Automatically detect and dispatch horses whose Betfair odds drop sharply (≥30%
 - Improved time parsing from `"race"` field (e.g. “17:15 Chelmsford”)
 - Verified pipeline now triggers dispatches for full race day
 - Added future-proofing for early and late race times.
+```

@@ -7,7 +7,6 @@ daily_flatten.sh
 daily_train.sh
 daily_upload_racecards.sh
 daily_upload_results.sh
-dispatch_snipers.py
 dispatch_tips.py
 dispatch_all_tips.py
 evaluate_steamers.py

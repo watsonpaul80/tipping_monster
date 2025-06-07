@@ -30,14 +30,13 @@
 - Telegram dispatch batches alerts in groups (up to 20) with dryrun support.
 
 ### 🧪 Manual Testing
-- Dry-run mode added to `dispatch_snipers.py` for safe CLI output testing.
+- Dry-run mode added for safe CLI output testing.
 - Successfully tested full sniper pipeline: fetch → merge → detect → dispatch.
 
 ### 📂 New Files / Scripts
 - `compare_sniper_odds.py`: Replaces old snapshot comparison logic.
-- Updated `dispatch_snipers.py` with clean formatting, odds drop %, and filtering.
 
-### 🧼 Next Up
+### 🏼 Next Up
 - ROI tracking for steamers
 - LLM commentary
 - ML-based filtering in V2

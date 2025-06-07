@@ -11,8 +11,7 @@ while IFS= read -r line; do
 
   # Schedule when we have a full 3-line block
   if [[ $(echo "$line_buffer" | grep -c 'fetch_betfair_odds.py') -eq 1 ]] && \
-     [[ $(echo "$line_buffer" | grep -c 'compare_odds_to_0800.py') -eq 1 ]] && \
-     [[ $(echo "$line_buffer" | grep -c 'dispatch_snipers.py') -eq 1 ]]; then
+     [[ $(echo "$line_buffer" | grep -c 'compare_odds_to_0800.py') -eq 1 ]]; then
 
     label=$(echo "$line_buffer" | grep fetch_betfair_odds | grep -oP 'label \K[0-9]+')
     if [[ "$label" =~ ^[0-9]{4}$ ]]; then
