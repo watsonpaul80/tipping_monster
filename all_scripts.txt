@@ -27,3 +27,4 @@ healthcheck_logs.py
 ensure_sent_tips.py
 alert_if_no_sent_tips.py
 tmcli.py
+validate_tips.py
