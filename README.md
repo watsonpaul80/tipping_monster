@@ -98,31 +98,19 @@ python tmcli.py dispatch --date YYYY-MM-DD --telegram
 python tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python tmcli.py chart-fi path/to/model_dir
 python tmcli.py send-photo path/to/image.jpg
-
-
-
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-
-
 ```
-
+## Tip Dispatch
 
 These commands wrap existing scripts for convenience and default locations.
 
+```bash
+python core/dispatch_tips.py --date YYYY-MM-DD --telegram
+```
 
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
+Use `--telegram` to actually post messages and `--explain` to append a short "Why we tipped this" summary generated from SHAP values.
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
 images with captions.
-
 
 ## Health Check
 
