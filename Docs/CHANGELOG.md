@@ -147,3 +147,6 @@ Let me know if you want it appended to your existing Monster changelog file or i
   Telegram posts.
 
 
+
+## 2025-06-09 -- Tag ROI Tracker Cleanup
+- Removed duplicate arguments and calculations in `tag_roi_tracker.py`. Added `--dev` option.
