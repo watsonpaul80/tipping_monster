@@ -13,7 +13,12 @@ This milestone summarises all notable features and fixes committed to the reposi
 - **Sent Tips Helper** `ensure_sent_tips.py` to recreate `sent_tips_DATE.jsonl` if missing【F:ensure_sent_tips.py†L8-L26】.
 - **Dispatch Alerts** `alert_if_no_sent_tips.py` (removed later) and `alert_if_bad_snapshot.py` warned when no tips were sent or odds snapshots were incomplete.
 - **Log Healthcheck** `healthcheck_logs.py` verifies expected logs exist each day【F:healthcheck_logs.py†L14-L28】.
+<<<<<<< HEAD
 - **Archive Old Logs** `archive_old_logs.py` (removed later) compressed logs older than N days for cleanup.
+=======
+- **Archive Old Logs** `archive_old_logs.py` compresses logs older than N days for cleanup【F:archive_old_logs.py†L8-L26】.
+- **Model Drift Report** `model_drift_report.py` detects SHAP feature drift and writes a markdown summary.
+>>>>>>> 5c9414507daf288de8ea26cce9bf4c7d8a24a540
 - **Unit Tests** covering CLI behaviour, odds extraction, ROI calculations and more under `tests/`【F:tests/test_tmcli.py†L1-L34】.
 - **GitHub Actions** workflow to run Python tests on pushes.
 - **Quickstart & Docs** providing an overview of the system and instructions.

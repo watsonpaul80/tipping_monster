@@ -7,13 +7,7 @@ from pathlib import Path
 from datetime import datetime
 import pytz
 from dotenv import load_dotenv
-
-load_dotenv()
-
 from tippingmonster.env_loader import load_env
-
-load_env()
-
 import betfairlightweight
 from betfairlightweight import filters
 import os
@@ -22,6 +16,9 @@ BF_USERNAME = os.getenv("BF_USERNAME")
 BF_PASSWORD = os.getenv("BF_PASSWORD")
 BF_APP_KEY = os.getenv("BF_APP_KEY")
 BF_CERT_DIR = os.getenv("BF_CERT_DIR")
+
+load_dotenv()
+load_env()
 
 
 def main():

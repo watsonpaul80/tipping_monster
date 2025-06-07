@@ -2,7 +2,7 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [docs/script_audit.txt](docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md).
 
 ## Setup
 
@@ -12,16 +12,20 @@ See the [Docs/README.md](Docs/README.md) file for complete documentation, includ
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+# GitHub Actions also installs dependencies this way
 ```
 
 2. Copy `.env.example` to `.env` and fill in your credentials:
 
 ```
 BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
-TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
+TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
 The `.env` file should be placed in the repository root. The `dev-check.sh` script looks for it in this location.
+
+For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
 3. Verify your development environment:
 
@@ -62,6 +66,8 @@ bash core/run_pipeline_with_venv.sh
 bash core/run_pipeline_with_venv.sh --dev
 ```
 
+Most Python scripts accept a `--debug` flag for verbose logging.
+
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
 
 ---
@@ -71,37 +77,23 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python cli/tmcli.py healthcheck --date YYYY-MM-DD
-python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py healthcheck --date YYYY-MM-DD
+python tmcli.py ensure-sent-tips YYYY-MM-DD
+python tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python tmcli.py send-roi --date YYYY-MM-DD
+python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python tmcli.py dispatch --date YYYY-MM-DD --telegram
+python tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python tmcli.py chart-fi path/to/model_dir
+python tmcli.py send-photo path/to/image.jpg
+
 ```
 
-These wrap core scripts for ease of use.
+These commands wrap existing scripts for convenience and default locations.
 
----
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
-
-Run `dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
+The `tippingmonster` package also exposes handy helpers like
+`send_telegram_message()` and the new `send_telegram_photo()` for posting
+images with captions.
 
 ## Health Check
 
@@ -135,7 +127,7 @@ To compare two model versions:
 ```bash
 make train    # train the model
 make pipeline # run the full daily pipeline
-make roi      # run ROI pipeline
+make roi      # run ROI pipeline (use ROI scripts with `--tag` to filter by tag)
 make test     # run unit tests
 ```
 
@@ -148,6 +140,16 @@ training dataset. Schedule this weekly for continuous learning.
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
+<<<<<<< HEAD
+=======
+
+## Model Files
+
+Trained models are uploaded to S3 rather than stored in the repository. See
+[Docs/model_storage.md](Docs/model_storage.md) for details on downloading the
+latest model tarball from the `tipping-monster` bucket. The inference scripts
+will automatically fetch the specified model if it is missing locally.
+>>>>>>> 5c9414507daf288de8ea26cce9bf4c7d8a24a540
 
 ## Model Transparency and Self‑Training
 

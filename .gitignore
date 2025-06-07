@@ -1,5 +1,19 @@
-logs/
+logs/*
+!logs/.gitkeep
+!logs/inference/
+!logs/inference/.gitkeep
+!logs/dispatch/
+!logs/dispatch/.gitkeep
+!logs/roi/
+!logs/roi/.gitkeep
+!logs/sniper/
+!logs/sniper/.gitkeep
 certs/
 __pycache__/
+.venv/
 .env
+<<<<<<< HEAD
+=======
+monstertweeter/.env
+>>>>>>> 5c9414507daf288de8ea26cce9bf4c7d8a24a540
 .venv/
