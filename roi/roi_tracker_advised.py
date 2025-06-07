@@ -165,9 +165,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
 
     num_nrs = (merged_df["Position"] == "NR").sum()
     wins = (merged_df["Position"] == "1").sum()
-    places = (
-        merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
-    )
+    places = merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
     losses = len(merged_df) - wins - places - num_nrs
 
     summary = {
@@ -231,6 +229,6 @@ if __name__ == "__main__":
         args.min_conf,
         args.telegram,
         args.use_sent,
-        args.show,
-        args.tag
+        show=args.show,
+        tag=args.tag,
     )

@@ -12,7 +12,6 @@ from tippingmonster import tip_has_tag
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tipping Monster channel
 
-
 def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     payload = {
@@ -22,7 +21,6 @@ def send_telegram_message(message):
         "disable_web_page_preview": True,
     }
     requests.post(url, data=payload)
-
 
 def get_place_terms(row):
     try:
@@ -41,10 +39,8 @@ def get_place_terms(row):
         pass
     return (0.0, 1)  # Win only fallback
 
-
 def normalize_horse_name(name):
     return re.sub(r"\s*\(.*?\)", "", str(name)).strip().lower()
-
 
 def calculate_profit(row):
     odds = row["Odds"]
@@ -66,7 +62,6 @@ def calculate_profit(row):
     else:
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
-
 
 def load_tips(date_str, min_conf, use_sent, tag=None):
     if use_sent:
@@ -97,7 +92,6 @@ def load_tips(date_str, min_conf, use_sent, tag=None):
                 tip["Stake"] = 1.0
                 tips.append(tip)
     return tips
-
 
 def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
     date_display = date_str
@@ -159,9 +153,7 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
 
         num_nrs = (merged_df["Position"] == "NR").sum()
         wins = (merged_df["Position"] == "1").sum()
-        places = (
-            merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
-        )
+        places = merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
         losses = len(merged_df) - wins - places - num_nrs
 
         summary = {
@@ -219,7 +211,6 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
                 f"🪙 Staked: {summary['Stake']:.2f} pts"
             )
             send_telegram_message(message)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
