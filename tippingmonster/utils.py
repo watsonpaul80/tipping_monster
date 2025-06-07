@@ -10,6 +10,7 @@ __all__ = [
     "predictions_path",
     "in_dev_mode",
     "send_telegram_message",
+    "send_telegram_photo",
     "calculate_profit",
 ]
 
@@ -72,6 +73,33 @@ def send_telegram_message(message: str, token: str | None = None, chat_id: str |
         "disable_web_page_preview": True,
     }
     requests.post(url, data=payload, timeout=10)
+
+
+def send_telegram_photo(path: str | Path, caption: str | None = None,
+                        token: str | None = None, chat_id: str | None = None) -> None:
+    """Send an image ``path`` to Telegram respecting dev mode."""
+    if in_dev_mode():
+        log_file = logs_path("telegram.log")
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(log_file, "a", encoding="utf-8") as f:
+            f.write(f"[PHOTO] {path} {caption or ''}\n")
+        print(f"[DEV] Telegram photo suppressed: {path}")
+        return
+
+    token = token or os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = chat_id or os.getenv("TELEGRAM_CHAT_ID")
+    if os.getenv("TM_DEV"):
+        chat_id = os.getenv("TELEGRAM_DEV_CHAT_ID", chat_id)
+    if not token or not chat_id:
+        raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
+
+    url = f"https://api.telegram.org/bot{token}/sendPhoto"
+    with open(path, "rb") as img:
+        files = {"photo": img}
+        data = {"chat_id": chat_id}
+        if caption:
+            data["caption"] = caption
+        requests.post(url, data=data, files=files, timeout=10)
 
 
 def _get_place_terms(runners: int, race_name: str) -> tuple[float, int]:

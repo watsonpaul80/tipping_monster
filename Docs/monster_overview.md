@@ -180,6 +180,8 @@ Automated by cron:
 
 # 📤 Weekly ROI Summary to Telegram
 58 23 * * 0 bash safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
+# 📊 Weekly SHAP Feature Chart
+55 23 * * 0 bash safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python model_feature_importance.py --telegram
 ```
 
 ---
