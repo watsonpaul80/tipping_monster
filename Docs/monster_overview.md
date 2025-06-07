@@ -225,7 +225,20 @@ The foundational elements and automated processes that power Tipping Monster are
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
     * **Security:** AES-256 Server-side encryption is enabled for all backups.
     * **Location:** Backups stored in the `tipping-monster-backups` S3 bucket.
-    * **Reliability:** Backups are periodically tested to ensure data integrity.
+* **Reliability:** Backups are periodically tested to ensure data integrity.
+
+---
+
+## 🔎 MODEL TRANSPARENCY & SELF‑TRAINING
+
+Tipping Monster computes **SHAP** values for every prediction to highlight the
+top features pushing a horse toward or away from being tipped. Global feature
+importance is recorded during training, while per‑tip explanations feed into the
+weekly ROI reports so subscribers see *why* each runner was selected.
+
+Past tips are merged back into the dataset (`was_tipped`, `tip_profit`,
+`confidence_band`) allowing the model to retrain on its own results. This
+feedback loop continually refines accuracy and keeps the weekly insights fresh.
 
 ---
 
