@@ -18,7 +18,8 @@ Extract the archive to obtain `tipping-monster-xgb-model.bst` and
 tar -xzf tipping-monster-xgb-model-2025-06-06.tar.gz
 ```
 
-The inference script `run_inference_and_select_top1.py` will automatically
+The inference script should be run with `python -m core.run_inference_and_select_top1`
+or from a shell where the repository root is on `PYTHONPATH`. It will automatically
 download the specified model from S3 if it is not present locally.
 
 Large model files are tracked with **Git LFS**. If you clone the repository with
