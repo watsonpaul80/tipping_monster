@@ -9,9 +9,12 @@ LOGS_DIR = "logs"
 TODAY = datetime.today().strftime("%Y-%m-%d")
 
 # Dummy loading logic – replace with your actual tip/result merging logic
-def load_tips_results(date_str: str):
+
+def load_tips_results(date_str: str) -> pd.DataFrame:
     """Load the merged tips/results file for the given date."""
-    return pd.read_csv(os.path.join(LOGS_DIR, f"tips_results_raw_{date_str}.csv"))
+    path = os.path.join(LOGS_DIR, f"tips_results_raw_{date_str}.csv")
+    return pd.read_csv(path)
+
 
 def calculate_level_stakes(row):
     odds = row["odds"]
