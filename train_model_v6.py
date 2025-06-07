@@ -13,17 +13,9 @@ import boto3
 import pandas as pd
 import xgboost as xgb
 from sklearn.metrics import accuracy_score, classification_report
-<<<<<<< HEAD:train_model_v6.py
 from sklearn.model_selection import train_test_split
 
 from validate_features import validate_dataset_features
-=======
-from core.validate_features import validate_dataset_features
-import boto3
-import tempfile
-import json
-import glob
->>>>>>> origin/main:core/train_model_v6.py
 
 BUCKET = "tipping-monster"
 
