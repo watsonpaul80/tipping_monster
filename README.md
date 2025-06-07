@@ -19,11 +19,14 @@ pip install -r requirements.txt
 
 ```
 BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
-TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_DEV_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
 TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
+
+Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
 The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
+
 
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
 
@@ -68,6 +71,13 @@ bash core/run_pipeline_with_venv.sh --dev
 
 Most Python scripts accept a `--debug` flag for verbose logging.
 
+**Important:** run inference scripts from the repository root. For example:
+
+```bash
+python core/run_inference_and_select_top1.py
+```
+Executing this command while inside the `core/` directory will raise a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
+
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
 
 ---
@@ -77,22 +87,17 @@ This script uploads racecards, fetches odds, runs model inference, dispatches ti
 Common workflows via CLI:
 
 ```bash
-python tmcli.py healthcheck --date YYYY-MM-DD
-python tmcli.py ensure-sent-tips YYYY-MM-DD
-python tmcli.py dispatch-tips YYYY-MM-DD --telegram
-python tmcli.py send-roi --date YYYY-MM-DD
-python tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
-python tmcli.py dispatch --date YYYY-MM-DD --telegram
-python tmcli.py roi-summary --date YYYY-MM-DD --telegram
-python tmcli.py chart-fi path/to/model_dir
-python tmcli.py send-photo path/to/image.jpg
+python cli/tmcli.py healthcheck --date YYYY-MM-DD
+python cli/tmcli.py ensure-sent-tips YYYY-MM-DD
+python cli/tmcli.py dispatch-tips YYYY-MM-DD --telegram
+python cli/tmcli.py send-roi --date YYYY-MM-DD
+python cli/tmcli.py model-feature-importance MODEL.bst --data DATA.csv --out chart.png
+python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
+python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
+python cli/tmcli.py chart-fi path/to/model_dir
+python cli/tmcli.py send-photo path/to/image.jpg
 
 
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
-
-## Tip Dispatch
 
 Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this"
@@ -100,9 +105,7 @@ summary generated from SHAP values.
 
 ## Tip Dispatch
 
-Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
-actually post messages and `--explain` to append a short "Why we tipped this"
-summary generated from SHAP values.
+
 
 ```
 
