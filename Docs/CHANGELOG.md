@@ -1,4 +1,9 @@
 
+## 2025-06-08
+
+### Fixes
+- Removed stray `pip install model_drift_report` from the GitHub workflow, relying on the local module instead.
+
 ## 2025-06-17
 
 ### Added
