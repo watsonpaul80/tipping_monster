@@ -155,7 +155,7 @@ def attach_confidence(row):
 
 
 # Initialize confidence_cache in Streamlit's session state
-if 'confidence_cache' not in st.session_state:
+if "confidence_cache" not in st.session_state:
     st.session_state.confidence_cache = {}
 
 # Sidebar filters
@@ -170,7 +170,7 @@ roi_view = st.sidebar.radio("ROI View", ("Win Only", "Each-Way"))
 # Apply "Positive ROI Bands Only" filter if checked
 if st.sidebar.checkbox("Positive ROI Bands Only"):
     # Ensure confidence is attached only if this filter is active
-    filtered = filtered.copy() # Operate on a copy to avoid SettingWithCopyWarning
+    filtered = filtered.copy()  # Operate on a copy to avoid SettingWithCopyWarning
     filtered["Confidence"] = filtered.apply(attach_confidence, axis=1)
     filtered["Band"] = filtered["Confidence"].apply(get_confidence_band)
     filtered = filtered[filtered["Band"].isin(positive_bins)]
@@ -232,13 +232,41 @@ show_cols = [
     "EW/Win",
     profit_col,  # Use the dynamically selected profit column
     "Result",
-    "SP", # Added SP for context in the table
-    "Meeting", # Added Meeting for context in the table
+    "SP",  # Added SP for context in the table
+    "Meeting",  # Added Meeting for context in the table
 ]
 
 # Ensure only existing columns are selected to avoid KeyError
 show_cols_existing = [col for col in show_cols if col in table_df.columns]
 
 st.dataframe(
-    table_df.sort_values(by=["Date", "Time"], ascending=[False, True])[show_cols_existing]
+    table_df.sort_values(by=["Date", "Time"], ascending=[False, True])[
+        show_cols_existing
+    ]
 )
+
+# Danger Fav section
+st.subheader("⚠️ Danger Favs")
+danger_date = st.sidebar.selectbox(
+    "Danger Fav Date", all_dates, index=len(all_dates) - 1
+)
+
+
+def load_danger_favs(date_str: str) -> pd.DataFrame | None:
+    path = f"predictions/{date_str}/danger_favs.jsonl"
+    if not os.path.exists(path):
+        return None
+    return pd.read_json(path, lines=True)
+
+
+danger_df = load_danger_favs(
+    danger_date.isoformat() if hasattr(danger_date, "isoformat") else str(danger_date)
+)
+if danger_df is not None and not danger_df.empty:
+    sort_field = st.selectbox(
+        "Sort Danger Favs By", ["confidence", "bf_sp"], key="df_sort"
+    )
+    danger_df = danger_df.sort_values(by=sort_field, ascending=False)
+    st.dataframe(danger_df)
+else:
+    st.write("No Danger Favs found for selected date.")
