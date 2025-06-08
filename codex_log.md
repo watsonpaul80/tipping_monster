@@ -32,6 +32,11 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
 
+## [2025-06-21] Tag Value Wins in ROI tracker
+**Prompt:** Update ROI tracker to label winning tips with `odds_delta` > 5.0 as "💸 Value Win".
+**Files Changed:** roi/tag_roi_tracker.py, tests/test_model_drift_report.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** High-delta winners now flagged for future analysis; failing test patched.
+
 ## [2025-06-21] Add /nap command to Telegram bot
 **Prompt:** Telegram /nap command with stats
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/monster_todo.md, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md

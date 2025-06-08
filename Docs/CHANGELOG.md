@@ -1,7 +1,8 @@
 
 ## 2025-06-21
 
-### Added
+
+- ROI tracker flags winners with `odds_delta` over 5.0 as "💸 Value Win".
 - `/nap` Telegram command shows last 7 NAPs with ROI stats.
 - `train_place_model.py` to build a place-focused XGBoost model (top 3 finishers).
 
