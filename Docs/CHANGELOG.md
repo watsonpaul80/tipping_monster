@@ -1,3 +1,8 @@
+## 2025-06-17
+
+### Added
+- New `generate_weekly_roi.py` script creates weekly ROI CSVs in `logs/weekly_summaries/`.
+
 ## 2025-06-13
 
 ### Changed
