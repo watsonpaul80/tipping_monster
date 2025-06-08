@@ -25,6 +25,8 @@ TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET
 
 
 Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
+Set `TM_DEV_MODE=1` to suppress all external messages (Telegram, S3, etc.) and
+log them locally under `logs/dev/`.
 The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
 
 

@@ -30,11 +30,14 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
 - `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`)
+- `TM_DEV_MODE` (set to `1` to log externally-triggered messages locally)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_DEFAULT_REGION`
 
 Set `TM_DEV=1` to send Telegram messages to `TELEGRAM_DEV_CHAT_ID` during development.
+Set `TM_DEV_MODE=1` to run completely offline, logging Telegram output and other
+external interactions under `logs/dev/`.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
