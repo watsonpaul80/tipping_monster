@@ -139,13 +139,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## ✅ ROI SYSTEM TODO (NEW FEATURES)
 
-72. 🔨 Build Paul's View Dashboard  
-    - Create `pauls_view_dashboard.py`
-    - Load all _all.csv tip logs
-    - Add filters: tag, confidence, sent, NAP, trainer/jockey ROI
-    - Charts: ROI over time, confidence vs ROI, tag breakdown
-    - Table: unified tip sheet with all stats
-    - Option to export filtered view to CSV
+72. ✅ Paul's View Dashboard – private ROI explorer with tag and confidence filters
 
 73. 🎯 Enhance Public Member Dashboard  
     - Use only _sent.csv files  
