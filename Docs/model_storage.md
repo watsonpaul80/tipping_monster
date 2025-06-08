@@ -3,8 +3,9 @@
 The repository no longer contains the large trained XGBoost model binaries. Each
 production model is saved as a tarball and uploaded to the
 `tipping-monster` S3 bucket under the `models/` prefix during training. A
-lightweight `tipping-monster-xgb-model.bst` is included in the repository root
-purely for tests and CI checks. Large training models remain stored on S3 and
+lightweight `tipping-monster-xgb-model.bst.gz.b64` is included in the repository
+root purely for tests and CI checks. Loader utilities automatically decode and
+decompress this file before use. Large training models remain stored on S3 and
 are downloaded on demand during inference or evaluation.
 
 To fetch the latest model manually:
@@ -20,6 +21,10 @@ Extract the archive to obtain `tipping-monster-xgb-model.bst` and
 ```bash
 tar -xzf tipping-monster-xgb-model-2025-06-06.tar.gz
 ```
+
+The lightweight model checked into the repository is stored as
+`tipping-monster-xgb-model.bst.gz.b64`. Loader utilities decode the Base64
+contents and decompress this file at runtime, so no manual step is required.
 
 The inference script should be run with `python -m core.run_inference_and_select_top1`
 or from a shell where the repository root is on `PYTHONPATH`. It will automatically

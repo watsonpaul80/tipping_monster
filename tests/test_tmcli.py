@@ -119,7 +119,9 @@ def test_tmcli_send_roi(monkeypatch, tmp_path):
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
-    model_path = Path(__file__).resolve().parents[1] / "tipping-monster-xgb-model.bst"
+    model_path = (
+        Path(__file__).resolve().parents[1] / "tipping-monster-xgb-model.bst.gz.b64"
+    )
     data_path = tmp_path / "data.jsonl"
     with open(data_path, "w") as f:
         json.dump(
