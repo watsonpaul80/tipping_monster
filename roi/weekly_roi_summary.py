@@ -4,6 +4,7 @@ import os
 from datetime import datetime, timedelta
 
 import pandas as pd
+import requests  # noqa: F401
 from dotenv import load_dotenv
 
 load_dotenv()
