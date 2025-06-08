@@ -14,15 +14,15 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
    ✅ Confirmed working with tags such as Fresh, Light Weight, Class Drop, etc.  
    🗂️ Each summary also saved per tip in logs (consider foldered logs per tip if expanding)
 
-2. **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts
+2. ✅ **`.env` Secrets Refactor** — move Telegram token, AWS keys, etc. out of scripts *(2025-06-08)*
 
 3. ✅ **Model v6 vs v7 Shadow Compare** — dual pipeline + logging for ROI comparison
 
-4. **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency
+4. ✅ **Dev Env Completion** — `Makefile`, `dev-check.sh`, log consistency *(2025-06-08)*
 
 5. ✅ **Sort `logs/` Folder** — subfolders for `roi/`, `dispatch/`, `inference/`
 
-6. **Script Audit** — identify redundant scripts and prune/rename as needed
+6. ✅ **Script Audit** — identify redundant scripts and prune/rename as needed *(2025-06-08)*
 
 7. ✅ **`--dev` Flag Support Across Scripts** — override to prevent real S3 upload, redirect Telegram to personal channel, log to dev folder
 
@@ -32,15 +32,15 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🛠️ MEDIUM PRIORITY (Next Sprint)
 
-9. Suppression logic based on band ROI performance  
+9. ✅ Suppression logic based on band ROI performance *(2025-06-08)*
 10. Highlight best/worst bands visually in summary  
-11. Weekly retraining instead of daily (optional)  
+11. ✅ Weekly retraining instead of daily (optional) *(2025-06-08)*
 12. Telegram `/rate` Feature — rate personal picks with ML feedback  
 13. Telegram Tip Control Panel — send custom messages, full racecards, etc.  
 14. 🟡 *Removed for now* – breeding logic too hard to track without structured data  
 15. Trainer/Jockey ROI Leaderboard — daily form summary or on-demand stats  
 16. All Tips Mode — dispatch full racecards (mug mode) alongside Monster Tips  
-17. SHAP or feature gain per model  
+17. ✅ SHAP or feature gain per model *(2025-06-08)*
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
 19. Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%”  
 20. Use tags + confidence + form stats for explanation  
@@ -50,16 +50,16 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 24. ROI breakdown by confidence band, tip type, and tag  
 25. Show top ROI tags daily  
 26. Telegram control panel for config (bands, filters)  
-27. Parallel model comparison (v6 vs v7)  
-28. Drawdown tracking in ROI logs
+27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
+28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
-29. Place-focused model (predict 1st–3rd)  
+29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
-31. ROI-based calibration (not just accuracy)  
+31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. Penalise stale horses and poor form  
 33. Add weekly ROI line chart (matplotlib) to logs  
 34. Include win/loss emoji outcomes in Telegram ROI  
@@ -79,7 +79,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
-46. Track high-delta tips separately
+46. ✅ Track high-delta tips separately [Done: 2025-06-21]
 47. Add `odds_delta` to ML training as signal
 
 ---
@@ -88,12 +88,12 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 48. ✅ Fallback logic if `logs/sent_tips.jsonl` is missing
 49. ✅ Alert if dispatch runs but no tips are sent
-50. Alert if odds snapshot fails or returns too few runners  
-51. Self-heal for missing logs, retry on failure
+50. ✅ Alert if odds snapshot fails or returns too few runners [Done: 2025-06-08]
+51. ✅ Self-heal for missing logs, retry on failure [Done: 2025-06-08]
 
 ### 🧼 Log Management Enhancements (User Suggested)
 
-* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
+* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days) [Done: 2025-06-08]
 * [x] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
 * [x] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
 * [x] [#065] Add daily check script to verify all expected logs were created and non-empty
@@ -105,7 +105,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 52. ✅ Calculate and store `odds_delta` (realistic - SP)  
 53. Score tips based on delta + result + confidence  
 54. Reward positive delta wins, penalise drifts  
-55. Add `delta_tag` to messages (e.g. “🔥 Market Mover”)  
+55. ✅ Add `delta_tag` to messages (e.g. “🔥 Market Mover”) [Done: 2025-06-08]
 56. Use as feature or reinforcement signal in future models
 
 ---
@@ -131,7 +131,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 68. Sell tip packs, stats, NAPs, etc.
 
 ### Bonus Features / Engagement
-69. Add /roi, /stats, /nap bot commands  
+69. ✅ Add /roi, /stats, /nap bot commands [Done: 2025-06-21]
 70. Add Telegram confidence commentary  
 71. Optional intro video of how Monster works
 
@@ -149,14 +149,14 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
     - Add summary header: Tips, Wins, ROI, Profit.
 
 
-74. **Pre-commit Hooks** — black/flake8/isort run automatically.
-75. **Central `.env` Loader** — load env vars at script start.
-76. **Unified CLI** — `cli/tmcli.py` with subcommands.
-77. **GitHub Actions CI** — run tests automatically.
+74. ✅ **Pre-commit Hooks** — black/flake8/isort run automatically. *(2025-06-08)*
+75. ✅ **Central `.env` Loader** — load env vars at script start. *(2025-06-08)*
+76. ✅ **Unified CLI** — `cli/tmcli.py` with subcommands. *(2025-06-08)*
+77. ✅ **GitHub Actions CI** — run tests automatically. *(2025-06-08)*
 78. **Tip Dataclass** — typed representation for tips.
-79. **Validate Features Utility** — check dataset vs `features.json`.
+79. ✅ **Validate Features Utility** — check dataset vs `features.json`. *(2025-06-08)*
 80. **Inference Unit Tests** — ensure `run_inference_and_select_top1.py`.
-81. **Model Download Helper** — `model_fetcher.py` for S3.
+81. ✅ **Model Download Helper** — `model_fetcher.py` for S3. *(2025-06-08)*
 82. **Stats API** — expose JSON endpoints for ROI and tips.
 83. **Telegram Sandbox** — dev channel for testing dispatch.
 84. **Typed Dataset Schema** — enforce columns with `pandera`.

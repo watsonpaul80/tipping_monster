@@ -24,6 +24,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
+* ✅ Automatic log archiving of files older than 14 days
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
@@ -34,6 +35,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
+* ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
@@ -63,7 +65,10 @@ The system defines 8 core product layers:
 | 08:00 | `core/fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
 | 08:05 | `python -m core.run_inference_and_select_top1` | Runs XGBoost model + selects best per race             |
 | 08:08 | `core/merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
-| 08:10 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
+| 08:09 | `generate_lay_candidates.py`      | Flags favourites with low Monster confidence |
+| 08:10 | `dispatch_danger_favs.py`         | Sends Danger Fav alerts to Telegram |
+| 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
+| 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
@@ -75,6 +80,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 ## ⚙️ SCRIPT EXPLANATIONS
 
 * `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
+* `train_place_model.py`: Predicts whether a runner finishes in the top 3 using the same feature set.
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
@@ -258,14 +264,14 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
-* Trainer intent tracker
+* Trainer intent tracker (`trainer_intent_score.py`)
 * Drift watcher
 * Telegram replay builder
 * Wildcard tips
 * Self-training feedback loop
 * Hall of Fame
 * Tip memory tracking
-* /roi and /nap bot commands (Also /stats)
+* ✅ /roi and /nap bot commands (Also /stats)
 * Commentary fine-tuning via GPT
 * Telegram poll buttons
 * Stake simulation modes

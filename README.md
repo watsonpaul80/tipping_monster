@@ -101,6 +101,7 @@ python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
 python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
+python telegram_bot.py --dev  # start Telegram bot with /roi command
 ```
 
 ## Tip Dispatch
@@ -119,7 +120,9 @@ These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
-images with captions.
+images with captions. A lightweight `trainer_intent_score()` function is also
+provided for estimating how likely a trainer is trying to win based on recent
+runs, strike rates and market moves.
 
 
 
@@ -165,6 +168,12 @@ make test     # run unit tests
 Run `self_training_loop.py --retrain` to retrain the model with recent ROI logs.
 This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
+The repository also includes `train_place_model.py` to build a separate model
+predicting whether a runner finishes in the top three.
+
+`self_train_from_history.py` can be used to build a compact dataset from the
+logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
+*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
 
 ### Model Comparison
 
