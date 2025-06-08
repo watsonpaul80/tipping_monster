@@ -106,6 +106,10 @@ python cli/tmcli.py send-photo path/to/image.jpg
 Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this" summary generated from SHAP values.
 
+Tips under **0.80** confidence are automatically skipped unless their confidence
+band showed a positive ROI in the last 30 days (tracked in
+`monster_confidence_per_day_with_roi.csv`).
+
 These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
