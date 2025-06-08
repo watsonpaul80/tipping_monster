@@ -9,12 +9,26 @@
 ### Documentation
 - Updated monster_todo.md with newly completed tasks.
 
+### Added
+- Cumulative bankroll and drawdown tracking in `roi_tracker_advised.py`.
+- `weekly_roi_summary.py` now displays bankroll and worst drawdown metrics.
+
 ## 2025-06-20
 
 ### Added
 - `generate_lay_candidates.py` identifies Danger Fav lay candidates.
 - `dispatch_danger_favs.py` formats and sends Danger Fav alerts.
 - `track_lay_candidates_roi.py` computes lay ROI for Danger Favs.
+
+## 2025-06-21
+
+### Added
+- `export_lay_candidates_csv.py` converts `danger_favs.jsonl` into a readable CSV.
+
+## 2025-06-08
+
+### Fixed
+- Corrected a typo in `tests/test_tmcli.py` preventing the `healthcheck` CLI subparser from being created.
 
 ## 2025-06-08
 
