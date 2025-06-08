@@ -7,7 +7,6 @@ pandas
 pytest
 python-dotenv
 pytz
-requests
 scikit-learn
 shap
 streamlit
