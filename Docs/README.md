@@ -12,8 +12,8 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `monster_todo_v2.md` – high-level roadmap for upcoming features.
 - `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
 - `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
-- `../docs/script_audit.txt` – summary of active vs. unused scripts with keep/remove/rewrite verdicts.
-- `../docs/SECURITY_REVIEW.md` – latest security audit notes.
+- `../Docs/script_audit.txt` – summary of active vs. unused scripts with keep/remove/rewrite verdicts.
+- `../Docs/SECURITY_REVIEW.md` – latest security audit notes.
 
 ---
 
