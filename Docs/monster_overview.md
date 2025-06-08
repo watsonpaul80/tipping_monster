@@ -24,6 +24,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
+* ✅ Automatic log archiving of files older than 14 days
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)

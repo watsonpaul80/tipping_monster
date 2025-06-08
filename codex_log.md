@@ -32,6 +32,12 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
 
+## [2025-06-08] Add log archiving utility
+**Prompt:** Create archive_old_logs.py to zip and move logs older than 14 days into logs/archive/.
+**Files Changed:** utils/archive_old_logs.py, tests/test_archive_old_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, Docs/script_audit.txt, codex_log.md
+**Outcome:** Old log files can be compressed automatically and documentation updated.
+
+
 ## [2025-06-21] Tag Value Wins in ROI tracker
 **Prompt:** Update ROI tracker to label winning tips with `odds_delta` > 5.0 as "💸 Value Win".
 **Files Changed:** roi/tag_roi_tracker.py, tests/test_model_drift_report.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
@@ -52,4 +58,3 @@
 **Prompt:** Codex, update roi_tracker_advised.py to include cumulative profit and drawdown tracking in the output logs.
 **Files Changed:** roi/roi_tracker_advised.py, roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Daily and weekly ROI summaries now display bankroll figures and worst historical drawdown.
-

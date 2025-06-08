@@ -9,6 +9,9 @@
 
 ## 2025-06-08
 
+### Added
+- `archive_old_logs.py` archives logs older than 14 days into `logs/archive/`.
+
 ### Documentation
 - Updated monster_todo.md with newly completed tasks.
 
