@@ -2,9 +2,9 @@ import os
 from datetime import datetime, timedelta
 from pathlib import Path
 
-import requests  # HTTP requests for Telegram API
-
+from tippingmonster import send_telegram_message
 from tippingmonster.env_loader import load_env
+
 load_env()
 
 """
@@ -83,7 +83,4 @@ else:
 msg += "#TippingMonster"
 
 # === SEND TO TELEGRAM ===
-requests.post(
-    f"https://api.telegram.org/bot{TG_BOT_TOKEN}/sendMessage",
-    data={"chat_id": TG_USER_ID, "text": msg},
-)
+send_telegram_message(msg, token=TG_BOT_TOKEN, chat_id=TG_USER_ID)

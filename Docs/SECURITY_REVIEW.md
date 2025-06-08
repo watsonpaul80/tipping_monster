@@ -12,7 +12,7 @@ This document highlights potential security issues in the repository and provide
 - **Archive extraction**
   - `run_inference_and_select_top1.py` extracts tar files using `tarfile.extractall()` without validation.
 - **HTTP requests without timeout**
-  - Several scripts call `requests.get` or `requests.post` without a `timeout` argument, e.g. `roi_tracker_advised.py` and `scripts/morning_digest.py`.
+  - Several scripts previously called `requests.get` or `requests.post` without a `timeout` argument, e.g. `roi_tracker_advised.py` and `scripts/morning_digest.py`. These have been updated to use a 10‑second timeout.
 
 ## Recommendations
 
