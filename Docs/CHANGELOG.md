@@ -24,6 +24,11 @@
 ### Fixed
 - Added missing `requests` import in `roi/weekly_roi_summary.py`.
 
+## 2025-06-13
+
+### Fixed
+- Added missing `requests` import in `roi/weekly_roi_summary.py`.
+
 ## 2025-06-12
 
 ### Fixed
