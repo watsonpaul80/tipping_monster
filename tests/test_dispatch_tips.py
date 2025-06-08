@@ -1,12 +1,17 @@
 import sys
 from pathlib import Path
 
+# isort: off
 from core.dispatch_tips import (
     calculate_monster_stake,
     generate_tags,
     get_tip_composite_id,
+    load_recent_roi_stats,
     select_nap_tip,
+    should_skip_by_roi,
 )
+
+# isort: on
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
@@ -83,3 +88,26 @@ def test_generate_tags_with_delta():
     }
     tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
     assert "🔥 Market Mover" in tags
+
+
+def _roi_csv(path, pnl):
+    header = (
+        "Date,Confidence Bin,Tips,Wins,Win %,Places,Place %,Win PnL,EW PnL (5.0+),"
+        "Win ROI %,EW ROI %,Win Profit £,EW Profit £\n"
+    )
+    row = f"2025-06-01,0.70\u20130.80,10,1,10.0,1,10.0,{pnl},0.0,0.0,0.0,{pnl*10},0.0\n"
+    path.write_text(header + row)
+
+
+def test_should_skip_by_roi_negative(tmp_path):
+    f = tmp_path / "roi.csv"
+    _roi_csv(f, -5.0)
+    stats = load_recent_roi_stats(f, "2025-06-30", 30)
+    assert should_skip_by_roi(0.75, stats, 0.80)
+
+
+def test_should_skip_by_roi_positive(tmp_path):
+    f = tmp_path / "roi.csv"
+    _roi_csv(f, 5.0)
+    stats = load_recent_roi_stats(f, "2025-06-30", 30)
+    assert not should_skip_by_roi(0.75, stats, 0.80)

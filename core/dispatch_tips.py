@@ -3,9 +3,10 @@ import argparse
 import json
 import os
 import sys
-from datetime import date
+from datetime import date, timedelta
 from time import sleep
 
+import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -92,6 +93,57 @@ def read_tips(path):
             except:
                 pass
     return tips
+
+
+def get_confidence_band(conf: float) -> str | None:
+    """Return the confidence band label for ``conf`` or ``None`` if out of range."""
+    bins = [
+        (0.50, 0.60),
+        (0.60, 0.70),
+        (0.70, 0.80),
+        (0.80, 0.90),
+        (0.90, 1.00),
+        (0.99, 1.01),
+    ]
+    for low, high in bins:
+        if low <= conf < high:
+            return f"{low:.2f}\u2013{high:.2f}"
+    return None
+
+
+def load_recent_roi_stats(path: str, ref_date: str, window: int = 30) -> dict:
+    """Return ROI per confidence bin for ``window`` days up to ``ref_date``."""
+    if not os.path.exists(path):
+        return {}
+
+    df = pd.read_csv(path)
+    if df.empty:
+        return {}
+
+    df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+    df["Win PnL"] = pd.to_numeric(df["Win PnL"], errors="coerce").fillna(0)
+    df["Tips"] = pd.to_numeric(df["Tips"], errors="coerce").fillna(0)
+
+    ref = pd.to_datetime(ref_date)
+    start = ref - timedelta(days=window)
+    df = df[(df["Date"] >= start) & (df["Date"] <= ref)]
+
+    roi = {}
+    for band, grp in df.groupby("Confidence Bin"):
+        tips = grp["Tips"].sum()
+        pnl = grp["Win PnL"].sum()
+        roi[band] = pnl / tips if tips else 0.0
+    return roi
+
+
+def should_skip_by_roi(conf: float, roi_map: dict, min_conf: float) -> bool:
+    """Return True if ``conf`` should be skipped based on ROI mapping."""
+    if conf >= min_conf:
+        return False
+    band = get_confidence_band(conf)
+    if not band:
+        return True
+    return roi_map.get(band, 0.0) <= 0.0
 
 
 def log_nap_override(original: dict, new: dict | None, path: str) -> None:
@@ -215,6 +267,9 @@ def main(argv=None):
         print("⚠️ No valid tips to process.")
         sys.exit(1)
 
+    roi_file = "monster_confidence_per_day_with_roi.csv"
+    roi_map = load_recent_roi_stats(roi_file, args.date, 30)
+
     explanations = {}
     if args.explain:
         try:
@@ -237,8 +292,12 @@ def main(argv=None):
         stake = calculate_monster_stake(
             tip.get("confidence", 0.0), odds, min_conf=args.min_conf
         )
-        if stake == 0.0:
+        if stake == 0.0 and should_skip_by_roi(
+            tip.get("confidence", 0.0), roi_map, args.min_conf
+        ):
             continue
+        if stake == 0.0:
+            stake = 1.0
         tip["stake"] = stake
         if tip.get("odds_drifted") and tip.get("confidence", 0.0) >= 0.95:
             tip["monster_mode"] = True

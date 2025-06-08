@@ -8,6 +8,12 @@
 - Deleted `tipping-monster-xgb-model.bst` from the repository. Tests now
   generate a temporary XGBoost model instead.
 
+## 2025-06-16
+
+### Added
+- `dispatch_tips.py` skips tips below 0.80 confidence unless their confidence
+  band has shown positive ROI in the past 30 days.
+
 ## 2025-06-15
 
 ### Changed
