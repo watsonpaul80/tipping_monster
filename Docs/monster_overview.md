@@ -65,6 +65,7 @@ The system defines 8 core product layers:
 | 08:08 | `core/merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
 | 08:09 | `generate_lay_candidates.py`      | Flags favourites with low Monster confidence |
 | 08:10 | `dispatch_danger_favs.py`         | Sends Danger Fav alerts to Telegram |
+| 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
 | 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
