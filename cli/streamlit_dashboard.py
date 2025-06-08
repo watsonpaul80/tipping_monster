@@ -78,6 +78,29 @@ def load_sent_confidence(date_str: str) -> dict:
 
 st.set_page_config(page_title="Tipping Monster P&L", layout="wide")
 
+
+def calc_win_profit(row: pd.Series) -> float:
+    """Return profit for a win-only bet based on SP."""
+    if str(row.get("Result")) == "NR":
+        return 0.0
+    stake = row.get("Stake", 1.0)
+    sp = float(row.get("SP", 0.0))
+    return round((sp - 1) * stake if str(row.get("Result")) == "1" else -stake, 2)
+
+
+def calc_ew_profit(row: pd.Series) -> float:
+    """Return profit for an each-way bet assuming 1/5 odds, 3 places."""
+    if str(row.get("Result")) == "NR":
+        return 0.0
+    sp = float(row.get("SP", 0.0))
+    result = str(row.get("Result"))
+    win_part = (sp - 1) * 0.5 if result == "1" else 0.0
+    place_part = (
+        ((sp * 0.2) - 1) * 0.5 if result.isdigit() and int(result) <= 3 else -0.5
+    )
+    return round(win_part + place_part, 2)
+
+
 # === AWS S3 SETTINGS ===
 # It's good practice to get these from Streamlit secrets or environment variables directly in Streamlit Cloud
 # For local development, .env is fine.
@@ -101,6 +124,11 @@ except NoCredentialsError:
 except ClientError as e:
     st.error(f"❌ Could not download file from S3: {e}")
     st.stop()
+
+df["Profit Win"] = df.apply(calc_win_profit, axis=1)
+df["Profit EW"] = df.apply(calc_ew_profit, axis=1)
+df["Running Profit Win"] = df["Profit Win"].cumsum()
+df["Running Profit EW"] = df["Profit EW"].cumsum()
 
 # === CLEAN + FILTER ===
 df["Date"] = pd.to_datetime(df["Date"])
@@ -136,10 +164,13 @@ all_dates = sorted(df["Date"].dt.date.unique())
 selected_dates = st.sidebar.multiselect("Date Range", all_dates, default=all_dates[-7:])
 filtered = df[df["Date"].dt.date.isin(selected_dates)]
 
+# Add ROI View radio toggle
+roi_view = st.sidebar.radio("ROI View", ("Win Only", "Each-Way"))
+
 # Apply "Positive ROI Bands Only" filter if checked
 if st.sidebar.checkbox("Positive ROI Bands Only"):
     # Ensure confidence is attached only if this filter is active
-    filtered = filtered.copy()
+    filtered = filtered.copy() # Operate on a copy to avoid SettingWithCopyWarning
     filtered["Confidence"] = filtered.apply(attach_confidence, axis=1)
     filtered["Band"] = filtered["Confidence"].apply(get_confidence_band)
     filtered = filtered[filtered["Band"].isin(positive_bins)]
@@ -152,10 +183,13 @@ show_placed_only = st.sidebar.checkbox("Show Placed Only")
 st.subheader("📦 Summary Stats")
 total_tips = len(filtered)
 winners = (filtered["Result"] == "1").sum()
-profit = round(filtered["Profit"].sum(), 2)
-best_profit = (
-    round(filtered["Running Profit Best Odds"].iloc[-1], 2) if not filtered.empty else 0
-)
+
+# Dynamically select profit column based on ROI view
+profit_col = "Profit Win" if roi_view == "Win Only" else "Profit EW"
+run_col = "Running Profit Win" if roi_view == "Win Only" else "Running Profit EW"
+
+profit = round(filtered[profit_col].sum(), 2)
+best_profit = round(filtered[run_col].iloc[-1], 2) if not filtered.empty else 0
 stake_total = filtered["Stake"].sum()
 roi = (profit / stake_total * 100) if stake_total else 0
 
@@ -166,12 +200,13 @@ col3.metric("Profit (pts)", profit)
 col4.metric("ROI %", f"{roi:.2f}%")
 
 # Line Chart – Running Profit
-df_plot = filtered.groupby("Date")["Running Profit"].max().reset_index()
+# Ensure the `run_col` is present before grouping
+df_plot = filtered.groupby("Date")[run_col].max().reset_index()
 df_plot["Date"] = pd.to_datetime(df_plot["Date"])
 
 st.subheader("📈 Cumulative Profit Over Time")
 fig, ax = plt.subplots()
-ax.plot(df_plot["Date"], df_plot["Running Profit"], marker="o", label="Standard Odds")
+ax.plot(df_plot["Date"], df_plot[run_col], marker="o", label=roi_view)
 ax.set_xlabel("Date")
 ax.set_ylabel("Profit (pts)")
 ax.grid(True)
@@ -189,4 +224,21 @@ elif show_placed_only:
     # Assuming "Placed" means 1st, 2nd, or 3rd. Adjust if "Placed" has a specific result code.
     table_df = table_df[table_df["Result"].isin(["1", "2", "3"])]
 
-st.dataframe(table_df.sort_values(by=["Date", "Time"], ascending=[False, True]))
+# Display selected columns including the chosen profit column
+show_cols = [
+    "Date",
+    "Time",
+    "Horse",
+    "EW/Win",
+    profit_col,  # Use the dynamically selected profit column
+    "Result",
+    "SP", # Added SP for context in the table
+    "Meeting", # Added Meeting for context in the table
+]
+
+# Ensure only existing columns are selected to avoid KeyError
+show_cols_existing = [col for col in show_cols if col in table_df.columns]
+
+st.dataframe(
+    table_df.sort_values(by=["Date", "Time"], ascending=[False, True])[show_cols_existing]
+)
