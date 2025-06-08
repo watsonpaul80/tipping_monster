@@ -79,7 +79,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
-46. Track high-delta tips separately
+46. ✅ Track high-delta tips separately [Done: 2025-06-21]
 47. Add `odds_delta` to ML training as signal
 
 ---

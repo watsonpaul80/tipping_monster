@@ -21,3 +21,8 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+
+## [2025-06-21] Tag Value Wins in ROI tracker
+**Prompt:** Update ROI tracker to label winning tips with `odds_delta` > 5.0 as "💸 Value Win".
+**Files Changed:** roi/tag_roi_tracker.py, tests/test_model_drift_report.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** High-delta winners now flagged for future analysis; failing test patched.

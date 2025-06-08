@@ -1,4 +1,9 @@
 
+## 2025-06-21
+
+### Added
+- ROI tracker flags winners with `odds_delta` over 5.0 as "💸 Value Win".
+
 ## 2025-06-08
 
 ### Documentation
