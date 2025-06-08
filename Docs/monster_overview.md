@@ -270,7 +270,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Self-training feedback loop
 * Hall of Fame
 * Tip memory tracking
-* /roi and /nap bot commands (Also /stats)
+* ✅ /roi and /nap bot commands (Also /stats)
 * Commentary fine-tuning via GPT
 * Telegram poll buttons
 * Stake simulation modes

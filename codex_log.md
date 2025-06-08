@@ -32,6 +32,11 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
 
+## [2025-06-21] Add /nap command to Telegram bot
+**Prompt:** Telegram /nap command with stats
+**Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/monster_todo.md, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+**Outcome:** Bot now reports last NAP results and ROI via /nap command.
+
 
 ## [2025-06-21] Add place-focused training script
 **Prompt:** Clone train_model_v6.py to create train_place_model.py predicting top 3 finishes.
@@ -42,3 +47,4 @@
 **Prompt:** Codex, update roi_tracker_advised.py to include cumulative profit and drawdown tracking in the output logs.
 **Files Changed:** roi/roi_tracker_advised.py, roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Daily and weekly ROI summaries now display bankroll figures and worst historical drawdown.
+

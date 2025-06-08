@@ -131,7 +131,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 68. Sell tip packs, stats, NAPs, etc.
 
 ### Bonus Features / Engagement
-69. Add /roi, /stats, /nap bot commands  
+69. ✅ Add /roi, /stats, /nap bot commands [Done: 2025-06-21]
 70. Add Telegram confidence commentary  
 71. Optional intro video of how Monster works
 
