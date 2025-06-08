@@ -1,5 +1,10 @@
 # 📅 CHANGELOG
 
+## 2025-06-12
+
+### Fixed
+- Removed duplicate `requests` entry from `requirements.txt`.
+
 ## 2025-06-10
 
 ### Fixed
