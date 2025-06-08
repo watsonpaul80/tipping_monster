@@ -2,6 +2,12 @@
 ## 2025-06-17
 
 ### Added
+- `utils/band_roi_filter.py` with `is_band_profitable()` helper.
+=======
+
+## 2025-06-17
+
+### Added
 - Streamlit dashboard now includes an ROI Summary table with a CSV download button.
 
 ## 2025-06-17
@@ -14,6 +20,7 @@
 ### Added
 - Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
   Breakdown for winners or placed horses.
+
 
 
 
