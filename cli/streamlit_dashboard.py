@@ -14,7 +14,7 @@ load_dotenv()
 
 
 def get_confidence_band(conf: float) -> str | None:
-    """Return the confidence band label for ``conf``."""
+    """Return the confidence band label for `conf`."""
     bins = [
         (0.50, 0.60),
         (0.60, 0.70),
@@ -30,7 +30,7 @@ def get_confidence_band(conf: float) -> str | None:
 
 
 def load_recent_roi_stats(path: str, ref_date: str, window: int = 30) -> dict:
-    """Return ROI per confidence bin for ``window`` days up to ``ref_date``."""
+    """Return ROI per confidence bin for `window` days up to `ref_date`."""
     if not os.path.exists(path):
         return {}
 
@@ -79,6 +79,8 @@ def load_sent_confidence(date_str: str) -> dict:
 st.set_page_config(page_title="Tipping Monster P&L", layout="wide")
 
 # === AWS S3 SETTINGS ===
+# It's good practice to get these from Streamlit secrets or environment variables directly in Streamlit Cloud
+# For local development, .env is fine.
 bucket = os.getenv("S3_BUCKET")
 key = os.getenv("S3_OBJECT")
 
@@ -94,10 +96,10 @@ try:
     s3.download_file(bucket, key, "master_subscriber_log.csv")
     df = pd.read_csv("master_subscriber_log.csv")
 except NoCredentialsError:
-    st.error("\u274c AWS credentials missing or invalid.")
+    st.error("❌ AWS credentials missing or invalid.")
     st.stop()
 except ClientError as e:
-    st.error(f"\u274c Could not download file from S3: {e}")
+    st.error(f"❌ Could not download file from S3: {e}")
     st.stop()
 
 # === CLEAN + FILTER ===
@@ -114,32 +116,40 @@ positive_bins = {band for band, val in roi_map.items() if val > 0}
 
 def attach_confidence(row):
     date_str = row["Date"].date().isoformat()
-    if date_str not in confidence_cache:
-        confidence_cache[date_str] = load_sent_confidence(date_str)
+    if date_str not in st.session_state.confidence_cache:
+        st.session_state.confidence_cache[date_str] = load_sent_confidence(date_str)
     key = (
         str(row["Meeting"]).strip().lower(),
         str(row["Time"]).lstrip("0"),
         str(row["Horse"]).strip().lower(),
     )
-    return confidence_cache[date_str].get(key)
+    return st.session_state.confidence_cache[date_str].get(key)
 
 
-confidence_cache = {}
+# Initialize confidence_cache in Streamlit's session state
+if 'confidence_cache' not in st.session_state:
+    st.session_state.confidence_cache = {}
 
 # Sidebar filters
-st.sidebar.header("\ud83d\udd0d Filters")
+st.sidebar.header("🔎 Filters")
 all_dates = sorted(df["Date"].dt.date.unique())
 selected_dates = st.sidebar.multiselect("Date Range", all_dates, default=all_dates[-7:])
 filtered = df[df["Date"].dt.date.isin(selected_dates)]
 
+# Apply "Positive ROI Bands Only" filter if checked
 if st.sidebar.checkbox("Positive ROI Bands Only"):
+    # Ensure confidence is attached only if this filter is active
     filtered = filtered.copy()
     filtered["Confidence"] = filtered.apply(attach_confidence, axis=1)
     filtered["Band"] = filtered["Confidence"].apply(get_confidence_band)
     filtered = filtered[filtered["Band"].isin(positive_bins)]
 
+# Optional sidebar filters for the table view
+show_winners_only = st.sidebar.checkbox("Show Winners Only")
+show_placed_only = st.sidebar.checkbox("Show Placed Only")
+
 # Summary Metrics
-st.subheader("\ud83d\udcbe Summary Stats")
+st.subheader("📦 Summary Stats")
 total_tips = len(filtered)
 winners = (filtered["Result"] == "1").sum()
 profit = round(filtered["Profit"].sum(), 2)
@@ -159,7 +169,7 @@ col4.metric("ROI %", f"{roi:.2f}%")
 df_plot = filtered.groupby("Date")["Running Profit"].max().reset_index()
 df_plot["Date"] = pd.to_datetime(df_plot["Date"])
 
-st.subheader("\ud83d\udcca Cumulative Profit Over Time")
+st.subheader("📈 Cumulative Profit Over Time")
 fig, ax = plt.subplots()
 ax.plot(df_plot["Date"], df_plot["Running Profit"], marker="o", label="Standard Odds")
 ax.set_xlabel("Date")
@@ -169,5 +179,14 @@ ax.legend()
 st.pyplot(fig)
 
 # Table View
-st.subheader("\ud83d\udcc4 Tips Breakdown")
-st.dataframe(filtered.sort_values(by=["Date", "Time"], ascending=[False, True]))
+st.subheader("📋 Tips Breakdown")
+
+# Apply optional filters for winners or placed horses for the table display
+table_df = filtered.copy()
+if show_winners_only:
+    table_df = table_df[table_df["Result"] == "1"]
+elif show_placed_only:
+    # Assuming "Placed" means 1st, 2nd, or 3rd. Adjust if "Placed" has a specific result code.
+    table_df = table_df[table_df["Result"].isin(["1", "2", "3"])]
+
+st.dataframe(table_df.sort_values(by=["Date", "Time"], ascending=[False, True]))

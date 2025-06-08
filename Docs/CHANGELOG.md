@@ -1,3 +1,9 @@
+## 2025-06-19
+
+### Added
+- Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
+  Breakdown for winners or placed horses.
+
 ## 2025-06-13
 
 ### Changed
