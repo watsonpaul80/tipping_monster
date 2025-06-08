@@ -1,7 +1,7 @@
 import argparse
+import sys
 from datetime import date
 from pathlib import Path
-import sys
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
@@ -14,6 +14,8 @@ from utils.validate_tips import main as validate_tips_main
 
 
 def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+    """Run the dispatch pipeline for *date*."""
+
     args = ["--date", date]
     if telegram:
         args.append("--telegram")
@@ -113,5 +115,6 @@ def main(argv=None) -> None:
     elif args.command == "send-roi":
         send_daily_roi(date=args.date, dev=args.dev)
 
+
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
