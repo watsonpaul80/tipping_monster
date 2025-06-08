@@ -1,6 +1,9 @@
 
 ## 2025-06-08
 
+### Added
+- Telegram bot `/roi` now reports weekly profit, ROI and win/place counts.
+
 ### Documentation
 - Updated monster_todo.md with newly completed tasks.
 
