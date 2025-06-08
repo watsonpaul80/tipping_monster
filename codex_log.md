@@ -21,3 +21,7 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+## [2025-06-08] Add weekly ROI Telegram command
+**Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
+**Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** Telegram bot now returns weekly ROI summary via /roi.
