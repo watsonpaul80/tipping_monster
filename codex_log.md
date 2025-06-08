@@ -17,3 +17,8 @@
 **Prompt:** Audit monster_todo.md and mark completed tasks.
 **Files Changed:** Docs/monster_todo.md, codex_log.md
 **Outcome:** Added checkmarks and dates for finished tasks.
+
+## [2025-06-08] Fix CLI tests typo
+**Prompt:** Replace `subparpers.add_parser` with `subparsers.add_parser` in tests/test_tmcli.py.
+**Files Changed:** tests/test_tmcli.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Healthcheck subcommand parser now created correctly; pre-commit and pytest pass.

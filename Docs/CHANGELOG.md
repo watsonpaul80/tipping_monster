@@ -8,6 +8,11 @@
 
 ## 2025-06-08
 
+### Fixed
+- Corrected a typo in `tests/test_tmcli.py` preventing the `healthcheck` CLI subparser from being created.
+
+## 2025-06-08
+
 ### Added
 - `telegram_bot.py` with `/roi` command to send ROI summaries.
 =======
