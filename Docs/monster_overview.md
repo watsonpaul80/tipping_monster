@@ -34,6 +34,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
+* ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 

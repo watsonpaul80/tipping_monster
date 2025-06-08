@@ -4,6 +4,10 @@
 ### Documentation
 - Updated monster_todo.md with newly completed tasks.
 
+### Added
+- Cumulative bankroll and drawdown tracking in `roi_tracker_advised.py`.
+- `weekly_roi_summary.py` now displays bankroll and worst drawdown metrics.
+
 ## 2025-06-20
 
 ### Added
