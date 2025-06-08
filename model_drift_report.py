@@ -19,9 +19,9 @@ def load_shap_csv(
     prefix: str = "shap",
     s3_client: Optional[boto3.client] = None,
 ) -> Optional[pd.DataFrame]:
-    """Load a ``<date>_shap.csv`` file from ``local_dir`` or S3.
+    """Load a `<date>_shap.csv` file from `local_dir` or S3.
 
-    The CSV must have ``feature`` and ``importance`` columns. When downloaded
+    The CSV must have `feature` and `importance` columns. When downloaded
     from S3, the temporary file is deleted after reading.
     """
     local_path = local_dir / f"{date}_shap.csv"
@@ -68,7 +68,7 @@ def compare_rankings(
         if len(ranks_base) > 1:
             corr, _ = spearmanr(ranks_base, ranks_cur)
 
-        drift_flag = " ❗" if corr < threshold else ""
+        drift_flag = " ❗" if corr < threshold else " "
         lines.append(f"- {date}: Spearman {corr:.2f}{drift_flag}")
 
         if drift_flag:

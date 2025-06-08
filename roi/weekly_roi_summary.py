@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import os
-import pandas as pd
 import argparse
+import os
 from datetime import datetime, timedelta
+
+import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,11 +13,11 @@ from tippingmonster.env_loader import load_env
 
 load_env()
 
+
 def get_week_dates(iso_week):
     year, week = iso_week.split("-W")
     monday = datetime.strptime(f"{year}-W{week}-1", "%G-W%V-%u")
-    return [(monday + timedelta(days=i)).strftime("%Y-%m-%d")
-            for i in range(7)]
+    return [(monday + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
 
 
 def load_week_data(week_dates, mode="advised"):
@@ -31,10 +32,7 @@ def load_week_data(week_dates, mode="advised"):
 
 
 def send_to_telegram(msg, token, chat_id):
-    requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data={"chat_id": chat_id, "text": msg, "parse_mode": "Markdown"},
-    )
+    send_telegram_message(msg, token=token, chat_id=chat_id)
 
 
 def main(week, send_telegram=False):
@@ -74,26 +72,20 @@ def main(week, send_telegram=False):
 
     summary = (
         df.groupby("Date", as_index=False)
-          .agg({
-              "Horse": "count",
-              "Position": list,
-              "Profit": "sum",
-              "Stake": "sum"
-          })
+        .agg({"Horse": "count", "Position": list, "Profit": "sum", "Stake": "sum"})
         .rename(columns={"Horse": "Tips"})
     )
 
     summary["Wins"] = summary["Position"].apply(
-        lambda x: sum(1 for p in x if str(p).isdigit() and int(p) == 1))
-    summary["Places"] = summary["Position"].apply(lambda x: sum(
-        1 for p in x if str(p).isdigit() and 2 <= int(p) <= 4))
+        lambda x: sum(1 for p in x if str(p).isdigit() and int(p) == 1)
+    )
+    summary["Places"] = summary["Position"].apply(
+        lambda x: sum(1 for p in x if str(p).isdigit() and 2 <= int(p) <= 4)
+    )
     summary.drop(columns="Position", inplace=True)
     summary["ROI"] = summary.apply(
-        lambda row: (
-            row.Profit /
-            row.Stake *
-            100) if row.Stake else 0,
-        axis=1)
+        lambda row: (row.Profit / row.Stake * 100) if row.Stake else 0, axis=1
+    )
 
     for _, row in summary.iterrows():
         print(

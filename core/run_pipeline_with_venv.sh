@@ -75,7 +75,7 @@ echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 if [ "$SENT_COUNT" -eq 0 ]; then
     echo "⚠️ Warning: No tips were dispatched today." >> "$DISPATCH_LOG"
     if [ "$DEV_MODE" -eq 0 ]; then
-        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+        curl -s --max-time 10 -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
             -d parse_mode="Markdown" \
             -d text="⚠️ *No tips were dispatched this morning.*\nCheck logs: \`$DISPATCH_LOG\`"

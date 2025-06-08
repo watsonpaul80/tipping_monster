@@ -2,7 +2,6 @@
 import json
 import os
 from datetime import date, timedelta
-from pathlib import Path
 
 import pandas as pd
 
@@ -19,7 +18,7 @@ ROI_PATH = str(repo_path("logs", "roi", f"tips_results_{YESTERDAY}_advised.csv")
 tips = []
 if os.path.exists(TIPS_PATH):
     with open(TIPS_PATH, "r") as f:
-    tips = [json.loads(line.strip()) for line in f if line.strip()]
+        tips = [json.loads(line.strip()) for line in f if line.strip()]
     tips = sorted(tips, key=lambda x: x["confidence"], reverse=True)[:4]
 
 # === Load ROI summary ===
@@ -27,8 +26,8 @@ roi_summary = "📊 ROI Yday: No data"
 if os.path.exists(ROI_PATH):
     try:
         df = pd.read_csv(ROI_PATH)
-        total_staked = df['Stake'].sum()
-        profit = df['Profit'].sum()
+        total_staked = df["Stake"].sum()
+        profit = df["Profit"].sum()
         roi = (profit / total_staked) * 100 if total_staked > 0 else 0
         roi_summary = f"📊 ROI Yday: {roi:.1f}% ({profit:+.2f} pts)"
     except Exception:
@@ -53,4 +52,3 @@ lines.append("#TippingMonster #HorseRacing #BettingTips #AIpunter")
 # === Output ===
 tweet = "\n".join(lines)
 print("\n" + tweet + "\n")
-

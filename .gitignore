@@ -13,3 +13,8 @@ __pycache__/
 .venv/
 .env
 monstertweeter/.env
+
+# Model binaries
+tipping-monster-xgb-model.bst
+tipping-monster-xgb-model.bst.gz
+

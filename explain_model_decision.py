@@ -5,14 +5,13 @@ from typing import Dict
 import numpy as np
 import pandas as pd
 import shap
-import xgboost as xgb
+
+from tippingmonster.utils import load_xgb_model
 
 
-def load_model(model_path: str) -> xgb.XGBClassifier:
-    """Load an XGBoost model from ``model_path``."""
-    model = xgb.XGBClassifier()
-    model.load_model(model_path)
-    return model
+def load_model(model_path: str):
+    """Load an XGBoost model from ``model_path`` (supports .bst or .bst.gz)."""
+    return load_xgb_model(model_path)
 
 
 def load_features(path: str) -> list[str]:
@@ -23,7 +22,7 @@ def load_features(path: str) -> list[str]:
 
 def generate_explanations(
     predictions_path: str,
-    model_path: str = "tipping-monster-xgb-model.bst",
+    model_path: str = "tipping-monster-xgb-model.bst.gz",
     features_path: str = "features.json",
     top_n: int = 3,
 ) -> Dict[str, str]:
@@ -47,9 +46,7 @@ def generate_explanations(
         values = shap_values[idx]
         abs_vals = np.abs(values)
         top_idx = abs_vals.argsort()[-top_n:][::-1]
-        parts = [
-            f"{features[i]}{'↑' if values[i] > 0 else '↓'}" for i in top_idx
-        ]
+        parts = [f"{features[i]}{'↑' if values[i] > 0 else '↓'}" for i in top_idx]
         tip_id = f"{row.get('race','')}|{row.get('name','')}"
         explanations[tip_id] = ", ".join(parts)
     return explanations
@@ -60,7 +57,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate SHAP explanations")
     parser.add_argument("--predictions", required=True, help="Path to tips JSONL")
-    parser.add_argument("--model", default="tipping-monster-xgb-model.bst")
+    parser.add_argument("--model", default="tipping-monster-xgb-model.bst.gz")
     parser.add_argument("--features", default="features.json")
     parser.add_argument("--out", help="Output JSON file")
     args = parser.parse_args()

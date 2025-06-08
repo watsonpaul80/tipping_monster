@@ -1,15 +1,30 @@
-# 📅 CHANGELOG
-
 ## 2025-06-13
+
+### Changed
+- Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
+- ROI trackers now import this helper instead of defining it locally.
 
 ### Removed
 - Deleted `tipping-monster-xgb-model.bst` from the repository. Tests now
   generate a temporary XGBoost model instead.
 
+## 2025-06-15
+
+### Changed
+- `generate_unified_roi_sheet.py` now merges ROI CSVs from any year.
+
+## 2025-06-14
+
+### Changed
+- Removed lightweight model binary from the repository. Unit tests now build a
+  temporary XGBoost model instead.
+
 ## 2025-06-12
 
 ### Fixed
 - `load_shap_csv()` now deletes the downloaded temp file after reading.
+- Removed duplicate `requests` entry from `requirements.txt`.
+- Added missing `send_telegram_message` import in `dispatch_all_tips.py`.
 
 ## 2025-06-10
 
@@ -20,6 +35,11 @@
 
 ### Added
 - New `tip_has_tag()` helper in `tippingmonster.utils` for tag substring checks.
+
+## 2025-06-12
+
+### Fixed
+- Removed duplicate `tip_has_tag` entry from `tippingmonster.__all__`.
 
 ## 2025-06-09
 - Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
@@ -32,6 +52,7 @@
 - `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter tips by tag substring.
 - Removed duplicate arguments and calculations in `tag_roi_tracker.py`.
 - Added `--dev` option.
+- `load_shap_csv` now removes temporary S3 downloads after reading to avoid clutter.
 
 ## 2025-06-08
 
@@ -41,7 +62,6 @@
 - `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
 
 - `validate_features.py` wraps `core.validate_features` for backward compatibility.
-
 
 ## 2025-06-07
 
@@ -140,5 +160,3 @@
 
 ### Testing & Validation
 - Verified full odds snapshot → comparison → steamer flow.
-
----

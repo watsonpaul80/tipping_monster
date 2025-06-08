@@ -1,10 +1,34 @@
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
 import xgboost as xgb
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 from explain_model_decision import generate_explanations
+
+
+def build_dummy_model(path: Path) -> None:
+    features = [
+        "draw",
+        "or",
+        "rpr",
+        "lbs",
+        "age",
+        "dist_f",
+        "class",
+        "going",
+        "prize",
+    ]
+    X = pd.DataFrame([[0] * len(features), [1] * len(features)], columns=features)
+    y = [0, 1]
+    model = xgb.XGBClassifier(
+        use_label_encoder=False, eval_metric="logloss", n_estimators=1
+    )
+    model.fit(X, y)
+    model.get_booster().save_model(path)
 
 
 def test_generate_explanations(tmp_path):
@@ -25,28 +49,12 @@ def test_generate_explanations(tmp_path):
     with open(p, "w") as f:
         f.write(json.dumps(tip) + "\n")
 
-    X = pd.DataFrame(
-        {
-            "draw": [2, 3],
-            "or": [70, 71],
-            "rpr": [120, 121],
-            "lbs": [126, 127],
-            "age": [5, 6],
-            "dist_f": [8, 9],
-            "class": [4, 4],
-            "going": ["Good", "Good"],
-            "prize": [5000, 6000],
-        }
-    )
-    model = xgb.XGBClassifier(use_label_encoder=False, eval_metric="logloss")
-    model.fit(X, [0, 1])
-    model_path = tmp_path / "model.bst"
-    model.save_model(model_path)
-    features_path = tmp_path / "features.json"
-    features_path.write_text(json.dumps(list(X.columns)))
-
+    root = Path(__file__).resolve().parents[1]
+    model = tmp_path / "model.bst"
+    build_dummy_model(model)
+    features = root / "features.json"
     expl = generate_explanations(
-        str(p), model_path=str(model_path), features_path=str(features_path)
+        str(p), model_path=str(model), features_path=str(features)
     )
     key = f"{tip['race']}|{tip['name']}"
     assert key in expl

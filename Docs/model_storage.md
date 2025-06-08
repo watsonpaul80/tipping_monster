@@ -1,8 +1,10 @@
 # Model Storage
 
-The repository no longer contains the trained XGBoost model binaries. Each model
-is saved as a tarball and uploaded to the `tipping-monster` S3 bucket under the
-`models/` prefix during training.
+The repository no longer stores any XGBoost model binaries. All training models
+are saved as tarballs and uploaded to the `tipping-monster` S3 bucket under the
+`models/` prefix. The loader utilities download the required model from S3 when
+needed. Unit tests build a tiny throwaway model on the fly so no binary blobs
+live in the repository.
 
 To fetch the latest model manually:
 

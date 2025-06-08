@@ -5,42 +5,13 @@ import os
 import re
 
 import pandas as pd
-import requests
-from tippingmonster import tip_has_tag
 
-# === Telegram Config ===
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")  # Tipping Monster channel
+from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
 
-def send_telegram_message(message):
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": message,
-        "parse_mode": "Markdown",
-        "disable_web_page_preview": True,
-    }
-    requests.post(url, data=payload)
-
-def get_place_terms(row):
-    try:
-        runners = int(row.get("Runners", 0))
-        is_handicap = "hcp" in str(row.get("Race Name", "")).lower()
-        if is_handicap:
-            if runners >= 16:
-                return (0.25, 4)
-            elif 12 <= runners <= 15:
-                return (0.25, 3)
-        if runners >= 8:
-            return (0.20, 3)
-        elif 5 <= runners <= 7:
-            return (0.25, 2)
-    except Exception:
-        pass
-    return (0.0, 1)  # Win only fallback
 
 def normalize_horse_name(name):
     return re.sub(r"\s*\(.*?\)", "", str(name)).strip().lower()
+
 
 def calculate_profit(row):
     odds = row["Odds"]
@@ -63,6 +34,7 @@ def calculate_profit(row):
         win_profit = (odds - 1) * stake if position == "1" else -stake
         return round(win_profit, 2)
 
+
 def load_tips(date_str, min_conf, use_sent, tag=None):
     if use_sent:
         input_file = f"logs/dispatch/sent_tips_{date_str}_realistic.jsonl"
@@ -79,7 +51,9 @@ def load_tips(date_str, min_conf, use_sent, tag=None):
     with open(input_file, "r") as f:
         for line in f:
             tip = json.loads(line)
-            if tip.get("confidence", 0.0) >= min_conf and (not tag or tip_has_tag(tip, tag)):
+            if tip.get("confidence", 0.0) >= min_conf and (
+                not tag or tip_has_tag(tip, tag)
+            ):
                 tip["Race Time"] = tip.get("race", "??:?? Unknown").split()[0]
                 tip["Course"] = " ".join(tip.get("race", "??:?? Unknown").split()[1:])
                 tip["Horse"] = normalize_horse_name(tip.get("name", "Unknown"))
@@ -92,6 +66,7 @@ def load_tips(date_str, min_conf, use_sent, tag=None):
                 tip["Stake"] = 1.0
                 tips.append(tip)
     return tips
+
 
 def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
     date_display = date_str
@@ -125,7 +100,9 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
         .str.replace(r"\s*\(ire\)", "", regex=True)
         .str.strip()
     )
-    results_df["Race Time"] = results_df["Race Time"].astype(str).str.strip().str.lower()
+    results_df["Race Time"] = (
+        results_df["Race Time"].astype(str).str.strip().str.lower()
+    )
 
     for source in ["sent", "all"]:
         use_sent = source == "sent"
@@ -148,12 +125,17 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
 
         merged_df["Position"] = merged_df["Position"].fillna("NR")
         merged_df["Profit"] = merged_df.apply(
-            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row), axis=1
+            lambda row: 0.0 if row["Position"] == "NR" else calculate_profit(row),
+            axis=1,
         )
 
         num_nrs = (merged_df["Position"] == "NR").sum()
         wins = (merged_df["Position"] == "1").sum()
-        places = merged_df["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
+        places = (
+            merged_df["Position"]
+            .apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4)
+            .sum()
+        )
         losses = len(merged_df) - wins - places - num_nrs
 
         summary = {
@@ -166,7 +148,9 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
             "Profit": round(merged_df["Profit"].sum(), 2),
         }
 
-        roi = summary["Profit"] / summary["Stake"] * 100 if summary["Stake"] > 0 else 0.0
+        roi = (
+            summary["Profit"] / summary["Stake"] * 100 if summary["Stake"] > 0 else 0.0
+        )
         strike_rate = wins / summary["Tips"] * 100 if summary["Tips"] > 0 else 0.0
         place_rate = places / summary["Tips"] * 100 if summary["Tips"] > 0 else 0.0
 
@@ -211,6 +195,7 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
                 f"🪙 Staked: {summary['Stake']:.2f} pts"
             )
             send_telegram_message(message)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
