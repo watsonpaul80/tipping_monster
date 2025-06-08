@@ -51,13 +51,13 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 25. Show top ROI tags daily  
 26. Telegram control panel for config (bands, filters)  
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
-28. Drawdown tracking in ROI logs
+28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
-29. Place-focused model (predict 1st–3rd)  
+29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. Penalise stale horses and poor form  

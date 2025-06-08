@@ -13,10 +13,20 @@
 **Files Changed:** dispatch_danger_favs.py, track_lay_candidates_roi.py, cli/streamlit_dashboard.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, all_scripts.txt, tests/test_track_lay_candidates_roi.py, codex_log.md
 **Outcome:** Danger Fav alerts can be sent to Telegram and ROI tracking logic implemented.
 
+## [2025-06-21] Export Danger Fav CSV summary
+**Prompt:** Create export_lay_candidates_csv.py to convert danger_favs.jsonl to CSV.
+**Files Changed:** export_lay_candidates_csv.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, codex_log.md
+**Outcome:** Users can easily view Danger Fav candidates in spreadsheet form.
+
 ## [2025-06-08] Completed TODO Audit
 **Prompt:** Audit monster_todo.md and mark completed tasks.
 **Files Changed:** Docs/monster_todo.md, codex_log.md
 **Outcome:** Added checkmarks and dates for finished tasks.
+
+## [2025-06-08] Fix CLI tests typo
+**Prompt:** Replace `subparpers.add_parser` with `subparsers.add_parser` in tests/test_tmcli.py.
+**Files Changed:** tests/test_tmcli.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Healthcheck subcommand parser now created correctly; pre-commit and pytest pass.
 ## [2025-06-08] Mark additional completed tasks
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
@@ -26,3 +36,15 @@
 **Prompt:** Telegram /nap command with stats
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/monster_todo.md, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Bot now reports last NAP results and ROI via /nap command.
+
+
+## [2025-06-21] Add place-focused training script
+**Prompt:** Clone train_model_v6.py to create train_place_model.py predicting top 3 finishes.
+**Files Changed:** train_place_model.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** New place model training script added and docs updated.
+
+## [2025-06-08] Add bankroll drawdown tracking
+**Prompt:** Codex, update roi_tracker_advised.py to include cumulative profit and drawdown tracking in the output logs.
+**Files Changed:** roi/roi_tracker_advised.py, roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Daily and weekly ROI summaries now display bankroll figures and worst historical drawdown.
+
