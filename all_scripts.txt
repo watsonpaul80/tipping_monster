@@ -16,6 +16,7 @@ core/merge_odds_into_tips.py
 generate_lay_candidates.py
 dispatch_danger_favs.py
 track_lay_candidates_roi.py
+export_lay_candidates_csv.py
 roi/roi_tracker_advised.py
 roi_by_confidence_band.py
 core/run_inference_and_select_top1.py
@@ -51,6 +52,7 @@ run_pipeline_with_venv.sh
 safecron.sh
 send_daily_roi_summary.py
 train_model_v6.py
+train_place_model.py
 upload_logs_to_s3.sh
 weekly_roi_summary.py
 healthcheck_logs.py
