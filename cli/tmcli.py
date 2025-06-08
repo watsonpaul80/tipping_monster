@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def valid_date(value: str) -> str:
-    """Return ``value`` if it matches ``YYYY-MM-DD`` else raise ``ArgumentTypeError``."""
+    """Return `value` if it matches `YYYY-MM-DD` else raise `ArgumentTypeError`."""
     try:
         datetime.strptime(value, "%Y-%m-%d")
     except ValueError as exc:
@@ -26,7 +26,7 @@ def valid_date(value: str) -> str:
 
 
 def run_command(cmd: list[str], dev: bool) -> None:
-    """Run ``cmd`` with optional ``TM_DEV_MODE`` set."""
+    """Run `cmd` with optional `TM_DEV_MODE` set."""
     env = os.environ.copy()
     if dev:
         env["TM_DEV_MODE"] = "1"
@@ -115,7 +115,7 @@ def main(argv=None) -> None:
         "model-feature-importance",
         help="Generate SHAP feature importance chart",
     )
-    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst.gz")
+    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst.gz.b64")
     parser_feat.add_argument("--data", help="Input JSONL with features")
     parser_feat.add_argument("--out-dir", default="logs/model")
     parser_feat.add_argument("--telegram", action="store_true")

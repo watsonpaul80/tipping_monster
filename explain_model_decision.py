@@ -1,4 +1,8 @@
+import base64
+import gzip
 import json
+import os
+import tempfile
 from pathlib import Path
 from typing import Dict
 
@@ -10,23 +14,39 @@ from tippingmonster.utils import load_xgb_model
 
 
 def load_model(model_path: str):
-    """Load an XGBoost model from ``model_path`` (supports .bst or .bst.gz)."""
-    return load_xgb_model(model_path)
+    """Load an XGBoost model from `model_path` (supports .bst or .bst.gz)."""
+    data = Path(model_path).read_bytes()
+    cleaned = model_path
+    if cleaned.endswith(".b64"):
+        data = base64.b64decode(data)
+        cleaned = cleaned[:-4]
+
+    if cleaned.endswith(".gz"):
+        data = gzip.decompress(data)
+
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".bst")
+    tmp.write(data)
+    tmp.flush()
+    tmp.close()
+
+    model = load_xgb_model(tmp.name)
+    os.unlink(tmp.name)
+    return model
 
 
 def load_features(path: str) -> list[str]:
-    """Return the list of model features from ``path``."""
+    """Return the list of model features from `path`."""
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def generate_explanations(
     predictions_path: str,
-    model_path: str = "tipping-monster-xgb-model.bst.gz",
+    model_path: str = "tipping-monster-xgb-model.bst.gz.b64",
     features_path: str = "features.json",
     top_n: int = 3,
 ) -> Dict[str, str]:
-    """Return a mapping of ``tip_id`` to a short SHAP-based explanation."""
+    """Return a mapping of `tip_id` to a short SHAP-based explanation."""
     with open(predictions_path, "r", encoding="utf-8") as f:
         rows = [json.loads(line) for line in f if line.strip()]
 
@@ -57,7 +77,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate SHAP explanations")
     parser.add_argument("--predictions", required=True, help="Path to tips JSONL")
-    parser.add_argument("--model", default="tipping-monster-xgb-model.bst.gz")
+    parser.add_argument("--model", default="tipping-monster-xgb-model.bst.gz.b64")
     parser.add_argument("--features", default="features.json")
     parser.add_argument("--out", help="Output JSON file")
     args = parser.parse_args()

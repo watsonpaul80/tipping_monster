@@ -1,151 +1,194 @@
-#!/usr/bin/env python3
-"""Generate a model drift report from SHAP feature importances."""
-from __future__ import annotations
-
 import argparse
-from datetime import datetime, timedelta
+import os
+import subprocess
+import sys
+from datetime import date, datetime
 from pathlib import Path
-from typing import Optional
 
-import boto3
-import pandas as pd
-from scipy.stats import spearmanr
+from model_feature_importance import generate_chart
+from tippingmonster import repo_path
+from utils.ensure_sent_tips import ensure_sent_tips
+from utils.healthcheck_logs import check_logs
+from utils.validate_tips import main as validate_tips_main
 
-
-def load_shap_csv(
-    date: str,
-    local_dir: Path,
-    bucket: Optional[str] = None,
-    prefix: str = "shap",
-    s3_client: Optional[boto3.client] = None,
-) -> Optional[pd.DataFrame]:
-    """Load a `<date>_shap.csv` file from `local_dir` or S3.
-
-    The CSV must have `feature` and `importance` columns. When downloaded
-    from S3, the temporary file is deleted after reading.
-    """
-    local_path = local_dir / f"{date}_shap.csv"
-    if local_path.exists():
-        return pd.read_csv(local_path)
-    if bucket and s3_client:
-        key = f"{prefix}/{date}_shap.csv"
-        tmp_path = local_dir / f"tmp_{date}_shap.csv"
-        try:
-            local_dir.mkdir(parents=True, exist_ok=True)
-            s3_client.download_file(bucket, key, str(tmp_path))
-            df = pd.read_csv(tmp_path)
-            tmp_path.unlink(missing_ok=True)
-            return df
-        except Exception as exc:  # pragma: no cover - network errors vary
-            print(f"⚠️ Could not fetch {key}: {exc}")
-    return None
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def compare_rankings(
-    dfs: list[pd.DataFrame],
-    dates: list[str],
-    top_n: int = 20,
-    threshold: float = 0.9,
-) -> str:
-    """Return a markdown summary comparing feature importance rankings."""
-    lines = [f"## Model Drift Report ({dates[0]} – {dates[-1]})"]
-
-    baseline = dfs[0].sort_values("importance", ascending=False).head(top_n)
-    baseline_rank = {f: i for i, f in enumerate(baseline["feature"].tolist())}
-
-    for df, date in zip(dfs[1:], dates[1:]):
-        cur = df.sort_values("importance", ascending=False).head(top_n)
-        cur_features = cur["feature"].tolist()
-
-        ranks_base = []
-        ranks_cur = []
-        for feat, base_idx in baseline_rank.items():
-            if feat in cur_features:
-                ranks_base.append(base_idx)
-                ranks_cur.append(cur_features.index(feat))
-
-        corr = float("nan")
-        if len(ranks_base) > 1:
-            corr, _ = spearmanr(ranks_base, ranks_cur)
-
-        drift_flag = " ❗" if corr < threshold else " "
-        lines.append(f"- {date}: Spearman {corr:.2f}{drift_flag}")
-
-        if drift_flag:
-            shifts = []
-            for feat, base_idx in baseline_rank.items():
-                if feat in cur_features:
-                    diff = cur_features.index(feat) - base_idx
-                    if abs(diff) >= 5:
-                        shifts.append(f"{feat} ({diff:+d})")
-            new_feats = [f for f in cur_features if f not in baseline_rank]
-            if shifts:
-                lines.append(f"  - Rank shifts: {', '.join(shifts)}")
-            if new_feats:
-                lines.append(f"  - New top features: {', '.join(new_feats)}")
-    return "\n".join(lines) + "\n"
+def valid_date(value: str) -> str:
+    """Return `value` if it matches `YYYY-MM-DD` else raise `ArgumentTypeError`."""
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            f"Invalid date: {value}. Use YYYY-MM-DD"
+        ) from exc
+    return value
 
 
-def generate_report(
-    days: int = 7,
-    local_dir: str = "shap",
-    bucket: Optional[str] = None,
-    prefix: str = "shap",
-    out_md: str = "logs/model_drift_report.md",
-) -> Path:
-    """Create a drift report and return the markdown file path."""
-    s3_client = boto3.client("s3") if bucket else None
-    local = Path(local_dir)
-    shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
-    if shap_files:
-        latest = max(f.stem.split("_")[0] for f in shap_files)
-        today = datetime.strptime(latest, "%Y-%m-%d").date()
-    else:
-        today = datetime.utcnow().date()
-
-    dfs: list[pd.DataFrame] = []
-    dates: list[str] = []
-    for i in range(days):
-        date_obj = today - timedelta(days=days - i - 1)
-        date_str = date_obj.strftime("%Y-%m-%d")
-        df = load_shap_csv(date_str, local, bucket, prefix, s3_client)
-        if df is not None:
-            dfs.append(df)
-            dates.append(date_str)
-
-    if not dfs:
-        raise FileNotFoundError("No SHAP CSVs found")
-
-    md = compare_rankings(dfs, dates)
-    out_path = Path(out_md)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(md)
-    return out_path
+def run_command(cmd: list[str], dev: bool) -> None:
+    """Run `cmd` with optional `TM_DEV_MODE` set."""
+    env = os.environ.copy()
+    if dev:
+        env["TM_DEV_MODE"] = "1"
+    subprocess.run(cmd, check=True, env=env)
 
 
-def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Detect model drift via SHAP rankings")
-    parser.add_argument(
-        "--days", type=int, default=7, help="How many past days to analyse"
+def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
+    if telegram:
+        cmd.append("--telegram")
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def send_roi(date: str | None = None, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("roi", "send_daily_roi_summary.py"))]
+    if date:
+        cmd += ["--date", date]
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def main(argv=None) -> None:
+    parser = argparse.ArgumentParser(
+        description="Tipping Monster command line interface"
     )
-    parser.add_argument(
-        "--local-dir", default="shap", help="Directory with <date>_shap.csv files"
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # pipeline subcommand
+    parser_pipe = subparsers.add_parser("pipeline", help="Run the full daily pipeline")
+    parser_pipe.add_argument(
+        "--dev",
+        action="store_true",
+        help="Enable development mode (no Telegram/S3 uploads)",
     )
-    parser.add_argument("--bucket", help="S3 bucket containing SHAP CSVs")
-    parser.add_argument("--prefix", default="shap", help="S3 prefix for SHAP CSVs")
-    parser.add_argument(
-        "--out-md", default="logs/model_drift_report.md", help="Markdown output path"
+
+    # roi subcommand
+    parser_roi_pipe = subparsers.add_parser(
+        "roi", help="Run ROI pipeline for a given date"
     )
+    parser_roi_pipe.add_argument("--date", type=valid_date, help="Date YYYY-MM-DD")
+    parser_roi_pipe.add_argument(
+        "--dev", action="store_true", help="Enable development mode"
+    )
+
+    # sniper subcommand (placeholder)
+    parser_sniper = subparsers.add_parser(
+        "sniper", help="Run sniper jobs (if available)"
+    )
+    parser_sniper.add_argument(
+        "--dev", action="store_true", help="Enable development mode for sniper jobs"
+    )
+
+    # healthcheck subcommand
+    parser_health = subparpers.add_parser(
+        "healthcheck", help="Check expected log files exist"
+    )
+    parser_health.add_argument("--date", help="Date YYYY-MM-DD (defaults to today)")
+    parser_health.add_argument(
+        "--out-log", default="logs/healthcheck.log", help="Where to write status"
+    )
+
+    # ensure-sent-tips subcommand
+    parser_sent = subparsers.add_parser(
+        "ensure-sent-tips", help="Create sent tips file from predictions if missing"
+    )
+    parser_sent.add_argument("date", help="Date YYYY-MM-DD")
+    parser_sent.add_argument("--predictions-dir", default="predictions")
+    parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
+
+    # validate-tips subcommand
+    parser_validate = subparsers.add_parser(
+        "validate-tips", help="Validate tips JSON for a given date"
+    )
+    parser_validate.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_validate.add_argument("--predictions-dir", default="predictions")
+
+    # model-feature-importance subcommand
+    parser_feat = subparsers.add_parser(
+        "model-feature-importance",
+        help="Generate SHAP feature importance chart",
+    )
+    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst.gz.b64")
+    parser_feat.add_argument("--data", help="Input JSONL with features")
+    parser_feat.add_argument("--out-dir", default="logs/model")
+    parser_feat.add_argument("--telegram", action="store_true")
+
+    # dispatch-tips subcommand
+    parser_dispatch = subparsers.add_parser(
+        "dispatch-tips", help="Format and optionally send today's tips"
+    )
+    parser_dispatch.add_argument("date", nargs="?", help="Date YYYY-MM-DD")
+    parser_dispatch.add_argument(
+        "--date", help="Date YYYY-MM-DD", dest="date_opt", default=None
+    )
+    parser_dispatch.add_argument("--telegram", action="store_true")
+    parser_dispatch.add_argument("--dev", action="store_true")
+
+    # send-roi subcommand
+    parser_roi = subparsers.add_parser(
+        "send-roi", help="Send daily ROI summary to Telegram"
+    )
+    parser_roi.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_roi.add_argument("--dev", action="store_true")
+
     args = parser.parse_args(argv)
 
-    out = generate_report(
-        days=args.days,
-        local_dir=args.local_dir,
-        bucket=args.bucket,
-        prefix=args.prefix,
-        out_md=args.out_md,
-    )
-    print(f"✅ Report written to {out}")
+    if args.command == "pipeline":
+        cmd = [str(ROOT / "core" / "run_pipeline_with_venv.sh")]
+        if args.dev:
+            cmd.append("--dev")
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "roi":
+        cmd = [str(ROOT / "roi" / "run_roi_pipeline.sh")]
+        if args.date:
+            cmd.append(args.date)
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "sniper":
+        raise RuntimeError("Sniper functionality is not included in this distribution")
+
+    elif args.command == "healthcheck":
+        check_logs(Path(args.out_log), args.date)
+
+    elif args.command == "ensure-sent-tips":
+        ensure_sent_tips(
+            args.date,
+            Path(args.predictions_dir),
+            Path(args.dispatch_dir),
+        )
+
+    elif args.command == "model-feature-importance":
+        out = generate_chart(
+            args.model,
+            args.data,
+            Path(args.out_dir) / f"feature_importance_{date.today().isoformat()}.png",
+            telegram=args.telegram,
+        )
+        print(out)
+
+    elif args.command == "dispatch-tips":
+        date_arg = args.date or args.date_opt
+        dispatch(
+            date=date_arg or date.today().isoformat(),
+            telegram=args.telegram,
+            dev=args.dev,
+        )
+
+    elif args.command == "validate-tips":
+        argv = ["--date", args.date] if args.date else []
+        argv += ["--predictions-dir", args.predictions_dir]
+        validate_tips_main(argv)
+
+    elif args.command == "send-roi":
+        send_roi(date=args.date, dev=args.dev)
 
 
 if __name__ == "__main__":
