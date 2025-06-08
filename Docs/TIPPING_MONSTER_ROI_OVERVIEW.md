@@ -49,3 +49,4 @@ ROI is tracked across the following dimensions:
 - *Streamlit dashboards planned*, including:
   - **Paul's View**: deep ROI filtering by tag, confidence, date
   - **Member-facing view**: simplified sent tip ROI
+  - Toggle ROI display between Win only and Each-Way
