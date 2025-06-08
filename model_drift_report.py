@@ -100,9 +100,12 @@ def generate_report(
     shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
     if shap_files:
         latest = max(f.stem.split("_")[0] for f in shap_files)
-        today = dt.datetime.strptime(latest, "%Y-%m-%d").date()
-    else:
-        today = dt.datetime.utcnow().date()
+# Use pandas to parse the date so tests that patch ``datetime`` still
+# work correctly.
+today = pd.to_datetime(latest).date()
+else:
+    today = pd.Timestamp.utcnow().date()
+
 
     dfs: list[pd.DataFrame] = []
     dates: list[str] = []
