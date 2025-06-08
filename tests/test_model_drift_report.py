@@ -5,6 +5,8 @@ import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
+from datetime import datetime
+
 from model_drift_report import generate_report
 
 
@@ -35,7 +37,21 @@ def test_model_drift(tmp_path):
     ).to_csv(local_dir / f"{dates[2]}_shap.csv", index=False)
 
     out_md = tmp_path / "report.md"
-    generate_report(days=3, local_dir=str(local_dir), out_md=str(out_md))
+
+    # Freeze today's date so test is deterministic
+    class Fixed(datetime):
+        @classmethod
+        def utcnow(cls):
+            return datetime(2025, 6, 6)
+
+    import model_drift_report as mdr
+
+    orig_dt = mdr.datetime
+    mdr.datetime = Fixed
+    try:
+        generate_report(days=3, local_dir=str(local_dir), out_md=str(out_md))
+    finally:
+        mdr.datetime = orig_dt
 
     text = out_md.read_text()
     assert "Spearman" in text

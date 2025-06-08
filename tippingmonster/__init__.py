@@ -14,6 +14,7 @@ from .utils import (
     repo_root,
     send_telegram_message,
     send_telegram_photo,
+    load_xgb_model,
     get_place_terms,
     tip_has_tag,
 )
@@ -29,6 +30,7 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "send_telegram_photo",
+    "load_xgb_model",
     "calculate_profit",
     "get_place_terms",
     "tip_has_tag",

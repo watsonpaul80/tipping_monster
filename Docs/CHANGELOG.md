@@ -1,5 +1,11 @@
 # 📅 CHANGELOG
 
+## 2025-06-14
+
+### Changed
+- Removed lightweight model binary from the repository. Unit tests now build a
+  temporary XGBoost model instead.
+
 ## 2025-06-13
 
 ### Changed

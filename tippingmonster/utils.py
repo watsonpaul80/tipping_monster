@@ -12,6 +12,7 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "send_telegram_photo",
+    "load_xgb_model",
     "calculate_profit",
     "get_place_terms",
     "tip_has_tag",
@@ -153,3 +154,27 @@ def tip_has_tag(tip: dict, tag: str) -> bool:
     """Return True if the tip's tags include ``tag`` (case-insensitive substring)."""
     tag_lower = tag.lower()
     return any(tag_lower in str(t).lower() for t in tip.get("tags", []))
+
+
+def load_xgb_model(model_path: str):
+    """Return an :class:`xgboost.XGBClassifier` from ``model_path``.
+
+    Supports plain ``.bst`` files and gzip-compressed ``.bst.gz`` files.
+    """
+    import gzip
+    import tempfile
+
+    import xgboost as xgb
+
+    model = xgb.XGBClassifier()
+    if model_path.endswith(".gz"):
+        with gzip.open(model_path, "rb") as f, tempfile.NamedTemporaryFile(
+            suffix=".bst", delete=False
+        ) as tmp:
+            tmp.write(f.read())
+            tmp_path = tmp.name
+        model.load_model(tmp_path)
+        os.unlink(tmp_path)
+    else:
+        model.load_model(model_path)
+    return model
