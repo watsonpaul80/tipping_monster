@@ -10,7 +10,7 @@
 - [x] Cron automation added
 
 ### 🔜 Planned
-- [ ] Paul's View dashboard (Streamlit, private detailed ROI explorer with tag+confidence filters)
+- [x] Paul's View dashboard (Streamlit, private detailed ROI explorer with tag+confidence filters)
 - [ ] Tag + Confidence combo ROI (cross-filter)
 - [x] Unified `unified_roi_sheet.csv` export with toggle (sent vs all, ready for dashboard/chart use)
 - [ ] ROI calendar view (monthly heatmap)

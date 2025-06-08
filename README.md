@@ -2,6 +2,8 @@
 
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
+A simple static landing page with a live tip feed is available under [site/index.html](site/index.html).
+
 See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
 
 ## Setup
@@ -111,11 +113,16 @@ Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in
 `monster_confidence_per_day_with_roi.csv`).
 
+The Streamlit P&L dashboard includes a *Positive ROI Bands Only* checkbox that
+uses this same file to filter tips.
+
 These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
-images with captions.
+images with captions. A lightweight `trainer_intent_score()` function is also
+provided for estimating how likely a trainer is trying to win based on recent
+runs, strike rates and market moves.
 
 
 
@@ -161,6 +168,16 @@ make test     # run unit tests
 Run `self_training_loop.py --retrain` to retrain the model with recent ROI logs.
 This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
+The repository also includes `train_place_model.py` to build a separate model
+predicting whether a runner finishes in the top three.
+
+`self_train_from_history.py` can be used to build a compact dataset from the
+logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
+*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
+
+`self_train_from_history.py` can be used to build a compact dataset from the
+logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
+*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
 
 ### Model Comparison
 
