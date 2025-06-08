@@ -11,7 +11,7 @@ This audit flags scripts that appear unused or outdated. Criteria:
 
 ### Remove
 utils/alert_if_no_sent_tips.py - remove
-utils/archive_old_logs.py - remove
+utils/archive_old_logs.py - keep
 utils/backfill_sent_tips_from_predictions.py - remove
 utils/check_betfair_market_times.py - remove
 utils/ensure_sent_tips.py - remove
@@ -69,7 +69,9 @@ core/run_pipeline_with_venv.sh - keep
 roi/run_roi_pipeline.sh - keep
 utils/safecron.sh - keep
 roi/send_daily_roi_summary.py - keep
+roi/generate_weekly_roi.py - keep
 cli/streamlit_dashboard.py - keep
+cli/pauls_view_dashboard.py - keep
 roi/tag_roi_tracker.py - keep
 tmcli.py - keep
 core/train_model_v6.py - keep

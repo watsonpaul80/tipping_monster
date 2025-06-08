@@ -1,4 +1,52 @@
-## 2025-06-13
+
+## 2025-06-21
+
+### Added
+- `win_rate_by_tag.py` aggregates win rate and ROI by tag across all tips.
+
+
+- ROI tracker flags winners with `odds_delta` over 5.0 as "💸 Value Win".
+- `/nap` Telegram command shows last 7 NAPs with ROI stats.
+- `train_place_model.py` to build a place-focused XGBoost model (top 3 finishers).
+
+
+## 2025-06-20
+
+### Added
+- `generate_lay_candidates.py` identifies Danger Fav lay candidates.
+- `dispatch_danger_favs.py` formats and sends Danger Fav alerts.
+- `track_lay_candidates_roi.py` computes lay ROI for Danger Favs.
+
+## 2025-06-21
+
+### Added
+- `export_lay_candidates_csv.py` converts `danger_favs.jsonl` into a readable CSV.
+
+
+## 2025-06-17
+
+### Added
+- `utils/band_roi_filter.py` with `is_band_profitable()` helper.
+
+## 2025-06-17
+
+### Added
+- Streamlit dashboard now includes an ROI Summary table with a CSV download button.
+
+## 2025-06-17
+
+### Added
+- New `generate_weekly_roi.py` script creates weekly ROI CSVs in `logs/weekly_summaries/`.
+
+## 2025-06-19
+
+### Added
+- Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
+  Breakdown for winners or placed horses.
+
+
+
+
 
 ### Changed
 - Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
@@ -13,6 +61,12 @@
 ### Added
 - `dispatch_tips.py` skips tips below 0.80 confidence unless their confidence
   band has shown positive ROI in the past 30 days.
+
+## 2025-06-17
+
+### Fixed
+- `test_model_drift` now verifies SHAP files exist and uses a stable datetime
+  override to prevent `FileNotFoundError`.
 
 ## 2025-06-15
 
@@ -73,11 +127,21 @@
 ## 2025-06-08
 
 ### Added
+- `archive_old_logs.py` archives logs older than 14 days into `logs/archive/`.
+- Cumulative bankroll and drawdown tracking in `roi_tracker_advised.py`.
+- `weekly_roi_summary.py` now displays bankroll and worst drawdown metrics.
+- `telegram_bot.py` with `/roi` command to send ROI summaries.
 - `model_drift_report.py` generates a markdown summary highlighting SHAP feature drift.
 - `roi_by_confidence_band.py` aggregates tip ROI by confidence band and writes `logs/roi/roi_by_confidence_band_*.csv`.
 - `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
-
 - `validate_features.py` wraps `core.validate_features` for backward compatibility.
+
+### Fixed
+- Corrected a typo in `tests/test_tmcli.py` preventing the `healthcheck` CLI subparser from being created.
+- Removed stray `pip install model_drift_report` from the GitHub workflow, relying on the local module instead.
+
+### Documentation
+- Updated monster_todo.md with newly completed tasks.
 
 ## 2025-06-07
 

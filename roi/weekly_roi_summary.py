@@ -9,10 +9,28 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from tippingmonster import send_telegram_message
+from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 
 load_env()
+
+BANKROLL_FILE = logs_path("roi", "bankroll_tracker.csv")
+
+
+def load_bankroll() -> pd.DataFrame:
+    if os.path.exists(BANKROLL_FILE):
+        return pd.read_csv(BANKROLL_FILE)
+    return pd.DataFrame(
+        columns=[
+            "Date",
+            "Profit",
+            "Stake",
+            "Bankroll",
+            "Peak",
+            "Drawdown",
+            "WorstDrawdown",
+        ]
+    )
 
 
 def get_week_dates(iso_week):
@@ -66,9 +84,18 @@ def main(week, send_telegram=False):
     strike_rate = (wins / tips * 100) if tips else 0
     place_rate = (places / tips * 100) if tips else 0
 
+    bank_df = load_bankroll()
+    if bank_df.empty:
+        bankroll = 0.0
+        worst_dd = 0.0
+    else:
+        bankroll = float(bank_df["Bankroll"].iloc[-1])
+        worst_dd = float(bank_df["WorstDrawdown"].iloc[-1])
+
     print(
         f"\n📅 *Week: {week}*\n💰 *Mode: {mode.capitalize()}* → "
-        f"ROI: {roi:.2f}%, Profit: {profit:+.2f} pts ({stake:.2f} staked)"
+        f"ROI: {roi:.2f}%, Profit: {profit:+.2f} pts ({stake:.2f} staked)\n"
+        f"Bankroll: {bankroll:+.2f} | Worst DD: {worst_dd:.2f}"
     )
 
     summary = (
@@ -103,6 +130,8 @@ def main(week, send_telegram=False):
             f"🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%\n"
             f"💰 Profit: {profit:+.2f} pts\n"
             f"📈 ROI: {roi:.2f}%\n"
+            f"💰 Bankroll: {bankroll:+.2f} pts\n"
+            f"🔻 Worst DD: {worst_dd:.2f} pts\n"
             f"🪙 Staked: {stake:.2f} pts\n"
         )
         for _, row in summary.iterrows():
