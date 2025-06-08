@@ -1,3 +1,8 @@
+## 2025-06-21
+
+### Added
+- `win_rate_by_tag.py` aggregates win rate and ROI by tag across all tips.
+
 ## 2025-06-13
 
 ### Changed
