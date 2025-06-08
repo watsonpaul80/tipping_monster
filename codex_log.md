@@ -21,3 +21,7 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+## [2025-06-08] Add log archiving utility
+**Prompt:** Create archive_old_logs.py to zip and move logs older than 14 days into logs/archive/.
+**Files Changed:** utils/archive_old_logs.py, tests/test_archive_old_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, Docs/script_audit.txt, codex_log.md
+**Outcome:** Old log files can be compressed automatically and documentation updated.
