@@ -1,5 +1,11 @@
 # 📅 CHANGELOG
 
+## 2025-06-13
+
+### Changed
+- Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
+- ROI trackers now import this helper instead of defining it locally.
+
 ## 2025-06-12
 
 ### Fixed
