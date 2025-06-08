@@ -257,7 +257,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
-* Trainer intent tracker
+* Trainer intent tracker (`trainer_intent_score.py`)
 * Drift watcher
 * Telegram replay builder
 * Wildcard tips

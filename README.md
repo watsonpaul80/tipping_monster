@@ -114,7 +114,9 @@ These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
 `send_telegram_message()` and the new `send_telegram_photo()` for posting
-images with captions.
+images with captions. A lightweight `trainer_intent_score()` function is also
+provided for estimating how likely a trainer is trying to win based on recent
+runs, strike rates and market moves.
 
 
 
