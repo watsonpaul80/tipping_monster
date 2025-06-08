@@ -1,4 +1,12 @@
 
+## 2025-06-08
+
+### Added
+- `telegram_bot.py` with `/roi` command to send ROI summaries.
+
+## 2025-06-13
+
+
 ## 2025-06-21
 
 ### Added
@@ -43,10 +51,6 @@
 ### Added
 - Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
   Breakdown for winners or placed horses.
-
-
-
-
 
 ### Changed
 - Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.

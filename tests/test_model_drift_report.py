@@ -40,12 +40,6 @@ def test_model_drift(tmp_path):
 
     out_md = tmp_path / "report.md"
 
-    with patch("model_drift_report.datetime") as dt:
-        dt.utcnow.return_value = datetime(2025, 6, 6)
-        dt.timedelta = timedelta
-        dt.date = datetime.date
-        dt.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
-
     # Verify all SHAP files exist before running the report
     for date in dates:
         shap_file = local_dir / f"{date}_shap.csv"
@@ -59,23 +53,15 @@ def test_model_drift(tmp_path):
 
         @classmethod
         def today(cls):
-            return cls.utcnow().date()  # Ensure .today() also returns the fixed date
-
-        # We also need to mock strptime if it's used directly on the datetime object
-        # but in model_drift_report, pd.to_datetime is used which handles patching internally
-        # However, it's good practice to ensure timedelta is available if datetime is mocked.
-        # Although in the current model_drift_report, timedelta is imported directly.
-        # For robustness, we'll ensure it behaves as expected if datetime is a parent.
+            return cls.utcnow().date()
 
     import model_drift_report as mdr
 
     orig_dt = mdr.datetime
-    # Assign the Fixed class to the datetime object within the module being tested
     mdr.datetime = Fixed
     try:
         generate_report(days=3, local_dir=str(local_dir), out_md=str(out_md))
     finally:
-        # Restore the original datetime object to avoid side effects on other tests
         mdr.datetime = orig_dt
 
     text = out_md.read_text()
