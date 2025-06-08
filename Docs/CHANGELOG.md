@@ -1,6 +1,12 @@
 
 ## 2025-06-08
 
+### Added
+- `telegram_bot.py` with `/roi` command to send ROI summaries.
+=======
+
+## 2025-06-08
+
 ### Fixes
 - Removed stray `pip install model_drift_report` from the GitHub workflow, relying on the local module instead.
 
@@ -25,7 +31,6 @@
 ### Added
 - Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
   Breakdown for winners or placed horses.
-
 
 
 

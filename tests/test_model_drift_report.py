@@ -37,6 +37,13 @@ def test_model_drift(tmp_path):
     ).to_csv(local_dir / f"{dates[2]}_shap.csv", index=False)
 
     out_md = tmp_path / "report.md"
+    
+    with patch("model_drift_report.datetime") as dt:
+        dt.utcnow.return_value = datetime(2025, 6, 6)
+        dt.timedelta = timedelta
+        dt.date = datetime.date
+        dt.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
+
 
     # Verify all SHAP files exist before running the report
     for date in dates:
