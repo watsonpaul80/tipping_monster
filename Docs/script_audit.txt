@@ -70,6 +70,7 @@ roi/run_roi_pipeline.sh - keep
 utils/safecron.sh - keep
 roi/send_daily_roi_summary.py - keep
 cli/streamlit_dashboard.py - keep
+cli/pauls_view_dashboard.py - keep
 roi/tag_roi_tracker.py - keep
 tmcli.py - keep
 core/train_model_v6.py - keep
