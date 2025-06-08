@@ -51,13 +51,13 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 25. Show top ROI tags daily  
 26. Telegram control panel for config (bands, filters)  
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
-28. Drawdown tracking in ROI logs
+28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
-29. Place-focused model (predict 1st–3rd)  
+29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. Penalise stale horses and poor form  
@@ -79,7 +79,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 43. ✅ “Realistic Odds Mode” label in ROI summary  
 44. ✅ Log delta: `realistic_odds - bf_sp` in ROI logs  
 45. Optional: Telegram ROI summary includes delta emoji (e.g. “💸 14/1 ➝ 4.3”)  
-46. Track high-delta tips separately
+46. ✅ Track high-delta tips separately [Done: 2025-06-21]
 47. Add `odds_delta` to ML training as signal
 
 ---
@@ -93,7 +93,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ### 🧼 Log Management Enhancements (User Suggested)
 
-* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days)
+* [x] [#062] Auto-archive old logs into `.zip` files (e.g. logs older than 14 days) [Done: 2025-06-08]
 * [x] [#063] Add `logs/healthcheck.log` to flag missing files (e.g., snapshot, results, tips)
 * [x] [#064] Stream `logs/roi/` and `logs/dispatch/` (formerly `logs/roi_logs/` and `logs/dispatch_logs/`) to S3 daily for backup
 * [x] [#065] Add daily check script to verify all expected logs were created and non-empty
@@ -131,7 +131,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 68. Sell tip packs, stats, NAPs, etc.
 
 ### Bonus Features / Engagement
-69. ✅ Add /roi, /stats, /nap bot commands *(2025-06-08)*
+69. ✅ Add /roi, /stats, /nap bot commands [Done: 2025-06-21]
 70. Add Telegram confidence commentary  
 71. Optional intro video of how Monster works
 

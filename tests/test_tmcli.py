@@ -87,7 +87,7 @@ def main(argv=None) -> None:
     )
 
     # healthcheck subcommand
-    parser_health = subparpers.add_parser(
+    parser_health = subparsers.add_parser(
         "healthcheck", help="Check expected log files exist"
     )
     parser_health.add_argument("--date", help="Date YYYY-MM-DD (defaults to today)")

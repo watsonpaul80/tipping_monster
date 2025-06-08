@@ -1,5 +1,10 @@
+import json
+import sys
+from pathlib import Path
+
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 import telegram_bot
 
 
@@ -33,3 +38,42 @@ def test_get_weekly_roi_summary(tmp_path):
     summary = telegram_bot.get_weekly_roi_summary("2025-06-03", base)
     assert "Week 2025-W23" in summary
     assert "(+2.50 pts" in summary or "+2.50 pts" in summary
+
+
+def test_get_recent_naps(tmp_path):
+    base = tmp_path
+    for i in range(3):
+        date = f"2025-06-0{i+1}"
+        pred_dir = base / "predictions" / date
+        pred_dir.mkdir(parents=True)
+        nap = {
+            "race": "1:00 Test",
+            "name": f"Horse{i}",
+            "tags": ["🧠 Monster NAP"],
+            "confidence": 0.9,
+            "bf_sp": 2.0,
+        }
+        with open(pred_dir / "tips_with_odds.jsonl", "w", encoding="utf-8") as f:
+            f.write(json.dumps(nap) + "\n")
+
+        (base / "logs").mkdir(exist_ok=True)
+        df = pd.DataFrame(
+            {
+                "Date": [date],
+                "Race Time": ["1:00"],
+                "Course": ["Test"],
+                "Horse": [f"Horse{i}"],
+                "Odds": [2.0],
+                "Confidence": [0.9],
+                "Position": [1 if i == 0 else 2],
+                "Mode": ["advised"],
+                "Stake": [1.0],
+                "Profit": [1.0 if i == 0 else -1.0],
+            }
+        )
+        df.to_csv(base / "logs" / f"tips_results_{date}_advised.csv", index=False)
+
+    summary = telegram_bot.get_recent_naps(2, base)
+    assert "Horse2" in summary
+    assert "Horse1" in summary
+    assert "ROI" in summary

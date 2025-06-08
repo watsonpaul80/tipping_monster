@@ -164,6 +164,12 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
             merged_df["tags"] = merged_df["tags"].apply(
                 lambda x: x if isinstance(x, list) else []
             )
+            value_mask = (merged_df["odds_delta"] > 5.0) & (
+                merged_df["Position"] == "1"
+            )
+            merged_df.loc[value_mask, "tags"] = merged_df.loc[value_mask, "tags"].apply(
+                lambda t: t + ["💸 Value Win"]
+            )
             all_rows = []
             for _, row in merged_df.iterrows():
                 for tag in row["tags"]:
