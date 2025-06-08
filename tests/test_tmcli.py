@@ -5,6 +5,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
+import pandas as pd
+import xgboost as xgb
+
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from cli import tmcli
@@ -119,7 +122,23 @@ def test_tmcli_send_roi(monkeypatch, tmp_path):
     monkeypatch.delenv("TM_DEV_MODE", raising=False)
     monkeypatch.delenv("TM_LOG_DIR", raising=False)
 
-    model_path = Path(__file__).resolve().parents[1] / "tipping-monster-xgb-model.bst"
+    X = pd.DataFrame(
+        {
+            "draw": [0, 1],
+            "or": [0, 1],
+            "rpr": [0, 1],
+            "lbs": [0, 1],
+            "age": [0, 1],
+            "dist_f": [0, 1],
+            "class": [0, 1],
+            "going": ["G", "G"],
+            "prize": [0, 1],
+        }
+    )
+    model = xgb.XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+    model.fit(X, [0, 1])
+    model_path = tmp_path / "model.bst"
+    model.save_model(model_path)
     data_path = tmp_path / "data.jsonl"
     with open(data_path, "w") as f:
         json.dump(
