@@ -28,6 +28,7 @@ Codex is the autonomous coding agent in this repo. It must:
 - After completing any prompt, automatically append to:
   - `CHANGELOG.md`: what changed and why (user-facing)
   - `codex_log.md`: what was requested, timestamp, and affected files (internal/dev)
+  - Update monster_todo.md, Search for matching items, Mark as ✅ if now complete & Add [Done: YYYY-MM-DD] where helpful
 
 Example log entry for `codex_log.md`:
 

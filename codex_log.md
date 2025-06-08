@@ -22,3 +22,8 @@
 **Prompt:** Replace `subparpers.add_parser` with `subparsers.add_parser` in tests/test_tmcli.py.
 **Files Changed:** tests/test_tmcli.py, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Healthcheck subcommand parser now created correctly; pre-commit and pytest pass.
+## [2025-06-08] Mark additional completed tasks
+**Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
+**Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation reflects completed features.
+
