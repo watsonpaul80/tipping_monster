@@ -1,4 +1,9 @@
 
+## 2025-06-21
+
+### Added
+- `/nap` Telegram command shows last 7 NAPs with ROI stats.
+
 ## 2025-06-08
 
 ### Documentation
