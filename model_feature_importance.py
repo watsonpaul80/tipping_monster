@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import glob
 import json
-import os
 import tarfile
 import tempfile
 from datetime import date
@@ -18,8 +17,8 @@ import pandas as pd
 import shap
 import xgboost as xgb
 
-from validate_features import load_dataset
 from tippingmonster import logs_path, repo_path, send_telegram_photo
+from validate_features import load_dataset
 
 
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
@@ -87,8 +86,14 @@ def generate_shap_chart(
     shap_values = explainer.shap_values(X)
 
     plt.clf()
-    shap.summary_plot(shap_values, X, feature_names=features,
-                     max_display=10, show=False, plot_type="bar")
+    shap.summary_plot(
+        shap_values,
+        X,
+        feature_names=features,
+        max_display=10,
+        show=False,
+        plot_type="bar",
+    )
     plt.tight_layout()
 
     if out is None:
@@ -108,13 +113,24 @@ generate_chart = generate_shap_chart
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate SHAP feature importance chart")
-    parser.add_argument("dataset", nargs="?", default=None,
-                        help="Dataset CSV or JSONL (glob pattern allowed). If not provided, uses the latest batch input.")
-    parser.add_argument("--model", default="tipping-monster-xgb-model.bst",
-                        help="Path to model .bst or .tar.gz")
+    parser = argparse.ArgumentParser(
+        description="Generate SHAP feature importance chart"
+    )
+    parser.add_argument(
+        "dataset",
+        nargs="?",
+        default=None,
+        help="Dataset CSV or JSONL (glob pattern allowed). If not provided, uses the latest batch input.",
+    )
+    parser.add_argument(
+        "--model",
+        default="tipping-monster-xgb-model.bst",
+        help="Path to model .bst or .tar.gz",
+    )
     parser.add_argument("--out-file", help="Where to save PNG")
-    parser.add_argument("--telegram", action="store_true", help="Send chart to Telegram")
+    parser.add_argument(
+        "--telegram", action="store_true", help="Send chart to Telegram"
+    )
     parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
     args = parser.parse_args(argv)
 

@@ -1,4 +1,9 @@
 # 📅 CHANGELOG
+## 2025-06-11
+
+### Changed
+- Normalised file endings in CLI and feature importance scripts.
+
 ## 2025-06-09
 - Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
 
