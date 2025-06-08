@@ -6,10 +6,10 @@ from datetime import date, datetime
 from pathlib import Path
 
 from model_feature_importance import generate_chart
+from tippingmonster import repo_path
 from utils.ensure_sent_tips import ensure_sent_tips
 from utils.healthcheck_logs import check_logs
 from utils.validate_tips import main as validate_tips_main
-from tippingmonster import repo_path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -115,7 +115,7 @@ def main(argv=None) -> None:
         "model-feature-importance",
         help="Generate SHAP feature importance chart",
     )
-    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst")
+    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst.gz")
     parser_feat.add_argument("--data", help="Input JSONL with features")
     parser_feat.add_argument("--out-dir", default="logs/model")
     parser_feat.add_argument("--telegram", action="store_true")
@@ -125,7 +125,9 @@ def main(argv=None) -> None:
         "dispatch-tips", help="Format and optionally send today's tips"
     )
     parser_dispatch.add_argument("date", nargs="?", help="Date YYYY-MM-DD")
-    parser_dispatch.add_argument("--date", help="Date YYYY-MM-DD", dest="date_opt", default=None)
+    parser_dispatch.add_argument(
+        "--date", help="Date YYYY-MM-DD", dest="date_opt", default=None
+    )
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
 
