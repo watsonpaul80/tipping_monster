@@ -42,6 +42,7 @@ def test_model_drift(tmp_path):
         dt.utcnow.return_value = datetime(2025, 6, 6)
         dt.timedelta = timedelta
         dt.date = datetime.date
+        dt.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
         generate_report(days=3, local_dir=str(local_dir), out_md=str(out_md))
 
     text = out_md.read_text()
