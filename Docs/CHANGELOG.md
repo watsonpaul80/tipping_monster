@@ -1,3 +1,8 @@
+## 2025-06-08
+
+### Added
+- `telegram_bot.py` with `/roi` command to send ROI summaries.
+
 ## 2025-06-13
 
 ### Changed
