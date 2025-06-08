@@ -166,6 +166,10 @@ Run `self_training_loop.py --retrain` to retrain the model with recent ROI logs.
 This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
 
+`self_train_from_history.py` can be used to build a compact dataset from the
+logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
+*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
+
 ### Model Comparison
 
 Run `compare_model_v6_v7.py` to train both model versions on the same historical dataset. The script logs the confidence difference and ROI summary to `logs/compare_model_v6_v7.csv`.
