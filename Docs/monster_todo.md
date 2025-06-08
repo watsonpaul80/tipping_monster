@@ -57,7 +57,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
-29. Place-focused model (predict 1st–3rd)  
+29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. Penalise stale horses and poor form  

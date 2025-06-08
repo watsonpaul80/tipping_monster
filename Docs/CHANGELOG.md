@@ -1,4 +1,9 @@
 
+## 2025-06-21
+
+### Added
+- `train_place_model.py` to build a place-focused XGBoost model (top 3 finishers).
+
 ## 2025-06-08
 
 ### Documentation
