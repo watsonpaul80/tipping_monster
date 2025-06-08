@@ -1,6 +1,9 @@
 
 ## 2025-06-21
 
+### Added
+- `win_rate_by_tag.py` aggregates win rate and ROI by tag across all tips.
+
 
 - ROI tracker flags winners with `odds_delta` over 5.0 as "💸 Value Win".
 - `/nap` Telegram command shows last 7 NAPs with ROI stats.
@@ -43,7 +46,7 @@
 
 
 
-## 2025-06-13
+
 
 ### Changed
 - Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
