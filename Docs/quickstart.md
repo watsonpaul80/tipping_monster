@@ -6,6 +6,7 @@ This quickstart aims to help new contributors understand the overall structure o
 
 *Tipping Monster* is an automated horse‑racing tipping system. The codebase includes scraping racecards, running a machine learning model to generate tips, fetching odds, sending formatted Telegram messages and tracking ROI.
 
+A static landing page with a live tip feed is available at [site/index.html](../site/index.html).
 Most detailed documentation lives in the `Docs/` directory. The main files are:
 
 - `monster_overview.md` – full system overview with pipeline schedule and feature list.
