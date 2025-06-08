@@ -1,4 +1,11 @@
 
+## 2025-06-20
+
+### Added
+- `generate_lay_candidates.py` identifies Danger Fav lay candidates.
+- `dispatch_danger_favs.py` formats and sends Danger Fav alerts.
+- `track_lay_candidates_roi.py` computes lay ROI for Danger Favs.
+
 ## 2025-06-08
 
 ### Fixes

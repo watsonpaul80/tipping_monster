@@ -63,7 +63,9 @@ The system defines 8 core product layers:
 | 08:00 | `core/fetch_betfair_odds.py`      | Grabs Betfair odds snapshot                            |
 | 08:05 | `python -m core.run_inference_and_select_top1` | Runs XGBoost model + selects best per race             |
 | 08:08 | `core/merge_odds_into_tips.py`    | Adds odds to predicted tips                            |
-| 08:10 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
+| 08:09 | `generate_lay_candidates.py`      | Flags favourites with low Monster confidence |
+| 08:10 | `dispatch_danger_favs.py`         | Sends Danger Fav alerts to Telegram |
+| 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
