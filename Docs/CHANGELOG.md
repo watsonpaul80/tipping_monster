@@ -1,3 +1,8 @@
+## 2025-06-17
+
+### Added
+- `utils/band_roi_filter.py` with `is_band_profitable()` helper.
+
 ## 2025-06-13
 
 ### Changed
