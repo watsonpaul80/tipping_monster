@@ -21,3 +21,8 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+
+## [2025-06-21] Add place-focused training script
+**Prompt:** Clone train_model_v6.py to create train_place_model.py predicting top 3 finishes.
+**Files Changed:** train_place_model.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** New place model training script added and docs updated.
