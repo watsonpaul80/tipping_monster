@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
@@ -99,7 +100,7 @@ def generate_report(
     shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
     if shap_files:
         latest = max(f.stem.split("_")[0] for f in shap_files)
-        today = datetime.strptime(latest, "%Y-%m-%d").date()
+        today = _dt.datetime.strptime(latest, "%Y-%m-%d").date()
     else:
         today = datetime.utcnow().date()
 
