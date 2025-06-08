@@ -21,7 +21,8 @@ def load_shap_csv(
 ) -> Optional[pd.DataFrame]:
     """Load a ``<date>_shap.csv`` file from ``local_dir`` or S3.
 
-    The CSV must have ``feature`` and ``importance`` columns.
+    The CSV must have ``feature`` and ``importance`` columns. When downloaded
+    from S3, the temporary file is deleted after reading.
     """
     local_path = local_dir / f"{date}_shap.csv"
     if local_path.exists():
@@ -32,7 +33,9 @@ def load_shap_csv(
         try:
             local_dir.mkdir(parents=True, exist_ok=True)
             s3_client.download_file(bucket, key, str(tmp_path))
-            return pd.read_csv(tmp_path)
+            df = pd.read_csv(tmp_path)
+            tmp_path.unlink(missing_ok=True)
+            return df
         except Exception as exc:  # pragma: no cover - network errors vary
             print(f"⚠️ Could not fetch {key}: {exc}")
     return None
@@ -93,7 +96,12 @@ def generate_report(
     """Create a drift report and return the markdown file path."""
     s3_client = boto3.client("s3") if bucket else None
     local = Path(local_dir)
-    today = datetime.utcnow().date()
+    shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
+    if shap_files:
+        latest = max(f.stem.split("_")[0] for f in shap_files)
+        today = datetime.strptime(latest, "%Y-%m-%d").date()
+    else:
+        today = datetime.utcnow().date()
 
     dfs: list[pd.DataFrame] = []
     dates: list[str] = []
