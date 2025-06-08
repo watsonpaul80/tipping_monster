@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import os
-import pandas as pd
 from glob import glob
+
+import pandas as pd
 
 OUTPUT_PATH = "logs/roi/unified_roi_sheet.csv"
 
@@ -15,7 +16,7 @@ def load_and_flag(path, sent=False):
 
 
 def main():
-    all_files = sorted(glob("logs/roi/tips_results_2025-*-advised.csv"))
+    all_files = sorted(glob("logs/roi/tips_results_*_advised.csv"))
     merged_rows = []
 
     for all_path in all_files:

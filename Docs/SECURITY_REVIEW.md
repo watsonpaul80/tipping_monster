@@ -22,4 +22,6 @@ This document highlights potential security issues in the repository and provide
 4. Validate archive contents before extraction or extract safely using `tarfile` members.
 5. Add explicit timeouts to all network requests to avoid hanging connections.
 6. Consider adding `bandit` or similar tools to the CI pipeline.
+7. Use the `tippingmonster.send_telegram_message` helper for any Telegram alerts
+   so `TM_DEV_MODE` is honored.
 

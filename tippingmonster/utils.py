@@ -12,7 +12,9 @@ __all__ = [
     "in_dev_mode",
     "send_telegram_message",
     "send_telegram_photo",
+    "load_xgb_model",
     "calculate_profit",
+    "get_place_terms",
     "tip_has_tag",
 ]
 
@@ -41,7 +43,9 @@ def predictions_path(date: str) -> Path:
     return repo_path("predictions", date)
 
 
-def send_telegram_message(message: str, token: str | None = None, chat_id: str | None = None) -> None:
+def send_telegram_message(
+    message: str, token: str | None = None, chat_id: str | None = None
+) -> None:
     if in_dev_mode():
         log_file = logs_path("telegram.log")
         log_file.parent.mkdir(parents=True, exist_ok=True)
@@ -67,7 +71,12 @@ def send_telegram_message(message: str, token: str | None = None, chat_id: str |
     requests.post(url, data=payload, timeout=10)
 
 
-def send_telegram_photo(photo: Path | str, caption: str = "", token: str | None = None, chat_id: str | None = None) -> None:
+def send_telegram_photo(
+    photo: Path | str,
+    caption: str = "",
+    token: str | None = None,
+    chat_id: str | None = None,
+) -> None:
     if in_dev_mode():
         photo_path = Path(photo)
         dest = logs_path(photo_path.name)
@@ -109,6 +118,16 @@ def _get_place_terms(runners: int, race_name: str) -> tuple[float, int]:
     return 0.0, 1  # Win only fallback
 
 
+def get_place_terms(row: dict) -> tuple[float, int]:
+    """Return each-way place fraction and number of places for a race."""
+    try:
+        runners = int(row.get("Runners", 0))
+        race_name = str(row.get("Race Name", ""))
+        return _get_place_terms(runners, race_name)
+    except Exception:
+        return 0.0, 1
+
+
 def calculate_profit(row) -> float:
     odds = row["Odds"]
     position = str(row["Position"]).lower()
@@ -117,7 +136,7 @@ def calculate_profit(row) -> float:
     if odds >= 5.0:
         win_stake = 0.5
         place_stake = 0.5
-        place_fraction, place_places = _get_place_terms(int(row.get("Runners", 0)), str(row.get("Race Name", "")))
+        place_fraction, place_places = get_place_terms(row)
 
         win_profit = (odds - 1) * win_stake if position == "1" else 0.0
         place_profit = (
@@ -136,3 +155,26 @@ def tip_has_tag(tip: dict, tag: str) -> bool:
     tag_lower = tag.lower()
     return any(tag_lower in str(t).lower() for t in tip.get("tags", []))
 
+
+def load_xgb_model(model_path: str):
+    """Return an :class:`xgboost.XGBClassifier` from ``model_path``.
+
+    Supports plain ``.bst`` files and gzip-compressed ``.bst.gz`` files.
+    """
+    import gzip
+    import tempfile
+
+    import xgboost as xgb
+
+    model = xgb.XGBClassifier()
+    if model_path.endswith(".gz"):
+        with gzip.open(model_path, "rb") as f, tempfile.NamedTemporaryFile(
+            suffix=".bst", delete=False
+        ) as tmp:
+            tmp.write(f.read())
+            tmp_path = tmp.name
+        model.load_model(tmp_path)
+        os.unlink(tmp_path)
+    else:
+        model.load_model(model_path)
+    return model

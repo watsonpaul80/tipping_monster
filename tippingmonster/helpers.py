@@ -10,11 +10,7 @@ import pandas as pd
 import shap
 import xgboost as xgb
 
-from .utils import (
-    repo_path,
-    send_telegram_message,
-    send_telegram_photo,
-)
+from .utils import repo_path, send_telegram_message, send_telegram_photo
 
 __all__ = ["dispatch", "send_daily_roi", "generate_chart"]
 
@@ -55,7 +51,19 @@ def generate_chart(
 ) -> None:
     """Create a SHAP feature importance chart and optionally send to Telegram."""
     model = xgb.Booster()
-    model.load_model(model_path)
+    if model_path.endswith(".gz"):
+        import gzip
+        import tempfile
+
+        with gzip.open(model_path, "rb") as f, tempfile.NamedTemporaryFile(
+            delete=False
+        ) as tmp:
+            tmp.write(f.read())
+            tmp_path = tmp.name
+        model.load_model(tmp_path)
+        os.unlink(tmp_path)
+    else:
+        model.load_model(model_path)
     if data_path is None:
         raise ValueError("data_path must be provided")
     df = pd.read_csv(data_path)

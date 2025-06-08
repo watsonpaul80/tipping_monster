@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def valid_date(value: str) -> str:
-    """Return ``value`` if it matches ``YYYY-MM-DD`` else raise ``ArgumentTypeError``."""
+    """Return `value` if it matches `YYYY-MM-DD` else raise `ArgumentTypeError`."""
     try:
         datetime.strptime(value, "%Y-%m-%d")
     except ValueError as exc:
@@ -26,7 +26,7 @@ def valid_date(value: str) -> str:
 
 
 def run_command(cmd: list[str], dev: bool) -> None:
-    """Run ``cmd`` with optional ``TM_DEV_MODE`` set."""
+    """Run `cmd` with optional `TM_DEV_MODE` set."""
     env = os.environ.copy()
     if dev:
         env["TM_DEV_MODE"] = "1"

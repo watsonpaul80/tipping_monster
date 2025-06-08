@@ -6,25 +6,7 @@ import re
 
 import pandas as pd
 
-from tippingmonster import send_telegram_message, tip_has_tag
-
-
-def get_place_terms(row):
-    try:
-        runners = int(row.get("Runners", 0))
-        is_handicap = "hcp" in str(row.get("Race Name", "")).lower()
-        if is_handicap:
-            if runners >= 16:
-                return (0.25, 4)
-            elif 12 <= runners <= 15:
-                return (0.25, 3)
-        if runners >= 8:
-            return (0.20, 3)
-        elif 5 <= runners <= 7:
-            return (0.25, 2)
-    except Exception:
-        pass
-    return (0.0, 1)  # Win only fallback
+from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
 
 
 def normalize_horse_name(name):

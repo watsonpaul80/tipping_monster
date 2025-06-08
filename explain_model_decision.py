@@ -9,16 +9,12 @@ from typing import Dict
 import numpy as np
 import pandas as pd
 import shap
-import xgboost as xgb
+
+from tippingmonster.utils import load_xgb_model
 
 
-def load_model(model_path: str) -> xgb.XGBClassifier:
-    """Load an XGBoost model from ``model_path``.
-
-    ``model_path`` may be a plain ``.bst`` file, a gzip-compressed ``.bst.gz``
-    file, or a base64-encoded variant ending in ``.b64``.
-    """
-
+def load_model(model_path: str):
+    """Load an XGBoost model from `model_path` (supports .bst or .bst.gz)."""
     data = Path(model_path).read_bytes()
     cleaned = model_path
     if cleaned.endswith(".b64"):
@@ -33,14 +29,13 @@ def load_model(model_path: str) -> xgb.XGBClassifier:
     tmp.flush()
     tmp.close()
 
-    model = xgb.XGBClassifier()
-    model.load_model(tmp.name)
+    model = load_xgb_model(tmp.name)
     os.unlink(tmp.name)
     return model
 
 
 def load_features(path: str) -> list[str]:
-    """Return the list of model features from ``path``."""
+    """Return the list of model features from `path`."""
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -51,7 +46,7 @@ def generate_explanations(
     features_path: str = "features.json",
     top_n: int = 3,
 ) -> Dict[str, str]:
-    """Return a mapping of ``tip_id`` to a short SHAP-based explanation."""
+    """Return a mapping of `tip_id` to a short SHAP-based explanation."""
     with open(predictions_path, "r", encoding="utf-8") as f:
         rows = [json.loads(line) for line in f if line.strip()]
 

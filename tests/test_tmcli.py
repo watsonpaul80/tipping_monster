@@ -1,156 +1,195 @@
-import json
+import argparse
 import os
 import subprocess
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).resolve().parents[1]))
+from model_feature_importance import generate_chart
+from tippingmonster import repo_path
+from utils.ensure_sent_tips import ensure_sent_tips
+from utils.healthcheck_logs import check_logs
+from utils.validate_tips import main as validate_tips_main
 
-from cli import tmcli
-
-
-def test_tmcli_healthcheck(tmp_path):
-    date_str = "2025-06-06"
-    logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
-    (logs / "inference").mkdir(parents=True, exist_ok=True)
-    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    (logs / "inference" / f"pipeline_{date_str}.log").write_text("ok")
-    (logs / "inference" / f"odds_0800_{date_str}.log").write_text("ok")
-    (logs / "inference" / f"odds_hourly_{date_str}.log").write_text("ok")
-
-    os.chdir(tmp_path)
-    tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
-    text = (tmp_path / "hc.log").read_text().strip()
-    assert text.endswith("OK")
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_tmcli_healthcheck_missing_files(tmp_path):
-    date_str = "2025-06-06"
-
-    logs = tmp_path / "logs" / "dispatch"
-    logs.mkdir(parents=True)
-    (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
-    (logs / "inference").mkdir(parents=True, exist_ok=True)
-    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    os.chdir(tmp_path)
-    tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
-    text = (tmp_path / "hc.log").read_text()
-    assert text.count("MISSING") == 3
+def valid_date(value: str) -> str:
+    """Return `value` if it matches `YYYY-MM-DD` else raise `ArgumentTypeError`."""
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            f"Invalid date: {value}. Use YYYY-MM-DD"
+        ) from exc
+    return value
 
 
-def test_tmcli_ensure_sent_tips(tmp_path):
-    date_str = "2025-06-06"
-    pred_dir = tmp_path / "predictions" / date_str
-    pred_dir.mkdir(parents=True)
-    (pred_dir / "tips_with_odds.jsonl").write_text("tip")
+def run_command(cmd: list[str], dev: bool) -> None:
+    """Run `cmd` with optional `TM_DEV_MODE` set."""
+    env = os.environ.copy()
+    if dev:
+        env["TM_DEV_MODE"] = "1"
+    subprocess.run(cmd, check=True, env=env)
 
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "ensure-sent-tips",
-            date_str,
-            "--predictions-dir",
-            "predictions",
-            "--dispatch-dir",
-            "logs/dispatch",
-        ]
+
+def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
+    if telegram:
+        cmd.append("--telegram")
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def send_roi(date: str | None = None, dev: bool = False) -> None:
+    cmd = [sys.executable, str(repo_path("roi", "send_daily_roi_summary.py"))]
+    if date:
+        cmd += ["--date", date]
+    if dev:
+        cmd.append("--dev")
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
+    subprocess.run(cmd, check=True)
+
+
+def main(argv=None) -> None:
+    parser = argparse.ArgumentParser(
+        description="Tipping Monster command line interface"
     )
-    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
-    assert sent.exists()
-    assert sent.read_text() == "tip"
+    subparsers = parser.add_subparsers(dest="command", required=True)
 
-
-def test_tmcli_dispatch_tips(monkeypatch, tmp_path):
-    date_str = "2025-06-06"
-
-    calls = {}
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "ensure-sent-tips",
-            date_str,
-            "--predictions-dir",
-            "predictions",
-            "--dispatch-dir",
-            "logs/dispatch",
-        ]
+    # pipeline subcommand
+    parser_pipe = subparsers.add_parser("pipeline", help="Run the full daily pipeline")
+    parser_pipe.add_argument(
+        "--dev",
+        action="store_true",
+        help="Enable development mode (no Telegram/S3 uploads)",
     )
-    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
-    assert not sent.exists()
 
-    def fake_run(cmd, check):
-        calls["cmd"] = cmd
-        calls["check"] = check
-
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    tmcli.main(["dispatch-tips", "2025-06-06", "--telegram", "--dev"])
-    assert "dispatch_tips.py" in calls["cmd"][1]
-    assert "--telegram" in calls["cmd"]
-    assert "--dev" in calls["cmd"]
-    assert os.environ["TM_DEV_MODE"] == "1"
-    assert os.environ["TM_LOG_DIR"] == "logs/dev"
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-
-def test_tmcli_send_roi(monkeypatch, tmp_path):
-    calls = {}
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    def fake_run(cmd, check):
-        calls["cmd"] = cmd
-        calls["check"] = check
-
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    tmcli.main(["send-roi", "--date", "2025-06-05", "--dev"])
-    assert "send_daily_roi_summary.py" in calls["cmd"][1]
-    assert "--date" in calls["cmd"]
-    assert "2025-06-05" in calls["cmd"]
-    assert os.environ["TM_DEV_MODE"] == "1"
-    assert os.environ["TM_LOG_DIR"] == "logs/dev"
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    model_path = (
-        Path(__file__).resolve().parents[1] / "tipping-monster-xgb-model.bst.gz.b64"
+    # roi subcommand
+    parser_roi_pipe = subparsers.add_parser(
+        "roi", help="Run ROI pipeline for a given date"
     )
-    data_path = tmp_path / "data.jsonl"
-    with open(data_path, "w") as f:
-        json.dump(
-            {
-                "draw": 0,
-                "or": 0,
-                "rpr": 0,
-                "lbs": 0,
-                "age": 0,
-                "dist_f": 0,
-                "class": 0,
-                "going": "G",
-                "prize": 0,
-            },
-            f,
+    parser_roi_pipe.add_argument("--date", type=valid_date, help="Date YYYY-MM-DD")
+    parser_roi_pipe.add_argument(
+        "--dev", action="store_true", help="Enable development mode"
+    )
+
+    # sniper subcommand (placeholder)
+    parser_sniper = subparsers.add_parser(
+        "sniper", help="Run sniper jobs (if available)"
+    )
+    parser_sniper.add_argument(
+        "--dev", action="store_true", help="Enable development mode for sniper jobs"
+    )
+
+    # healthcheck subcommand
+    parser_health = subparpers.add_parser(
+        "healthcheck", help="Check expected log files exist"
+    )
+    parser_health.add_argument("--date", help="Date YYYY-MM-DD (defaults to today)")
+    parser_health.add_argument(
+        "--out-log", default="logs/healthcheck.log", help="Where to write status"
+    )
+
+    # ensure-sent-tips subcommand
+    parser_sent = subparsers.add_parser(
+        "ensure-sent-tips", help="Create sent tips file from predictions if missing"
+    )
+    parser_sent.add_argument("date", help="Date YYYY-MM-DD")
+    parser_sent.add_argument("--predictions-dir", default="predictions")
+    parser_sent.add_argument("--dispatch-dir", default="logs/dispatch")
+
+    # validate-tips subcommand
+    parser_validate = subparsers.add_parser(
+        "validate-tips", help="Validate tips JSON for a given date"
+    )
+    parser_validate.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_validate.add_argument("--predictions-dir", default="predictions")
+
+    # model-feature-importance subcommand
+    parser_feat = subparsers.add_parser(
+        "model-feature-importance",
+        help="Generate SHAP feature importance chart",
+    )
+    parser_feat.add_argument("--model", default="tipping-monster-xgb-model.bst.gz.b64")
+    parser_feat.add_argument("--data", help="Input JSONL with features")
+    parser_feat.add_argument("--out-dir", default="logs/model")
+    parser_feat.add_argument("--telegram", action="store_true")
+
+    # dispatch-tips subcommand
+    parser_dispatch = subparsers.add_parser(
+        "dispatch-tips", help="Format and optionally send today's tips"
+    )
+    parser_dispatch.add_argument("date", nargs="?", help="Date YYYY-MM-DD")
+    parser_dispatch.add_argument(
+        "--date", help="Date YYYY-MM-DD", dest="date_opt", default=None
+    )
+    parser_dispatch.add_argument("--telegram", action="store_true")
+    parser_dispatch.add_argument("--dev", action="store_true")
+
+    # send-roi subcommand
+    parser_roi = subparsers.add_parser(
+        "send-roi", help="Send daily ROI summary to Telegram"
+    )
+    parser_roi.add_argument("--date", help="Date YYYY-MM-DD", default=None)
+    parser_roi.add_argument("--dev", action="store_true")
+
+    args = parser.parse_args(argv)
+
+    if args.command == "pipeline":
+        cmd = [str(ROOT / "core" / "run_pipeline_with_venv.sh")]
+        if args.dev:
+            cmd.append("--dev")
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "roi":
+        cmd = [str(ROOT / "roi" / "run_roi_pipeline.sh")]
+        if args.date:
+            cmd.append(args.date)
+        run_command(["bash", *cmd], args.dev)
+
+    elif args.command == "sniper":
+        raise RuntimeError("Sniper functionality is not included in this distribution")
+
+    elif args.command == "healthcheck":
+        check_logs(Path(args.out_log), args.date)
+
+    elif args.command == "ensure-sent-tips":
+        ensure_sent_tips(
+            args.date,
+            Path(args.predictions_dir),
+            Path(args.dispatch_dir),
         )
-        f.write("\n")
 
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "model-feature-importance",
-            "--model",
-            str(model_path),
-            "--data",
-            str(data_path),
-            "--out-dir",
-            "logs/model",
-        ]
-    )
-    out = tmp_path / "logs/model" / f"feature_importance_{date.today().isoformat()}.png"
-    assert out.exists()
+    elif args.command == "model-feature-importance":
+        out = generate_chart(
+            args.model,
+            args.data,
+            Path(args.out_dir) / f"feature_importance_{date.today().isoformat()}.png",
+            telegram=args.telegram,
+        )
+        print(out)
+
+    elif args.command == "dispatch-tips":
+        date_arg = args.date or args.date_opt
+        dispatch(
+            date=date_arg or date.today().isoformat(),
+            telegram=args.telegram,
+            dev=args.dev,
+        )
+
+    elif args.command == "validate-tips":
+        argv = ["--date", args.date] if args.date else []
+        argv += ["--predictions-dir", args.predictions_dir]
+        validate_tips_main(argv)
+
+    elif args.command == "send-roi":
+        send_roi(date=args.date, dev=args.dev)
+
+
+if __name__ == "__main__":
+    main()

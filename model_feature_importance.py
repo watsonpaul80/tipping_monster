@@ -8,7 +8,6 @@ import base64
 import glob
 import gzip
 import json
-import os
 import tarfile
 import tempfile
 from datetime import date
@@ -22,14 +21,15 @@ import xgboost as xgb
 
 from core.validate_features import load_dataset
 from tippingmonster import logs_path, repo_path, send_telegram_photo
+from tippingmonster.utils import load_xgb_model
 
 
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
-    """Load XGBoost model and feature list from ``model_path``.
+    """Load XGBoost model and feature list from `model_path`.
 
-    ``model_path`` may be a ``.bst`` file, a gzip-compressed ``.bst.gz`` file,
-    a Base64 encoded variant ending in ``.b64``, or a ``.tar.gz`` archive
-    containing ``tipping-monster-xgb-model.bst`` and ``features.json``.
+    `model_path` may be a plain `.bst` file, a gzip-compressed `.bst.gz` file,
+    a Base64 encoded variant ending in `.b64`, or a `.tar.gz` archive
+    containing `tipping-monster-xgb-model.bst` and `features.json`.
     """
     if model_path.endswith(".tar.gz"):
         tmpdir = tempfile.mkdtemp()
@@ -65,8 +65,7 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
         features_file = Path(model_path).with_name("features.json")
         if not features_file.exists():
             features_file = repo_path("features.json")
-    model = xgb.XGBClassifier()
-    model.load_model(str(model_file))
+    model = load_xgb_model(str(model_file))
     if "cleanup" in locals() and cleanup:
         os.unlink(model_file)
     with open(features_file) as f:

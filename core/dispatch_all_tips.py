@@ -1,10 +1,12 @@
-import os
-import json
 import argparse
+import json
+import os
 from collections import defaultdict
 from datetime import date
-import requests
+
 from dotenv import load_dotenv
+
+from tippingmonster import send_telegram_message
 
 load_dotenv()
 
@@ -66,8 +68,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=date.today().isoformat())
     parser.add_argument("--telegram", action="store_true")
-    parser.add_argument("--batch-size", type=int, default=40,
-                        help="number of races per Telegram message")
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=40,
+        help="number of races per Telegram message",
+    )
     parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
 
@@ -117,4 +123,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
