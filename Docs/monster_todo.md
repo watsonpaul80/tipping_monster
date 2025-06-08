@@ -48,7 +48,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 22. Tag top 3 per day as Premium Tips  
 23. Split public vs subscriber tips via logic or tier  
 24. ROI breakdown by confidence band, tip type, and tag  
-25. Show top ROI tags daily  
+25. ✅ Show top ROI tags daily *(Done: 2025-06-22)*
 26. Telegram control panel for config (bands, filters)  
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
 28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*

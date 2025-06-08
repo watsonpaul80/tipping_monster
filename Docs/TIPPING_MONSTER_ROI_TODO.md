@@ -2,6 +2,7 @@
 
 ### ✅ Completed
 - [x] ROI tracker for sent tips only
+- [x] ROI by Tag table in Paul's View
 - [x] Realistic odds injection
 - [x] Confidence calibration logging
 - [x] Tag ROI tracking (sent + all)

@@ -1,3 +1,8 @@
+## 2025-06-22
+
+### Added
+- ROI by Tag table in `streamlit_pauls_view.py` for deeper tag analysis.
+
 
 ## 2025-06-21
 
