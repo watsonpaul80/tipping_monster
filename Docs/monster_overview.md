@@ -325,6 +325,7 @@ roi/weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
 roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
+win_rate_by_tag.py             Overall win % and ROI per tag    ✅ All tips
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files

@@ -101,7 +101,7 @@ python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
 python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
-python telegram_bot.py --dev  # start Telegram bot with /roi command
+python telegram_bot.py --dev  # start Telegram bot with /roi weekly command
 ```
 
 ## Tip Dispatch
@@ -170,6 +170,10 @@ This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
 The repository also includes `train_place_model.py` to build a separate model
 predicting whether a runner finishes in the top three.
+
+`self_train_from_history.py` can be used to build a compact dataset from the
+logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
+*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
 
 `self_train_from_history.py` can be used to build a compact dataset from the
 logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
