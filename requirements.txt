@@ -9,4 +9,3 @@ boto3
 betfairlightweight 
 orjson
 pytest
-requests
