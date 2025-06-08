@@ -1,5 +1,16 @@
 # 📅 CHANGELOG
 
+## 2025-06-13
+
+### Removed
+- Deleted `tipping-monster-xgb-model.bst` from the repository. Tests now
+  generate a temporary XGBoost model instead.
+
+## 2025-06-12
+
+### Fixed
+- `load_shap_csv()` now deletes the downloaded temp file after reading.
+
 ## 2025-06-10
 
 ### Fixed
