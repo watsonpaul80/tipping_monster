@@ -1,4 +1,8 @@
+import base64
+import gzip
 import json
+import os
+import tempfile
 from pathlib import Path
 from typing import Dict
 
@@ -9,9 +13,29 @@ import xgboost as xgb
 
 
 def load_model(model_path: str) -> xgb.XGBClassifier:
-    """Load an XGBoost model from ``model_path``."""
+    """Load an XGBoost model from ``model_path``.
+
+    ``model_path`` may be a plain ``.bst`` file, a gzip-compressed ``.bst.gz``
+    file, or a base64-encoded variant ending in ``.b64``.
+    """
+
+    data = Path(model_path).read_bytes()
+    cleaned = model_path
+    if cleaned.endswith(".b64"):
+        data = base64.b64decode(data)
+        cleaned = cleaned[:-4]
+
+    if cleaned.endswith(".gz"):
+        data = gzip.decompress(data)
+
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".bst")
+    tmp.write(data)
+    tmp.flush()
+    tmp.close()
+
     model = xgb.XGBClassifier()
-    model.load_model(model_path)
+    model.load_model(tmp.name)
+    os.unlink(tmp.name)
     return model
 
 
@@ -23,7 +47,7 @@ def load_features(path: str) -> list[str]:
 
 def generate_explanations(
     predictions_path: str,
-    model_path: str = "tipping-monster-xgb-model.bst",
+    model_path: str = "tipping-monster-xgb-model.bst.gz.b64",
     features_path: str = "features.json",
     top_n: int = 3,
 ) -> Dict[str, str]:
@@ -47,9 +71,7 @@ def generate_explanations(
         values = shap_values[idx]
         abs_vals = np.abs(values)
         top_idx = abs_vals.argsort()[-top_n:][::-1]
-        parts = [
-            f"{features[i]}{'↑' if values[i] > 0 else '↓'}" for i in top_idx
-        ]
+        parts = [f"{features[i]}{'↑' if values[i] > 0 else '↓'}" for i in top_idx]
         tip_id = f"{row.get('race','')}|{row.get('name','')}"
         explanations[tip_id] = ", ".join(parts)
     return explanations
@@ -60,7 +82,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate SHAP explanations")
     parser.add_argument("--predictions", required=True, help="Path to tips JSONL")
-    parser.add_argument("--model", default="tipping-monster-xgb-model.bst")
+    parser.add_argument("--model", default="tipping-monster-xgb-model.bst.gz.b64")
     parser.add_argument("--features", default="features.json")
     parser.add_argument("--out", help="Output JSON file")
     args = parser.parse_args()

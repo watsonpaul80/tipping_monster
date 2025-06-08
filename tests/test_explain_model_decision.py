@@ -1,5 +1,8 @@
 import json
+import sys
 from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from explain_model_decision import generate_explanations
 
@@ -23,9 +26,11 @@ def test_generate_explanations(tmp_path):
         f.write(json.dumps(tip) + "\n")
 
     root = Path(__file__).resolve().parents[1]
-    model = root / "tipping-monster-xgb-model.bst"
+    model = root / "tipping-monster-xgb-model.bst.gz.b64"
     features = root / "features.json"
-    expl = generate_explanations(str(p), model_path=str(model), features_path=str(features))
+    expl = generate_explanations(
+        str(p), model_path=str(model), features_path=str(features)
+    )
     key = f"{tip['race']}|{tip['name']}"
     assert key in expl
     assert isinstance(expl[key], str)

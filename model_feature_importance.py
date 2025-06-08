@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import glob
+import gzip
 import json
 import os
 import tarfile
@@ -25,8 +27,9 @@ from tippingmonster import logs_path, repo_path, send_telegram_photo
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     """Load XGBoost model and feature list from ``model_path``.
 
-    ``model_path`` may be a ``.bst`` file or a ``.tar.gz`` archive containing
-    ``tipping-monster-xgb-model.bst`` and ``features.json``.
+    ``model_path`` may be a ``.bst`` file, a gzip-compressed ``.bst.gz`` file,
+    a Base64 encoded variant ending in ``.b64``, or a ``.tar.gz`` archive
+    containing ``tipping-monster-xgb-model.bst`` and ``features.json``.
     """
     if model_path.endswith(".tar.gz"):
         tmpdir = tempfile.mkdtemp()
@@ -35,12 +38,37 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
         model_file = Path(tmpdir) / "tipping-monster-xgb-model.bst"
         features_file = Path(tmpdir) / "features.json"
     else:
-        model_file = Path(model_path)
-        features_file = model_file.with_name("features.json")
+        data = Path(model_path).read_bytes()
+        cleaned = model_path
+        if cleaned.endswith(".b64"):
+            data = base64.b64decode(data)
+            cleaned = cleaned[:-4]
+
+        if cleaned.endswith(".gz"):
+            data = gzip.decompress(data)
+            tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".bst")
+            tmp.write(data)
+            tmp.flush()
+            tmp.close()
+            model_file = Path(tmp.name)
+            cleanup = True
+        elif cleaned.endswith(".bst") and data is not None and cleaned != model_path:
+            tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".bst")
+            tmp.write(data)
+            tmp.flush()
+            tmp.close()
+            model_file = Path(tmp.name)
+            cleanup = True
+        else:
+            model_file = Path(cleaned)
+            cleanup = False
+        features_file = Path(model_path).with_name("features.json")
         if not features_file.exists():
             features_file = repo_path("features.json")
     model = xgb.XGBClassifier()
     model.load_model(str(model_file))
+    if "cleanup" in locals() and cleanup:
+        os.unlink(model_file)
     with open(features_file) as f:
         features = json.load(f)
     return model, features
@@ -87,8 +115,14 @@ def generate_shap_chart(
     shap_values = explainer.shap_values(X)
 
     plt.clf()
-    shap.summary_plot(shap_values, X, feature_names=features,
-                     max_display=10, show=False, plot_type="bar")
+    shap.summary_plot(
+        shap_values,
+        X,
+        feature_names=features,
+        max_display=10,
+        show=False,
+        plot_type="bar",
+    )
     plt.tight_layout()
 
     if out is None:
@@ -114,13 +148,24 @@ def generate_chart(
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Generate SHAP feature importance chart")
-    parser.add_argument("dataset", nargs="?", default=None,
-                        help="Dataset CSV or JSONL (glob pattern allowed). If not provided, uses the latest batch input.")
-    parser.add_argument("--model", default="tipping-monster-xgb-model.bst",
-                        help="Path to model .bst or .tar.gz")
+    parser = argparse.ArgumentParser(
+        description="Generate SHAP feature importance chart"
+    )
+    parser.add_argument(
+        "dataset",
+        nargs="?",
+        default=None,
+        help="Dataset CSV or JSONL (glob pattern allowed). If not provided, uses the latest batch input.",
+    )
+    parser.add_argument(
+        "--model",
+        default="tipping-monster-xgb-model.bst.gz.b64",
+        help="Path to model .bst(.gz[.b64]) or .tar.gz",
+    )
     parser.add_argument("--out-file", help="Where to save PNG")
-    parser.add_argument("--telegram", action="store_true", help="Send chart to Telegram")
+    parser.add_argument(
+        "--telegram", action="store_true", help="Send chart to Telegram"
+    )
     parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
     args = parser.parse_args(argv)
 
