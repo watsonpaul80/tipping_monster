@@ -88,8 +88,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 48. ✅ Fallback logic if `logs/sent_tips.jsonl` is missing
 49. ✅ Alert if dispatch runs but no tips are sent
-50. Alert if odds snapshot fails or returns too few runners  
-51. Self-heal for missing logs, retry on failure
+50. ✅ Alert if odds snapshot fails or returns too few runners [Done: 2025-06-08]
+51. ✅ Self-heal for missing logs, retry on failure [Done: 2025-06-08]
 
 ### 🧼 Log Management Enhancements (User Suggested)
 
@@ -105,7 +105,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 52. ✅ Calculate and store `odds_delta` (realistic - SP)  
 53. Score tips based on delta + result + confidence  
 54. Reward positive delta wins, penalise drifts  
-55. Add `delta_tag` to messages (e.g. “🔥 Market Mover”)  
+55. ✅ Add `delta_tag` to messages (e.g. “🔥 Market Mover”) [Done: 2025-06-08]
 56. Use as feature or reinforcement signal in future models
 
 ---
