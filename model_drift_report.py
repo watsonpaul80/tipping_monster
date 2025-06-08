@@ -21,7 +21,8 @@ def load_shap_csv(
 ) -> Optional[pd.DataFrame]:
     """Load a ``<date>_shap.csv`` file from ``local_dir`` or S3.
 
-    The CSV must have ``feature`` and ``importance`` columns.
+    The CSV must have ``feature`` and ``importance`` columns. Any temporary
+    file downloaded from S3 is removed after the CSV is read.
     """
     local_path = local_dir / f"{date}_shap.csv"
     if local_path.exists():
@@ -32,7 +33,9 @@ def load_shap_csv(
         try:
             local_dir.mkdir(parents=True, exist_ok=True)
             s3_client.download_file(bucket, key, str(tmp_path))
-            return pd.read_csv(tmp_path)
+            df = pd.read_csv(tmp_path)
+            tmp_path.unlink(missing_ok=True)
+            return df
         except Exception as exc:  # pragma: no cover - network errors vary
             print(f"⚠️ Could not fetch {key}: {exc}")
     return None

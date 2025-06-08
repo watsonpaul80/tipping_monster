@@ -38,6 +38,7 @@
 - `roi_tracker_advised.py` and `tag_roi_tracker.py` now accept `--tag` to filter tips by tag substring.
 - Removed duplicate arguments and calculations in `tag_roi_tracker.py`.
 - Added `--dev` option.
+- `load_shap_csv` now removes temporary S3 downloads after reading to avoid clutter.
 
 ## 2025-06-08
 
@@ -47,7 +48,6 @@
 - `cli/tmcli.py` now supports `dispatch-tips` and `send-roi` commands for one-line Telegram posts.
 
 - `validate_features.py` wraps `core.validate_features` for backward compatibility.
-
 
 ## 2025-06-07
 
