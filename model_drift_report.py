@@ -19,10 +19,10 @@ def load_shap_csv(
     prefix: str = "shap",
     s3_client: Optional[boto3.client] = None,
 ) -> Optional[pd.DataFrame]:
-    """Load a ``<date>_shap.csv`` file from ``local_dir`` or S3.
+    """Load a `<date>_shap.csv` file from `local_dir` or S3.
 
-    The CSV must have ``feature`` and ``importance`` columns. Any temporary
-    file downloaded from S3 is removed after the CSV is read.
+    The CSV must have `feature` and `importance` columns. When downloaded
+    from S3, the temporary file is deleted after reading.
     """
     local_path = local_dir / f"{date}_shap.csv"
     if local_path.exists():
@@ -68,7 +68,7 @@ def compare_rankings(
         if len(ranks_base) > 1:
             corr, _ = spearmanr(ranks_base, ranks_cur)
 
-        drift_flag = " ❗" if corr < threshold else ""
+        drift_flag = " ❗" if corr < threshold else " "
         lines.append(f"- {date}: Spearman {corr:.2f}{drift_flag}")
 
         if drift_flag:
@@ -96,7 +96,12 @@ def generate_report(
     """Create a drift report and return the markdown file path."""
     s3_client = boto3.client("s3") if bucket else None
     local = Path(local_dir)
-    today = datetime.utcnow().date()
+    shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
+    if shap_files:
+        latest = max(f.stem.split("_")[0] for f in shap_files)
+        today = datetime.strptime(latest, "%Y-%m-%d").date()
+    else:
+        today = datetime.utcnow().date()
 
     dfs: list[pd.DataFrame] = []
     dates: list[str] = []

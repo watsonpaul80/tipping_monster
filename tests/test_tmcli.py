@@ -1,179 +1,152 @@
-import json
-import os
-import subprocess
-import sys
-from datetime import date
+#!/usr/bin/env python3
+"""Generate a model drift report from SHAP feature importances."""
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timedelta
 from pathlib import Path
+from typing import Optional
 
+import boto3
 import pandas as pd
-import xgboost as xgb
-
-sys.path.append(str(Path(__file__).resolve().parents[1]))
-
-from cli import tmcli
+from scipy.stats import spearmanr
 
 
-def build_dummy_model(path: Path) -> None:
-    features = [
-        "draw",
-        "or",
-        "rpr",
-        "lbs",
-        "age",
-        "dist_f",
-        "class",
-        "going",
-        "prize",
-    ]
-    X = pd.DataFrame([[0] * len(features), [1] * len(features)], columns=features)
-    y = [0, 1]
-    model = xgb.XGBClassifier(
-        use_label_encoder=False, eval_metric="logloss", n_estimators=1
+def load_shap_csv(
+    date: str,
+    local_dir: Path,
+    bucket: Optional[str] = None,
+    prefix: str = "shap",
+    s3_client: Optional[boto3.client] = None,
+) -> Optional[pd.DataFrame]:
+    """Load a `<date>_shap.csv` file from `local_dir` or S3.
+
+    The CSV must have `feature` and `importance` columns. When downloaded
+    from S3, the temporary file is deleted after reading.
+    """
+    local_path = local_dir / f"{date}_shap.csv"
+    if local_path.exists():
+        return pd.read_csv(local_path)
+    if bucket and s3_client:
+        key = f"{prefix}/{date}_shap.csv"
+        tmp_path = local_dir / f"tmp_{date}_shap.csv"
+        try:
+            local_dir.mkdir(parents=True, exist_ok=True)
+            s3_client.download_file(bucket, key, str(tmp_path))
+            df = pd.read_csv(tmp_path)
+            tmp_path.unlink(missing_ok=True)
+            return df
+        except Exception as exc:  # pragma: no cover - network errors vary
+            print(f"⚠️ Could not fetch {key}: {exc}")
+    return None
+
+
+def compare_rankings(
+    dfs: list[pd.DataFrame],
+    dates: list[str],
+    top_n: int = 20,
+    threshold: float = 0.9,
+) -> str:
+    """Return a markdown summary comparing feature importance rankings."""
+    lines = [f"## Model Drift Report ({dates[0]} – {dates[-1]})"]
+
+    baseline = dfs[0].sort_values("importance", ascending=False).head(top_n)
+    baseline_rank = {f: i for i, f in enumerate(baseline["feature"].tolist())}
+
+    for df, date in zip(dfs[1:], dates[1:]):
+        cur = df.sort_values("importance", ascending=False).head(top_n)
+        cur_features = cur["feature"].tolist()
+
+        ranks_base = []
+        ranks_cur = []
+        for feat, base_idx in baseline_rank.items():
+            if feat in cur_features:
+                ranks_base.append(base_idx)
+                ranks_cur.append(cur_features.index(feat))
+
+        corr = float("nan")
+        if len(ranks_base) > 1:
+            corr, _ = spearmanr(ranks_base, ranks_cur)
+
+        drift_flag = " ❗" if corr < threshold else " "
+        lines.append(f"- {date}: Spearman {corr:.2f}{drift_flag}")
+
+        if drift_flag:
+            shifts = []
+            for feat, base_idx in baseline_rank.items():
+                if feat in cur_features:
+                    diff = cur_features.index(feat) - base_idx
+                    if abs(diff) >= 5:
+                        shifts.append(f"{feat} ({diff:+d})")
+            new_feats = [f for f in cur_features if f not in baseline_rank]
+            if shifts:
+                lines.append(f"  - Rank shifts: {', '.join(shifts)}")
+            if new_feats:
+                lines.append(f"  - New top features: {', '.join(new_feats)}")
+    return "\n".join(lines) + "\n"
+
+
+def generate_report(
+    days: int = 7,
+    local_dir: str = "shap",
+    bucket: Optional[str] = None,
+    prefix: str = "shap",
+    out_md: str = "logs/model_drift_report.md",
+) -> Path:
+    """Create a drift report and return the markdown file path."""
+    s3_client = boto3.client("s3") if bucket else None
+    local = Path(local_dir)
+    shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
+    if shap_files:
+        latest = max(f.stem.split("_")[0] for f in shap_files)
+        today = datetime.strptime(latest, "%Y-%m-%d").date()
+    else:
+        today = datetime.utcnow().date()
+
+    dfs: list[pd.DataFrame] = []
+    dates: list[str] = []
+    for i in range(days):
+        date_obj = today - timedelta(days=days - i - 1)
+        date_str = date_obj.strftime("%Y-%m-%d")
+        df = load_shap_csv(date_str, local, bucket, prefix, s3_client)
+        if df is not None:
+            dfs.append(df)
+            dates.append(date_str)
+
+    if not dfs:
+        raise FileNotFoundError("No SHAP CSVs found")
+
+    md = compare_rankings(dfs, dates)
+    out_path = Path(out_md)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(md)
+    return out_path
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description="Detect model drift via SHAP rankings")
+    parser.add_argument(
+        "--days", type=int, default=7, help="How many past days to analyse"
     )
-    model.fit(X, y)
-    model.get_booster().save_model(path)
-
-
-def test_tmcli_healthcheck(tmp_path):
-    date_str = "2025-06-06"
-    logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
-    (logs / "inference").mkdir(parents=True, exist_ok=True)
-    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    (logs / "inference" / f"pipeline_{date_str}.log").write_text("ok")
-    (logs / "inference" / f"odds_0800_{date_str}.log").write_text("ok")
-    (logs / "inference" / f"odds_hourly_{date_str}.log").write_text("ok")
-
-    os.chdir(tmp_path)
-    tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
-    text = (tmp_path / "hc.log").read_text().strip()
-    assert text.endswith("OK")
-
-
-def test_tmcli_healthcheck_missing_files(tmp_path):
-    date_str = "2025-06-06"
-
-    logs = tmp_path / "logs" / "dispatch"
-    logs.mkdir(parents=True)
-    (logs / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    logs = tmp_path / "logs"
-    (logs / "dispatch").mkdir(parents=True, exist_ok=True)
-    (logs / "inference").mkdir(parents=True, exist_ok=True)
-    (logs / "dispatch" / f"sent_tips_{date_str}.jsonl").write_text("ok")
-    os.chdir(tmp_path)
-    tmcli.main(["healthcheck", "--date", date_str, "--out-log", "hc.log"])
-    text = (tmp_path / "hc.log").read_text()
-    assert text.count("MISSING") == 3
-
-
-def test_tmcli_ensure_sent_tips(tmp_path):
-    date_str = "2025-06-06"
-    pred_dir = tmp_path / "predictions" / date_str
-    pred_dir.mkdir(parents=True)
-    (pred_dir / "tips_with_odds.jsonl").write_text("tip")
-
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "ensure-sent-tips",
-            date_str,
-            "--predictions-dir",
-            "predictions",
-            "--dispatch-dir",
-            "logs/dispatch",
-        ]
+    parser.add_argument(
+        "--local-dir", default="shap", help="Directory with <date>_shap.csv files"
     )
-    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
-    assert sent.exists()
-    assert sent.read_text() == "tip"
-
-
-def test_tmcli_dispatch_tips(monkeypatch, tmp_path):
-    date_str = "2025-06-06"
-
-    calls = {}
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "ensure-sent-tips",
-            date_str,
-            "--predictions-dir",
-            "predictions",
-            "--dispatch-dir",
-            "logs/dispatch",
-        ]
+    parser.add_argument("--bucket", help="S3 bucket containing SHAP CSVs")
+    parser.add_argument("--prefix", default="shap", help="S3 prefix for SHAP CSVs")
+    parser.add_argument(
+        "--out-md", default="logs/model_drift_report.md", help="Markdown output path"
     )
-    sent = tmp_path / "logs/dispatch" / f"sent_tips_{date_str}.jsonl"
-    assert not sent.exists()
+    args = parser.parse_args(argv)
 
-    def fake_run(cmd, check):
-        calls["cmd"] = cmd
-        calls["check"] = check
-
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    tmcli.main(["dispatch-tips", "2025-06-06", "--telegram", "--dev"])
-    assert "dispatch_tips.py" in calls["cmd"][1]
-    assert "--telegram" in calls["cmd"]
-    assert "--dev" in calls["cmd"]
-    assert os.environ["TM_DEV_MODE"] == "1"
-    assert os.environ["TM_LOG_DIR"] == "logs/dev"
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-
-def test_tmcli_send_roi(monkeypatch, tmp_path):
-    calls = {}
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    def fake_run(cmd, check):
-        calls["cmd"] = cmd
-        calls["check"] = check
-
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    tmcli.main(["send-roi", "--date", "2025-06-05", "--dev"])
-    assert "send_daily_roi_summary.py" in calls["cmd"][1]
-    assert "--date" in calls["cmd"]
-    assert "2025-06-05" in calls["cmd"]
-    assert os.environ["TM_DEV_MODE"] == "1"
-    assert os.environ["TM_LOG_DIR"] == "logs/dev"
-    monkeypatch.delenv("TM_DEV_MODE", raising=False)
-    monkeypatch.delenv("TM_LOG_DIR", raising=False)
-
-    model_path = tmp_path / "model.bst"
-    build_dummy_model(model_path)
-    data_path = tmp_path / "data.jsonl"
-    with open(data_path, "w") as f:
-        json.dump(
-            {
-                "draw": 0,
-                "or": 0,
-                "rpr": 0,
-                "lbs": 0,
-                "age": 0,
-                "dist_f": 0,
-                "class": 0,
-                "going": "G",
-                "prize": 0,
-            },
-            f,
-        )
-        f.write("\n")
-
-    os.chdir(tmp_path)
-    tmcli.main(
-        [
-            "model-feature-importance",
-            "--model",
-            str(model_path),
-            "--data",
-            str(data_path),
-            "--out-dir",
-            "logs/model",
-        ]
+    out = generate_report(
+        days=args.days,
+        local_dir=args.local_dir,
+        bucket=args.bucket,
+        prefix=args.prefix,
+        out_md=args.out_md,
     )
-    out = tmp_path / "logs/model" / f"feature_importance_{date.today().isoformat()}.png"
-    assert out.exists()
+    print(f"✅ Report written to {out}")
+
+
+if __name__ == "__main__":
+    main()

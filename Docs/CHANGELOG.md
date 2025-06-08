@@ -1,4 +1,12 @@
-# 📅 CHANGELOG
+## 2025-06-13
+
+### Changed
+- Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
+- ROI trackers now import this helper instead of defining it locally.
+
+### Removed
+- Deleted `tipping-monster-xgb-model.bst` from the repository. Tests now
+  generate a temporary XGBoost model instead.
 
 ## 2025-06-15
 
@@ -11,15 +19,10 @@
 - Removed lightweight model binary from the repository. Unit tests now build a
   temporary XGBoost model instead.
 
-## 2025-06-13
-
-### Changed
-- Centralized each-way place term logic in `tippingmonster.utils.get_place_terms()`.
-- ROI trackers now import this helper instead of defining it locally.
-
 ## 2025-06-12
 
 ### Fixed
+- `load_shap_csv()` now deletes the downloaded temp file after reading.
 - Removed duplicate `requests` entry from `requirements.txt`.
 - Added missing `send_telegram_message` import in `dispatch_all_tips.py`.
 
@@ -157,5 +160,3 @@
 
 ### Testing & Validation
 - Verified full odds snapshot → comparison → steamer flow.
-
----
