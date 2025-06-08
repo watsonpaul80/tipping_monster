@@ -10,6 +10,7 @@
 
 ### Fixed
 - Removed duplicate `requests` entry from `requirements.txt`.
+- Added missing `send_telegram_message` import in `dispatch_all_tips.py`.
 
 ## 2025-06-10
 
