@@ -83,6 +83,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `roi/calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `roi/weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
 * `roi/generate_weekly_summary.py`: Outputs weekly performance in human-readable format.
+* `roi/generate_weekly_roi.py`: Creates `weekly_summary_YYYY-WW.csv` with ROI and strike rate for the week.
 * `roi/generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `roi/send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
 

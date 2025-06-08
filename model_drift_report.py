@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import argparse
-import datetime  # imported so tests can patch ``model_drift_report.datetime`` # noqa: F401
-from datetime import timedelta
+import datetime as dt
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -100,11 +100,12 @@ def generate_report(
     shap_files = sorted(Path(local_dir).glob("*_shap.csv"))
     if shap_files:
         latest = max(f.stem.split("_")[0] for f in shap_files)
-        # Use pandas to parse the date so tests that patch ``datetime`` still
-        # work correctly.
-        today = pd.to_datetime(latest).date()
-    else:
-        today = pd.Timestamp.utcnow().date()
+# Use pandas to parse the date so tests that patch ``datetime`` still
+# work correctly.
+today = pd.to_datetime(latest).date()
+else:
+    today = pd.Timestamp.utcnow().date()
+
 
     dfs: list[pd.DataFrame] = []
     dates: list[str] = []

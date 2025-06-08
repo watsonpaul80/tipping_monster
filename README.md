@@ -112,6 +112,9 @@ Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in
 `monster_confidence_per_day_with_roi.csv`).
 
+The Streamlit P&L dashboard includes a *Positive ROI Bands Only* checkbox that
+uses this same file to filter tips.
+
 These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
