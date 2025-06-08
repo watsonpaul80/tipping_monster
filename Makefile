@@ -13,4 +13,4 @@ test: dev-check
 	.venv/bin/pytest -q
 
 dev-check:
-	bash dev-check.sh
+	bash utils/dev-check.sh
