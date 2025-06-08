@@ -69,12 +69,17 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh weekly_summary /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/roi/generate_weekly_summary.py`
     *   **Internal Logs:** Likely writes to `logs/roi/`.
 
-8.  **Send Weekly ROI to Telegram (`roi/weekly_roi_summary.py`)**
+8.  **Generate Weekly ROI CSV (`roi/generate_weekly_roi.py`)**
+    *   **Frequency:** Weekly, Sunday at 23:10
+    *   **Purpose:** Rolls up daily advised results into a single weekly ROI file.
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh weekly_roi /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/roi/generate_weekly_roi.py`
+
+9.  **Send Weekly ROI to Telegram (`roi/weekly_roi_summary.py`)**
     *   **Frequency:** Weekly, Sunday at 23:58
     *   **Purpose:** Sends a summary of the week's ROI to a Telegram channel.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/roi/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram`
 
-9.  **Generate Weekly SHAP Chart (`model_feature_importance.py`)**
+10. **Generate Weekly SHAP Chart (`model_feature_importance.py`)**
     *   **Frequency:** Weekly, Sunday at 23:55
     *   **Purpose:** Creates a SHAP feature importance chart and posts it to Telegram.
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh model_features /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/model_feature_importance.py --telegram`

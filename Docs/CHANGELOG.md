@@ -1,7 +1,35 @@
+
 ## 2025-06-21
 
 ### Added
 - `win_rate_by_tag.py` aggregates win rate and ROI by tag across all tips.
+=======
+
+## 2025-06-17
+
+### Added
+- `utils/band_roi_filter.py` with `is_band_profitable()` helper.
+=======
+
+## 2025-06-17
+
+### Added
+- Streamlit dashboard now includes an ROI Summary table with a CSV download button.
+
+## 2025-06-17
+
+### Added
+- New `generate_weekly_roi.py` script creates weekly ROI CSVs in `logs/weekly_summaries/`.
+
+## 2025-06-19
+
+### Added
+- Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
+  Breakdown for winners or placed horses.
+
+
+
+
 
 ## 2025-06-13
 
@@ -18,6 +46,12 @@
 ### Added
 - `dispatch_tips.py` skips tips below 0.80 confidence unless their confidence
   band has shown positive ROI in the past 30 days.
+
+## 2025-06-17
+
+### Fixed
+- `test_model_drift` now verifies SHAP files exist and uses a stable datetime
+  override to prevent `FileNotFoundError`.
 
 ## 2025-06-15
 
