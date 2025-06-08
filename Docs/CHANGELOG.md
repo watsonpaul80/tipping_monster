@@ -19,6 +19,11 @@
 - Removed lightweight model binary from the repository. Unit tests now build a
   temporary XGBoost model instead.
 
+## 2025-06-13
+
+### Fixed
+- Added missing `requests` import in `roi/weekly_roi_summary.py`.
+
 ## 2025-06-12
 
 ### Fixed
