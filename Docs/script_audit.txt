@@ -69,6 +69,7 @@ core/run_pipeline_with_venv.sh - keep
 roi/run_roi_pipeline.sh - keep
 utils/safecron.sh - keep
 roi/send_daily_roi_summary.py - keep
+roi/generate_weekly_roi.py - keep
 cli/streamlit_dashboard.py - keep
 cli/pauls_view_dashboard.py - keep
 roi/tag_roi_tracker.py - keep

@@ -1,8 +1,15 @@
+
+## 2025-06-17
+
+### Added
+- New `generate_weekly_roi.py` script creates weekly ROI CSVs in `logs/weekly_summaries/`.
+
 ## 2025-06-19
 
 ### Added
 - Streamlit dashboard now includes sidebar checkboxes to filter the Full Tip
   Breakdown for winners or placed horses.
+
 
 ## 2025-06-13
 
