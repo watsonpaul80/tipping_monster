@@ -1,5 +1,10 @@
 # 📅 CHANGELOG
 
+## 2025-06-15
+
+### Changed
+- `generate_unified_roi_sheet.py` now merges ROI CSVs from any year.
+
 ## 2025-06-14
 
 ### Changed
