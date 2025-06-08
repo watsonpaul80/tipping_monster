@@ -10,6 +10,11 @@
 ### Added
 - New `tip_has_tag()` helper in `tippingmonster.utils` for tag substring checks.
 
+## 2025-06-12
+
+### Fixed
+- Removed duplicate `tip_has_tag` entry from `tippingmonster.__all__`.
+
 ## 2025-06-09
 - Moved pipeline and ROI scripts into `core/`, `roi/`, and `utils/` directories. Updated docs and README references.
 
