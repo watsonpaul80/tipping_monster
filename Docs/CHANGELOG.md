@@ -1,3 +1,8 @@
+## 2025-06-17
+
+### Added
+- Streamlit dashboard now includes an ROI Summary table with a CSV download button.
+
 ## 2025-06-13
 
 ### Changed
