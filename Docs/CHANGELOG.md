@@ -11,6 +11,11 @@
 - `dispatch_danger_favs.py` formats and sends Danger Fav alerts.
 - `track_lay_candidates_roi.py` computes lay ROI for Danger Favs.
 
+## 2025-06-21
+
+### Added
+- `export_lay_candidates_csv.py` converts `danger_favs.jsonl` into a readable CSV.
+
 ## 2025-06-08
 
 ### Fixed
