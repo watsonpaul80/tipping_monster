@@ -1,6 +1,9 @@
 
 ## 2025-06-08
 
+### Added
+- Rolling 30-day ROI line chart in Paul's View dashboard.
+
 ### Documentation
 - Updated monster_todo.md with newly completed tasks.
 

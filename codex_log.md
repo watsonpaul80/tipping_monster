@@ -21,3 +21,7 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+## [2025-06-08] Add rolling ROI chart to Paul's View
+**Prompt:** Add 30-day rolling ROI line chart to streamlit_pauls_view.py
+**Files Changed:** cli/pauls_view_dashboard.py, Docs/monster_todo.md, Docs/CHANGELOG.md, tests/test_model_drift_report.py
+**Outcome:** Dashboard now plots 30-day ROI trend; docs updated; failing test fixed.

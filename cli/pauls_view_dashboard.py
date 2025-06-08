@@ -68,6 +68,16 @@ cum_profit = df_filtered.groupby("Date")[profit_col].sum().cumsum()
 cum_profit.plot(marker="o", grid=True)
 st.pyplot(plt.gcf())
 
+# === 30-Day Rolling ROI ===
+st.subheader("\U0001f4c9 30-Day Rolling ROI")
+daily = df_filtered.groupby("Date").agg({profit_col: "sum", "Stake": "sum"})
+daily["ROI"] = (daily[profit_col] / daily["Stake"]) * 100
+rolling_roi = daily["ROI"].rolling(window=30, min_periods=1).mean()
+fig, ax = plt.subplots()
+rolling_roi.plot(ax=ax, marker="o", grid=True)
+ax.set_ylabel("ROI %")
+st.pyplot(fig)
+
 # === Breakdown Table ===
 st.subheader("\U0001f4cc Full Tip Breakdown")
 show_cols = [

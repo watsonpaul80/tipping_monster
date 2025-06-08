@@ -161,3 +161,4 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 83. **Telegram Sandbox** — dev channel for testing dispatch.
 84. **Typed Dataset Schema** — enforce columns with `pandera`.
 85. **Rolling 30-Day ROI** — auto-generated summary in logs.
+86. ✅ 30-Day ROI chart in Paul's View dashboard *(2025-06-08)*

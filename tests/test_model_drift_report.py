@@ -1,11 +1,13 @@
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from datetime import datetime, timedelta # Import timedelta explicitly for the test
+from datetime import datetime  # Import timedelta explicitly for the test
+from datetime import timedelta
 
 from model_drift_report import generate_report
 
@@ -37,13 +39,12 @@ def test_model_drift(tmp_path):
     ).to_csv(local_dir / f"{dates[2]}_shap.csv", index=False)
 
     out_md = tmp_path / "report.md"
-    
+
     with patch("model_drift_report.datetime") as dt:
         dt.utcnow.return_value = datetime(2025, 6, 6)
         dt.timedelta = timedelta
         dt.date = datetime.date
         dt.strptime.side_effect = lambda s, fmt: datetime.strptime(s, fmt)
-
 
     # Verify all SHAP files exist before running the report
     for date in dates:
@@ -58,7 +59,7 @@ def test_model_drift(tmp_path):
 
         @classmethod
         def today(cls):
-            return cls.utcnow().date() # Ensure .today() also returns the fixed date
+            return cls.utcnow().date()  # Ensure .today() also returns the fixed date
 
         # We also need to mock strptime if it's used directly on the datetime object
         # but in model_drift_report, pd.to_datetime is used which handles patching internally
