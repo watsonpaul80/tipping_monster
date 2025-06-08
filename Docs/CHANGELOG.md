@@ -20,6 +20,12 @@
 - `dispatch_tips.py` skips tips below 0.80 confidence unless their confidence
   band has shown positive ROI in the past 30 days.
 
+## 2025-06-17
+
+### Fixed
+- `test_model_drift` now verifies SHAP files exist and uses a stable datetime
+  override to prevent `FileNotFoundError`.
+
 ## 2025-06-15
 
 ### Changed
