@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -31,6 +31,47 @@ def get_roi_summary(date: str, base_dir: Path | None = None) -> str:
     roi = (profit / stake * 100) if stake else 0
     tips = len(df)
     return f"ROI {date}: {profit:+.2f} pts ({roi:.2f}%) from {tips} tips"
+
+
+def get_weekly_roi_summary(
+    date: str | None = None, base_dir: Path | None = None
+) -> str:
+    """Return ROI summary for the ISO week containing ``date`` or today."""
+    base_dir = base_dir or repo_path()
+    target = datetime.strptime(date, "%Y-%m-%d") if date else datetime.today()
+    iso_year, iso_week, _ = target.isocalendar()
+    monday = datetime.strptime(f"{iso_year}-W{iso_week}-1", "%G-W%V-%u")
+    week_dates = [(monday + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
+
+    rows = []
+    for ds in week_dates:
+        csv_path = base_dir / "logs" / "roi" / f"tips_results_{ds}_advised.csv"
+        if csv_path.exists():
+            df = pd.read_csv(csv_path)
+            rows.append(df)
+
+    if not rows:
+        week_label = f"{iso_year}-W{iso_week:02d}"
+        return f"No ROI data for week {week_label}"
+
+    df = pd.concat(rows, ignore_index=True)
+    df["Position"] = (
+        pd.to_numeric(df["Position"], errors="coerce").fillna(0).astype(int)
+    )
+    df["Profit"] = pd.to_numeric(df["Profit"], errors="coerce").fillna(0)
+    df["Stake"] = pd.to_numeric(df["Stake"], errors="coerce").fillna(0)
+
+    tips = len(df)
+    wins = (df["Position"] == 1).sum()
+    places = df["Position"].apply(lambda x: 2 <= x <= 4).sum()
+    profit = df["Profit"].sum()
+    stake = df["Stake"].sum()
+    roi = (profit / stake * 100) if stake else 0
+    week_label = f"{iso_year}-W{iso_week:02d}"
+    return (
+        f"Week {week_label}: {profit:+.2f} pts profit "
+        f"({roi:.2f}% ROI) from {tips} tips ({wins}W/{places}P)"
+    )
 
 
 def get_recent_naps(days: int = 7, base_dir: Path | None = None) -> str:
@@ -116,13 +157,13 @@ async def _reply(update: Update, message: str) -> None:
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle /start command."""
-    await _reply(update, "Send /roi YYYY-MM-DD to get ROI summary.")
+    await _reply(update, "Send /roi to get this week's ROI summary.")
 
 
 async def roi(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle /roi [DATE] command."""
-    date = context.args[0] if context.args else datetime.today().strftime("%Y-%m-%d")
-    message = get_roi_summary(date)
+    date = context.args[0] if context.args else None
+    message = get_weekly_roi_summary(date)
     await _reply(update, message)
 
 

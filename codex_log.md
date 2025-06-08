@@ -32,6 +32,12 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
 
+## [2025-06-08] Add weekly ROI Telegram command
+**Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
+**Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** Telegram bot now returns weekly ROI summary via /roi.
+=======
+
 ## [2025-06-08] Add log archiving utility
 **Prompt:** Create archive_old_logs.py to zip and move logs older than 14 days into logs/archive/.
 **Files Changed:** utils/archive_old_logs.py, tests/test_archive_old_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, Docs/script_audit.txt, codex_log.md

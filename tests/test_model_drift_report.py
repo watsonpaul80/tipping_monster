@@ -53,7 +53,7 @@ def test_model_drift(tmp_path):
 
         @classmethod
         def today(cls):
-            return cls.utcnow().date()
+            return cls.utcnow().date()  # Ensure .today() also returns the fixed date
 
     import model_drift_report as mdr
 

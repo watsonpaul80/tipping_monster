@@ -2,6 +2,12 @@
 ## 2025-06-08
 
 ### Added
+
+- Telegram bot `/roi` now reports weekly profit, ROI and win/place counts.
+
+### Documentation
+- Updated monster_todo.md with newly completed tasks.
+
 - `telegram_bot.py` with `/roi` command to send ROI summaries.
 
 ## 2025-06-13
@@ -16,6 +22,7 @@
 - ROI tracker flags winners with `odds_delta` over 5.0 as "💸 Value Win".
 - `/nap` Telegram command shows last 7 NAPs with ROI stats.
 - `train_place_model.py` to build a place-focused XGBoost model (top 3 finishers).
+
 
 
 ## 2025-06-20
