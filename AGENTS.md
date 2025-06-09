@@ -9,7 +9,7 @@
 - If tests fail due to missing dependencies or external API issues (e.g., Betfair), document this in the PR or task log.
 
 ### 📝 Documentation Protocol
-- Keep all `*.md` files up to date when relevant changes are made (especially `TIPPING_MONSTER_TODO.md`, `monster_overview.md`, and `CHANGELOG.md`).
+ - Keep all `*.md` files up to date when relevant changes are made (especially `Docs/monster_todo.md`, `monster_overview.md`, and `CHANGELOG.md`).
 - Summarise any significant system changes in `CHANGELOG.md` immediately after implementation.
 
 ### 🎨 Code Style
