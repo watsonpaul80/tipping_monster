@@ -60,8 +60,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
-32. Penalise stale horses and poor form  
-33. Add weekly ROI line chart (matplotlib) to logs  
+32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
+33. ✅ Add weekly ROI line chart (matplotlib) to logs *(Done: 2025-06-26)*
 34. Include win/loss emoji outcomes in Telegram ROI  
 35. Optional: highlight top winners in Telegram  
 36. NAP-only output mode for casual tier  
@@ -169,4 +169,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 89. ✅ /tip bot command to show latest horse tip [Done: 2025-06-24]
 90. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
 91. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
+92. ✅ Weekly ROI commentary logs with top/worst day and trend [Done: 2025-06-26]
+
+92. ✅ `AGENTS.md` reference updated to `Docs/monster_todo.md` [Done: 2025-06-26]
 
