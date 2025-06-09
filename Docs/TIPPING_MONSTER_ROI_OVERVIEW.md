@@ -41,6 +41,7 @@ ROI is tracked across the following dimensions:
 - `weekly_summary.csv`
 - `rolling_roi.csv`
 - `staking_simulation.png`
+- `roi_trend_<week>.png`
 
 - Each log row includes `odds_delta` (realistic vs SP)  
   These are ready for pivoting, filtering, and dashboard integration.
