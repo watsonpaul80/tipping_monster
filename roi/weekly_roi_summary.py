@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from roi_by_confidence_band import assign_band
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 
@@ -37,6 +38,35 @@ def get_week_dates(iso_week):
     year, week = iso_week.split("-W")
     monday = datetime.strptime(f"{year}-W{week}-1", "%G-W%V-%u")
     return [(monday + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(7)]
+
+
+def summarise_bands(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["Confidence"] = pd.to_numeric(df.get("Confidence"), errors="coerce")
+    df["Profit"] = pd.to_numeric(df.get("Profit"), errors="coerce").fillna(0)
+    df["Stake"] = pd.to_numeric(df.get("Stake"), errors="coerce").fillna(0)
+    df["Band"] = df["Confidence"].apply(assign_band)
+    df = df.dropna(subset=["Band"])
+    if df.empty:
+        return pd.DataFrame()
+    summary = (
+        df.groupby("Band")
+        .apply(
+            lambda g: pd.Series(
+                {
+                    "Tips": len(g),
+                    "Wins": (g["Position"].astype(str) == "1").sum(),
+                    "Stake": g["Stake"].sum(),
+                    "Profit": g["Profit"].sum(),
+                }
+            )
+        )
+        .reset_index()
+    )
+    summary["ROI"] = summary.apply(
+        lambda r: (r.Profit / r.Stake * 100) if r.Stake else 0, axis=1
+    )
+    return summary.sort_values("Band")
 
 
 def load_week_data(week_dates, mode="advised"):
@@ -122,6 +152,27 @@ def main(week, send_telegram=False):
             f"| ROI: {row.ROI:.2f}%"
         )
 
+    band_summary = summarise_bands(df)
+    band_path = logs_path("roi", f"band_summary_{week}.csv")
+    if not band_summary.empty:
+        band_summary.to_csv(band_path, index=False)
+
+        best_band = band_summary.loc[band_summary["ROI"].idxmax(), "Band"]
+        worst_band = band_summary.loc[band_summary["ROI"].idxmin(), "Band"]
+
+        for _, row in band_summary.iterrows():
+            emoji = ""
+            if row.Band == best_band:
+                emoji = " 🏆"
+            elif row.Band == worst_band:
+                emoji = " 🐌"
+            print(
+                f"🔹 {row.Band} → {int(row.Tips)} tips, {int(row.Wins)}W, "
+                f"Profit: {row.Profit:+.2f} pts | ROI: {row.ROI:.2f}%{emoji}"
+            )
+    else:
+        best_band = worst_band = None
+
     if send_telegram:
         msg = (
             f"*📊 Weekly ROI Summary ({week}) – {mode.capitalize()}*\n\n"
@@ -140,6 +191,18 @@ def main(week, send_telegram=False):
                 f"🟢 {int(row.Wins)}W, 🟡 {int(row.Places)}P, "
                 f"ROI: {row.ROI:.2f}%"
             )
+        if not band_summary.empty:
+            msg += "\n\n*By Confidence Band*"
+            for _, row in band_summary.iterrows():
+                emoji = ""
+                if row.Band == best_band:
+                    emoji = " 🏆"
+                elif row.Band == worst_band:
+                    emoji = " 🐌"
+                msg += (
+                    f"\n{row.Band} → {int(row.Tips)} tips, {int(row.Wins)}W, "
+                    f"ROI: {row.ROI:.2f}%{emoji}"
+                )
         send_to_telegram(msg, TOKEN, CHAT_ID)
         print("✅ Sent to Telegram")
 
