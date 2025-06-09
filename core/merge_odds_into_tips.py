@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import json
-from pathlib import Path
-from datetime import datetime
 import re
+from datetime import datetime
+from pathlib import Path
 
 # === PATHS ===
 today = datetime.utcnow().date().isoformat()
@@ -65,6 +65,13 @@ for tip in tips:
 
     if match:
         tip["bf_sp"] = match["bf_sp"]
+        try:
+            conf = float(tip.get("confidence", 0))
+            bf_sp = float(tip["bf_sp"])
+            if bf_sp > 0:
+                tip["value_score"] = round((conf / bf_sp) * 100, 2)
+        except Exception:
+            pass
         merged.append(tip)
     else:
         unmatched.append(f"{tip['name']} in {tip['race']}")

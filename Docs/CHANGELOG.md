@@ -1,3 +1,15 @@
+## 2025-06-24
+
+### Added
+- `value_score` calculation in `merge_odds_into_tips.py`.
+- New `💰 Value Pick` tag in dispatched tips.
+
+### Changed
+- `dispatch_tips.py` now labels tips with high value scores.
+
+### Fixed
+- Updated docs and tests for the new value logic.
+
 ## 2025-06-23
 
 ### Added
