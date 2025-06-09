@@ -1,3 +1,8 @@
+## 2025-06-24
+
+### Added
+- `generate_rolling_roi.py` computes 30-day rolling ROI to `logs/roi/rolling_roi.csv`.
+
 ## 2025-06-23
 
 ### Added

@@ -1,3 +1,8 @@
+## [2025-06-24] Add rolling ROI script
+**Prompt:** Compute 30-day rolling ROI from sent logs.
+**Files Changed:** generate_rolling_roi.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, all_scripts.txt, codex_log.md
+**Outcome:** New CSV logs daily and rolling ROI figures.
+
 
 ## [2025-06-23] Log auto tweets in dev mode
 **Prompt:** Before posting tweets, check `TM_DEV_MODE`.
