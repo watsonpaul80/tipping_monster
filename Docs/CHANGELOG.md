@@ -1,3 +1,8 @@
+## 2025-06-26
+
+### Changed
+- Deduplicated script paths in `all_scripts.txt` and removed obsolete `utils/secrets1.py`.
+
 ## 2025-06-25
 
 ### Added

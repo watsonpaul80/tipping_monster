@@ -1,3 +1,8 @@
+## [2025-06-26] Clean up script list
+**Prompt:** Remove obsolete paths and deduplicate names in all_scripts.txt.
+**Files Changed:** all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** all_scripts.txt lists each script once; obsolete secrets entry removed.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
