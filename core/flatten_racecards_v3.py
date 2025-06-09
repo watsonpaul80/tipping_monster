@@ -2,6 +2,7 @@
 import json
 import sys
 
+
 def form_score(form):
     if not isinstance(form, str):
         return -1
@@ -12,13 +13,27 @@ def form_score(form):
     trend = (digits[-1] - digits[0]) if len(digits) > 1 else 0
     return win_ratio * 100 - trend
 
+
 def encode_headgear(h):
     h = (h or "").lower()
-    if "b" in h: return 1
-    if "v" in h: return 2
-    if "c" in h: return 3
-    if "h" in h: return 4
+    if "b" in h:
+        return 1
+    if "v" in h:
+        return 2
+    if "c" in h:
+        return 3
+    if "h" in h:
+        return 4
     return 0
+
+
+def stale_penalty(form: str, days_since: float) -> int:
+    """Return ``-1`` if the horse looks stale, otherwise ``0``."""
+    digits = [int(ch) for ch in str(form) if ch.isdigit()]
+    poor_form = len(digits) >= 3 and all(d > 4 for d in digits[:3])
+    long_break = days_since > 60
+    return -1 if poor_form or long_break else 0
+
 
 def flatten_racecard(input_json):
     with open(input_json) as f:
@@ -44,7 +59,8 @@ def flatten_racecard(input_json):
                             .replace("£", "")
                             .replace("€", "")
                             .replace(",", "")
-                            .strip() or 0
+                            .strip()
+                            or 0
                         )
                     except:
                         prize_val = 0.0
@@ -73,11 +89,15 @@ def flatten_racecard(input_json):
                         "jockey_rtf": runner.get("jockey_rtf", -1),
                         "form_score": form_score(runner.get("form", "")),
                         "days_since_run": days_since,
+                        "stale_penalty": stale_penalty(
+                            runner.get("form", ""), days_since
+                        ),
                         "headgear_type": encode_headgear(runner.get("headgear", "")),
-                        "draw_bias_rank": draw_val / max(field_size, 1)
+                        "draw_bias_rank": draw_val / max(field_size, 1),
                     }
                     output.append(flat)
     return output
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
@@ -93,4 +113,3 @@ if __name__ == "__main__":
             out.write(json.dumps(row) + "\n")
 
     print(f"✅ Flattened {len(rows)} runners to {output_path}")
-
