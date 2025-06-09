@@ -37,6 +37,7 @@ A typical daily pipeline runs the following steps:
 08:08  core/merge_odds_into_tips.py    # Attach odds to tips
 08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  core/dispatch_tips.py           # Send tips to Telegram
+08:13  generate_combos.py              # Suggest Monster doubles/trebles
 23:30  rpscrape (results cron)         # Get results for today
 23:55  roi/roi_tracker_advised.py      # Link tips to results and calc profit
 23:59  roi/send_daily_roi_summary.py  # Telegram summary of ROI

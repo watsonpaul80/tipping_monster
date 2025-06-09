@@ -3,6 +3,7 @@
 
 ### Added
 - Reusable `generate_commentary` helper for tag-based blurbs.
+- `generate_combos.py` suggests high-confidence doubles and trebles.
 
 ### Changed
 - `dispatch_tips.py` now writes commentary for each tip via the helper.
