@@ -1,3 +1,9 @@
+## 2025-06-26
+
+### Added
+- `rolling_roi_30.csv` tracks tips, wins, places, profit and strike rate for the last 30 days.
+- `run_roi_pipeline.sh` now refreshes this log automatically.
+
 ## 2025-06-25
 
 ### Added

@@ -160,7 +160,9 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 82. ✅ **Stats API** — expose JSON endpoints for ROI and tips. [Done: 2025-06-24]
 83. **Telegram Sandbox** — dev channel for testing dispatch.
 84. **Typed Dataset Schema** — enforce columns with `pandera`.
-85. **Rolling 30-Day ROI** — auto-generated summary in logs. [Done: 2025-06-24]
+85. **Rolling 30-Day ROI** — auto-generated summary in logs.
+    - ✅ Initial version [Done: 2025-06-24]
+    - ✅ Added tips/wins/places and strike rate [Done: 2025-06-26]
 86. ✅ Removed unused `check_betfair_market_times.py` script [Done: 2025-06-23]
 87. ✅ Draw Advantage tag if `draw_bias_rank` > 0.7 [Done: 2025-06-24]
 88. ✅ Danger Fav history logging [Done: 2025-06-25]
