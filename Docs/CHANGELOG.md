@@ -1,3 +1,8 @@
+## 2025-06-25
+
+### Added
+- `simulate_staking.py` to compare level, confidence and value staking profiles.
+
 ## 2025-06-24
 
 

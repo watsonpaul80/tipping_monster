@@ -80,3 +80,4 @@ utils/upload_logs_to_s3.sh - keep
 roi/weekly_roi_summary.py - keep
 
 
+simulate_staking.py - keep
