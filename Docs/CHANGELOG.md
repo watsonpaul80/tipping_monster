@@ -3,6 +3,7 @@
 
 ### Added
 - Reusable `generate_commentary` helper for tag-based blurbs.
+- `/tip` Telegram command shows the latest tip details for a horse.
 
 ### Changed
 - `dispatch_tips.py` now writes commentary for each tip via the helper.

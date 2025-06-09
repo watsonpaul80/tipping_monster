@@ -103,7 +103,7 @@ python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
 python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
-python telegram_bot.py --dev  # start Telegram bot with /roi weekly command
+python telegram_bot.py --dev  # start Telegram bot with /roi, /nap and /tip commands
 ```
 
 ## Tip Dispatch

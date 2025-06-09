@@ -77,3 +77,25 @@ def test_get_recent_naps(tmp_path):
     assert "Horse2" in summary
     assert "Horse1" in summary
     assert "ROI" in summary
+
+
+def test_get_tip_info(tmp_path):
+    base = tmp_path
+    (base / "logs").mkdir()
+    tip = {
+        "race": "2:00 Test",
+        "name": "Knebworth",
+        "confidence": 0.85,
+        "tags": ["🚀"],
+        "commentary": "Nice chance",
+        "bf_sp": 5.0,
+    }
+    with open(base / "logs" / "sent_tips_2025-06-07.jsonl", "w", encoding="utf-8") as f:
+        f.write(json.dumps(tip) + "\n")
+
+    summary = telegram_bot.get_tip_info("Knebworth", base)
+    assert "2:00 Test" in summary
+    assert "85.0%" in summary
+    assert "🚀" in summary
+    assert "Nice chance" in summary
+    assert "5.0" in summary
