@@ -1,3 +1,8 @@
+## [2025-06-26] Add weekly ROI trend chart
+**Prompt:** Create a matplotlib line graph showing ROI per day for the past 7 days and save it to `logs/roi/roi_trend_<week>.png`.
+**Files Changed:** roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, codex_log.md
+**Outcome:** Weekly summary now outputs an ROI trend chart for each week.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
