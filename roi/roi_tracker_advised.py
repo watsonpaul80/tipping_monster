@@ -7,6 +7,8 @@ from datetime import datetime
 
 import pandas as pd
 
+from core.tip import Tip
+
 # isort: off
 from tippingmonster import (
     get_place_terms,
@@ -115,7 +117,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
     tips = []
     with open(input_file, "r") as f:
         for line in f:
-            tip = json.loads(line)
+            tip = Tip.from_dict(json.loads(line))
             if tip.get("confidence", 0.0) >= min_conf and (
                 not tag or tip_has_tag(tip, tag)
             ):
@@ -138,7 +140,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
         )
         return
 
-    tips_df = pd.DataFrame(tips)
+    tips_df = pd.DataFrame(tip.to_dict() for tip in tips)
 
     try:
         results_df = pd.read_csv(results_path)

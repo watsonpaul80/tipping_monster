@@ -1,11 +1,14 @@
 ## 2025-06-25
 
 ### Added
+
 - Expressive commentary style with `--comment-style` or `TM_COMMENT_STYLE`.
+- `Tip` dataclass for structured tip handling.
+
+### Changed
+- Dispatch and ROI scripts now load and save tips using the dataclass.
 
 ## 2025-06-24
-
-
 ### Added
 - Reusable `generate_commentary` helper for tag-based blurbs.
 
