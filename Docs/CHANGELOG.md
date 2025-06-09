@@ -1,6 +1,7 @@
 ## 2025-06-25
 
 ### Added
+- `stale_penalty` feature in `flatten_racecards_v3.py` penalises horses with poor form or long layoffs.
 - Danger Fav history logging via `generate_lay_candidates.py`.
 
 

@@ -60,7 +60,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
-32. Penalise stale horses and poor form  
+32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
 33. Add weekly ROI line chart (matplotlib) to logs  
 34. Include win/loss emoji outcomes in Telegram ROI  
 35. Optional: highlight top winners in Telegram  

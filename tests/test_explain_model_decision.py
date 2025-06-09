@@ -21,6 +21,7 @@ def build_dummy_model(path: Path) -> None:
         "class",
         "going",
         "prize",
+        "stale_penalty",
     ]
     X = pd.DataFrame([[0] * len(features), [1] * len(features)], columns=features)
     y = [0, 1]
@@ -44,6 +45,7 @@ def test_generate_explanations(tmp_path):
         "class": 4,
         "going": "Good",
         "prize": 5000,
+        "stale_penalty": 0,
     }
     p = tmp_path / "tips.jsonl"
     with open(p, "w") as f:
