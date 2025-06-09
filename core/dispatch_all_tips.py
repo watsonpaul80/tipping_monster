@@ -6,6 +6,7 @@ from datetime import date
 
 from dotenv import load_dotenv
 
+from core.tip import Tip
 from tippingmonster import send_telegram_message
 
 load_dotenv()
@@ -14,15 +15,15 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 
-def read_tips(path):
-    tips = []
+def read_tips(path: str) -> list[Tip]:
+    tips: list[Tip] = []
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line:
                 continue
             try:
-                tips.append(json.loads(line))
+                tips.append(Tip.from_dict(json.loads(line)))
             except json.JSONDecodeError:
                 pass
     return tips

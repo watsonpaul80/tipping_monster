@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-import pandas as pd
-import numpy as np
-import json
-from pathlib import Path
-from datetime import datetime, timedelta
 import argparse
+import json
+from datetime import datetime, timedelta
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+from core.tip import Tip
 
 # === ARGUMENTS ===
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--date",
-    help=(
-        "Target date (YYYY-MM-DD). Defaults to yesterday."
-    ),
+    help=("Target date (YYYY-MM-DD). Defaults to yesterday."),
 )
 args = parser.parse_args()
 
@@ -70,22 +71,26 @@ while current <= END_DATE:
         continue
 
     with open(pred_path) as f:
-        tips = [json.loads(line) for line in f]
+        tips = [Tip.from_dict(json.loads(line)) for line in f]
 
     df_results = pd.read_csv(result_path)
     df_results["clean_course"] = df_results["course"].apply(clean_course)
     df_results["clean_time"] = df_results["off"].apply(clean_time)
     df_results["horse_lower"] = df_results["horse"].apply(clean_horse)
     df_results["pos"] = (
-        pd.to_numeric(df_results["pos"], errors="coerce")
-        .fillna(99)
-        .astype(int)
+        pd.to_numeric(df_results["pos"], errors="coerce").fillna(99).astype(int)
     )
 
-    daily_bins = {f"{low:.2f}–{high:.2f}": {
-        "tips": 0, "wins": 0, "places": 0,
-        "win_pnl": 0.0, "ew_pnl": 0.0
-    } for (low, high) in bins}
+    daily_bins = {
+        f"{low:.2f}–{high:.2f}": {
+            "tips": 0,
+            "wins": 0,
+            "places": 0,
+            "win_pnl": 0.0,
+            "ew_pnl": 0.0,
+        }
+        for (low, high) in bins
+    }
 
     for tip in tips:
         try:
@@ -97,20 +102,16 @@ while current <= END_DATE:
             odds = float(tip.get("bf_sp", 0))
 
             bin_key = next(
-                (
-                    f"{low:.2f}–{high:.2f}"
-                    for (low, high) in bins
-                    if low <= conf < high
-                ),
+                (f"{low:.2f}–{high:.2f}" for (low, high) in bins if low <= conf < high),
                 None,
             )
             if not bin_key:
                 continue
 
             match = df_results[
-                (df_results["clean_course"] == tip_course) &
-                (df_results["clean_time"] == tip_time) &
-                (df_results["horse_lower"] == tip_name)
+                (df_results["clean_course"] == tip_course)
+                & (df_results["clean_time"] == tip_time)
+                & (df_results["horse_lower"] == tip_name)
             ]
 
             if match.empty:
@@ -127,9 +128,7 @@ while current <= END_DATE:
                     if is_place
                     else -(STAKE / 2)
                 )
-                ew_pnl = place_pnl + (
-                    STAKE / 2 if is_win else -(STAKE / 2)
-                )
+                ew_pnl = place_pnl + (STAKE / 2 if is_win else -(STAKE / 2))
             else:
                 ew_pnl = 0.0
 
@@ -150,21 +149,23 @@ while current <= END_DATE:
         win_roi = (win_pnl / tips * 100) if tips else 0
         ew_roi = (ew_pnl / tips * 100) if tips else 0
 
-        per_day_data.append({
-            "Date": date_str,
-            "Confidence Bin": bin_key,
-            "Tips": tips,
-            "Wins": stats["wins"],
-            "Win %": round(stats["wins"] / tips * 100, 2) if tips else 0,
-            "Places": stats["places"],
-            "Place %": round(stats["places"] / tips * 100, 2) if tips else 0,
-            "Win PnL": round(win_pnl, 2),
-            "EW PnL (5.0+)": round(ew_pnl, 2),
-            "Win ROI %": round(win_roi, 2),
-            "EW ROI %": round(ew_roi, 2),
-            "Win Profit £": round(win_pnl * STAKE_GBP, 2),
-            "EW Profit £": round(ew_pnl * STAKE_GBP, 2),
-        })
+        per_day_data.append(
+            {
+                "Date": date_str,
+                "Confidence Bin": bin_key,
+                "Tips": tips,
+                "Wins": stats["wins"],
+                "Win %": round(stats["wins"] / tips * 100, 2) if tips else 0,
+                "Places": stats["places"],
+                "Place %": round(stats["places"] / tips * 100, 2) if tips else 0,
+                "Win PnL": round(win_pnl, 2),
+                "EW PnL (5.0+)": round(ew_pnl, 2),
+                "Win ROI %": round(win_roi, 2),
+                "EW ROI %": round(ew_roi, 2),
+                "Win Profit £": round(win_pnl * STAKE_GBP, 2),
+                "EW Profit £": round(ew_pnl * STAKE_GBP, 2),
+            }
+        )
 
     current += timedelta(days=1)
 
@@ -177,10 +178,7 @@ if CSV_OUTPUT.exists():
         existing = existing[~existing["Date"].isin(df["Date"])]
         df = pd.concat([existing, df], ignore_index=True)
     else:
-        print(
-            "⚠️ No new data to append or missing "
-            "'Date' column in new DataFrame."
-        )
+        print("⚠️ No new data to append or missing " "'Date' column in new DataFrame.")
         df = existing
 
 df.to_csv(CSV_OUTPUT, index=False)

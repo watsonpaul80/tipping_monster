@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 import argparse
 import json
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
+from core.tip import Tip
 
 # === CONFIG ===
 PRED_DIR = Path("logs/dispatch")
@@ -18,7 +21,7 @@ def load_tips(date_str):
         print(f"❌ Missing tips file: {tips_path}")
         return []
     with open(tips_path, "r") as f:
-        return [json.loads(line) for line in f]
+        return [Tip.from_dict(json.loads(line)) for line in f]
 
 
 def load_results(date_str):
@@ -28,8 +31,13 @@ def load_results(date_str):
         return pd.DataFrame()
     df = pd.read_csv(path)
     df["course"] = df["course"].astype(str).str.strip().str.lower()
-    df["horse"] = df["horse"].astype(str).str.lower().str.replace(
-        r" \(.*\)", "", regex=True).str.strip()
+    df["horse"] = (
+        df["horse"]
+        .astype(str)
+        .str.lower()
+        .str.replace(r" \(.*\)", "", regex=True)
+        .str.strip()
+    )
     df["off"] = df["off"].astype(str).str.strip()
     return df
 
@@ -69,9 +77,9 @@ def main(date_str):
         # Match result
         if not results_df.empty:
             match = results_df[
-                (results_df["course"] == normalize(meeting)) &
-                (results_df["off"] == time_str) &
-                (results_df["horse"] == normalize(horse))
+                (results_df["course"] == normalize(meeting))
+                & (results_df["off"] == time_str)
+                & (results_df["horse"] == normalize(horse))
             ]
             if not match.empty:
                 pos_raw = match.iloc[0]["pos"]
@@ -85,46 +93,58 @@ def main(date_str):
         if result != "NR":
             if ew:
                 win = (sp - 1) * 0.5 if result == "1" else 0
-                place = ((sp * 0.2) - 1) * \
-                    0.5 if result.isdigit() and int(result) <= 3 else -0.5
+                place = (
+                    ((sp * 0.2) - 1) * 0.5
+                    if result.isdigit() and int(result) <= 3
+                    else -0.5
+                )
                 profit = round(win + place, 2)
                 win_b = (best_odds - 1) * 0.5 if result == "1" else 0
-                place_b = ((best_odds * 0.2) - 1) * \
-                    0.5 if result.isdigit() and int(result) <= 3 else -0.5
+                place_b = (
+                    ((best_odds * 0.2) - 1) * 0.5
+                    if result.isdigit() and int(result) <= 3
+                    else -0.5
+                )
                 profit_best = round(win_b + place_b, 2)
             else:
-                profit = round(
-                    (sp - 1) * stake if result == "1" else -stake, 2)
+                profit = round((sp - 1) * stake if result == "1" else -stake, 2)
                 profit_best = round(
-                    (best_odds - 1) * stake if result == "1" else -stake, 2)
+                    (best_odds - 1) * stake if result == "1" else -stake, 2
+                )
 
         running_profit += profit
         running_best_profit += profit_best
 
-        out_rows.append({
-            "Date": date_str,
-            "Meeting": meeting,
-            "Time": time_str,
-            "EW/Win": ew_flag,
-            "Jockey": tip.get("jockey", "Unknown"),
-            "Horse": horse,
-            "Odds": odds,
-            "SP": sp,
-            "Value": value_pct,
-            "Result": result,
-            "Stake": stake,
-            "Profit": profit,
-            "Running Profit": round(running_profit, 2),
-            "Best Odds": best_odds,
-            "Running Profit Best Odds": round(running_best_profit, 2)
-        })
+        out_rows.append(
+            {
+                "Date": date_str,
+                "Meeting": meeting,
+                "Time": time_str,
+                "EW/Win": ew_flag,
+                "Jockey": tip.get("jockey", "Unknown"),
+                "Horse": horse,
+                "Odds": odds,
+                "SP": sp,
+                "Value": value_pct,
+                "Result": result,
+                "Stake": stake,
+                "Profit": profit,
+                "Running Profit": round(running_profit, 2),
+                "Best Odds": best_odds,
+                "Running Profit Best Odds": round(running_best_profit, 2),
+            }
+        )
 
     df_new = pd.DataFrame(out_rows)
 
     if MASTER_LOG.exists():
         df_master = pd.read_csv(MASTER_LOG)
-        df_master = df_master[~((df_master['Date'] == date_str) & (
-            df_master['Horse'].isin(df_new['Horse'])))]
+        df_master = df_master[
+            ~(
+                (df_master["Date"] == date_str)
+                & (df_master["Horse"].isin(df_new["Horse"]))
+            )
+        ]
         df_master = pd.concat([df_master, df_new], ignore_index=True)
     else:
         df_master = df_new

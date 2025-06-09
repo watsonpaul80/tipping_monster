@@ -71,6 +71,7 @@ The system defines 8 core product layers:
 | 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
 | 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
+| 08:13 | `generate_combos.py`              | Suggests doubles & trebles from top tips               |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
 | 23:59 | `roi/send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
@@ -86,6 +87,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
+* `generate_combos.py`: Suggests doubles and trebles from 90%+ confidence tips.
 * `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV. Uses the `requests` library to send ROI summaries to Telegram.
 * `roi/calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `roi/weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
@@ -129,9 +131,12 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi/weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `roi/send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
 | `roi/generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
+| `roi/nap_tracker.py` | Logs NAP ROI to `nap_history.csv` |
 | `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/roi/band_summary_<week>.csv`              | Weekly ROI per confidence band                                           |
+| `logs/roi/daily_band_summary_<date>.csv`        | Daily ROI per confidence band                                            |
 | `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
 
 ---
