@@ -44,3 +44,6 @@ $PYTHON roi/send_daily_roi_summary.py --date $DATE >> $LOGDIR/roi_telegram_$DATE
 echo "🏷️ Updating tag ROI tracker..."
 $PYTHON roi/tag_roi_tracker.py --date $DATE --mode advised >> $LOGDIR/tag_roi_$DATE.log 2>&1
 
+echo "📈 Updating rolling ROI log..."
+$PYTHON generate_rolling_roi.py --days 30 >> $LOGDIR/rolling_roi_$DATE.log 2>&1
+

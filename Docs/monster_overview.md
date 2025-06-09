@@ -136,6 +136,7 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/roi/summary_commentary_<week>.txt`        | Weekly commentary block with key insights                                |
 | `logs/roi/band_summary_<week>.csv`              | Weekly ROI per confidence band                                           |
 | `logs/roi/daily_band_summary_<date>.csv`        | Daily ROI per confidence band                                            |
 | `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
@@ -170,6 +171,7 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 | `logs/roi/tips_results_DATE_[level\|advised].csv` | Main per-day ROI breakdown |
 | `logs/roi/roi_telegram_DATE.log` | Output of Telegram ROI summary |
 | `logs/roi/weekly_roi_summary.txt` | Human-friendly weekly Telegram output |
+| `logs/roi/summary_commentary_<week>.txt` | Weekly commentary block with key insights |
 | `logs/roi/monster_confidence_per_day_with_roi.csv` | Confidence bin ROI stats for analysis |
 
 ---
@@ -286,6 +288,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Place-focused model (predict 1st–3rd)
 * Confidence regression model (predict prob, not binary)
 * ROI-based calibration (not just accuracy)
+* ✅ Penalise stale horses and poor form
+* Weekly ROI line chart (matplotlib) to logs
 * Penalise stale horses and poor form
 * ✅ Weekly ROI line chart (matplotlib) to logs
 * Monetisation hooks (Stripe, Patreon, etc.)
@@ -334,7 +338,7 @@ roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
 simulate_staking.py            Simulates staking strategies (level/conf/value) ✅ All tips
-win_rate_by_tag.py             Overall win % and ROI per tag    ✅ All tips
+win_rate_by_tag.py             Overall win % and ROI per tag (time-decay weighting)    ✅ All tips
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files
