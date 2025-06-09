@@ -132,7 +132,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ### Bonus Features / Engagement
 69. ✅ Add /roi, /stats, /nap bot commands [Done: 2025-06-21]
-70. Add Telegram confidence commentary  
+70. ✅ Add Telegram confidence commentary [Done: 2025-06-24]
 71. Optional intro video of how Monster works
 
 ---
