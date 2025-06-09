@@ -167,4 +167,6 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 89. ✅ /tip bot command to show latest horse tip [Done: 2025-06-24]
 90. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
 91. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
+92. Stable-level intent profiler using `trainer_intent_score.py` to combine
+    trainer win-rate tracking and multiple-entry detection.
 

@@ -1,3 +1,9 @@
+## 2025-06-27
+
+### Added
+- Noted need for stable-level intent profiler in `monster_todo.md` referencing
+  `trainer_intent_score.py`.
+
 ## 2025-06-26
 
 ### Added

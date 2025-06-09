@@ -197,3 +197,8 @@
 **Prompt:** Create generate_combos.py to suggest doubles and trebles from top tips.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added combo generator script and documentation.
+
+## [2025-06-27] Document stable-level intent profiler
+**Prompt:** Add TODO entry for a stable-level intent profiler referencing `trainer_intent_score.py`.
+**Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** New backlog item outlines intent scoring with trainer win-rate tracking and multiple-entry detection.
