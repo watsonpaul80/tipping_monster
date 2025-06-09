@@ -1,9 +1,12 @@
 import sys
 from pathlib import Path
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 # isort: off
 from core.dispatch_tips import (
     calculate_monster_stake,
+    build_confidence_line,
     generate_tags,
     get_tip_composite_id,
     load_recent_roi_stats,
@@ -12,8 +15,6 @@ from core.dispatch_tips import (
 )
 
 # isort: on
-
-sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 
 def test_calculate_monster_stake_above_threshold():
@@ -90,6 +91,17 @@ def test_generate_tags_with_delta():
     assert "🔥 Market Mover" in tags
 
 
+def test_generate_tags_draw_advantage():
+    tip = {
+        "race": "12:00 Test",
+        "name": "Runner",
+        "confidence": 0.85,
+        "draw_bias_rank": 0.8,
+    }
+    tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
+    assert "📊 Draw Advantage" in tags
+
+
 def _roi_csv(path, pnl):
     header = (
         "Date,Confidence Bin,Tips,Wins,Win %,Places,Place %,Win PnL,EW PnL (5.0+),"
@@ -111,3 +123,16 @@ def test_should_skip_by_roi_positive(tmp_path):
     _roi_csv(f, 5.0)
     stats = load_recent_roi_stats(f, "2025-06-30", 30)
     assert not should_skip_by_roi(0.75, stats, 0.80)
+
+
+def test_build_confidence_line_basic():
+    tip = {
+        "race": "1:00 Test",
+        "name": "Runner",
+        "confidence": 0.92,
+        "bf_sp": 5.0,
+        "tags": ["🔽 Class Drop", "⚡ Fresh"],
+    }
+    line = build_confidence_line(tip)
+    assert line.startswith("\ud83e\udde0 Model Confidence: High (92%)")
+    assert "class drop" in line and "fresh" in line

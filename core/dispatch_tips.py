@@ -64,6 +64,11 @@ def generate_tags(tip, max_id, max_val):
             tags.append("📈 In Form")
     except:
         pass
+    try:
+        if float(tip.get("draw_bias_rank", 0)) > 0.7:
+            tags.append("📊 Draw Advantage")
+    except:
+        pass
     if get_tip_composite_id(tip) == max_id and tip.get("confidence", 0.0) == max_val:
         tags.append("🧠 Monster NAP")
     if tip.get("confidence", 0.0) >= 0.90:
@@ -93,6 +98,37 @@ def read_tips(path):
             except:
                 pass
     return tips
+
+
+def confidence_label(conf: float) -> str:
+    """Return a human-friendly confidence label."""
+    if conf >= 0.9:
+        return "High"
+    if conf >= 0.8:
+        return "Medium"
+    return "Low"
+
+
+TAG_REASON_MAP = {
+    "🔽 Class Drop": "class drop",
+    "📈 In Form": "in form",
+    "⚡ Fresh": "fresh",
+    "🪶 Light Weight": "light weight",
+    "🚫 Layoff": "layoff",
+    "💥 Monster Mode": "monster mode",
+    "🔥 Market Mover": "market mover",
+    "❄️ Drifter": "drifter",
+}
+
+
+def build_confidence_line(tip: dict) -> str:
+    """Return a single line describing model confidence."""
+    conf_pct = round(tip.get("confidence", 0.0) * 100)
+    level = confidence_label(tip.get("confidence", 0.0))
+    reasons = [TAG_REASON_MAP[t] for t in tip.get("tags", []) if t in TAG_REASON_MAP]
+    reason_text = " + ".join(reasons)
+    suffix = f" \u2014 {reason_text}" if reason_text else ""
+    return f"\ud83e\udde0 Model Confidence: {level} ({conf_pct}%){suffix}."
 
 
 def get_confidence_band(conf: float) -> str | None:
@@ -212,7 +248,8 @@ def format_tip_message(tip, max_id):
     )
     explain = tip.get("explanation")
     explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
-    parts = [header, title, stats, tags, comment]
+    confidence_line = build_confidence_line(tip)
+    parts = [header, title, stats, confidence_line, tags, comment]
     if explain_line:
         parts.append(explain_line)
     parts.append("-" * 30)
