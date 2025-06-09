@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
 # --- Standard Library ---
+import argparse
+import glob
+import json
 import os
 import sys
-import glob
 import tarfile
 import tempfile
-from pathlib import Path
 from datetime import date, datetime
-import argparse
-import json
+from pathlib import Path
 
 # --- Third-Party Libraries ---
 import boto3
-import pandas as pd
 import numpy as np
-import xgboost as xgb
 import orjson
+import pandas as pd
+import xgboost as xgb
 
 # --- Local Modules ---
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -140,6 +140,8 @@ def generate_reason(tip):
         draw_bias = float(tip.get("draw_bias_rank", 1.0))
         if draw > 0 and distance <= 16 and draw_bias < 0.4:
             reason.append("good draw position")
+        if draw_bias > 0.7:
+            reason.append("draw advantage")
     except:
         pass
     if reason:
@@ -178,6 +180,11 @@ def generate_tags(tip):
     try:
         if float(tip.get("form_score", 0)) >= 20:
             tags.append("📈 In Form")
+    except:
+        pass
+    try:
+        if float(tip.get("draw_bias_rank", 0)) > 0.7:
+            tags.append("📊 Draw Advantage")
     except:
         pass
     tip_conf = tip.get("confidence", 0)
