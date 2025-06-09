@@ -174,3 +174,7 @@
 **Outcome:** Commentary can be rendered in basic or expressive tone via `--comment-style` or `TM_COMMENT_STYLE`.
 
 
+## [2025-06-24] Add combo generator
+**Prompt:** Create generate_combos.py to suggest doubles and trebles from top tips.
+**Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added combo generator script and documentation.
