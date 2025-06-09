@@ -1,3 +1,8 @@
+## 2025-06-23
+
+### Added
+- `auto_tweet_tips.py` respects `TM_DEV_MODE` and logs to `logs/dev/twitter.log`.
+
 ## 2025-06-22
 
 ### Added

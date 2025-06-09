@@ -144,6 +144,7 @@ The following jobs are related to "sniper" functionality (market movement detect
     *   **Purpose:** Automatically tweets selected tips.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/monstertweeter/auto_tweet_tips.py >> /home/ec2-user/tipping-monster/logs/twitter_post.log 2>&1`
     *   **Log Output:** `logs/twitter_post.log` (remains in root `logs/`)
+    *   **Dev Mode:** Set `TM_DEV_MODE=1` to log tweets to `logs/dev/twitter.log` instead of posting.
 
 ---
 

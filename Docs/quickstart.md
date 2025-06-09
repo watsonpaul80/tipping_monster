@@ -25,7 +25,7 @@ Key folders and scripts include:
 - Core scripts such as `core/run_pipeline_with_venv.sh`, `core/fetch_betfair_odds.py`, and `core/dispatch_tips.py` drive the daily pipeline.
  - `tmcli.py` – command-line helper with `pipeline`, `roi`, `sniper` and `healthcheck` commands. Run all `tmcli` commands from the repository root, e.g. `python tmcli.py pipeline --dev`.
 
-Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
+Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs. Set `TM_DEV_MODE=1` to log Telegram and Twitter messages to `logs/dev/` instead of sending them.
 
 A typical daily pipeline runs the following steps:
 
