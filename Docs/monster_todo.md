@@ -169,9 +169,14 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 89. ✅ /tip bot command to show latest horse tip [Done: 2025-06-24]
 90. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
 91. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
+
+92. Stable-level intent profiler using `trainer_intent_score.py` to combine
+    trainer win-rate tracking and multiple-entry detection.
+
 92. ✅ Script audit: keep `utils/ensure_sent_tips.py` (used in CLI and tests) [Done: 2025-06-09]
 93. ✅ Time-decayed win rate weighting prioritising last 30 days over 90+ [Done: 2025-06-26]
 94. ✅ Weekly ROI commentary logs with top/worst day and trend [Done: 2025-06-26]
 95. ✅ `AGENTS.md` reference updated to `Docs/monster_todo.md` [Done: 2025-06-26]
+
 
 
