@@ -286,6 +286,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Place-focused model (predict 1st–3rd)
 * Confidence regression model (predict prob, not binary)
 * ROI-based calibration (not just accuracy)
+* ✅ Penalise stale horses and poor form
+* Weekly ROI line chart (matplotlib) to logs
 * Penalise stale horses and poor form
 * ✅ Weekly ROI line chart (matplotlib) to logs
 * Monetisation hooks (Stripe, Patreon, etc.)

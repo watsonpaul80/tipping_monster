@@ -197,3 +197,9 @@
 **Prompt:** Create generate_combos.py to suggest doubles and trebles from top tips.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added combo generator script and documentation.
+
+## [2025-06-25] Add stale penalty feature
+**Prompt:** Update inference to penalise stale form and layoff.
+**Files Changed:** core/flatten_racecards_v3.py, features.json, tests/test_explain_model_decision.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added stale_penalty feature to dataset and documentation updated.
+
