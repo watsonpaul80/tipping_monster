@@ -1,6 +1,5 @@
 utils/backup_to_s3.sh
 roi/calibrate_confidence_daily.py
-utils/check_betfair_market_times.py
 core/compare_odds_to_0800.py
 core/daily_flatten.sh
 core/daily_train.sh

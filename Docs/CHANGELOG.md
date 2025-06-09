@@ -3,11 +3,24 @@
 ### Added
 - `auto_tweet_tips.py` respects `TM_DEV_MODE` and logs to `logs/dev/twitter.log`.
 
+### Removed
+- `utils/check_betfair_market_times.py` per audit.
+
+### Changed
+- Deduplicated the `self_train_from_history.py` documentation section in README.
+
+### Fixed
+- Updated broken links to `Docs` directory in README docs list.
+
+
+
 ## 2025-06-22
 
 ### Added
 - ROI by Tag table in `streamlit_pauls_view.py` for deeper tag analysis.
 
+### Documentation
+- Fixed README link to Docs/SECURITY_REVIEW.md.
 
 ## 2025-06-08
 
