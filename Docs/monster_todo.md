@@ -155,7 +155,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 77. ✅ **GitHub Actions CI** — run tests automatically. *(2025-06-08)*
 78. **Tip Dataclass** — typed representation for tips.
 79. ✅ **Validate Features Utility** — check dataset vs `features.json`. *(2025-06-08)*
-80. **Inference Unit Tests** — ensure `run_inference_and_select_top1.py`.
+80. ✅ **Inference Unit Tests** — ensure `run_inference_and_select_top1.py` [Done: 2025-06-24]
 81. ✅ **Model Download Helper** — `model_fetcher.py` for S3. *(2025-06-08)*
 82. **Stats API** — expose JSON endpoints for ROI and tips.
 83. **Telegram Sandbox** — dev channel for testing dispatch.

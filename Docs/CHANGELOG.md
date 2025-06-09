@@ -1,3 +1,11 @@
+## 2025-06-24
+
+### Added
+- Unit test for `run_inference_and_select_top1.py` verifies correct top tip and tags.
+
+### Changed
+- Marked inference unit test item complete in `monster_todo.md`.
+
 ## 2025-06-23
 
 ### Added
