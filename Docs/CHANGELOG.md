@@ -1,3 +1,8 @@
+## 2025-06-23
+
+### Fixed
+- Updated broken links to `Docs` directory in README docs list.
+
 ## 2025-06-22
 
 ### Added
