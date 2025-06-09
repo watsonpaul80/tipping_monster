@@ -33,7 +33,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 ## 🛠️ MEDIUM PRIORITY (Next Sprint)
 
 9. ✅ Suppression logic based on band ROI performance *(2025-06-08)*
-10. Highlight best/worst bands visually in summary  
+10. ✅ Highlight best/worst bands visually in summary *(Done: 2025-06-25)*
 11. ✅ Weekly retraining instead of daily (optional) *(2025-06-08)*
 12. Telegram `/rate` Feature — rate personal picks with ML feedback  
 13. ✅ Telegram Tip Control Panel — send custom messages, full racecards, etc. [Done: 2025-06-23]
@@ -153,7 +153,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 75. ✅ **Central `.env` Loader** — load env vars at script start. *(2025-06-08)*
 76. ✅ **Unified CLI** — `cli/tmcli.py` with subcommands. *(2025-06-08)*
 77. ✅ **GitHub Actions CI** — run tests automatically. *(2025-06-08)*
-78. **Tip Dataclass** — typed representation for tips.
+78. ✅ **Tip Dataclass** — typed representation for tips. [Done: 2025-06-25]
 79. ✅ **Validate Features Utility** — check dataset vs `features.json`. *(2025-06-08)*
 80. ✅ **Inference Unit Tests** — ensure `run_inference_and_select_top1.py` [Done: 2025-06-24]
 81. ✅ **Model Download Helper** — `model_fetcher.py` for S3. *(2025-06-08)*
@@ -164,3 +164,4 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 86. ✅ Removed unused `check_betfair_market_times.py` script [Done: 2025-06-23]
 87. ✅ Draw Advantage tag if `draw_bias_rank` > 0.7 [Done: 2025-06-24]
 88. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
+
