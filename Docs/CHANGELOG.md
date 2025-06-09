@@ -1,13 +1,27 @@
 ## 2025-06-24
 
 ### Added
+
 - Draw Advantage tag (📊) when `draw_bias_rank` > 0.7 during inference.
 - Commentary mentions draw advantage and tag appears in Telegram.
+
+
+- `generate_rolling_roi.py` computes 30-day rolling ROI to `logs/roi/rolling_roi.csv`.
+
+- Unit test for `run_inference_and_select_top1.py` verifies correct top tip and tags.
+
+### Changed
+- Marked inference unit test item complete in `monster_todo.md`.
+
+- `dispatch_tips.py` now prints a model confidence line summarising why the
+  model likes each tip.
+
 
 ## 2025-06-23
 
 ### Added
 - `auto_tweet_tips.py` respects `TM_DEV_MODE` and logs to `logs/dev/twitter.log`.
+- `tip_control_panel.py` interactive CLI for manual tip dispatch.
 
 ### Removed
 - `utils/check_betfair_market_times.py` per audit.
@@ -17,6 +31,14 @@
 
 ### Fixed
 - Updated broken links to `Docs` directory in README docs list.
+
+## 2025-06-24
+
+### Added
+- `public_dashboard.py` Streamlit app to showcase ROI using only sent tips.
+
+### Documentation
+- Marked Public Member Dashboard task as completed.
 
 
 
