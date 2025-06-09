@@ -91,6 +91,17 @@ def test_generate_tags_with_delta():
     assert "🔥 Market Mover" in tags
 
 
+def test_generate_tags_draw_advantage():
+    tip = {
+        "race": "12:00 Test",
+        "name": "Runner",
+        "confidence": 0.85,
+        "draw_bias_rank": 0.8,
+    }
+    tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
+    assert "📊 Draw Advantage" in tags
+
+
 def _roi_csv(path, pnl):
     header = (
         "Date,Confidence Bin,Tips,Wins,Win %,Places,Place %,Win PnL,EW PnL (5.0+),"

@@ -113,6 +113,12 @@
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
 
+## [2025-06-24] Add Draw Advantage tag
+**Prompt:** Enhance inference to tag runners with 📊 Draw Advantage if draw_bias_rank > 0.7.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips JSON now includes the Draw Advantage tag and Telegram commentary reflects the bias.
+
+
 ## [2025-06-24] Add unit test for inference script
 **Prompt:** Write unit tests for run_inference_and_select_top1.py.
 **Files Changed:** tests/test_run_inference_and_select_top1.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
@@ -128,4 +134,5 @@
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
+
 
