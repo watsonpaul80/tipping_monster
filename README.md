@@ -4,7 +4,7 @@ Tipping Monster is a fully automated machine-learning tip engine for UK and Iris
 
 A simple static landing page with a live tip feed is available under [site/index.html](site/index.html).
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [Docs/SECURITY_REVIEW.md](Docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
 
 ## Setup
 
@@ -170,10 +170,6 @@ This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
 The repository also includes `train_place_model.py` to build a separate model
 predicting whether a runner finishes in the top three.
-
-`self_train_from_history.py` can be used to build a compact dataset from the
-logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
-*Result*, *Odds* and *odds_delta* for direct model fine‑tuning with XGBoost.
 
 `self_train_from_history.py` can be used to build a compact dataset from the
 logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,
