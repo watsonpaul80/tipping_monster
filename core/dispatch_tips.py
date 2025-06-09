@@ -86,6 +86,11 @@ def generate_tags(tip, max_id, max_val):
             tags.append("🔥 Market Mover")
         elif delta >= 1.0:
             tags.append("❄️ Drifter")
+    try:
+        if float(tip.get("value_score", 0)) > 5:
+            tags.append("💰 Value Pick")
+    except Exception:
+        pass
     return tags or ["🎯 Solid pick"]
 
 

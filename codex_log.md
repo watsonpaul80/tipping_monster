@@ -1,4 +1,9 @@
 
+## [2025-06-24] Add value_score tagging
+**Prompt:** Codex, update inference to calculate a value_score = (confidence / bf_sp) * 100. Tag as 💰 Value Pick if score > 5. Log and send as normal tip with tag.
+**Files Changed:** core/merge_odds_into_tips.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/monster_overview.md, Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Tips now include a value_score field and are tagged "💰 Value Pick" when the score exceeds 5.
+
 ## [2025-06-24] Add rolling ROI script
 **Prompt:** Compute 30-day rolling ROI from sent logs.
 **Files Changed:** generate_rolling_roi.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, all_scripts.txt, codex_log.md
@@ -9,6 +14,7 @@
 **Prompt:** Codex, build public_dashboard.py using Streamlit. Load _sent.csv files, show ROI charts and tag stats.
 **Files Changed:** public_dashboard.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New dashboard visualises ROI from sent tips only.
+
 
 ## [2025-06-23] Log auto tweets in dev mode
 **Prompt:** Before posting tweets, check `TM_DEV_MODE`.
@@ -63,7 +69,7 @@
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_todo.md, README.md, codex_log.md
 **Outcome:** Telegram bot now returns weekly ROI summary via /roi.
-=======
+
 
 ## [2025-06-08] Add log archiving utility
 **Prompt:** Create archive_old_logs.py to zip and move logs older than 14 days into logs/archive/.

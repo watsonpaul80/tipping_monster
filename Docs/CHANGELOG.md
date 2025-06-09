@@ -1,6 +1,15 @@
 ## 2025-06-24
 
-### Added
+
+- `value_score` calculation in `merge_odds_into_tips.py`.
+- New `💰 Value Pick` tag in dispatched tips.
+
+### Changed
+- `dispatch_tips.py` now labels tips with high value scores.
+
+### Fixed
+- Updated docs and tests for the new value logic.
+
 
 - `stats_api.py` provides FastAPI endpoints for ROI, tips and tag ROI.
 
@@ -18,6 +27,7 @@
 
 - `dispatch_tips.py` now prints a model confidence line summarising why the
   model likes each tip.
+
 
 
 ## 2025-06-23

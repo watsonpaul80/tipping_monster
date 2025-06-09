@@ -91,6 +91,17 @@ def test_generate_tags_with_delta():
     assert "🔥 Market Mover" in tags
 
 
+def test_generate_tags_value_pick():
+    tip = {
+        "race": "12:00 Test",
+        "name": "Runner",
+        "confidence": 0.8,
+        "bf_sp": 10.0,
+        "value_score": 8.0,
+    }
+    tags = generate_tags(tip, get_tip_composite_id(tip), 0.8)
+    assert "💰 Value Pick" in tags
+
 def test_generate_tags_draw_advantage():
     tip = {
         "race": "12:00 Test",
