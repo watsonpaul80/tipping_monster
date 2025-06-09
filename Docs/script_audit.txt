@@ -13,7 +13,7 @@ This audit flags scripts that appear unused or outdated. Criteria:
 utils/alert_if_no_sent_tips.py - remove
 utils/archive_old_logs.py - keep
 utils/backfill_sent_tips_from_predictions.py - remove
-utils/check_betfair_market_times.py - remove
+utils/check_betfair_market_times.py - removed 2025-06-23
 utils/ensure_sent_tips.py - remove
 evaluate_steamers.py - remove
 generate_race_schedule.py - remove
