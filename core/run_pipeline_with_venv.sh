@@ -83,7 +83,7 @@ if [ "$SENT_COUNT" -eq 0 ]; then
 fi
 
 # 8. Upload logs and dispatched tips to S3
-if [ "$DEV_MODE" -eq 0 ]; then
+if [ "$DEV_MODE" -eq 0 ] && [ "${TM_DEV_MODE:-0}" != "1" ]; then
     echo "🗂️ Uploading tips and logs to S3..."
     aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
     aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors

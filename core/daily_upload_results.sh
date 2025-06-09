@@ -15,7 +15,11 @@ echo "📅 Scraping results for $TODAY"
 python rpscrape.py -d "$TODAY"
 
 echo "☁️ Uploading results CSV to S3"
-aws s3 cp "$OUTPUT_CSV" "s3://tipping-monster/results/$(date +"%Y_%m_%d").csv"
+if [ "${TM_DEV_MODE:-0}" = "1" ]; then
+    echo "[DEV] Skipping S3 upload"
+else
+    aws s3 cp "$OUTPUT_CSV" "s3://tipping-monster/results/$(date +"%Y_%m_%d").csv"
+fi
 
 echo "✅ Results upload complete for $TODAY"
 

@@ -15,7 +15,11 @@ echo "📅 Generating racecards for $TODAY"
 python racecards.py today
 
 echo "☁️ Uploading to S3"
-aws s3 cp "$RACE_OUTPUT" "s3://tipping-monster/racecards/${TODAY}.json"
+if [ "${TM_DEV_MODE:-0}" = "1" ]; then
+    echo "[DEV] Skipping S3 upload"
+else
+    aws s3 cp "$RACE_OUTPUT" "s3://tipping-monster/racecards/${TODAY}.json"
+fi
 
 echo "✅ Racecard upload complete for $TODAY"
 

@@ -34,6 +34,7 @@ make train              # train a new model
 
 Each make target wraps the underlying scripts in `core/` and `roi/`.
 Use `make pipeline -- --dev` to disable S3 uploads and Telegram posts during development.
+Setting the environment variable `TM_DEV_MODE=1` has the same effect and is respected by helper utilities and shell scripts.
 
 ## Useful CLI Examples
 

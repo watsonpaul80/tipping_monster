@@ -14,6 +14,7 @@ from tippingmonster import (
     send_telegram_photo,
     tip_has_tag,
 )
+from tippingmonster.utils import upload_to_s3
 
 # isort: on
 
@@ -163,3 +164,30 @@ def test_tip_has_tag_basic():
     tip = {"tags": ["🧠 Monster NAP", "⚡ Fresh"]}
     assert tip_has_tag(tip, "NAP")
     assert not tip_has_tag(tip, "Value")
+
+
+def test_upload_to_s3_dev_mode(monkeypatch, tmp_path):
+    class FakeClient:
+        def upload_file(self, *a, **k):
+            raise AssertionError("should not upload in dev mode")
+
+    file = tmp_path / "f.txt"
+    file.write_text("x")
+    monkeypatch.setenv("TM_DEV_MODE", "1")
+    upload_to_s3(file, "b", "k", client=FakeClient())
+
+
+def test_upload_to_s3_real(monkeypatch, tmp_path):
+    calls = {}
+
+    class FakeClient:
+        def upload_file(self, src, bucket, key):
+            calls["src"] = src
+            calls["bucket"] = bucket
+            calls["key"] = key
+
+    file = tmp_path / "f.txt"
+    file.write_text("x")
+    monkeypatch.delenv("TM_DEV_MODE", raising=False)
+    upload_to_s3(file, "b", "k", client=FakeClient())
+    assert calls == {"src": str(file), "bucket": "b", "key": "k"}

@@ -1,3 +1,10 @@
+## 2025-06-09
+
+### Changed
+- Added `upload_to_s3()` helper that skips uploads when `TM_DEV_MODE=1`.
+- Shell scripts now respect `TM_DEV_MODE` before running `aws s3 cp`.
+- Updated documentation and tests accordingly.
+
 ## 2025-06-27
 
 ### Added

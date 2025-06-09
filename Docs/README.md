@@ -35,10 +35,10 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_DEFAULT_REGION`
 - `TM_DEV` (routes Telegram messages to `TELEGRAM_DEV_CHAT_ID`)
-- `TM_DEV_MODE` (disables Telegram/Twitter posts and logs locally)
+ - `TM_DEV_MODE` (disables Telegram/Twitter posts and S3 uploads; logs locally)
 
 Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
-Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` instead.
+Set `TM_DEV_MODE=1` to suppress all Telegram sends and S3 uploads, writing to `logs/dev/` instead.
 Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.

@@ -250,6 +250,11 @@
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added combo generator script and documentation.
 
+## [2025-06-09] Add upload_to_s3 helper and dev-mode skips
+**Prompt:** Create a reusable `upload_to_s3()` that respects `TM_DEV_MODE` and refactor scripts and docs.
+**Files Changed:** tippingmonster/utils.py, core/*, model_feature_importance.py, tests/test_utils.py, README.md, Docs/dev_command_reference.md, Docs/README.md, .env.example, Docs/CHANGELOG.md, core/*.sh
+**Outcome:** S3 uploads are skipped in dev mode across Python and shell scripts; docs and tests updated.
+
 
 ## [2025-06-27] Document stable-level intent profiler
 **Prompt:** Add TODO entry for a stable-level intent profiler referencing `trainer_intent_score.py`.

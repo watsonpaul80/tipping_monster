@@ -15,6 +15,7 @@ import xgboost as xgb
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.model_selection import train_test_split
 
+from tippingmonster.utils import upload_to_s3
 from validate_features import validate_dataset_features
 
 BUCKET = "tipping-monster"
@@ -152,8 +153,7 @@ def train_model(df, feature_cols):
     if os.getenv("TM_DEV_MODE") == "1":
         print(f"[DEV] Skipping S3 upload of {tar_path}")
     else:
-        boto3.client("s3").upload_file(tar_path, BUCKET, f"models/{tar_path}")
-        print(f"✅ Model uploaded to S3: models/{tar_path}")
+        upload_to_s3(tar_path, BUCKET, f"models/{tar_path}")
 
 
 def main(argv=None) -> None:

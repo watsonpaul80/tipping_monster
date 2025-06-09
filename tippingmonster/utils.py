@@ -16,6 +16,7 @@ __all__ = [
     "calculate_profit",
     "get_place_terms",
     "tip_has_tag",
+    "upload_to_s3",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
@@ -178,3 +179,18 @@ def load_xgb_model(model_path: str):
     else:
         model.load_model(model_path)
     return model
+
+
+def upload_to_s3(src: Path | str, bucket: str, key: str, client=None) -> None:
+    """Upload ``src`` to ``s3://bucket/key`` unless in dev mode."""
+    if in_dev_mode():
+        print(f"[DEV] Skipping S3 upload of {src} to s3://{bucket}/{key}")
+        return
+
+    if client is None:
+        import boto3
+
+        client = boto3.client("s3")
+
+    client.upload_file(str(src), bucket, key)
+    print(f"✅ Uploaded to s3://{bucket}/{key}")
