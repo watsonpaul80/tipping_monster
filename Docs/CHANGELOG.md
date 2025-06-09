@@ -1,3 +1,8 @@
+## 2025-06-24
+
+### Added
+- `stats_api.py` provides FastAPI endpoints for ROI, tips and tag ROI.
+
 ## 2025-06-23
 
 ### Added

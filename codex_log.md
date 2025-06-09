@@ -101,3 +101,8 @@
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
+## [2025-06-24] Add Stats API server
+**Prompt:** Build stats_api.py that exposes /roi, /tips, /tags endpoints using FastAPI and serve JSON from latest logs.
+**Files Changed:** stats_api.py, tests/test_stats_api.py, requirements.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New FastAPI server returns latest ROI, tips and tag summaries for dashboards.
+
