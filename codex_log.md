@@ -1,3 +1,8 @@
+## [2025-06-09] QA review log update
+**Prompt:** Document heuristic intent tags and missing stable tactics profiling.
+**Files Changed:** codex_log.md
+**Outcome:** Added note on run_inference_and_select_top1.py and dispatch_tips.py tags; advanced stable tactics profiling pending.
+
 ## [2025-06-26] Add weekly ROI trend chart
 **Prompt:** Create a matplotlib line graph showing ROI per day for the past 7 days and save it to `logs/roi/roi_trend_<week>.png`.
 **Files Changed:** roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, codex_log.md
