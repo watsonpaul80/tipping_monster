@@ -33,7 +33,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 ## 🛠️ MEDIUM PRIORITY (Next Sprint)
 
 9. ✅ Suppression logic based on band ROI performance *(2025-06-08)*
-10. Highlight best/worst bands visually in summary  
+10. ✅ Highlight best/worst bands visually in summary *(Done: 2025-06-25)*
 11. ✅ Weekly retraining instead of daily (optional) *(2025-06-08)*
 12. Telegram `/rate` Feature — rate personal picks with ML feedback  
 13. ✅ Telegram Tip Control Panel — send custom messages, full racecards, etc. [Done: 2025-06-23]
