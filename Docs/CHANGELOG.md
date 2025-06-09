@@ -1,3 +1,9 @@
+## 2025-06-24
+
+### Added
+- `dispatch_tips.py` now prints a model confidence line summarising why the
+  model likes each tip.
+
 ## 2025-06-23
 
 ### Added

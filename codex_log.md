@@ -105,7 +105,14 @@
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
+
+## [2025-06-24] Add Telegram confidence commentary
+**Prompt:** Enhance `dispatch_tips.py` to add a model confidence line.
+**Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added confidence summary line with tag reasons.
+
 ## [2025-06-23] Add tip_control_panel CLI
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
+
