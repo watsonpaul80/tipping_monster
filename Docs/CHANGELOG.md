@@ -1,5 +1,9 @@
 ## 2025-06-26
 
+
+### Changed
+- Deduplicated script paths in `all_scripts.txt` and removed obsolete `utils/secrets1.py`.
+
 ### Added
 - `rolling_roi_30.csv` tracks tips, wins, places, profit and strike rate for the last 30 days.
 - `run_roi_pipeline.sh` now refreshes this log automatically.
