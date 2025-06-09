@@ -101,3 +101,8 @@
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
+
+## [2025-06-24] Add tag commentary helper
+**Prompt:** Refactor commentary generation into a reusable function and update dispatch logic.
+**Files Changed:** utils/commentary.py, core/dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md, tests/test_commentary.py
+**Outcome:** Telegram tips and logs now include concise tag-based commentary.

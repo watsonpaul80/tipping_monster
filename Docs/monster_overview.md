@@ -259,7 +259,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
-* Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
+* ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * Parallel model comparison (v6 vs v7)
 * Drawdown tracking in ROI logs
 

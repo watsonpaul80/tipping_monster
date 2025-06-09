@@ -1,3 +1,11 @@
+## 2025-06-24
+
+### Added
+- Reusable `generate_commentary` helper for tag-based blurbs.
+
+### Changed
+- `dispatch_tips.py` now writes commentary for each tip via the helper.
+
 ## 2025-06-23
 
 ### Added
