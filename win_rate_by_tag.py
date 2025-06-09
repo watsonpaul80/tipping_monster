@@ -91,21 +91,49 @@ def merge_tips_results(tips_df: pd.DataFrame, results_df: pd.DataFrame) -> pd.Da
 
 
 def summarise(df: pd.DataFrame) -> pd.DataFrame:
-    """Return win rate and ROI per tag from ``df`` of merged tips/results."""
+    """Return time-decayed win rate and ROI per tag."""
+    if df.empty:
+        return pd.DataFrame()
+
+    df = df.copy()
+    df["Date"] = pd.to_datetime(df["Date"])
+    now = df["Date"].max()
+
+    def _weight(date: pd.Timestamp) -> float:
+        days = (now - date).days
+        if days <= 30:
+            return 1.0
+        if days <= 90:
+            return 0.5
+        return 0.1
+
+    df["Weight"] = df["Date"].apply(_weight)
+
     rows = []
     for _, row in df.iterrows():
         for tag in row.get("tags", []) or []:
             rows.append(
-                {"Tag": tag, "Profit": row["Profit"], "Position": row["Position"]}
+                {
+                    "Tag": tag,
+                    "Profit": row["Profit"],
+                    "Position": row["Position"],
+                    "Weight": row["Weight"],
+                }
             )
+
     tag_df = pd.DataFrame(rows)
     if tag_df.empty:
         return pd.DataFrame()
 
+    tag_df["Win"] = (tag_df["Position"].astype(str) == "1").astype(float)
+    tag_df["WeightedTips"] = tag_df["Weight"]
+    tag_df["WeightedWins"] = tag_df["Win"] * tag_df["Weight"]
+    tag_df["WeightedProfit"] = tag_df["Profit"] * tag_df["Weight"]
+
     summary = tag_df.groupby("Tag").agg(
-        Tips=("Profit", "count"),
-        Wins=("Position", lambda x: (x.astype(str) == "1").sum()),
-        Profit=("Profit", "sum"),
+        Tips=("WeightedTips", "sum"),
+        Wins=("WeightedWins", "sum"),
+        Profit=("WeightedProfit", "sum"),
     )
     summary["Win %"] = (summary["Wins"] / summary["Tips"] * 100).round(2)
     summary["ROI %"] = (summary["Profit"] / summary["Tips"] * 100).round(2)

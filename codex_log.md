@@ -1,3 +1,8 @@
+## [2025-06-26] Add time-decay weighting to win rate
+**Prompt:** Codex, adjust the win-rate feature to apply time-decay — give more weight to races in the past 30 days vs those over 90 days old
+**Files Changed:** win_rate_by_tag.py, tests/test_win_rate_by_tag.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Win-rate calculations now prioritise recent races; new test verifies weighting.
+
 
 ## [2025-06-26] Clean up script list
 **Prompt:** Remove obsolete paths and deduplicate names in all_scripts.txt.
@@ -19,6 +24,7 @@
 **Prompt:** Create a matplotlib line graph showing ROI per day for the past 7 days and save it to `logs/roi/roi_trend_<week>.png`.
 **Files Changed:** roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, codex_log.md
 **Outcome:** Weekly summary now outputs an ROI trend chart for each week.
+
 
 
 ## [2025-06-25] Add NAP performance tracker
