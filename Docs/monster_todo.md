@@ -141,11 +141,11 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 72. ✅ Paul's View Dashboard – private ROI explorer with tag and confidence filters
 
-73. 🎯 Enhance Public Member Dashboard  
-    - Use only _sent.csv files  
-    - Add week/month filters  
-    - Plot profit curves, emoji stats, ROI by tag (sent only)  
-    - Hide any non-sent tips or internals  
+73. ✅ Enhance Public Member Dashboard [Done: 2025-06-24]
+    - Use only _sent.csv files
+    - Add week/month filters
+    - Plot profit curves, emoji stats, ROI by tag (sent only)
+    - Hide any non-sent tips or internals
     - Add summary header: Tips, Wins, ROI, Profit.
 
 

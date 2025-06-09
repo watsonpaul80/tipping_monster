@@ -1,3 +1,7 @@
+## [2025-06-24] Add public ROI dashboard
+**Prompt:** Codex, build public_dashboard.py using Streamlit. Load _sent.csv files, show ROI charts and tag stats.
+**Files Changed:** public_dashboard.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New dashboard visualises ROI from sent tips only.
 
 ## [2025-06-23] Log auto tweets in dev mode
 **Prompt:** Before posting tweets, check `TM_DEV_MODE`.

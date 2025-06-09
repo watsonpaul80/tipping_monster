@@ -13,6 +13,14 @@
 ### Fixed
 - Updated broken links to `Docs` directory in README docs list.
 
+## 2025-06-24
+
+### Added
+- `public_dashboard.py` Streamlit app to showcase ROI using only sent tips.
+
+### Documentation
+- Marked Public Member Dashboard task as completed.
+
 
 
 ## 2025-06-22
