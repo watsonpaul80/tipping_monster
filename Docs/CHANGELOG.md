@@ -1,3 +1,11 @@
+## 2025-06-25
+
+### Added
+- `Tip` dataclass for structured tip handling.
+
+### Changed
+- Dispatch and ROI scripts now load and save tips using the dataclass.
+
 ## 2025-06-24
 
 
