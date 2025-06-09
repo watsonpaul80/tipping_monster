@@ -1,5 +1,9 @@
 ## 2025-06-26
 
+### Added
+- `TM_DEV` and `TM_DEV_MODE` examples in `.env.example` for dev Telegram routing
+  and disabling external posts.
+
 ### Changed
 - Reclassified `utils/ensure_sent_tips.py` as **keep** in `Docs/script_audit.txt`. The script is used in CLI commands and unit tests.
 

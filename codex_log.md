@@ -1,3 +1,8 @@
+## [2025-06-26] Document TM_DEV variables
+**Prompt:** Add TM_DEV and TM_DEV_MODE lines to `.env.example` and update docs.
+**Files Changed:** .env.example, Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Example env and docs explain dev routing and disabling posts.
+
 
 ## [2025-06-26] Update script audit for ensure_sent_tips.py
 **Prompt:** Mark utils/ensure_sent_tips.py as keep in script_audit.txt and note usage in CLI and tests.
