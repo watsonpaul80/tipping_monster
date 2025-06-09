@@ -288,6 +288,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * ROI-based calibration (not just accuracy)
 * ✅ Penalise stale horses and poor form
 * Weekly ROI line chart (matplotlib) to logs
+* Penalise stale horses and poor form
+* ✅ Weekly ROI line chart (matplotlib) to logs
 * Monetisation hooks (Stripe, Patreon, etc.)
 
 ---
