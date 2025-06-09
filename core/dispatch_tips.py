@@ -291,6 +291,12 @@ def main(argv=None):
     parser.add_argument(
         "--explain", action="store_true", help="Include SHAP explanations"
     )
+    parser.add_argument(
+        "--comment-style",
+        choices=["basic", "expressive"],
+        default=os.getenv("TM_COMMENT_STYLE", "basic"),
+        help="Tone for generated commentary",
+    )
     args = parser.parse_args(argv)
 
     if args.dev:
@@ -332,7 +338,10 @@ def main(argv=None):
     for tip in tips:
         tip["tags"] = generate_tags(tip, max_id, max_conf)
         tip["commentary"] = generate_commentary(
-            tip["tags"], tip.get("confidence", 0.0), tip.get("trainer_rtf")
+            tip["tags"],
+            tip.get("confidence", 0.0),
+            tip.get("trainer_rtf"),
+            style=args.comment_style,
         )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(

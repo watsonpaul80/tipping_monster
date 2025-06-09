@@ -1,3 +1,8 @@
+## 2025-06-25
+
+### Added
+- Expressive commentary style with `--comment-style` or `TM_COMMENT_STYLE`.
+
 ## 2025-06-24
 
 
