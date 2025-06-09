@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from roi_by_confidence_band import assign_band
-from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
+from tippingmonster.utils import logs_path, send_telegram_message
 
 load_env()
 
@@ -67,6 +67,25 @@ def summarise_bands(df: pd.DataFrame) -> pd.DataFrame:
         lambda r: (r.Profit / r.Stake * 100) if r.Stake else 0, axis=1
     )
     return summary.sort_values("Band")
+
+
+def generate_commentary_block(summary: pd.DataFrame) -> str:
+    """Return commentary lines for the weekly summary."""
+    if summary.empty:
+        return ""
+
+    top = summary.loc[summary["ROI"].idxmax()]
+    worst = summary.loc[summary["ROI"].idxmin()]
+    positives = (summary["Profit"] > 0).sum()
+    negatives = (summary["Profit"] < 0).sum()
+    trend = "rising" if positives >= negatives else "falling"
+
+    lines = [
+        f"Top performer: {top.Date} ({top.ROI:.2f}% ROI, {top.Profit:+.2f} pts)",
+        f"Worst day: {worst.Date} ({worst.ROI:.2f}% ROI, {worst.Profit:+.2f} pts)",
+        f"Overall trend: {trend}",
+    ]
+    return "\n".join(lines)
 
 
 def load_week_data(week_dates, mode="advised"):
@@ -172,6 +191,13 @@ def main(week, send_telegram=False):
             )
     else:
         best_band = worst_band = None
+
+    commentary = generate_commentary_block(summary)
+    if commentary:
+        com_path = logs_path("roi", f"summary_commentary_{week}.txt")
+        with open(com_path, "w", encoding="utf-8") as f:
+            f.write(commentary + "\n")
+        print(f"📝 Saved commentary to {com_path}")
 
     if send_telegram:
         msg = (
