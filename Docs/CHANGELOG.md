@@ -1,3 +1,8 @@
+## 2025-06-25
+
+### Added
+- `roi/nap_tracker.py` tracks NAP ROI in `logs/roi/nap_history.csv`.
+
 ## 2025-06-24
 
 

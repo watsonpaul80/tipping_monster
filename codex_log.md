@@ -1,3 +1,8 @@
+## [2025-06-25] Add NAP performance tracker
+**Prompt:** Create nap_tracker.py to log NAP results over time.
+**Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
+**Outcome:** New script logs daily NAP ROI to nap_history.csv and can summarise weekly.
+
 
 ## [2025-06-24] Add value_score tagging
 **Prompt:** Codex, update inference to calculate a value_score = (confidence / bf_sp) * 100. Tag as 💰 Value Pick if score > 5. Log and send as normal tip with tag.
