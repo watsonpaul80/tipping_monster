@@ -69,6 +69,7 @@ This document defines the 8 core product layers of the Tipping Monster system. E
 * Sent via `dispatch_danger_favs.py`
 * ROI tracked by `track_lay_candidates_roi.py`
 * CSV summary via `export_lay_candidates_csv.py`
+* Outcomes logged to `logs/danger_fav_history.csv`
 
 ---
 

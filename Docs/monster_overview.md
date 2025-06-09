@@ -73,6 +73,7 @@ The system defines 8 core product layers:
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
+| 23:56 | `generate_lay_candidates.py --results` | Logs Danger Fav outcomes to CSV |
 | 23:59 | `roi/send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
 Scripts are grouped under `core/` and `roi/` directories for clarity.
 

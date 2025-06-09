@@ -153,4 +153,9 @@
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
 
+## [2025-06-25] Log Danger Fav outcomes
+**Prompt:** Enhance generate_lay_candidates.py to log results of tagged Danger Favs.
+**Files Changed:** generate_lay_candidates.py, tests/test_generate_lay_candidates.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Script now appends daily Danger Fav results to logs/danger_fav_history.csv and optional Telegram summary.
+
 

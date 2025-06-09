@@ -1,3 +1,8 @@
+## 2025-06-25
+
+### Added
+- Danger Fav history logging via `generate_lay_candidates.py`.
+
 ## 2025-06-24
 
 
