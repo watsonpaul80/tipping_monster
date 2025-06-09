@@ -102,6 +102,7 @@ def test_generate_tags_value_pick():
     tags = generate_tags(tip, get_tip_composite_id(tip), 0.8)
     assert "💰 Value Pick" in tags
 
+
 def test_generate_tags_draw_advantage():
     tip = {
         "race": "12:00 Test",
@@ -111,6 +112,21 @@ def test_generate_tags_draw_advantage():
     }
     tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
     assert "📊 Draw Advantage" in tags
+
+
+def test_generate_tags_stable_intent():
+    tip = {
+        "race": "12:30 Test",
+        "name": "Horse",
+        "confidence": 0.8,
+        "stable_form": 25.0,
+        "multi_runner": True,
+        "class_drop_layoff": True,
+    }
+    tags = generate_tags(tip, get_tip_composite_id(tip), 0.9)
+    assert "🔍 Stable Intent" in tags
+    assert "🏠 Multiple Runners" in tags
+    assert "⬇️ Class Drop Layoff" in tags
 
 
 def _roi_csv(path, pnl):

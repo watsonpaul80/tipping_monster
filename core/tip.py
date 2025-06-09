@@ -19,6 +19,7 @@ class Tip:
     commentary: Optional[str] = None
     monster_mode: bool = False
     explanation: Optional[str] = None
+    stable_form: Optional[float] = None
     extras: Dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
