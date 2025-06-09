@@ -172,6 +172,10 @@
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
+## [2025-06-25] Log Danger Fav outcomes
+**Prompt:** Enhance generate_lay_candidates.py to log results of tagged Danger Favs.
+**Files Changed:** generate_lay_candidates.py, tests/test_generate_lay_candidates.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Script now appends daily Danger Fav results to logs/danger_fav_history.csv and optional Telegram summary.
 
 ## [2025-06-24] Add /tip Telegram command
 **Prompt:** Add new /tip command to Telegram bot returning latest horse tip.
@@ -181,6 +185,7 @@
 **Prompt:** Add modular tone templates with CLI/env control.
 **Files Changed:** utils/commentary.py, tests/test_commentary.py, core/dispatch_tips.py, cli/tmcli.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Commentary can be rendered in basic or expressive tone via `--comment-style` or `TM_COMMENT_STYLE`.
+
 
 
 ## [2025-06-24] Add combo generator

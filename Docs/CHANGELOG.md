@@ -1,6 +1,9 @@
 ## 2025-06-25
 
 ### Added
+- Danger Fav history logging via `generate_lay_candidates.py`.
+
+
 - `simulate_staking.py` to compare level, confidence and value staking profiles.
 
 - `roi/nap_tracker.py` tracks NAP ROI in `logs/roi/nap_history.csv`.
