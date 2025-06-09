@@ -1,3 +1,9 @@
+
+## [2025-06-09] QA review log update
+**Prompt:** Document heuristic intent tags and missing stable tactics profiling.
+**Files Changed:** codex_log.md
+**Outcome:** Added note on run_inference_and_select_top1.py and dispatch_tips.py tags; advanced stable tactics profiling pending.
+
 ## [2025-06-26] Document TM_DEV variables
 **Prompt:** Add TM_DEV and TM_DEV_MODE lines to `.env.example` and update docs.
 **Files Changed:** .env.example, Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
@@ -29,6 +35,7 @@
 **Prompt:** Edit AGENTS.md to reference Docs/monster_todo.md.
 **Files Changed:** AGENTS.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Documentation now points to the correct todo file.
+
 
 ## [2025-06-26] Add weekly ROI trend chart
 **Prompt:** Create a matplotlib line graph showing ROI per day for the past 7 days and save it to `logs/roi/roi_trend_<week>.png`.
