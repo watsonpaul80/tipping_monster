@@ -1,3 +1,8 @@
+## [2025-06-26] Add time-decay weighting to win rate
+**Prompt:** Codex, adjust the win-rate feature to apply time-decay — give more weight to races in the past 30 days vs those over 90 days old
+**Files Changed:** win_rate_by_tag.py, tests/test_win_rate_by_tag.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Win-rate calculations now prioritise recent races; new test verifies weighting.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md

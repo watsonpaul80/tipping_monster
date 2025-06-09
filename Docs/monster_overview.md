@@ -334,7 +334,7 @@ roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
 simulate_staking.py            Simulates staking strategies (level/conf/value) ✅ All tips
-win_rate_by_tag.py             Overall win % and ROI per tag    ✅ All tips
+win_rate_by_tag.py             Overall win % and ROI per tag (time-decay weighting)    ✅ All tips
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files

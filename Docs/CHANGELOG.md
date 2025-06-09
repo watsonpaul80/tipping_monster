@@ -1,3 +1,11 @@
+## 2025-06-26
+
+### Changed
+- `win_rate_by_tag.py` now uses time-decay weighting for win rate calculations, emphasising recent races.
+
+### Added
+- Unit test `test_time_decay_weighting` verifies the weighting logic.
+
 ## 2025-06-25
 
 ### Added
