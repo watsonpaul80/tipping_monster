@@ -13,6 +13,7 @@ load_dotenv()
 
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
+from utils.commentary import generate_commentary
 
 load_env()
 
@@ -330,6 +331,9 @@ def main(argv=None):
     enriched = []
     for tip in tips:
         tip["tags"] = generate_tags(tip, max_id, max_conf)
+        tip["commentary"] = generate_commentary(
+            tip["tags"], tip.get("confidence", 0.0), tip.get("trainer_rtf")
+        )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(
             tip.get("confidence", 0.0), odds, min_conf=args.min_conf

@@ -118,6 +118,13 @@
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
+
+
+## [2025-06-24] Add tag commentary helper
+**Prompt:** Refactor commentary generation into a reusable function and update dispatch logic.
+**Files Changed:** utils/commentary.py, core/dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md, tests/test_commentary.py
+**Outcome:** Telegram tips and logs now include concise tag-based commentary.
+
 ## [2025-06-24] Add Stats API server
 **Prompt:** Build stats_api.py that exposes /roi, /tips, /tags endpoints using FastAPI and serve JSON from latest logs.
 **Files Changed:** stats_api.py, tests/test_stats_api.py, requirements.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
@@ -145,4 +152,5 @@
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
+
 

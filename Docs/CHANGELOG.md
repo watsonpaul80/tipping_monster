@@ -1,6 +1,11 @@
 ## 2025-06-24
 
 
+### Added
+- Reusable `generate_commentary` helper for tag-based blurbs.
+
+### Changed
+- `dispatch_tips.py` now writes commentary for each tip via the helper.
 - `value_score` calculation in `merge_odds_into_tips.py`.
 - New `💰 Value Pick` tag in dispatched tips.
 
@@ -9,27 +14,17 @@
 
 ### Fixed
 - Updated docs and tests for the new value logic.
-
-
 - `stats_api.py` provides FastAPI endpoints for ROI, tips and tag ROI.
-
-
 - Draw Advantage tag (📊) when `draw_bias_rank` > 0.7 during inference.
 - Commentary mentions draw advantage and tag appears in Telegram.
-
-
 - `generate_rolling_roi.py` computes 30-day rolling ROI to `logs/roi/rolling_roi.csv`.
-
 - Unit test for `run_inference_and_select_top1.py` verifies correct top tip and tags.
 
 ### Changed
 - Marked inference unit test item complete in `monster_todo.md`.
-
 - `dispatch_tips.py` now prints a model confidence line summarising why the
   model likes each tip.
-
-
-
+  
 ## 2025-06-23
 
 ### Added

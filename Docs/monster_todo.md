@@ -42,7 +42,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 16. All Tips Mode — dispatch full racecards (mug mode) alongside Monster Tips  
 17. ✅ SHAP or feature gain per model *(2025-06-08)*
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
-19. Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%”  
+19. ✅ Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%” [Done: 2025-06-24]
 20. Use tags + confidence + form stats for explanation  
 21. ✅ Score tips by band, confidence, and value *(Done: 2025-06-24)*
 22. Tag top 3 per day as Premium Tips  
