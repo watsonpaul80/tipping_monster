@@ -1,3 +1,9 @@
+## 2025-06-26
+
+### Added
+- `TM_DEV` and `TM_DEV_MODE` examples in `.env.example` for dev Telegram routing
+  and disabling external posts.
+
 ## 2025-06-25
 
 ### Added

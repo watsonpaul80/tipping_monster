@@ -1,3 +1,8 @@
+## [2025-06-26] Document TM_DEV variables
+**Prompt:** Add TM_DEV and TM_DEV_MODE lines to `.env.example` and update docs.
+**Files Changed:** .env.example, Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Example env and docs explain dev routing and disabling posts.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
