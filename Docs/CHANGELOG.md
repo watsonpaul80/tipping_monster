@@ -1,5 +1,7 @@
 ## 2025-06-26
 
+### Changed
+- Reclassified `utils/ensure_sent_tips.py` as **keep** in `Docs/script_audit.txt`. The script is used in CLI commands and unit tests.
 
 ### Changed
 - `win_rate_by_tag.py` now uses time-decay weighting for win rate calculations, emphasising recent races.
