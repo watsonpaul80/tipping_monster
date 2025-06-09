@@ -2,6 +2,7 @@
 
 ### Added
 - `auto_tweet_tips.py` respects `TM_DEV_MODE` and logs to `logs/dev/twitter.log`.
+- `tip_control_panel.py` interactive CLI for manual tip dispatch.
 
 ### Removed
 - `utils/check_betfair_market_times.py` per audit.
