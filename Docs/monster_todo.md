@@ -36,7 +36,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 10. Highlight best/worst bands visually in summary  
 11. ✅ Weekly retraining instead of daily (optional) *(2025-06-08)*
 12. Telegram `/rate` Feature — rate personal picks with ML feedback  
-13. Telegram Tip Control Panel — send custom messages, full racecards, etc.  
+13. ✅ Telegram Tip Control Panel — send custom messages, full racecards, etc. [Done: 2025-06-23]
 14. 🟡 *Removed for now* – breeding logic too hard to track without structured data  
 15. Trainer/Jockey ROI Leaderboard — daily form summary or on-demand stats  
 16. All Tips Mode — dispatch full racecards (mug mode) alongside Monster Tips  
