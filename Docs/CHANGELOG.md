@@ -1,5 +1,8 @@
 ## 2025-06-23
 
+### Removed
+- `utils/check_betfair_market_times.py` per audit.
+
 ### Changed
 - Deduplicated the `self_train_from_history.py` documentation section in README.
 

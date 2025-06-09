@@ -78,6 +78,12 @@
 **Files Changed:** Docs/CHANGELOG.md, codex_log.md
 **Outcome:** CHANGELOG.md now has a single well-formatted 2025-06-08 entry.
 
+## [2025-06-23] Remove outdated check_betfair_market_times.py
+**Prompt:** Delete or update script per audit. Deleted and cleaned references.
+**Files Changed:** utils/check_betfair_market_times.py (deleted), all_scripts.txt, Docs/script_audit.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Unused script removed and documentation updated.
+
+
 
 ## [2025-06-23] Remove redundant README section
 **Prompt:** Delete the duplicate `self_train_from_history.py` paragraph.

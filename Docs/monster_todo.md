@@ -161,3 +161,4 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 83. **Telegram Sandbox** — dev channel for testing dispatch.
 84. **Typed Dataset Schema** — enforce columns with `pandera`.
 85. **Rolling 30-Day ROI** — auto-generated summary in logs.
+86. ✅ Removed unused `check_betfair_market_times.py` script [Done: 2025-06-23]
