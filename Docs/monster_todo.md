@@ -60,8 +60,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
-32. Penalise stale horses and poor form  
-33. Add weekly ROI line chart (matplotlib) to logs  
+32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
+33. ✅ Add weekly ROI line chart (matplotlib) to logs *(Done: 2025-06-26)*
 34. Include win/loss emoji outcomes in Telegram ROI  
 35. Optional: highlight top winners in Telegram  
 36. NAP-only output mode for casual tier  
@@ -160,7 +160,9 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 82. ✅ **Stats API** — expose JSON endpoints for ROI and tips. [Done: 2025-06-24]
 83. **Telegram Sandbox** — dev channel for testing dispatch.
 84. **Typed Dataset Schema** — enforce columns with `pandera`.
-85. **Rolling 30-Day ROI** — auto-generated summary in logs. [Done: 2025-06-24]
+85. **Rolling 30-Day ROI** — auto-generated summary in logs.
+    - ✅ Initial version [Done: 2025-06-24]
+    - ✅ Added tips/wins/places and strike rate [Done: 2025-06-26]
 86. ✅ Removed unused `check_betfair_market_times.py` script [Done: 2025-06-23]
 87. ✅ Draw Advantage tag if `draw_bias_rank` > 0.7 [Done: 2025-06-24]
 88. ✅ Danger Fav history logging [Done: 2025-06-25]
@@ -168,4 +170,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 90. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
 91. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
 92. ✅ Time-decayed win rate weighting prioritising last 30 days over 90+ [Done: 2025-06-26]
+93. ✅ Weekly ROI commentary logs with top/worst day and trend [Done: 2025-06-26]
+94. ✅ `AGENTS.md` reference updated to `Docs/monster_todo.md` [Done: 2025-06-26]
+
 

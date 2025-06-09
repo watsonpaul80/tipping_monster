@@ -3,6 +3,30 @@
 **Files Changed:** win_rate_by_tag.py, tests/test_win_rate_by_tag.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Win-rate calculations now prioritise recent races; new test verifies weighting.
 
+
+## [2025-06-26] Clean up script list
+**Prompt:** Remove obsolete paths and deduplicate names in all_scripts.txt.
+**Files Changed:** all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** all_scripts.txt lists each script once; obsolete secrets entry removed.
+
+## [2025-06-26] Weekly ROI commentary logs
+**Prompt:** After the weekly ROI summary is generated, append a brief commentary block summarizing key insights.
+**Files Changed:** roi/weekly_roi_summary.py, tests/test_weekly_commentary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** summary_commentary_<week>.txt saved with top performer, worst day and trend.
+
+
+## [2025-06-26] Update todo doc reference
+**Prompt:** Edit AGENTS.md to reference Docs/monster_todo.md.
+**Files Changed:** AGENTS.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Documentation now points to the correct todo file.
+
+## [2025-06-26] Add weekly ROI trend chart
+**Prompt:** Create a matplotlib line graph showing ROI per day for the past 7 days and save it to `logs/roi/roi_trend_<week>.png`.
+**Files Changed:** roi/weekly_roi_summary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, codex_log.md
+**Outcome:** Weekly summary now outputs an ROI trend chart for each week.
+
+
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
@@ -191,9 +215,20 @@
 **Files Changed:** utils/commentary.py, tests/test_commentary.py, core/dispatch_tips.py, cli/tmcli.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Commentary can be rendered in basic or expressive tone via `--comment-style` or `TM_COMMENT_STYLE`.
 
+## [2025-06-26] Extend rolling ROI tracking
+**Prompt:** Implement rolling_roi_30.csv with wins, places, tips and strike rate; auto-update via ROI pipeline.
+**Files Changed:** generate_rolling_roi.py, roi/run_roi_pipeline.sh, Docs/CHANGELOG.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New CSV log summarises the last 30 days and is refreshed daily.
+
 
 
 ## [2025-06-24] Add combo generator
 **Prompt:** Create generate_combos.py to suggest doubles and trebles from top tips.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added combo generator script and documentation.
+
+## [2025-06-25] Add stale penalty feature
+**Prompt:** Update inference to penalise stale form and layoff.
+**Files Changed:** core/flatten_racecards_v3.py, features.json, tests/test_explain_model_decision.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added stale_penalty feature to dataset and documentation updated.
+
