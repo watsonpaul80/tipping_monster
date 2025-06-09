@@ -256,6 +256,11 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** New backlog item outlines intent scoring with trainer win-rate tracking and multiple-entry detection.
 
+## [2025-06-29] Add --dev flags to S3 scripts
+**Prompt:** Add --dev argument to core/fetch_betfair_odds.py, run_inference_and_select_top1.py and model_feature_importance.py.
+**Files Changed:** core/fetch_betfair_odds.py, core/run_inference_and_select_top1.py, model_feature_importance.py, Docs/dev_command_reference.md, README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Dev mode now skips S3 uploads in these scripts.
+
 ## [2025-06-25] Add stale penalty feature
 **Prompt:** Update inference to penalise stale form and layoff.
 **Files Changed:** core/flatten_racecards_v3.py, features.json, tests/test_explain_model_decision.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md

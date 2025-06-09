@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-import boto3
-import json
-import time
 import argparse
-from pathlib import Path
-from datetime import datetime
-import pytz
-from dotenv import load_dotenv
-from tippingmonster.env_loader import load_env
-import betfairlightweight
-from betfairlightweight import filters
+import json
 import os
+import time
+from datetime import datetime
+from pathlib import Path
+
+import betfairlightweight
+import boto3
+import pytz
+from betfairlightweight import filters
+from dotenv import load_dotenv
+
+from tippingmonster.env_loader import load_env
 
 BF_USERNAME = os.getenv("BF_USERNAME")
 BF_PASSWORD = os.getenv("BF_PASSWORD")
@@ -28,8 +30,13 @@ def main():
         "--label",
         type=str,
         help="Override timestamp label (e.g. 1445)",
-        default=None)
+        default=None,
+    )
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
 
     # === Use local time (BST)
     local_tz = pytz.timezone("Europe/London")
@@ -41,10 +48,7 @@ def main():
 
     # === Betfair Login ===
     trading = betfairlightweight.APIClient(
-        BF_USERNAME,
-        BF_PASSWORD,
-        app_key=BF_APP_KEY,
-        certs=BF_CERT_DIR
+        BF_USERNAME, BF_PASSWORD, app_key=BF_APP_KEY, certs=BF_CERT_DIR
     )
 
     print("[+] Logging in...")
@@ -53,19 +57,26 @@ def main():
     try:
         # === Market Filter: GB/IRE WIN races today ===
         market_filter = filters.market_filter(
-            event_type_ids=['7'],
-            market_type_codes=['WIN'],
-            market_countries=['GB', 'IE'],
+            event_type_ids=["7"],
+            market_type_codes=["WIN"],
+            market_countries=["GB", "IE"],
             market_start_time={
-                'from': f"{today}T00:00:00Z",
-                'to': f"{today}T23:59:00Z"
-            }
+                "from": f"{today}T00:00:00Z",
+                "to": f"{today}T23:59:00Z",
+            },
         )
 
         print("[+] Fetching markets...")
         markets = trading.betting.list_market_catalogue(
-            filter=market_filter, max_results=1000, market_projection=[
-                'EVENT', 'RUNNER_METADATA', 'MARKET_START_TIME', 'RUNNER_DESCRIPTION'])
+            filter=market_filter,
+            max_results=1000,
+            market_projection=[
+                "EVENT",
+                "RUNNER_METADATA",
+                "MARKET_START_TIME",
+                "RUNNER_DESCRIPTION",
+            ],
+        )
 
         print(f"[+] Found {len(markets)} markets")
 
@@ -79,12 +90,15 @@ def main():
         all_price_data = []
 
         for i in range(0, len(market_ids), batch_size):
-            batch = market_ids[i:i + batch_size]
+            batch = market_ids[i : i + batch_size]
             print(f"[+] Fetching batch {i//batch_size + 1}")
             try:
                 price_data = trading.betting.list_market_book(
-                    market_ids=batch, price_projection=filters.price_projection(
-                        price_data=['EX_BEST_OFFERS']))
+                    market_ids=batch,
+                    price_projection=filters.price_projection(
+                        price_data=["EX_BEST_OFFERS"]
+                    ),
+                )
                 all_price_data.extend(price_data)
                 time.sleep(0.5)
             except Exception as e:
@@ -105,15 +119,18 @@ def main():
                     prices = runner_book.ex.available_to_back
                     best_price = prices[0].price if prices else None
 
-                    all_data.append({
-                        "race": race_id,
-                        "horse": runner.runner_name,
-                        "bf_sp": best_price,
-                        "selection_id": runner.selection_id,
-                        "market_id": mkt.market_id,
-                        "is_fav": runner_book.selection_id == book.runners[0].selection_id,
-                        "market_rank": runner_book.selection_id
-                    })
+                    all_data.append(
+                        {
+                            "race": race_id,
+                            "horse": runner.runner_name,
+                            "bf_sp": best_price,
+                            "selection_id": runner.selection_id,
+                            "market_id": mkt.market_id,
+                            "is_fav": runner_book.selection_id
+                            == book.runners[0].selection_id,
+                            "market_rank": runner_book.selection_id,
+                        }
+                    )
             except Exception as e:
                 print(f"[!] Error processing market {mkt.market_id}: {e}")
                 continue
@@ -125,15 +142,18 @@ def main():
 
         # === Upload to S3 ===
         print("[+] Uploading to S3...")
-        s3 = boto3.client("s3")
         bucket = "tipping-monster"
         key = f"odds_snapshots/{output_path.name}"
 
-        try:
-            s3.upload_file(str(output_path), bucket, key)
-            print(f"[?] Uploaded to s3://{bucket}/{key}")
-        except Exception as e:
-            print(f"[!] S3 upload failed: {e}")
+        if os.getenv("TM_DEV_MODE") == "1":
+            print(f"[DEV] Skipping S3 upload of {output_path}")
+        else:
+            s3 = boto3.client("s3")
+            try:
+                s3.upload_file(str(output_path), bucket, key)
+                print(f"[?] Uploaded to s3://{bucket}/{key}")
+            except Exception as e:
+                print(f"[!] S3 upload failed: {e}")
 
     finally:
         trading.logout()

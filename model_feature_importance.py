@@ -8,6 +8,7 @@ import base64
 import glob
 import gzip
 import json
+import os
 import tarfile
 import tempfile
 from datetime import date
@@ -82,6 +83,9 @@ def load_data(paths: list[str]) -> pd.DataFrame:
 def upload_to_s3(file_path: Path, bucket: str) -> None:
     """Upload file to S3 under model_explainability/ with today's date."""
     key = f"model_explainability/{date.today().isoformat()}_top_features.png"
+    if os.getenv("TM_DEV_MODE") == "1":
+        print(f"[DEV] Skipping S3 upload of {file_path}")
+        return
     boto3.client("s3").upload_file(str(file_path), bucket, key)
     print(f"Uploaded SHAP chart to s3://{bucket}/{key}")
 
@@ -166,7 +170,11 @@ def main(argv: list[str] | None = None) -> int:
         "--telegram", action="store_true", help="Send chart to Telegram"
     )
     parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args(argv)
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
 
     try:
         out = generate_shap_chart(
