@@ -13,6 +13,11 @@ import boto3
 import pandas as pd
 import xgboost as xgb
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+
+from core.validate_features import validate_dataset_features
+from tippingmonster.utils import in_dev_mode, upload_to_s3
+
 BUCKET = "tipping-monster"
 
 
@@ -145,10 +150,8 @@ def train_model(df, feature_cols):
             json.dump(feature_cols, f)
         tar.add("features.json")
     print(f"📦 Model saved and packaged as {tar_path}")
-    if os.getenv("TM_DEV_MODE") == "1":
-        print(f"[DEV] Skipping S3 upload of {tar_path}")
-    else:
-        boto3.client("s3").upload_file(tar_path, BUCKET, f"models/{tar_path}")
+    upload_to_s3(tar_path, BUCKET, f"models/{tar_path}")
+    if not in_dev_mode():
         print(f"✅ Model uploaded to S3: models/{tar_path}")
 
 

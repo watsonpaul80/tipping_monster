@@ -12,11 +12,12 @@ from datetime import date, datetime
 from pathlib import Path
 
 # --- Third-Party Libraries ---
-import boto3
 import numpy as np
 import orjson
 import pandas as pd
 import xgboost as xgb
+
+from tippingmonster.utils import upload_to_s3
 
 # --- Local Modules ---
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -283,6 +284,5 @@ with open(output_path, "w") as f:
 
 print(f"Saved {len(top_tips)} top tips to {output_path}")
 
-s3 = boto3.client("s3")
-s3.upload_file(output_path, bucket, f"predictions/{date_str}/output.jsonl")
+upload_to_s3(output_path, bucket, f"predictions/{date_str}/output.jsonl")
 print(f"✅ Uploaded to s3://{bucket}/predictions/{date_str}/output.jsonl")
