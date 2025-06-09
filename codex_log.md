@@ -78,7 +78,13 @@
 **Files Changed:** Docs/CHANGELOG.md, codex_log.md
 **Outcome:** CHANGELOG.md now has a single well-formatted 2025-06-08 entry.
 
+
+## [2025-06-23] Remove redundant README section
+**Prompt:** Delete the duplicate `self_train_from_history.py` paragraph.
+**Files Changed:** README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** README now contains one complete explanation of the script.
 ## [2025-06-23] Fix docs links
 **Prompt:** Replace `../docs/` with `../Docs/` for script_audit.txt and SECURITY_REVIEW.md.
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
+

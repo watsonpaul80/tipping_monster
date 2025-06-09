@@ -1,7 +1,11 @@
 ## 2025-06-23
 
+### Changed
+- Deduplicated the `self_train_from_history.py` documentation section in README.
+
 ### Fixed
 - Updated broken links to `Docs` directory in README docs list.
+
 
 ## 2025-06-22
 
