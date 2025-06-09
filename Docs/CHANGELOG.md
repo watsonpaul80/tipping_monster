@@ -3,6 +3,7 @@
 ### Added
 - Noted need for stable-level intent profiler in `monster_todo.md` referencing
   `trainer_intent_score.py`.
+- `upload_to_s3` helper centralises S3 uploads and skips them when `TM_DEV_MODE` is set.
 
 ## 2025-06-26
 

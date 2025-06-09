@@ -16,6 +16,7 @@ __all__ = [
     "calculate_profit",
     "get_place_terms",
     "tip_has_tag",
+    "upload_to_s3",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
@@ -41,6 +42,16 @@ def logs_path(*parts: str) -> Path:
 
 def predictions_path(date: str) -> Path:
     return repo_path("predictions", date)
+
+
+def upload_to_s3(local_path: str | Path, bucket: str, key: str) -> None:
+    """Upload ``local_path`` to ``bucket``/``key`` unless in dev mode."""
+    if in_dev_mode():
+        print(f"[DEV] Skipping S3 upload to s3://{bucket}/{key}")
+        return
+    import boto3
+
+    boto3.client("s3").upload_file(str(local_path), bucket, key)
 
 
 def send_telegram_message(

@@ -13,6 +13,7 @@ from tippingmonster import (
     send_telegram_message,
     send_telegram_photo,
     tip_has_tag,
+    upload_to_s3,
 )
 
 # isort: on
@@ -163,3 +164,23 @@ def test_tip_has_tag_basic():
     tip = {"tags": ["🧠 Monster NAP", "⚡ Fresh"]}
     assert tip_has_tag(tip, "NAP")
     assert not tip_has_tag(tip, "Value")
+
+
+def test_upload_to_s3_respects_dev_mode(monkeypatch, tmp_path):
+    calls = []
+
+    class FakeClient:
+        def upload_file(self, *a, **k):  # pragma: no cover - simple append
+            calls.append(True)
+
+    import types
+
+    fake_boto3 = types.SimpleNamespace(client=lambda *a, **k: FakeClient())
+    monkeypatch.setitem(sys.modules, "boto3", fake_boto3)
+    monkeypatch.setenv("TM_DEV_MODE", "1")
+
+    file_path = tmp_path / "tmp.txt"
+    file_path.write_text("data")
+    upload_to_s3(file_path, "b", "k")
+
+    assert not calls
