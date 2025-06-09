@@ -1,3 +1,8 @@
+## 2025-06-26
+
+### Changed
+- Documentation link in `AGENTS.md` now points to `Docs/monster_todo.md`.
+
 ## 2025-06-25
 
 ### Added

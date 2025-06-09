@@ -1,3 +1,8 @@
+## [2025-06-26] Update todo doc reference
+**Prompt:** Edit AGENTS.md to reference Docs/monster_todo.md.
+**Files Changed:** AGENTS.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Documentation now points to the correct todo file.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md

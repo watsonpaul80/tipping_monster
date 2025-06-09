@@ -168,3 +168,5 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 90. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
 91. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
 
+92. ✅ `AGENTS.md` reference updated to `Docs/monster_todo.md` [Done: 2025-06-26]
+
