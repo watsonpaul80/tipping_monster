@@ -101,3 +101,8 @@
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
+## [2025-06-24] Add Draw Advantage tag
+**Prompt:** Enhance inference to tag runners with 📊 Draw Advantage if draw_bias_rank > 0.7.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips JSON now includes the Draw Advantage tag and Telegram commentary reflects the bias.
+

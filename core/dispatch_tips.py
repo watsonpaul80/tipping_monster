@@ -64,6 +64,11 @@ def generate_tags(tip, max_id, max_val):
             tags.append("📈 In Form")
     except:
         pass
+    try:
+        if float(tip.get("draw_bias_rank", 0)) > 0.7:
+            tags.append("📊 Draw Advantage")
+    except:
+        pass
     if get_tip_composite_id(tip) == max_id and tip.get("confidence", 0.0) == max_val:
         tags.append("🧠 Monster NAP")
     if tip.get("confidence", 0.0) >= 0.90:

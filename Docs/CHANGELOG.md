@@ -1,3 +1,9 @@
+## 2025-06-24
+
+### Added
+- Draw Advantage tag (📊) when `draw_bias_rank` > 0.7 during inference.
+- Commentary mentions draw advantage and tag appears in Telegram.
+
 ## 2025-06-23
 
 ### Added
