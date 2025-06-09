@@ -132,6 +132,8 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/roi/band_summary_<week>.csv`              | Weekly ROI per confidence band                                           |
+| `logs/roi/daily_band_summary_<date>.csv`        | Daily ROI per confidence band                                            |
 | `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
 
 ---

@@ -1,6 +1,14 @@
 ## 2025-06-25
 
 ### Added
+- Confidence band summaries to `weekly_roi_summary.py` and `send_daily_roi_summary.py`.
+- CSV logs `band_summary_<week>.csv` and `daily_band_summary_<date>.csv`.
+
+### Changed
+- Weekly and daily Telegram summaries show tips, wins, profit and ROI per band with best/worst emojis.
+
+## 2025-06-24
+
 
 - Expressive commentary style with `--comment-style` or `TM_COMMENT_STYLE`.
 - `Tip` dataclass for structured tip handling.
