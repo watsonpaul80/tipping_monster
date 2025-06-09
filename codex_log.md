@@ -106,6 +106,12 @@
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
 
+## [2025-06-24] Add unit test for inference script
+**Prompt:** Write unit tests for run_inference_and_select_top1.py.
+**Files Changed:** tests/test_run_inference_and_select_top1.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Test verifies NAP selection and tagging logic.
+
+
 ## [2025-06-24] Add Telegram confidence commentary
 **Prompt:** Enhance `dispatch_tips.py` to add a model confidence line.
 **Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
