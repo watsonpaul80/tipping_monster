@@ -1,3 +1,8 @@
+## [2025-06-26] Update script audit for ensure_sent_tips.py
+**Prompt:** Mark utils/ensure_sent_tips.py as keep in script_audit.txt and note usage in CLI and tests.
+**Files Changed:** Docs/script_audit.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Documentation updated and task logged.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md

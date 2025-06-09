@@ -1,3 +1,8 @@
+## 2025-06-26
+
+### Changed
+- Reclassified `utils/ensure_sent_tips.py` as **keep** in `Docs/script_audit.txt`. The script is used in CLI commands and unit tests.
+
 ## 2025-06-25
 
 ### Added
