@@ -1,3 +1,11 @@
+## 2025-06-26
+
+### Added
+- `summary_commentary_<week>.txt` with top performer, worst day and trend.
+
+### Changed
+- `weekly_roi_summary.py` now saves a commentary block for each week.
+
 ## 2025-06-25
 
 ### Added

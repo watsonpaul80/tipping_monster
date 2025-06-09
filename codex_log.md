@@ -1,3 +1,8 @@
+## [2025-06-26] Weekly ROI commentary logs
+**Prompt:** After the weekly ROI summary is generated, append a brief commentary block summarizing key insights.
+**Files Changed:** roi/weekly_roi_summary.py, tests/test_weekly_commentary.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** summary_commentary_<week>.txt saved with top performer, worst day and trend.
+
 ## [2025-06-25] Add NAP performance tracker
 **Prompt:** Create nap_tracker.py to log NAP results over time.
 **Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
