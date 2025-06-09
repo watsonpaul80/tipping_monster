@@ -33,6 +33,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Data Preparation: Flattened JSONL format for optimized inference input
 * ✅ Dynamic Staking: A sophisticated confidence-based staking model
 * ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
+* ✅ Value Score: `(confidence / bf_sp) * 100` highlights 💰 Value Picks
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
 * ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown

@@ -1,4 +1,21 @@
 
+## [2025-06-24] Add value_score tagging
+**Prompt:** Codex, update inference to calculate a value_score = (confidence / bf_sp) * 100. Tag as 💰 Value Pick if score > 5. Log and send as normal tip with tag.
+**Files Changed:** core/merge_odds_into_tips.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/monster_overview.md, Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Tips now include a value_score field and are tagged "💰 Value Pick" when the score exceeds 5.
+
+## [2025-06-24] Add rolling ROI script
+**Prompt:** Compute 30-day rolling ROI from sent logs.
+**Files Changed:** generate_rolling_roi.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, all_scripts.txt, codex_log.md
+**Outcome:** New CSV logs daily and rolling ROI figures.
+
+
+## [2025-06-24] Add public ROI dashboard
+**Prompt:** Codex, build public_dashboard.py using Streamlit. Load _sent.csv files, show ROI charts and tag stats.
+**Files Changed:** public_dashboard.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New dashboard visualises ROI from sent tips only.
+
+
 ## [2025-06-23] Log auto tweets in dev mode
 **Prompt:** Before posting tweets, check `TM_DEV_MODE`.
 **Files Changed:** monstertweeter/auto_tweet_tips.py, Docs/ops.md, Docs/quickstart.md, tests/test_auto_tweet_dev_mode.py, Docs/CHANGELOG.md, codex_log.md
@@ -52,7 +69,7 @@
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_todo.md, README.md, codex_log.md
 **Outcome:** Telegram bot now returns weekly ROI summary via /roi.
-=======
+
 
 ## [2025-06-08] Add log archiving utility
 **Prompt:** Create archive_old_logs.py to zip and move logs older than 14 days into logs/archive/.
@@ -102,7 +119,38 @@
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
 
 
+
 ## [2025-06-24] Add tag commentary helper
 **Prompt:** Refactor commentary generation into a reusable function and update dispatch logic.
 **Files Changed:** utils/commentary.py, core/dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md, tests/test_commentary.py
 **Outcome:** Telegram tips and logs now include concise tag-based commentary.
+
+## [2025-06-24] Add Stats API server
+**Prompt:** Build stats_api.py that exposes /roi, /tips, /tags endpoints using FastAPI and serve JSON from latest logs.
+**Files Changed:** stats_api.py, tests/test_stats_api.py, requirements.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New FastAPI server returns latest ROI, tips and tag summaries for dashboards.
+
+
+## [2025-06-24] Add Draw Advantage tag
+**Prompt:** Enhance inference to tag runners with 📊 Draw Advantage if draw_bias_rank > 0.7.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips JSON now includes the Draw Advantage tag and Telegram commentary reflects the bias.
+
+
+## [2025-06-24] Add unit test for inference script
+**Prompt:** Write unit tests for run_inference_and_select_top1.py.
+**Files Changed:** tests/test_run_inference_and_select_top1.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Test verifies NAP selection and tagging logic.
+
+
+## [2025-06-24] Add Telegram confidence commentary
+**Prompt:** Enhance `dispatch_tips.py` to add a model confidence line.
+**Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added confidence summary line with tag reasons.
+
+## [2025-06-23] Add tip_control_panel CLI
+**Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
+**Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
+**Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
+
+
