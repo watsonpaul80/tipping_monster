@@ -4,7 +4,7 @@ Tipping Monster is a fully automated machine-learning tip engine for UK and Iris
 
 A simple static landing page with a live tip feed is available under [site/index.html](site/index.html).
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [Docs/SECURITY_REVIEW.md](Docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
 
 ## Setup
 
