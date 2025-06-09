@@ -1,8 +1,14 @@
+
 ## [2025-06-24] Add rolling ROI script
 **Prompt:** Compute 30-day rolling ROI from sent logs.
 **Files Changed:** generate_rolling_roi.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, all_scripts.txt, codex_log.md
 **Outcome:** New CSV logs daily and rolling ROI figures.
 
+
+## [2025-06-24] Add public ROI dashboard
+**Prompt:** Codex, build public_dashboard.py using Streamlit. Load _sent.csv files, show ROI charts and tag stats.
+**Files Changed:** public_dashboard.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New dashboard visualises ROI from sent tips only.
 
 ## [2025-06-23] Log auto tweets in dev mode
 **Prompt:** Before posting tweets, check `TM_DEV_MODE`.
@@ -105,4 +111,21 @@
 **Prompt:** Replace `../docs/` with `../Docs/` for script_audit.txt and SECURITY_REVIEW.md.
 **Files Changed:** Docs/README.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation links now correctly reference the capitalised Docs directory.
+
+
+## [2025-06-24] Add unit test for inference script
+**Prompt:** Write unit tests for run_inference_and_select_top1.py.
+**Files Changed:** tests/test_run_inference_and_select_top1.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Test verifies NAP selection and tagging logic.
+
+
+## [2025-06-24] Add Telegram confidence commentary
+**Prompt:** Enhance `dispatch_tips.py` to add a model confidence line.
+**Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added confidence summary line with tag reasons.
+
+## [2025-06-23] Add tip_control_panel CLI
+**Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
+**Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
+**Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
 
