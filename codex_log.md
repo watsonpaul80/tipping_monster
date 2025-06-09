@@ -9,6 +9,11 @@
 **Files Changed:** roi/weekly_roi_summary.py, roi/send_daily_roi_summary.py, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** ROI summaries now include per-band stats with emoji highlights and CSV logs.
 
+## [2025-06-25] Add staking simulator
+**Prompt:** Create `simulate_staking.py` to compare level, confidence, and value staking profiles.
+**Files Changed:** simulate_staking.py, tests/test_simulate_staking.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New script outputs profit summaries and a profit curve chart.
+
 ## [2025-06-24] Add value_score tagging
 **Prompt:** Codex, update inference to calculate a value_score = (confidence / bf_sp) * 100. Tag as 💰 Value Pick if score > 5. Log and send as normal tip with tag.
 **Files Changed:** core/merge_odds_into_tips.py, core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/monster_overview.md, Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md

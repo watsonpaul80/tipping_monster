@@ -331,6 +331,7 @@ roi/weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
 roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
+simulate_staking.py            Simulates staking strategies (level/conf/value) ✅ All tips
 win_rate_by_tag.py             Overall win % and ROI per tag    ✅ All tips
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
@@ -343,6 +344,7 @@ logs/roi/tag_roi_summary_all.csv	ROI by tag for all tips
 logs/roi/monster_confidence_per_day_with_roi.csv	ROI by confidence bin
 logs/roi/roi_by_confidence_band_sent.csv        ROI by confidence band
 logs/roi/unified_roi_sheet.csv	Full tip log with Date/Week/Month
+logs/roi/staking_simulation.png Profit curves for staking simulations
 
 🔍 Analysis Levels
 Daily ROI and summary

@@ -78,6 +78,6 @@ core/train_model_v6.py - keep
 core/train_modelv7.py - keep
 utils/upload_logs_to_s3.sh - keep
 roi/weekly_roi_summary.py - keep
-
-
+simulate_staking.py - keep
 generate_combos.py - keep
+
