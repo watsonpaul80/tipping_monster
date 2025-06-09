@@ -1,3 +1,8 @@
+## [2025-06-08] Fix README security review link
+**Prompt:** Update README to reference Docs/SECURITY_REVIEW.md and verify Docs prefixes.
+**Files Changed:** README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Fixed documentation link inconsistencies.
+
 ## [2025-06-22] Add tag ROI table to streamlit
 **Prompt:** Codex, add a table to streamlit_pauls_view.py showing ROI, strike rate, and profit per tag.
 **Files Changed:** streamlit_pauls_view.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_TODO.md, all_scripts.txt, codex_log.md

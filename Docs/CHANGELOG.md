@@ -3,6 +3,8 @@
 ### Added
 - ROI by Tag table in `streamlit_pauls_view.py` for deeper tag analysis.
 
+### Documentation
+- Fixed README link to Docs/SECURITY_REVIEW.md.
 
 ## 2025-06-08
 
