@@ -2,6 +2,9 @@
 
 ### Added
 
+- `stats_api.py` provides FastAPI endpoints for ROI, tips and tag ROI.
+
+
 - Draw Advantage tag (📊) when `draw_bias_rank` > 0.7 during inference.
 - Commentary mentions draw advantage and tag appears in Telegram.
 
