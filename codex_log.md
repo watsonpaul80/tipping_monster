@@ -203,6 +203,11 @@
 **Files Changed:** utils/commentary.py, tests/test_commentary.py, core/dispatch_tips.py, cli/tmcli.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Commentary can be rendered in basic or expressive tone via `--comment-style` or `TM_COMMENT_STYLE`.
 
+## [2025-06-26] Extend rolling ROI tracking
+**Prompt:** Implement rolling_roi_30.csv with wins, places, tips and strike rate; auto-update via ROI pipeline.
+**Files Changed:** generate_rolling_roi.py, roi/run_roi_pipeline.sh, Docs/CHANGELOG.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New CSV log summarises the last 30 days and is refreshed daily.
+
 
 
 ## [2025-06-24] Add combo generator

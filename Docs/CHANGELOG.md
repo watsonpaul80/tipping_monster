@@ -1,5 +1,9 @@
 ## 2025-06-26
 
+### Added
+- `rolling_roi_30.csv` tracks tips, wins, places, profit and strike rate for the last 30 days.
+- `run_roi_pipeline.sh` now refreshes this log automatically.
+
 
 ### Added
 - `summary_commentary_<week>.txt` with top performer, worst day and trend.
