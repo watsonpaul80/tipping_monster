@@ -1,3 +1,18 @@
+## [2025-06-25] Add NAP performance tracker
+**Prompt:** Create nap_tracker.py to log NAP results over time.
+**Files Changed:** roi/nap_tracker.py, tests/test_nap_tracker.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/monster_overview.md, codex_log.md
+**Outcome:** New script logs daily NAP ROI to nap_history.csv and can summarise weekly.
+
+
+## [2025-06-25] Add band performance to ROI summaries
+**Prompt:** Update weekly and daily ROI scripts to break down results by confidence band.
+**Files Changed:** roi/weekly_roi_summary.py, roi/send_daily_roi_summary.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** ROI summaries now include per-band stats with emoji highlights and CSV logs.
+
+## [2025-06-25] Add staking simulator
+**Prompt:** Create `simulate_staking.py` to compare level, confidence, and value staking profiles.
+**Files Changed:** simulate_staking.py, tests/test_simulate_staking.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New script outputs profit summaries and a profit curve chart.
 
 ## [2025-06-24] Add value_score tagging
 **Prompt:** Codex, update inference to calculate a value_score = (confidence / bf_sp) * 100. Tag as 💰 Value Pick if score > 5. Log and send as normal tip with tag.
@@ -148,6 +163,11 @@
 **Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added confidence summary line with tag reasons.
 
+## [2025-06-25] Refactor tips into dataclass
+**Prompt:** Refactor tip dictionaries into a Tip dataclass.
+**Files Changed:** core/tip.py, core/dispatch_tips.py, core/dispatch_all_tips.py, roi/calibrate_confidence_daily.py, roi/generate_subscriber_log.py, roi/generate_tweet.py, roi/roi_tracker_advised.py, roi/tag_roi_tracker.py
+**Outcome:** Scripts now use the dataclass for loading and saving tips.
+
 ## [2025-06-23] Add tip_control_panel CLI
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
@@ -157,5 +177,13 @@
 **Prompt:** Add new /tip command to Telegram bot returning latest horse tip.
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Bot replies with confidence, tags, commentary and odds for the requested horse.
+## [2025-06-25] Add expressive commentary style
+**Prompt:** Add modular tone templates with CLI/env control.
+**Files Changed:** utils/commentary.py, tests/test_commentary.py, core/dispatch_tips.py, cli/tmcli.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Commentary can be rendered in basic or expressive tone via `--comment-style` or `TM_COMMENT_STYLE`.
 
 
+## [2025-06-24] Add combo generator
+**Prompt:** Create generate_combos.py to suggest doubles and trebles from top tips.
+**Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/quickstart.md, Docs/script_audit.txt, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added combo generator script and documentation.

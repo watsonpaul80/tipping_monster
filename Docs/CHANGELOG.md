@@ -1,9 +1,28 @@
+## 2025-06-25
+
+### Added
+- `simulate_staking.py` to compare level, confidence and value staking profiles.
+
+- `roi/nap_tracker.py` tracks NAP ROI in `logs/roi/nap_history.csv`.
+- Confidence band summaries to `weekly_roi_summary.py` and `send_daily_roi_summary.py`.
+- CSV logs `band_summary_<week>.csv` and `daily_band_summary_<date>.csv`.
+
+### Changed
+- Weekly and daily Telegram summaries show tips, wins, profit and ROI per band with best/worst emojis.
 ## 2025-06-24
 
 
+- Expressive commentary style with `--comment-style` or `TM_COMMENT_STYLE`.
+- `Tip` dataclass for structured tip handling.
+
+### Changed
+- Dispatch and ROI scripts now load and save tips using the dataclass.
+
+## 2025-06-24
 ### Added
 - Reusable `generate_commentary` helper for tag-based blurbs.
 - `/tip` Telegram command shows the latest tip details for a horse.
+- `generate_combos.py` suggests high-confidence doubles and trebles.
 
 ### Changed
 - `dispatch_tips.py` now writes commentary for each tip via the helper.
