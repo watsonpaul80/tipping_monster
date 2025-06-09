@@ -148,6 +148,11 @@
 **Files Changed:** core/dispatch_tips.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added confidence summary line with tag reasons.
 
+## [2025-06-25] Refactor tips into dataclass
+**Prompt:** Refactor tip dictionaries into a Tip dataclass.
+**Files Changed:** core/tip.py, core/dispatch_tips.py, core/dispatch_all_tips.py, roi/calibrate_confidence_daily.py, roi/generate_subscriber_log.py, roi/generate_tweet.py, roi/roi_tracker_advised.py, roi/tag_roi_tracker.py
+**Outcome:** Scripts now use the dataclass for loading and saving tips.
+
 ## [2025-06-23] Add tip_control_panel CLI
 **Prompt:** Create tip_control_panel.py script with manual tip selection and Telegram send.
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
