@@ -1,6 +1,9 @@
 ## 2025-06-24
 
 ### Added
+
+- `generate_rolling_roi.py` computes 30-day rolling ROI to `logs/roi/rolling_roi.csv`.
+
 - Unit test for `run_inference_and_select_top1.py` verifies correct top tip and tags.
 
 ### Changed
@@ -8,6 +11,7 @@
 
 - `dispatch_tips.py` now prints a model confidence line summarising why the
   model likes each tip.
+
 
 ## 2025-06-23
 

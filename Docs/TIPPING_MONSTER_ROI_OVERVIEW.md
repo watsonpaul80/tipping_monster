@@ -38,6 +38,7 @@ ROI is tracked across the following dimensions:
 - `roi_by_confidence_band_sent.csv`
 - `unified_roi_sheet.csv`
 - `weekly_summary.csv`
+- `rolling_roi.csv`
 
 - Each log row includes `odds_delta` (realistic vs SP)  
   These are ready for pivoting, filtering, and dashboard integration.

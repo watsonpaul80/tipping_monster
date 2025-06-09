@@ -1,3 +1,10 @@
+
+## [2025-06-24] Add rolling ROI script
+**Prompt:** Compute 30-day rolling ROI from sent logs.
+**Files Changed:** generate_rolling_roi.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/TIPPING_MONSTER_ROI_OVERVIEW.md, all_scripts.txt, codex_log.md
+**Outcome:** New CSV logs daily and rolling ROI figures.
+
+
 ## [2025-06-24] Add public ROI dashboard
 **Prompt:** Codex, build public_dashboard.py using Streamlit. Load _sent.csv files, show ROI charts and tag stats.
 **Files Changed:** public_dashboard.py, all_scripts.txt, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
