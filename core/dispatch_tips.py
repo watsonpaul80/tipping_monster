@@ -67,6 +67,15 @@ def generate_tags(tip: Tip, max_id: str, max_val: float):
     except:
         pass
     try:
+        if float(tip.get("stable_form", 0)) >= 20:
+            tags.append("🔍 Stable Intent")
+    except Exception:
+        pass
+    if tip.get("multi_runner"):
+        tags.append("🏠 Multiple Runners")
+    if tip.get("class_drop_layoff"):
+        tags.append("⬇️ Class Drop Layoff")
+    try:
         if float(tip.get("draw_bias_rank", 0)) > 0.7:
             tags.append("📊 Draw Advantage")
     except:
@@ -129,6 +138,9 @@ TAG_REASON_MAP = {
     "💥 Monster Mode": "monster mode",
     "🔥 Market Mover": "market mover",
     "❄️ Drifter": "drifter",
+    "🔍 Stable Intent": "stable intent",
+    "🏠 Multiple Runners": "multiple runners",
+    "⬇️ Class Drop Layoff": "class drop layoff",
 }
 
 

@@ -43,6 +43,11 @@
 **Outcome:** Weekly summary now outputs an ROI trend chart for each week.
 
 
+## [2025-06-26] Trainer intent profiler
+**Prompt:** Create scripts to tag tips when trainers show strong recent form, run multiple horses or drop a horse in class after a layoff.
+**Files Changed:** core/trainer_stable_profile.py, trainer_intent_profiler.py, core/dispatch_tips.py, core/tip.py, tests/test_trainer_stable_profile.py, tests/test_trainer_intent_profiler.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New stable-form field on tips and tagging logic for in-form trainers, multi-runner yards and class-drop layoffs.
+
 
 
 ## [2025-06-25] Add NAP performance tracker

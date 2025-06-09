@@ -96,6 +96,8 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `roi/generate_weekly_roi.py`: Creates `weekly_summary_YYYY-WW.csv` with ROI and strike rate for the week.
 * `roi/generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `roi/send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
+* `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
 
 ---
 
