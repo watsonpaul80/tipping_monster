@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from core.tip import Tip
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 from utils.commentary import generate_commentary
@@ -36,11 +37,11 @@ def calculate_monster_stake(
     return 1.0 if confidence >= min_conf else 0.0
 
 
-def get_tip_composite_id(tip: dict) -> str:
+def get_tip_composite_id(tip: Tip) -> str:
     return f"{tip.get('race', 'Unknown_Race')}_{tip.get('name', 'Unknown_Horse')}"
 
 
-def generate_tags(tip, max_id, max_val):
+def generate_tags(tip: Tip, max_id: str, max_val: float):
     tags = []
     try:
         if float(tip.get("last_class", -1)) > float(tip.get("class", -1)):
@@ -95,13 +96,17 @@ def generate_tags(tip, max_id, max_val):
     return tags or ["🎯 Solid pick"]
 
 
-def read_tips(path):
-    tips = []
+def read_tips(path: str) -> list[Tip]:
+    tips: list[Tip] = []
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
+            line = line.strip()
+            if not line:
+                continue
             try:
-                tips.append(json.loads(line.strip()))
-            except:
+                data = json.loads(line)
+                tips.append(Tip.from_dict(data))
+            except json.JSONDecodeError:
                 pass
     return tips
 
@@ -291,6 +296,12 @@ def main(argv=None):
     parser.add_argument(
         "--explain", action="store_true", help="Include SHAP explanations"
     )
+    parser.add_argument(
+        "--comment-style",
+        choices=["basic", "expressive"],
+        default=os.getenv("TM_COMMENT_STYLE", "basic"),
+        help="Tone for generated commentary",
+    )
     args = parser.parse_args(argv)
 
     if args.dev:
@@ -332,7 +343,10 @@ def main(argv=None):
     for tip in tips:
         tip["tags"] = generate_tags(tip, max_id, max_conf)
         tip["commentary"] = generate_commentary(
-            tip["tags"], tip.get("confidence", 0.0), tip.get("trainer_rtf")
+            tip["tags"],
+            tip.get("confidence", 0.0),
+            tip.get("trainer_rtf"),
+            style=args.comment_style,
         )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(
@@ -363,7 +377,7 @@ def main(argv=None):
         f.write("\n\n".join(formatted))
     with open(sent_path, "w") as f:
         for tip in enriched:
-            json.dump(tip, f)
+            json.dump(tip.to_dict(), f)
             f.write("\n")
 
     print(f"📄 Tip summary and sent tips saved to: {sent_path}")
