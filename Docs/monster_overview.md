@@ -129,6 +129,7 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi/weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `roi/send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
 | `roi/generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
+| `roi/nap_tracker.py` | Logs NAP ROI to `nap_history.csv` |
 | `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
