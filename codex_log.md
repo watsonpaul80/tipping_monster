@@ -1,7 +1,14 @@
+
+## [2025-06-23] Log auto tweets in dev mode
+**Prompt:** Before posting tweets, check `TM_DEV_MODE`.
+**Files Changed:** monstertweeter/auto_tweet_tips.py, Docs/ops.md, Docs/quickstart.md, tests/test_auto_tweet_dev_mode.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Tweets are written to `logs/dev/twitter.log` when `TM_DEV_MODE=1`.
+
 ## [2025-06-08] Fix README security review link
 **Prompt:** Update README to reference Docs/SECURITY_REVIEW.md and verify Docs prefixes.
 **Files Changed:** README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Fixed documentation link inconsistencies.
+
 
 ## [2025-06-22] Add tag ROI table to streamlit
 **Prompt:** Codex, add a table to streamlit_pauls_view.py showing ROI, strike rate, and profit per tag.

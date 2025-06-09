@@ -1,5 +1,8 @@
 ## 2025-06-23
 
+### Added
+- `auto_tweet_tips.py` respects `TM_DEV_MODE` and logs to `logs/dev/twitter.log`.
+
 ### Removed
 - `utils/check_betfair_market_times.py` per audit.
 
@@ -8,6 +11,7 @@
 
 ### Fixed
 - Updated broken links to `Docs` directory in README docs list.
+
 
 
 ## 2025-06-22
