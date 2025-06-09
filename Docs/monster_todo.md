@@ -163,7 +163,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 85. **Rolling 30-Day ROI** — auto-generated summary in logs. [Done: 2025-06-24]
 86. ✅ Removed unused `check_betfair_market_times.py` script [Done: 2025-06-23]
 87. ✅ Draw Advantage tag if `draw_bias_rank` > 0.7 [Done: 2025-06-24]
-88. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
-89. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
-
+88. ✅ /tip bot command to show latest horse tip [Done: 2025-06-24]
+89. ✅ Smart Combo generator for doubles/trebles [Done: 2025-06-24]
+90. ✅ NAP performance tracker logs to `nap_history.csv` [Done: 2025-06-25]
 

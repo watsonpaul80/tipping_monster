@@ -278,6 +278,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Hall of Fame
 * Tip memory tracking
 * ✅ /roi and /nap bot commands (Also /stats)
+* ✅ /tip bot command for horse info
 * Commentary fine-tuning via GPT
 * Telegram poll buttons
 * Stake simulation modes

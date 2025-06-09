@@ -21,6 +21,7 @@
 ## 2025-06-24
 ### Added
 - Reusable `generate_commentary` helper for tag-based blurbs.
+- `/tip` Telegram command shows the latest tip details for a horse.
 - `generate_combos.py` suggests high-confidence doubles and trebles.
 
 ### Changed

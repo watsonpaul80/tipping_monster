@@ -173,6 +173,10 @@
 **Files Changed:** tip_control_panel.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added interactive CLI for manual dispatch with dev-mode support.
 
+## [2025-06-24] Add /tip Telegram command
+**Prompt:** Add new /tip command to Telegram bot returning latest horse tip.
+**Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Bot replies with confidence, tags, commentary and odds for the requested horse.
 ## [2025-06-25] Add expressive commentary style
 **Prompt:** Add modular tone templates with CLI/env control.
 **Files Changed:** utils/commentary.py, tests/test_commentary.py, core/dispatch_tips.py, cli/tmcli.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md

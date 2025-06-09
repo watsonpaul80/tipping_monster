@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simple Telegram bot with /roi and /nap commands."""
+"""Simple Telegram bot with /roi, /nap and /tip commands."""
 
 from __future__ import annotations
 
@@ -143,6 +143,38 @@ def get_recent_naps(days: int = 7, base_dir: Path | None = None) -> str:
     return "\n".join(lines)
 
 
+def get_tip_info(name: str, base_dir: Path | None = None) -> str:
+    """Return the most recent tip info for ``name``."""
+    base_dir = base_dir or repo_path()
+    logs_dir = base_dir / "logs"
+    files = sorted(logs_dir.glob("sent_tips_*.jsonl"), reverse=True)
+    if not files:
+        return "No sent tips logs found."
+
+    target = name.lower()
+    for fpath in files:
+        date_str = fpath.stem.split("_")[-1]
+        with open(fpath, "r", encoding="utf-8") as f:
+            for line in f:
+                tip = json.loads(line)
+                if tip.get("name", "").lower() == target:
+                    confidence = tip.get("confidence")
+                    tags = ", ".join(tip.get("tags", []))
+                    commentary = tip.get("commentary", "")
+                    odds = tip.get("bf_sp")
+                    parts = [f"{date_str}: {tip.get('race', '')}"]
+                    if odds:
+                        parts[0] += f" @ {odds}"
+                    if confidence is not None:
+                        parts.append(f"Confidence {confidence*100:.1f}%")
+                    if tags:
+                        parts.append(f"Tags: {tags}")
+                    if commentary:
+                        parts.append(commentary)
+                    return "\n".join(parts)
+    return f"No recent tip found for {name}."
+
+
 async def _reply(update: Update, message: str) -> None:
     """Send or log ``message`` based on dev mode."""
     if os.getenv("TM_DEV_MODE") == "1":
@@ -177,6 +209,16 @@ async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await _reply(update, message)
 
 
+async def tip(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle /tip HORSE command."""
+    if not context.args:
+        await _reply(update, "Usage: /tip HORSE_NAME")
+        return
+    name = " ".join(context.args)
+    message = get_tip_info(name)
+    await _reply(update, message)
+
+
 def main() -> None:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
@@ -186,6 +228,7 @@ def main() -> None:
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("roi", roi))
     application.add_handler(CommandHandler("nap", nap))
+    application.add_handler(CommandHandler("tip", tip))
     application.run_polling()
 
 
