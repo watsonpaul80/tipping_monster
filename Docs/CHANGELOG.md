@@ -1,8 +1,11 @@
 ## 2025-06-30
 
+### Changed
+- Marked SHAP-based explanations and confidence band filtering complete in `monster_overview.md`.
 ### Documentation
 - Updated monster_overview.md for dev-mode S3 skipping and intent profiler.
 - Updated TIPPING_MONSTER_PRODUCTS.md with Value Pick tag and latest update dates.
+
 
 ## 2025-06-29
 
