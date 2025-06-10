@@ -322,3 +322,8 @@ error. Added tests for failing responses and documented in changelog.
 
 
 
+
+## [2025-07-04] Update dev-check path
+**Prompt:** Replace ./dev-check.sh references in docs with ./utils/dev-check.sh.
+**Files Changed:** Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Quickstart guide now references correct script path; changelog updated.

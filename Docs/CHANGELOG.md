@@ -1,3 +1,8 @@
+## 2025-07-04
+
+### Documentation
+- Updated quickstart guide to reference `./utils/dev-check.sh`.
+
 ## 2025-07-02
 
 ### Changed
