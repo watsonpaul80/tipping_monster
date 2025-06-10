@@ -1,8 +1,18 @@
+
 ## 2025-07-03
 
 ### Fixed
 - `utils/dev-check.sh` now checks paths from the repository root.
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
+
+## 2025-06-10
+
+### Fixed
+- `Makefile` `dev-check` target now calls `utils/dev-check.sh`.
+
+### Documentation
+- Quickstart updated for the new path.
+
 
 ## 2025-07-02
 
