@@ -7,12 +7,12 @@ from datetime import datetime
 from pathlib import Path
 
 import betfairlightweight
-import boto3
 import pytz
 from betfairlightweight import filters
 from dotenv import load_dotenv
 
 from tippingmonster.env_loader import load_env
+from tippingmonster.utils import upload_to_s3
 
 BF_USERNAME = os.getenv("BF_USERNAME")
 BF_PASSWORD = os.getenv("BF_PASSWORD")
@@ -148,9 +148,8 @@ def main():
         if os.getenv("TM_DEV_MODE") == "1":
             print(f"[DEV] Skipping S3 upload of {output_path}")
         else:
-            s3 = boto3.client("s3")
             try:
-                s3.upload_file(str(output_path), bucket, key)
+                upload_to_s3(output_path, bucket, key)
                 print(f"[?] Uploaded to s3://{bucket}/{key}")
             except Exception as e:
                 print(f"[!] S3 upload failed: {e}")

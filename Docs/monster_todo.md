@@ -179,5 +179,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 94. ✅ Weekly ROI commentary logs with top/worst day and trend [Done: 2025-06-26]
 95. ✅ `AGENTS.md` reference updated to `Docs/monster_todo.md` [Done: 2025-06-26]
 
+96. ✅ `upload_to_s3` helper skips uploads in dev mode [Done: 2025-06-27]
+
 
 

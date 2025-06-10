@@ -1,4 +1,9 @@
 
+## [2025-06-27] Add upload_to_s3 helper
+**Prompt:** Centralise S3 uploads with a helper that skips when TM_DEV_MODE=1. Update scripts, docs and tests.
+**Files Changed:** tippingmonster/utils.py, tippingmonster/__init__.py, core/fetch_betfair_odds.py, core/run_inference_and_select_top1.py, core/train_model_v6.py, core/train_modelv7.py, train_place_model.py, model_feature_importance.py, core/daily_upload_racecards.sh, core/daily_upload_results.sh, core/daily_flatten.sh, tests/test_utils.py, README.md, .env.example, Docs/dev_command_reference.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Uploads respect dev mode via a shared helper; documentation reflects the change.
+
 ## [2025-06-09] QA review log update
 **Prompt:** Document heuristic intent tags and missing stable tactics profiling.
 **Files Changed:** codex_log.md

@@ -31,7 +31,7 @@ TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET
 
 
 Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
-Set `TM_DEV_MODE=1` to suppress Telegram sends entirely and write logs to `logs/dev/` instead. Any script executed with the `--dev` flag automatically sets this variable.
+Set `TM_DEV_MODE=1` to suppress Telegram sends **and S3 uploads** and write logs to `logs/dev/` instead. Any script executed with the `--dev` flag automatically sets this variable.
 The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
 
 
@@ -123,8 +123,9 @@ uses this same file to filter tips.
 These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
-`send_telegram_message()` and the new `send_telegram_photo()` for posting
-images with captions. A lightweight `trainer_intent_score()` function is also
+`send_telegram_message()`, `send_telegram_photo()` and `upload_to_s3()` for
+posting messages, photos and uploading files while respecting dev mode.
+A lightweight `trainer_intent_score()` function is also
 provided for estimating how likely a trainer is trying to win based on recent
 runs, strike rates and market moves.
 
