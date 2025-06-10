@@ -5,7 +5,8 @@ This document highlights potential security issues in the repository and provide
 ## Findings
 
 - **Secrets exposed in version control**
-  - The file `monstertweeter/.env` contains Twitter API keys and access tokens.
+  - Earlier revisions included `monstertweeter/.env` with real Twitter API credentials. This file has been purged and replaced with `monstertweeter/.env.example` containing placeholders.
+  - Sensitive credentials have been removed from version control.
   - `rpscrape/scripts/daily_results.sh` hard codes database host, user and password.
 - **Shell invocation**
   - `rpscrape/scripts/utils/argparser.py` uses `os.system()` which can lead to shell injection.

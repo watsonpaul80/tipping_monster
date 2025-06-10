@@ -1,13 +1,44 @@
+
 ## 2025-07-04
 
 ### Fixed
 - Corrected Makefile tab for dev-check rule.
+
+## 2025-07-01
+
+### Documentation
+- Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.
+
+
+## 2025-07-04
+
+### Documentation
+- Updated quickstart guide to reference `./utils/dev-check.sh`.
+
+## 2025-07-03
+
+### Changed
+- `utils/dev-check.sh` now determines the repo root via Git so it can be run from any directory.
+- `core/run_inference_and_select_top1.py` replaced with a simplified version used in tests.
+
+
 
 ## 2025-07-03
 
 ### Fixed
 - `utils/dev-check.sh` now checks paths from the repository root.
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
+
+
+## 2025-06-10
+
+### Fixed
+- `Makefile` `dev-check` target now calls `utils/dev-check.sh`.
+
+### Documentation
+- Quickstart updated for the new path.
+
+
 
 ## 2025-07-02
 
@@ -19,7 +50,7 @@
 
 ### Removed
 - Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
-=======
+
 
 ### Fixed
 - Removed stale Steam Sniper doc references from `Docs/README.md`.

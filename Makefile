@@ -11,5 +11,6 @@ roi: dev-check
 
 test: dev-check
 	.venv/bin/pytest -q
+
 dev-check:
 	bash utils/dev-check.sh

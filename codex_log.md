@@ -1,7 +1,14 @@
+
 ## [2025-07-03] Fix dev-check path handling
 **Prompt:** Resolve errors when running `utils/dev-check.sh` from the repo root and align docs.
 **Files Changed:** utils/dev-check.sh, Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Script now computes repo root via git; Makefile and docs reference correct path.
+
+
+## [2025-06-10] Update dev-check path
+**Prompt:** Modify Makefile target to call utils/dev-check.sh and update docs.
+**Files Changed:** Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** dev-check points to the correct script; docs reflect new path.
 
 ## [2025-07-01] Clean up sniper doc references
 **Prompt:** Remove outdated bullet points for Steam Sniper docs.
@@ -292,6 +299,11 @@
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
 
+## [2025-07-01] Clarify secrets finding
+**Prompt:** Update security review to note `.env.example` and mention that credentials were removed from version control. Summarise in changelog.
+**Files Changed:** Docs/SECURITY_REVIEW.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Security review now references the example environment file and records that secrets were purged.
+
 
 ## [2025-06-30] Renumber TODO tasks 92-98
 **Prompt:** Renumber tasks 92-96 sequentially.
@@ -325,9 +337,18 @@ failure cases. Document the new behaviour in `Docs/CHANGELOG.md`.
 **Outcome:** Telegram helpers now raise `RuntimeError` when the API returns an
 error. Added tests for failing responses and documented in changelog.
 
-
-
 ## [2025-07-04] Fix Makefile whitespace
 **Prompt:** `make test` failed with `missing separator`.
 **Files Changed:** Makefile
 **Outcome:** Replaced spaces with a tab for the `dev-check` rule.
+
+## [2025-07-04] Update dev-check path
+**Prompt:** Replace ./dev-check.sh references in docs with ./utils/dev-check.sh.
+**Files Changed:** Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Quickstart guide now references correct script path; changelog updated.
+
+## [2025-07-03] dev-check resolves repo root
+**Prompt:** Update dev-check.sh so it can be run from any path.
+**Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
+**Outcome:** Script now detects repo root via git and unit test ensures it runs correctly from the repo root. Updated nap tracker test to reset `TM_DEV_MODE` and replaced incomplete inference script with a minimal version.
+
