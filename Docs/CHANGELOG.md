@@ -1,3 +1,8 @@
+## 2025-07-02
+
+### Changed
+- Telegram helper now raises `RuntimeError` when the API returns an error status.
+
 ## 2025-07-01
 
 
