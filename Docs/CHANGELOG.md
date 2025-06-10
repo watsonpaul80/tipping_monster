@@ -1,6 +1,13 @@
 
 ## 2025-07-03
 
+### Changed
+- `utils/dev-check.sh` now determines the repo root via Git so it can be run from any directory.
+- `core/run_inference_and_select_top1.py` replaced with a simplified version used in tests.
+
+
+## 2025-07-03
+
 ### Fixed
 - `utils/dev-check.sh` now checks paths from the repository root.
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
@@ -12,6 +19,7 @@
 
 ### Documentation
 - Quickstart updated for the new path.
+
 
 
 ## 2025-07-02
