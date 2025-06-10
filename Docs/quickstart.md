@@ -71,7 +71,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set 
 3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. Running the inference script directly requires the repo root to be on `PYTHONPATH`.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
-6. Run `./dev-check.sh` followed by `make test` to verify your setup.
+6. Run `./utils/dev-check.sh` followed by `make test` to verify your setup.
 
 With these files as a guide, you can get up to speed quickly and start contributing to the system.
 

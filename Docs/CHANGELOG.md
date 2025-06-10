@@ -1,3 +1,11 @@
+## 2025-06-10
+
+### Fixed
+- `Makefile` `dev-check` target now calls `utils/dev-check.sh`.
+
+### Documentation
+- Quickstart updated for the new path.
+
 ## 2025-07-02
 
 ### Changed

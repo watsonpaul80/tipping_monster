@@ -1,3 +1,8 @@
+## [2025-06-10] Update dev-check path
+**Prompt:** Modify Makefile target to call utils/dev-check.sh and update docs.
+**Files Changed:** Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** dev-check points to the correct script; docs reflect new path.
+
 ## [2025-07-01] Clean up sniper doc references
 **Prompt:** Remove outdated bullet points for Steam Sniper docs.
 **Files Changed:** Docs/README.md, Docs/CHANGELOG.md, codex_log.md
