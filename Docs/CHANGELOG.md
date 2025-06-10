@@ -3,11 +3,18 @@
 ### Removed
 - Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
 
+### Documentation
+- Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
+
+
 ## 2025-06-30
 
+### Changed
+- Marked SHAP-based explanations and confidence band filtering complete in `monster_overview.md`.
 ### Documentation
 - Updated monster_overview.md for dev-mode S3 skipping and intent profiler.
 - Updated TIPPING_MONSTER_PRODUCTS.md with Value Pick tag and latest update dates.
+
 
 ## 2025-06-29
 
