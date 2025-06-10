@@ -1,3 +1,8 @@
+## 2025-07-01
+
+### Documentation
+- Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.
+
 ## 2025-06-30
 
 ### Changed

@@ -283,3 +283,8 @@
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
 
+## [2025-07-01] Clarify secrets finding
+**Prompt:** Update security review to note `.env.example` and mention that credentials were removed from version control. Summarise in changelog.
+**Files Changed:** Docs/SECURITY_REVIEW.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Security review now references the example environment file and records that secrets were purged.
+
