@@ -1,4 +1,20 @@
 
+## [2025-07-03] Fix dev-check path handling
+**Prompt:** Resolve errors when running `utils/dev-check.sh` from the repo root and align docs.
+**Files Changed:** utils/dev-check.sh, Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Script now computes repo root via git; Makefile and docs reference correct path.
+
+## [2025-06-10] Update dev-check path
+**Prompt:** Modify Makefile target to call utils/dev-check.sh and update docs.
+**Files Changed:** Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** dev-check points to the correct script; docs reflect new path.
+
+
+## [2025-07-01] Clean up sniper doc references
+**Prompt:** Remove outdated bullet points for Steam Sniper docs.
+**Files Changed:** Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** README no longer lists obsolete sniper documents.
+
 ## [2025-06-27] Add upload_to_s3 helper
 **Prompt:** Centralise S3 uploads with a helper that skips when TM_DEV_MODE=1. Update scripts, docs and tests.
 **Files Changed:** tippingmonster/utils.py, tippingmonster/__init__.py, core/fetch_betfair_odds.py, core/run_inference_and_select_top1.py, core/train_model_v6.py, core/train_modelv7.py, train_place_model.py, model_feature_importance.py, core/daily_upload_racecards.sh, core/daily_upload_results.sh, core/daily_flatten.sh, tests/test_utils.py, README.md, .env.example, Docs/dev_command_reference.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
@@ -287,4 +303,52 @@
 **Prompt:** Update security review to note `.env.example` and mention that credentials were removed from version control. Summarise in changelog.
 **Files Changed:** Docs/SECURITY_REVIEW.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Security review now references the example environment file and records that secrets were purged.
+
+
+## [2025-06-30] Renumber TODO tasks 92-98
+**Prompt:** Renumber tasks 92-96 sequentially.
+**Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Fixed numbering duplication and noted cleanup in changelog.
+
+
+## [2025-07-01] Remove sniper subsystem references
+**Prompt:** Document removal of sniper cron jobs in ops docs and update CHANGELOG.
+**Files Changed:** Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Sniper-related cron entries commented out with June 2025 removal note.
+
+s
+## [2025-07-01] Sync v7 feature status
+**Prompt:** Edit monster_overview.md bullet list and update changelog.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Marked parallel model comparison and drawdown tracking as complete.
+
+
+## [2025-07-02] Skip Telegram alerts in safecron when dev mode
+**Prompt:** Modify safecron.sh to respect TM_DEV_MODE and update docs.
+**Files Changed:** utils/safecron.sh, Docs/README.md, Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Cron helper no longer sends Telegram alerts when TM_DEV_MODE=1; documentation updated.
+
+## [2025-07-02] Validate Telegram API responses
+**Prompt:** After posting to the Telegram API in `tippingmonster/utils.py`, check
+`response.status_code`. Log or raise an error if the response is not successful
+(status code >= 400). Update existing tests in `tests/test_utils.py` to cover
+failure cases. Document the new behaviour in `Docs/CHANGELOG.md`.
+**Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Telegram helpers now raise `RuntimeError` when the API returns an
+error. Added tests for failing responses and documented in changelog.
+
+
+
+## [2025-07-04] Update dev-check path
+**Prompt:** Replace ./dev-check.sh references in docs with ./utils/dev-check.sh.
+**Files Changed:** Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Quickstart guide now references correct script path; changelog updated.
+
+## [2025-07-03] dev-check resolves repo root
+**Prompt:** Update dev-check.sh so it can be run from any path.
+**Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
+**Outcome:** Script now detects repo root via git and unit test ensures it runs correctly from the repo root. Updated nap tracker test to reset `TM_DEV_MODE` and replaced incomplete inference script with a minimal version.
+
+
+
 

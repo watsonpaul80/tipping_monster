@@ -25,15 +25,17 @@ def test_log_day(tmp_path: Path):
     df.to_csv(csv_file, index=False)
 
     os.environ["TM_DEV_MODE"] = "1"
+    try:
+        history_file = roi_dir / "nap_history.csv"
+        row = log_day("2025-06-01", history_file, csv_file)
+        assert row["Wins"] == 1
+        assert row["Tips"] == 1
 
-    history_file = roi_dir / "nap_history.csv"
-    row = log_day("2025-06-01", history_file, csv_file)
-    assert row["Wins"] == 1
-    assert row["Tips"] == 1
+        history = load_history(history_file)
+        assert len(history) == 1
 
-    history = load_history(history_file)
-    assert len(history) == 1
-
-    summary = summarise_history(history_file)
-    assert summary["Wins"] == 1
-    assert summary["Tips"] == 1
+        summary = summarise_history(history_file)
+        assert summary["Wins"] == 1
+        assert summary["Tips"] == 1
+    finally:
+        os.environ.pop("TM_DEV_MODE", None)

@@ -79,7 +79,13 @@ def send_telegram_message(
         "parse_mode": "Markdown",
         "disable_web_page_preview": True,
     }
-    requests.post(url, data=payload, timeout=10)
+    resp = requests.post(url, data=payload, timeout=10)
+    if resp.status_code >= 400:
+        msg = f"Telegram API error {resp.status_code}: {resp.text}"
+        if in_dev_mode():
+            print(f"[DEV] {msg}")
+        else:
+            raise RuntimeError(msg)
 
 
 def send_telegram_photo(
@@ -112,7 +118,13 @@ def send_telegram_photo(
     with open(photo, "rb") as f:
         files = {"photo": f}
         data = {"chat_id": chat_id, "caption": caption, "parse_mode": "Markdown"}
-        requests.post(url, data=data, files=files, timeout=10)
+        resp = requests.post(url, data=data, files=files, timeout=10)
+    if resp.status_code >= 400:
+        msg = f"Telegram API error {resp.status_code}: {resp.text}"
+        if in_dev_mode():
+            print(f"[DEV] {msg}")
+        else:
+            raise RuntimeError(msg)
 
 
 def _get_place_terms(runners: int, race_name: str) -> tuple[float, int]:

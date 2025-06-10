@@ -10,8 +10,6 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `monster_overview.md` – full overview of the main ML pipeline, tip logic, and automation.
 - `monster_todo.md` – task tracker for main tipping logic including ROI, model training, and Telegram output.
 - `monster_todo_v2.md` – high-level roadmap for upcoming features.
-- `sniper_overview.md` – description of Steam Sniper logic, snapshot timing, detection, and Telegram output.
-- `sniper_todo.md` – task tracker for Steam Sniper features, scoring, and automation ideas.
 - `dev_command_reference.md` – quick list of useful developer commands.
  - `../Docs/script_audit.txt` – summary of active vs. unused scripts with keep/remove/rewrite verdicts.
  - `../Docs/SECURITY_REVIEW.md` – latest security audit notes.
@@ -40,6 +38,8 @@ Create a `.env` file (see `.env.example`) with the following variables:
 Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
 Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` instead.
 Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
+The `utils/safecron.sh` helper also respects this variable and will not send
+Telegram alerts when `TM_DEV_MODE=1`.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 

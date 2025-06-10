@@ -1,7 +1,64 @@
+
 ## 2025-07-01
 
 ### Documentation
 - Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.
+
+
+## 2025-07-04
+
+### Documentation
+- Updated quickstart guide to reference `./utils/dev-check.sh`.
+
+## 2025-07-03
+
+### Changed
+- `utils/dev-check.sh` now determines the repo root via Git so it can be run from any directory.
+- `core/run_inference_and_select_top1.py` replaced with a simplified version used in tests.
+
+
+## 2025-07-03
+
+### Fixed
+- `utils/dev-check.sh` now checks paths from the repository root.
+- `Makefile` and documentation updated to call `utils/dev-check.sh`.
+
+## 2025-06-10
+
+### Fixed
+- `Makefile` `dev-check` target now calls `utils/dev-check.sh`.
+
+### Documentation
+- Quickstart updated for the new path.
+
+
+
+## 2025-07-02
+
+### Changed
+- Telegram helper now raises `RuntimeError` when the API returns an error status.
+
+## 2025-07-01
+
+
+### Removed
+- Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
+
+
+### Fixed
+- Removed stale Steam Sniper doc references from `Docs/README.md`.
+
+### Documentation
+- Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
+
+## 2025-07-02
+
+### Changed
+- `utils/safecron.sh` skips Telegram alerts when `TM_DEV_MODE=1`.
+
+### Documentation
+- Updated README and ops guide to mention safecron obeys dev mode.
+
 
 ## 2025-06-30
 
@@ -10,6 +67,7 @@
 ### Documentation
 - Updated monster_overview.md for dev-mode S3 skipping and intent profiler.
 - Updated TIPPING_MONSTER_PRODUCTS.md with Value Pick tag and latest update dates.
+- Fixed task numbering 92–98 in `monster_todo.md`.
 
 
 ## 2025-06-29
