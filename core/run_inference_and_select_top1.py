@@ -38,7 +38,11 @@ parser.add_argument(
     "--model", default=latest_model, help="Path to model .tar.gz (S3-relative or local)"
 )
 parser.add_argument("--input", default=None, help="Path to input JSONL")
+parser.add_argument("--dev", action="store_true", help="Enable dev mode")
 args = parser.parse_args()
+
+if args.dev:
+    os.environ["TM_DEV_MODE"] = "1"
 
 # === PATHS ===
 date_str = date.today().isoformat()
@@ -283,6 +287,9 @@ with open(output_path, "w") as f:
 
 print(f"Saved {len(top_tips)} top tips to {output_path}")
 
-s3 = boto3.client("s3")
-s3.upload_file(output_path, bucket, f"predictions/{date_str}/output.jsonl")
-print(f"✅ Uploaded to s3://{bucket}/predictions/{date_str}/output.jsonl")
+if os.getenv("TM_DEV_MODE") == "1":
+    print(f"[DEV] Skipping S3 upload of {output_path}")
+else:
+    s3 = boto3.client("s3")
+    s3.upload_file(output_path, bucket, f"predictions/{date_str}/output.jsonl")
+    print(f"✅ Uploaded to s3://{bucket}/predictions/{date_str}/output.jsonl")

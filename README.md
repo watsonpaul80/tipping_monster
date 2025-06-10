@@ -82,8 +82,9 @@ Most Python scripts accept a `--debug` flag for verbose logging.
 **Important:** run inference scripts from the repository root. For example:
 
 ```bash
-python core/run_inference_and_select_top1.py
+python core/run_inference_and_select_top1.py --dev
 ```
+Use `--dev` to disable the final S3 upload.
 Executing this command while inside the `core/` directory will raise a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
