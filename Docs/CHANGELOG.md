@@ -1,3 +1,8 @@
+## 2025-07-01
+
+### Fixed
+- Removed stale Steam Sniper doc references from `Docs/README.md`.
+
 ## 2025-06-30
 
 ### Documentation

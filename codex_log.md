@@ -1,3 +1,7 @@
+## [2025-07-01] Clean up sniper doc references
+**Prompt:** Remove outdated bullet points for Steam Sniper docs.
+**Files Changed:** Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** README no longer lists obsolete sniper documents.
 
 ## [2025-06-27] Add upload_to_s3 helper
 **Prompt:** Centralise S3 uploads with a helper that skips when TM_DEV_MODE=1. Update scripts, docs and tests.
