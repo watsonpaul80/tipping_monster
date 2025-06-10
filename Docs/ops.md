@@ -13,8 +13,10 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 - **Log Output:** Where the primary output or errors of the cron command itself are logged (if specified). Internal script logging is now more organized within `logs/` subdirectories.
 
 > **Environment Note:** Telegram alerts depend on `TELEGRAM_BOT_TOKEN` and
-> `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
-> automatically.
+ > `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
+ > automatically.
+ > The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
+ > alerts when enabled.
 
 ---
 
