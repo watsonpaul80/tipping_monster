@@ -1,3 +1,8 @@
+## [2025-07-03] Fix dev-check path handling
+**Prompt:** Resolve errors when running `utils/dev-check.sh` from the repo root and align docs.
+**Files Changed:** utils/dev-check.sh, Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Script now computes repo root via git; Makefile and docs reference correct path.
+
 ## [2025-07-01] Clean up sniper doc references
 **Prompt:** Remove outdated bullet points for Steam Sniper docs.
 **Files Changed:** Docs/README.md, Docs/CHANGELOG.md, codex_log.md
@@ -322,3 +327,7 @@ error. Added tests for failing responses and documented in changelog.
 
 
 
+## [2025-07-04] Fix Makefile whitespace
+**Prompt:** `make test` failed with `missing separator`.
+**Files Changed:** Makefile
+**Outcome:** Replaced spaces with a tab for the `dev-check` rule.
