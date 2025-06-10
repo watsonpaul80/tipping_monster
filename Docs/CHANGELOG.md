@@ -1,3 +1,9 @@
+## 2025-06-30
+
+### Changed
+- Marked SHAP-based explanations and confidence band filtering complete in `monster_overview.md`.
+- Synced `monster_todo.md` to mark these features as done.
+
 ## 2025-06-29
 
 ### Added

@@ -32,7 +32,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 ## 🛠️ MEDIUM PRIORITY (Next Sprint)
 
-9. ✅ Suppression logic based on band ROI performance *(2025-06-08)*
+9. ✅ Suppression logic based on band ROI performance *(2025-06-08)* [Done: 2025-06-30]
 10. ✅ Highlight best/worst bands visually in summary *(Done: 2025-06-25)*
 11. ✅ Weekly retraining instead of daily (optional) *(2025-06-08)*
 12. Telegram `/rate` Feature — rate personal picks with ML feedback  
@@ -40,7 +40,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 14. 🟡 *Removed for now* – breeding logic too hard to track without structured data  
 15. Trainer/Jockey ROI Leaderboard — daily form summary or on-demand stats  
 16. All Tips Mode — dispatch full racecards (mug mode) alongside Monster Tips  
-17. ✅ SHAP or feature gain per model *(2025-06-08)*
+17. ✅ SHAP or feature gain per model *(2025-06-08)* [Done: 2025-06-30]
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
 19. ✅ Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%” [Done: 2025-06-24]
 20. Use tags + confidence + form stats for explanation  
