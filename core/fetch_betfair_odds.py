@@ -27,9 +27,16 @@ def main():
     # === Parse --label for snapshot override ===
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--label", type=str, help="Override timestamp label (e.g. 1445)", default=None
+        "--label",
+        type=str,
+        help="Override timestamp label (e.g. 1445)",
+        default=None,
     )
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
 
     # === Use local time (BST)
     local_tz = pytz.timezone("Europe/London")
@@ -137,11 +144,15 @@ def main():
         print("[+] Uploading to S3...")
         bucket = "tipping-monster"
         key = f"odds_snapshots/{output_path.name}"
-        try:
-            upload_to_s3(output_path, bucket, key)
-            print(f"[?] Uploaded to s3://{bucket}/{key}")
-        except Exception as e:
-            print(f"[!] S3 upload failed: {e}")
+
+        if os.getenv("TM_DEV_MODE") == "1":
+            print(f"[DEV] Skipping S3 upload of {output_path}")
+        else:
+            try:
+                upload_to_s3(output_path, bucket, key)
+                print(f"[?] Uploaded to s3://{bucket}/{key}")
+            except Exception as e:
+                print(f"[!] S3 upload failed: {e}")
 
     finally:
         trading.logout()

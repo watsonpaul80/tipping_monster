@@ -39,7 +39,11 @@ parser.add_argument(
     "--model", default=latest_model, help="Path to model .tar.gz (S3-relative or local)"
 )
 parser.add_argument("--input", default=None, help="Path to input JSONL")
+parser.add_argument("--dev", action="store_true", help="Enable dev mode")
 args = parser.parse_args()
+
+if args.dev:
+    os.environ["TM_DEV_MODE"] = "1"
 
 # === PATHS ===
 date_str = date.today().isoformat()
@@ -235,54 +239,4 @@ def load_combined_results():
         try:
             df = pd.read_csv(
                 path,
-                usecols=["date", "course", "off", "class", "horse"],
-                parse_dates=["date"],
-            )
-            recent_frames.append(df)
-        except:
-            continue
-    combined = pd.concat(master_frames + recent_frames, ignore_index=True)
-    combined["horse_clean"] = (
-        combined["horse"]
-        .astype(str)
-        .str.lower()
-        .str.replace(r" \([A-Z]{2,3}\)", "", regex=True)
-        .str.strip()
-    )
-    combined["class_num"] = (
-        combined["class"].astype(str).str.extract(r"(\d+)").fillna(-1).astype(float)
-    )
-    combined = combined.dropna(subset=["date", "class_num"])
-    return combined
-
-
-def get_last_class(horse_name, today_date, combined_df):
-    horse_key = (
-        str(horse_name).lower().strip().replace(" (IRE)", "").replace(" (GB)", "")
-    )
-    df = combined_df[combined_df["horse_clean"] == horse_key]
-    df = df[df["date"] < pd.Timestamp(today_date)]
-    if df.empty:
-        return None
-    return df.sort_values("date", ascending=False).iloc[0]["class_num"]
-
-
-# === LOAD COMBINED RESULTS FOR LAST_CLASS ===
-combined_results_df = load_combined_results()
-today_date = datetime.today().date()
-
-with open(output_path, "w") as f:
-    max_conf = top_tips["confidence"].max()
-    for row in top_tips.to_dict(orient="records"):
-        row["last_class"] = get_last_class(row["name"], today_date, combined_results_df)
-        row["global_max_confidence"] = max_conf
-        row["tags"] = generate_tags(row)
-        row["commentary"] = generate_reason(row)
-        row_safe = make_json_safe(row)
-        f.write(orjson.dumps(row_safe).decode() + "\n")
-
-
-print(f"Saved {len(top_tips)} top tips to {output_path}")
-
-upload_to_s3(output_path, bucket, f"predictions/{date_str}/output.jsonl")
-print(f"✅ Uploaded to s3://{bucket}/predictions/{date_str}/output.jsonl")
+                usecols=["date",

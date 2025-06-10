@@ -159,7 +159,11 @@ def main(argv: list[str] | None = None) -> int:
         "--telegram", action="store_true", help="Send chart to Telegram"
     )
     parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args(argv)
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
 
     try:
         out = generate_shap_chart(
@@ -172,7 +176,10 @@ def main(argv: list[str] | None = None) -> int:
 
         if args.s3_bucket:
             key = f"model_explainability/{date.today().isoformat()}_top_features.png"
-            upload_to_s3(out, args.s3_bucket, key)
+            if os.getenv("TM_DEV_MODE") == "1":
+                print(f"[DEV] Skipping S3 upload of {out}")
+            else:
+                upload_to_s3(out, args.s3_bucket, key)
         return 0
     except FileNotFoundError as e:
         print(f"Error: {e}")

@@ -50,7 +50,8 @@ The `--telegram` flag sends output to the configured chat. Omit it to print to t
 Run the inference step from the repository root:
 
 ```bash
-python core/run_inference_and_select_top1.py
+python core/run_inference_and_select_top1.py --dev
 ```
 
+Use `--dev` to skip the S3 upload.
 Running the command inside `core/` without `PYTHONPATH=..` will fail.

@@ -1,3 +1,9 @@
+## 2025-06-29
+
+### Added
+- `--dev` option for `core/fetch_betfair_odds.py`, `core/run_inference_and_select_top1.py` and
+  `model_feature_importance.py` now sets `TM_DEV_MODE=1` and skips S3 uploads.
+
 ## 2025-06-27
 
 ### Added
