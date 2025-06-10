@@ -29,6 +29,7 @@ This document defines the 8 core product layers of the Tipping Monster system. E
 * Confidence ≥ 0.85 AND odds ≥ 10.0
 * Finds overpriced horses the model likes
 * Can overlap with Monster Tips or stand alone
+* Marked with the `💰 Value Pick` tag in Telegram
 * Sent separately via Telegram
 
 ---
@@ -83,7 +84,7 @@ This document defines the 8 core product layers of the Tipping Monster system. E
 
 ---
 
-### 📅 Updated: 2025-06-01
+### 📅 Updated: 2025-06-29
 
 > Notes:
 >
