@@ -1,7 +1,12 @@
 ## 2025-07-01
 
+
 ### Removed
 - Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
+=======
+
+### Fixed
+- Removed stale Steam Sniper doc references from `Docs/README.md`.
 
 ### Documentation
 - Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
