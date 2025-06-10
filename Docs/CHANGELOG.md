@@ -1,4 +1,9 @@
 
+## 2025-07-04
+
+### Fixed
+- Corrected Makefile tab for dev-check rule.
+
 ## 2025-07-01
 
 ### Documentation
@@ -17,11 +22,13 @@
 - `core/run_inference_and_select_top1.py` replaced with a simplified version used in tests.
 
 
+
 ## 2025-07-03
 
 ### Fixed
 - `utils/dev-check.sh` now checks paths from the repository root.
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
+
 
 ## 2025-06-10
 

@@ -4,11 +4,11 @@
 **Files Changed:** utils/dev-check.sh, Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Script now computes repo root via git; Makefile and docs reference correct path.
 
+
 ## [2025-06-10] Update dev-check path
 **Prompt:** Modify Makefile target to call utils/dev-check.sh and update docs.
 **Files Changed:** Makefile, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** dev-check points to the correct script; docs reflect new path.
-
 
 ## [2025-07-01] Clean up sniper doc references
 **Prompt:** Remove outdated bullet points for Steam Sniper docs.
@@ -337,7 +337,10 @@ failure cases. Document the new behaviour in `Docs/CHANGELOG.md`.
 **Outcome:** Telegram helpers now raise `RuntimeError` when the API returns an
 error. Added tests for failing responses and documented in changelog.
 
-
+## [2025-07-04] Fix Makefile whitespace
+**Prompt:** `make test` failed with `missing separator`.
+**Files Changed:** Makefile
+**Outcome:** Replaced spaces with a tab for the `dev-check` rule.
 
 ## [2025-07-04] Update dev-check path
 **Prompt:** Replace ./dev-check.sh references in docs with ./utils/dev-check.sh.
@@ -348,7 +351,4 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Update dev-check.sh so it can be run from any path.
 **Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
 **Outcome:** Script now detects repo root via git and unit test ensures it runs correctly from the repo root. Updated nap tracker test to reset `TM_DEV_MODE` and replaced incomplete inference script with a minimal version.
-
-
-
 
