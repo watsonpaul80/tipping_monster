@@ -1,3 +1,8 @@
+## 2025-07-01
+
+### Removed
+- Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
+
 ## 2025-06-30
 
 ### Documentation

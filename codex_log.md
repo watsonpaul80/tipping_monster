@@ -277,3 +277,8 @@
 **Prompt:** Summarise post-2025-06-01 changelog items in overview docs.
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
+
+## [2025-07-01] Remove sniper subsystem references
+**Prompt:** Document removal of sniper cron jobs in ops docs and update CHANGELOG.
+**Files Changed:** Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Sniper-related cron entries commented out with June 2025 removal note.
