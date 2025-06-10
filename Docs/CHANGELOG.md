@@ -1,7 +1,12 @@
 ## 2025-07-01
 
+
+### Fixed
+- Removed stale Steam Sniper doc references from `Docs/README.md`.
+
 ### Documentation
 - Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
+
 
 ## 2025-06-30
 
