@@ -24,6 +24,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
+* ✅ Dev Mode via `--dev` sets `TM_DEV_MODE=1` to skip S3 uploads and Telegram posts
 * ✅ Automatic log archiving of files older than 14 days
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
@@ -96,6 +97,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `roi/generate_weekly_roi.py`: Creates `weekly_summary_YYYY-WW.csv` with ROI and strike rate for the week.
 * `roi/generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `roi/send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `track_lay_candidates_roi.py`: Computes ROI for Danger Fav lay candidates.
 * `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
 * `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
 
@@ -243,7 +245,7 @@ The foundational elements and automated processes that power Tipping Monster are
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
 * **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `utils/backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
-    * **Security:** AES-256 Server-side encryption is enabled for all backups.
+    * **Security:** AES-256 Server-side encryption is enabled for all backups. Skips when `TM_DEV_MODE=1` via `upload_to_s3`. 
     * **Location:** Backups stored in the `tipping-monster-backups` S3 bucket.
 * **Reliability:** Backups are periodically tested to ensure data integrity.
 
@@ -367,7 +369,3 @@ By send status: Can compare sent vs unsent performance
 
 By time: Week/month fields embedded in final spready
 
-
----
-
-📅 Updated: 2025-06-30.

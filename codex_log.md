@@ -277,3 +277,9 @@
 **Prompt:** Prefix SHAP explanations and confidence band filtering with checkmarks.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation updated to reflect completed features.
+
+## [2025-06-30] Document dev mode and intent profiler
+**Prompt:** Summarise post-2025-06-01 changelog items in overview docs.
+**Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
+
