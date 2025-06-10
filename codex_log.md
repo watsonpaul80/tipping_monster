@@ -299,6 +299,11 @@
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
 
+## [2025-07-01] Clarify secrets finding
+**Prompt:** Update security review to note `.env.example` and mention that credentials were removed from version control. Summarise in changelog.
+**Files Changed:** Docs/SECURITY_REVIEW.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Security review now references the example environment file and records that secrets were purged.
+
 
 ## [2025-06-30] Renumber TODO tasks 92-98
 **Prompt:** Renumber tasks 92-96 sequentially.
@@ -343,6 +348,7 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Update dev-check.sh so it can be run from any path.
 **Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
 **Outcome:** Script now detects repo root via git and unit test ensures it runs correctly from the repo root. Updated nap tracker test to reset `TM_DEV_MODE` and replaced incomplete inference script with a minimal version.
+
 
 
 

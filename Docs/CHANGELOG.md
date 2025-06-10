@@ -1,4 +1,10 @@
 
+## 2025-07-01
+
+### Documentation
+- Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.
+
+
 ## 2025-07-04
 
 ### Documentation
@@ -37,7 +43,7 @@
 
 ### Removed
 - Sniper cron jobs (`build_sniper_schedule.py` and `generate_and_schedule_snipers.sh`) commented out in `Docs/ops.md`. The sniper subsystem was fully removed in June 2025.
-=======
+
 
 ### Fixed
 - Removed stale Steam Sniper doc references from `Docs/README.md`.
