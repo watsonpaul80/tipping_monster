@@ -265,8 +265,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 ## 🚧 PLANNED ENHANCEMENTS
 
 ### 🔜 v7 Features
-* SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
-* Confidence band filtering (Activate suppression logic based on band ROI performance)
+* ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
@@ -370,4 +370,4 @@ By time: Week/month fields embedded in final spready
 
 ---
 
-📅 Updated: 2025-06-01.
+📅 Updated: 2025-06-30.

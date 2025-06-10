@@ -272,3 +272,8 @@
 **Outcome:** Added stale_penalty feature to dataset and documentation updated.
 
 
+
+## [2025-06-30] Mark features complete in docs
+**Prompt:** Prefix SHAP explanations and confidence band filtering with checkmarks.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation updated to reflect completed features.
