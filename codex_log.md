@@ -288,6 +288,12 @@
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
 
 
+## [2025-06-30] Renumber TODO tasks 92-98
+**Prompt:** Renumber tasks 92-96 sequentially.
+**Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Fixed numbering duplication and noted cleanup in changelog.
+
+
 ## [2025-07-01] Remove sniper subsystem references
 **Prompt:** Document removal of sniper cron jobs in ops docs and update CHANGELOG.
 **Files Changed:** Docs/ops.md, Docs/CHANGELOG.md, codex_log.md

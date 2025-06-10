@@ -19,6 +19,7 @@
 ### Documentation
 - Updated monster_overview.md for dev-mode S3 skipping and intent profiler.
 - Updated TIPPING_MONSTER_PRODUCTS.md with Value Pick tag and latest update dates.
+- Fixed task numbering 92–98 in `monster_todo.md`.
 
 
 ## 2025-06-29
