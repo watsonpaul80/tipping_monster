@@ -273,8 +273,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
-* Parallel model comparison (v6 vs v7)
-* Drawdown tracking in ROI logs
+* ✅ Parallel model comparison (v6 vs v7)
+* ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
 * Trainer intent tracker (`trainer_intent_score.py`)
@@ -372,4 +372,4 @@ By time: Week/month fields embedded in final spready
 
 ---
 
-📅 Updated: 2025-06-29.
+📅 Updated: 2025-07-01.
