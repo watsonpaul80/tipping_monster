@@ -2,6 +2,8 @@ import os
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 # isort: off
@@ -115,6 +117,38 @@ def test_send_telegram_photo_dev_mode(monkeypatch, tmp_path):
     assert "hey" in log_file.read_text()
     saved = repo_path("logs", "dev", "img.png")
     assert saved.exists()
+
+
+def test_send_telegram_message_error(monkeypatch):
+    def fake_post(url, data=None, timeout=None):
+        class Resp:
+            status_code = 500
+            text = "fail"
+
+        return Resp()
+
+    import requests
+
+    monkeypatch.setattr(requests, "post", fake_post)
+    with pytest.raises(RuntimeError):
+        send_telegram_message("oops", token="TOK", chat_id="CID")
+
+
+def test_send_telegram_photo_error(monkeypatch, tmp_path):
+    def fake_post(url, data=None, files=None, timeout=None):
+        class Resp:
+            status_code = 400
+            text = "bad"
+
+        return Resp()
+
+    import requests
+
+    monkeypatch.setattr(requests, "post", fake_post)
+    photo = tmp_path / "img.png"
+    photo.write_bytes(b"\x89PNG")
+    with pytest.raises(RuntimeError):
+        send_telegram_photo(photo, "cap", token="TOK", chat_id="CID")
 
 
 def test_calculate_profit_win_and_place():

@@ -305,9 +305,20 @@ s
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Marked parallel model comparison and drawdown tracking as complete.
 
+
 ## [2025-07-02] Skip Telegram alerts in safecron when dev mode
 **Prompt:** Modify safecron.sh to respect TM_DEV_MODE and update docs.
 **Files Changed:** utils/safecron.sh, Docs/README.md, Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Cron helper no longer sends Telegram alerts when TM_DEV_MODE=1; documentation updated.
+
+## [2025-07-02] Validate Telegram API responses
+**Prompt:** After posting to the Telegram API in `tippingmonster/utils.py`, check
+`response.status_code`. Log or raise an error if the response is not successful
+(status code >= 400). Update existing tests in `tests/test_utils.py` to cover
+failure cases. Document the new behaviour in `Docs/CHANGELOG.md`.
+**Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Telegram helpers now raise `RuntimeError` when the API returns an
+error. Added tests for failing responses and documented in changelog.
+
 
 
