@@ -1,3 +1,7 @@
+## [2025-07-01] Clean up sniper doc references
+**Prompt:** Remove outdated bullet points for Steam Sniper docs.
+**Files Changed:** Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** README no longer lists obsolete sniper documents.
 
 ## [2025-06-27] Add upload_to_s3 helper
 **Prompt:** Centralise S3 uploads with a helper that skips when TM_DEV_MODE=1. Update scripts, docs and tests.
@@ -273,12 +277,32 @@
 
 
 
+## [2025-06-30] Mark features complete in docs
+**Prompt:** Prefix SHAP explanations and confidence band filtering with checkmarks.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation updated to reflect completed features.
+
 ## [2025-06-30] Document dev mode and intent profiler
 **Prompt:** Summarise post-2025-06-01 changelog items in overview docs.
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
 
+
 ## [2025-06-30] Renumber TODO tasks 92-98
 **Prompt:** Renumber tasks 92-96 sequentially.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Fixed numbering duplication and noted cleanup in changelog.
+
+
+## [2025-07-01] Remove sniper subsystem references
+**Prompt:** Document removal of sniper cron jobs in ops docs and update CHANGELOG.
+**Files Changed:** Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Sniper-related cron entries commented out with June 2025 removal note.
+
+s
+## [2025-07-01] Sync v7 feature status
+**Prompt:** Edit monster_overview.md bullet list and update changelog.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Marked parallel model comparison and drawdown tracking as complete.
+
+
