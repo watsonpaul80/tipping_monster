@@ -1,3 +1,8 @@
+## 2025-07-01
+
+### Documentation
+- Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
+
 ## 2025-06-30
 
 ### Changed
