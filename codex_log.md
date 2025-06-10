@@ -277,3 +277,8 @@
 **Prompt:** Summarise post-2025-06-01 changelog items in overview docs.
 **Files Changed:** Docs/monster_overview.md, Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now notes dev-mode S3 skipping, intent profiler, and value tag.
+
+## [2025-06-30] Renumber TODO tasks 92-98
+**Prompt:** Renumber tasks 92-96 sequentially.
+**Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Fixed numbering duplication and noted cleanup in changelog.
