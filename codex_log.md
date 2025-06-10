@@ -305,4 +305,9 @@ s
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Marked parallel model comparison and drawdown tracking as complete.
 
+## [2025-07-02] Skip Telegram alerts in safecron when dev mode
+**Prompt:** Modify safecron.sh to respect TM_DEV_MODE and update docs.
+**Files Changed:** utils/safecron.sh, Docs/README.md, Docs/ops.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Cron helper no longer sends Telegram alerts when TM_DEV_MODE=1; documentation updated.
+
 

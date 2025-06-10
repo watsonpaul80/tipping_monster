@@ -11,6 +11,14 @@
 ### Documentation
 - Marked parallel model comparison and drawdown tracking complete in monster_overview.md.
 
+## 2025-07-02
+
+### Changed
+- `utils/safecron.sh` skips Telegram alerts when `TM_DEV_MODE=1`.
+
+### Documentation
+- Updated README and ops guide to mention safecron obeys dev mode.
+
 
 ## 2025-06-30
 

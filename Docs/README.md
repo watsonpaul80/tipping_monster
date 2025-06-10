@@ -38,6 +38,8 @@ Create a `.env` file (see `.env.example`) with the following variables:
 Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
 Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` instead.
 Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
+The `utils/safecron.sh` helper also respects this variable and will not send
+Telegram alerts when `TM_DEV_MODE=1`.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
