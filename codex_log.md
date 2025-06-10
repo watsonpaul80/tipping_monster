@@ -322,3 +322,9 @@ error. Added tests for failing responses and documented in changelog.
 
 
 
+## [2025-07-03] dev-check resolves repo root
+**Prompt:** Update dev-check.sh so it can be run from any path.
+**Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
+**Outcome:** Script now detects repo root via git and unit test ensures it runs correctly from the repo root. Updated nap tracker test to reset `TM_DEV_MODE` and replaced incomplete inference script with a minimal version.
+
+
