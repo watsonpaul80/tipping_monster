@@ -21,6 +21,7 @@ source .venv/bin/activate
 
 LOG_DIR="$REPO_ROOT/${TM_LOG_DIR:-logs}"
 mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR/inference" "$LOG_DIR/dispatch"
 
 # 1. Upload racecards
 echo "📥 Uploading racecards..."
