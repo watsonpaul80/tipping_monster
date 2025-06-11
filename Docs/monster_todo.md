@@ -186,6 +186,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 99. ✅ Flake8 cleanup across core and tests [Done: 2025-07-09]
 
+100. ✅ `--course` option to dispatch tips for a single track [Done: 2025-07-10]
+
 
 
 

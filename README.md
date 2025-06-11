@@ -117,6 +117,9 @@ actually post messages and `--explain` to append a short "Why we tipped this" su
 If you run this file from inside `core/`, set `PYTHONPATH=..` or call it as
 `python -m core.dispatch_tips` so it can locate the `core` package.
 
+Use `--course "Royal Ascot"` (or any track name) to dispatch tips for a single
+meeting only.
+
 Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in
 `monster_confidence_per_day_with_roi.csv`).
