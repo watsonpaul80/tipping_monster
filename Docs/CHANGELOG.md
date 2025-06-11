@@ -1,4 +1,9 @@
 
+## 2025-07-06
+
+### Fixed
+- Restored full `run_inference_and_select_top1.py` after accidental truncation.
+
 ## 2025-07-04
 
 ### Fixed
