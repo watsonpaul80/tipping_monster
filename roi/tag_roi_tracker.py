@@ -6,6 +6,7 @@ import re
 
 import pandas as pd
 
+from core.tip import Tip
 from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
 
 
@@ -50,7 +51,7 @@ def load_tips(date_str, min_conf, use_sent, tag=None):
     tips = []
     with open(input_file, "r") as f:
         for line in f:
-            tip = json.loads(line)
+            tip = Tip.from_dict(json.loads(line))
             if tip.get("confidence", 0.0) >= min_conf and (
                 not tag or tip_has_tag(tip, tag)
             ):
@@ -110,7 +111,7 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
         if not tips:
             continue
 
-        tips_df = pd.DataFrame(tips)
+        tips_df = pd.DataFrame(tip.to_dict() for tip in tips)
         tips_df["Horse"] = tips_df["Horse"].astype(str).str.strip().str.lower()
         tips_df["Course"] = tips_df["Course"].astype(str).str.strip().str.lower()
         tips_df["Race Time"] = tips_df["Race Time"].astype(str).str.strip().str.lower()
@@ -163,6 +164,12 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
         if "tags" in merged_df.columns:
             merged_df["tags"] = merged_df["tags"].apply(
                 lambda x: x if isinstance(x, list) else []
+            )
+            value_mask = (merged_df["odds_delta"] > 5.0) & (
+                merged_df["Position"] == "1"
+            )
+            merged_df.loc[value_mask, "tags"] = merged_df.loc[value_mask, "tags"].apply(
+                lambda t: t + ["💸 Value Win"]
             )
             all_rows = []
             for _, row in merged_df.iterrows():

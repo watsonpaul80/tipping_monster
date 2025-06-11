@@ -22,6 +22,7 @@ ROI is tracked across the following dimensions:
 | `tag_roi_tracker.py` | Builds tag ROI summaries for both sent and all tips. Use `--tag NAP` to filter by tag |
 | `calibrate_confidence_daily.py` | Tracks ROI per confidence band daily |
 | `roi_by_confidence_band.py` | Aggregates ROI across all tips by confidence band |
+| `simulate_staking.py` | Simulates level, confidence, and value staking models |
 | `weekly_roi_summary.py` | Sends weekly Telegram summary |
 | `send_daily_roi_summary.py` | Sends daily Telegram summary (sent tips only) |
 | `generate_unified_roi_sheet.py` | Merges tip logs into `unified_roi_sheet.csv` with tip, stake, odds, ROI, tag, confidence, and date metadata |
@@ -38,6 +39,9 @@ ROI is tracked across the following dimensions:
 - `roi_by_confidence_band_sent.csv`
 - `unified_roi_sheet.csv`
 - `weekly_summary.csv`
+- `rolling_roi_30.csv`
+- `staking_simulation.png`
+- `roi_trend_<week>.png`
 
 - Each log row includes `odds_delta` (realistic vs SP)  
   These are ready for pivoting, filtering, and dashboard integration.

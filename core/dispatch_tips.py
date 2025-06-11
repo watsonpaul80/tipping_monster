@@ -11,8 +11,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from core.tip import Tip
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
+from utils.commentary import generate_commentary
 
 load_env()
 
@@ -35,11 +37,11 @@ def calculate_monster_stake(
     return 1.0 if confidence >= min_conf else 0.0
 
 
-def get_tip_composite_id(tip: dict) -> str:
+def get_tip_composite_id(tip: Tip) -> str:
     return f"{tip.get('race', 'Unknown_Race')}_{tip.get('name', 'Unknown_Horse')}"
 
 
-def generate_tags(tip, max_id, max_val):
+def generate_tags(tip: Tip, max_id: str, max_val: float):
     tags = []
     try:
         if float(tip.get("last_class", -1)) > float(tip.get("class", -1)):
@@ -64,6 +66,20 @@ def generate_tags(tip, max_id, max_val):
             tags.append("📈 In Form")
     except:
         pass
+    try:
+        if float(tip.get("stable_form", 0)) >= 20:
+            tags.append("🔍 Stable Intent")
+    except Exception:
+        pass
+    if tip.get("multi_runner"):
+        tags.append("🏠 Multiple Runners")
+    if tip.get("class_drop_layoff"):
+        tags.append("⬇️ Class Drop Layoff")
+    try:
+        if float(tip.get("draw_bias_rank", 0)) > 0.7:
+            tags.append("📊 Draw Advantage")
+    except:
+        pass
     if get_tip_composite_id(tip) == max_id and tip.get("confidence", 0.0) == max_val:
         tags.append("🧠 Monster NAP")
     if tip.get("confidence", 0.0) >= 0.90:
@@ -81,18 +97,61 @@ def generate_tags(tip, max_id, max_val):
             tags.append("🔥 Market Mover")
         elif delta >= 1.0:
             tags.append("❄️ Drifter")
+    try:
+        if float(tip.get("value_score", 0)) > 5:
+            tags.append("💰 Value Pick")
+    except Exception:
+        pass
     return tags or ["🎯 Solid pick"]
 
 
-def read_tips(path):
-    tips = []
+def read_tips(path: str) -> list[Tip]:
+    tips: list[Tip] = []
     with open(path, "r", encoding="utf-8") as f:
         for line in f:
+            line = line.strip()
+            if not line:
+                continue
             try:
-                tips.append(json.loads(line.strip()))
-            except:
+                data = json.loads(line)
+                tips.append(Tip.from_dict(data))
+            except json.JSONDecodeError:
                 pass
     return tips
+
+
+def confidence_label(conf: float) -> str:
+    """Return a human-friendly confidence label."""
+    if conf >= 0.9:
+        return "High"
+    if conf >= 0.8:
+        return "Medium"
+    return "Low"
+
+
+TAG_REASON_MAP = {
+    "🔽 Class Drop": "class drop",
+    "📈 In Form": "in form",
+    "⚡ Fresh": "fresh",
+    "🪶 Light Weight": "light weight",
+    "🚫 Layoff": "layoff",
+    "💥 Monster Mode": "monster mode",
+    "🔥 Market Mover": "market mover",
+    "❄️ Drifter": "drifter",
+    "🔍 Stable Intent": "stable intent",
+    "🏠 Multiple Runners": "multiple runners",
+    "⬇️ Class Drop Layoff": "class drop layoff",
+}
+
+
+def build_confidence_line(tip: dict) -> str:
+    """Return a single line describing model confidence."""
+    conf_pct = round(tip.get("confidence", 0.0) * 100)
+    level = confidence_label(tip.get("confidence", 0.0))
+    reasons = [TAG_REASON_MAP[t] for t in tip.get("tags", []) if t in TAG_REASON_MAP]
+    reason_text = " + ".join(reasons)
+    suffix = f" \u2014 {reason_text}" if reason_text else ""
+    return f"\ud83e\udde0 Model Confidence: {level} ({conf_pct}%){suffix}."
 
 
 def get_confidence_band(conf: float) -> str | None:
@@ -212,7 +271,8 @@ def format_tip_message(tip, max_id):
     )
     explain = tip.get("explanation")
     explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
-    parts = [header, title, stats, tags, comment]
+    confidence_line = build_confidence_line(tip)
+    parts = [header, title, stats, confidence_line, tags, comment]
     if explain_line:
         parts.append(explain_line)
     parts.append("-" * 30)
@@ -247,6 +307,12 @@ def main(argv=None):
     parser.add_argument("--dev", action="store_true")
     parser.add_argument(
         "--explain", action="store_true", help="Include SHAP explanations"
+    )
+    parser.add_argument(
+        "--comment-style",
+        choices=["basic", "expressive"],
+        default=os.getenv("TM_COMMENT_STYLE", "basic"),
+        help="Tone for generated commentary",
     )
     args = parser.parse_args(argv)
 
@@ -288,6 +354,12 @@ def main(argv=None):
     enriched = []
     for tip in tips:
         tip["tags"] = generate_tags(tip, max_id, max_conf)
+        tip["commentary"] = generate_commentary(
+            tip["tags"],
+            tip.get("confidence", 0.0),
+            tip.get("trainer_rtf"),
+            style=args.comment_style,
+        )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(
             tip.get("confidence", 0.0), odds, min_conf=args.min_conf
@@ -317,7 +389,7 @@ def main(argv=None):
         f.write("\n\n".join(formatted))
     with open(sent_path, "w") as f:
         for tip in enriched:
-            json.dump(tip, f)
+            json.dump(tip.to_dict(), f)
             f.write("\n")
 
     print(f"📄 Tip summary and sent tips saved to: {sent_path}")

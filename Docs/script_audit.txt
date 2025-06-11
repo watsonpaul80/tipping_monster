@@ -11,10 +11,10 @@ This audit flags scripts that appear unused or outdated. Criteria:
 
 ### Remove
 utils/alert_if_no_sent_tips.py - remove
-utils/archive_old_logs.py - remove
+utils/archive_old_logs.py - keep
 utils/backfill_sent_tips_from_predictions.py - remove
-utils/check_betfair_market_times.py - remove
-utils/ensure_sent_tips.py - remove
+utils/check_betfair_market_times.py - removed 2025-06-23
+utils/ensure_sent_tips.py - keep (used in CLI commands and tests)
 evaluate_steamers.py - remove
 generate_race_schedule.py - remove
 utils/healthcheck_logs.py - remove
@@ -78,5 +78,6 @@ core/train_model_v6.py - keep
 core/train_modelv7.py - keep
 utils/upload_logs_to_s3.sh - keep
 roi/weekly_roi_summary.py - keep
-
+simulate_staking.py - keep
+generate_combos.py - keep
 

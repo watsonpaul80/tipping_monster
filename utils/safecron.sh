@@ -57,7 +57,11 @@ STATUS=$?
 
 # If error, send Telegram alert
 if [ $STATUS -ne 0 ]; then
-  send_telegram_alert
+  if [ "$TM_DEV_MODE" != "1" ]; then
+    send_telegram_alert
+  else
+    echo "TM_DEV_MODE=1 - skipping Telegram alert" >> "$LOG_FILE"
+  fi
 fi
 
 exit $STATUS

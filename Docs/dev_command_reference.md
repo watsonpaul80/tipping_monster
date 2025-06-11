@@ -5,6 +5,7 @@ This page lists common commands useful when working on Tipping Monster.
 ## Environment Setup
 
 ```bash
+# use `python3` if `python` isn't installed
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -33,7 +34,7 @@ make train              # train a new model
 ```
 
 Each make target wraps the underlying scripts in `core/` and `roi/`.
-Use `make pipeline -- --dev` to disable S3 uploads and Telegram posts during development.
+Use `make pipeline -- --dev` to disable S3 uploads and Telegram posts during development. The `upload_to_s3` helper automatically skips uploads when `TM_DEV_MODE=1`.
 
 ## Useful CLI Examples
 
@@ -50,7 +51,8 @@ The `--telegram` flag sends output to the configured chat. Omit it to print to t
 Run the inference step from the repository root:
 
 ```bash
-python core/run_inference_and_select_top1.py
+python core/run_inference_and_select_top1.py --dev
 ```
 
+Use `--dev` to skip the S3 upload.
 Running the command inside `core/` without `PYTHONPATH=..` will fail.

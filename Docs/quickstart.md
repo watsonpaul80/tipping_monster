@@ -25,7 +25,7 @@ Key folders and scripts include:
 - Core scripts such as `core/run_pipeline_with_venv.sh`, `core/fetch_betfair_odds.py`, and `core/dispatch_tips.py` drive the daily pipeline.
  - `tmcli.py` – command-line helper with `pipeline`, `roi`, `sniper` and `healthcheck` commands. Run all `tmcli` commands from the repository root, e.g. `python tmcli.py pipeline --dev`.
 
-Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs.
+Before running any scripts, set the environment variables listed in `Docs/README.md` (especially `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`). These allow the system to communicate with Telegram during live runs. Set `TM_DEV_MODE=1` to log Telegram and Twitter messages to `logs/dev/` instead of sending them.
 
 A typical daily pipeline runs the following steps:
 
@@ -37,6 +37,7 @@ A typical daily pipeline runs the following steps:
 08:08  core/merge_odds_into_tips.py    # Attach odds to tips
 08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  core/dispatch_tips.py           # Send tips to Telegram
+08:13  generate_combos.py              # Suggest Monster doubles/trebles
 23:30  rpscrape (results cron)         # Get results for today
 23:55  roi/roi_tracker_advised.py      # Link tips to results and calc profit
 23:59  roi/send_daily_roi_summary.py  # Telegram summary of ROI
@@ -70,7 +71,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set 
 3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. Running the inference script directly requires the repo root to be on `PYTHONPATH`.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
-6. Run `./dev-check.sh` followed by `make test` to verify your setup.
+6. Run `./utils/dev-check.sh` followed by `make test` to verify your setup.
 
 With these files as a guide, you can get up to speed quickly and start contributing to the system.
 

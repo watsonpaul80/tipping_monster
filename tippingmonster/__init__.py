@@ -17,6 +17,7 @@ from .utils import (
     load_xgb_model,
     get_place_terms,
     tip_has_tag,
+    upload_to_s3,
 )
 from .helpers import dispatch, send_daily_roi, generate_chart
 
@@ -34,6 +35,7 @@ __all__ = [
     "calculate_profit",
     "get_place_terms",
     "tip_has_tag",
+    "upload_to_s3",
     "dispatch",
     "send_daily_roi",
     "generate_chart",

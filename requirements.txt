@@ -13,3 +13,9 @@ streamlit
 tweepy
 xgboost
 python-telegram-bot>=20.0
+fastapi
+uvicorn
+aiohttp
+lxml
+requests
+tomli

@@ -24,6 +24,8 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Sent vs unsent tip separation
 * ✅ Full logging + S3 backup
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
+* ✅ Dev Mode via `--dev` sets `TM_DEV_MODE=1` to skip S3 uploads and Telegram posts
+* ✅ Automatic log archiving of files older than 14 days
 * ✅ Extensive Data Coverage: Full GB/IRE Flat & Jumps training data
 * ✅ Automated Data Ingestion: Daily race results ingested from `rpscrape/data/dates/all/*.csv`.
 * ✅ Continuous Learning: Self-training with past tip outcomes (`was_tipped`, `tip_profit`, `confidence_band`)
@@ -32,8 +34,10 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Data Preparation: Flattened JSONL format for optimized inference input
 * ✅ Dynamic Staking: A sophisticated confidence-based staking model
 * ✅ Market Dynamics: Advanced market mover & odds drift detection capabilities
+* ✅ Value Score: `(confidence / bf_sp) * 100` highlights 💰 Value Picks
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
+* ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
@@ -68,8 +72,10 @@ The system defines 8 core product layers:
 | 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
 | 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
+| 08:13 | `generate_combos.py`              | Suggests doubles & trebles from top tips               |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
 | 23:55 | `roi/roi_tracker_advised.py`     | Links tips to results and calculates profit            |
+| 23:56 | `generate_lay_candidates.py --results` | Logs Danger Fav outcomes to CSV |
 | 23:59 | `roi/send_daily_roi_summary.py`  | Telegram message with daily win %, ROI, and profit |
 Scripts are grouped under `core/` and `roi/` directories for clarity.
 
@@ -78,10 +84,12 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 ## ⚙️ SCRIPT EXPLANATIONS
 
 * `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
+* `train_place_model.py`: Predicts whether a runner finishes in the top 3 using the same feature set.
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
+* `generate_combos.py`: Suggests doubles and trebles from 90%+ confidence tips.
 * `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV. Uses the `requests` library to send ROI summaries to Telegram.
 * `roi/calibrate_confidence_daily.py`: Logs ROI by confidence bin (e.g. 0.80–0.90, 0.90–1.00).
 * `roi/weekly_roi_summary.py`: Aggregates weekly tips and profits. Rolls up recent tips into ISO week summaries for weekly ROI.
@@ -89,6 +97,9 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `roi/generate_weekly_roi.py`: Creates `weekly_summary_YYYY-WW.csv` with ROI and strike rate for the week.
 * `roi/generate_tip_results_csv_with_mode_FINAL.py`: (Called by ROI tracker) Calculates wins, places, profit, ROI per tip.
 * `roi/send_daily_roi_summary.py`: Posts a daily summary to Telegram with ROI and profit.
+* `track_lay_candidates_roi.py`: Computes ROI for Danger Fav lay candidates.
+* `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
+* `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
 
 ---
 
@@ -125,9 +136,13 @@ Tipping Monster tracks daily and weekly performance using a **point-based ROI sy
 | `roi/weekly_roi_summary.py`                     | Rolls up recent tips into ISO week summaries for weekly ROI                 |
 | `roi/send_daily_roi_summary.py`                 | Posts a daily summary to Telegram with ROI and profit                       |
 | `roi/generate_unified_roi_sheet.py` | Merges daily result CSVs into `unified_roi_sheet.csv` |
+| `roi/nap_tracker.py` | Logs NAP ROI to `nap_history.csv` |
 | `roi/generate_tip_results_csv_with_mode_FINAL.py` | (Called by ROI tracker) Calculates wins, places, profit, ROI per tip          |
 | `logs/roi/tips_results_YYYY-MM-DD_[level\|advised].csv` | Stores per-day ROI breakdown                                          |
 | `logs/roi/weekly_roi_summary.txt`               | Used for Telegram weekly summary posts                                    |
+| `logs/roi/summary_commentary_<week>.txt`        | Weekly commentary block with key insights                                |
+| `logs/roi/band_summary_<week>.csv`              | Weekly ROI per confidence band                                           |
+| `logs/roi/daily_band_summary_<date>.csv`        | Daily ROI per confidence band                                            |
 | `logs/roi/monster_confidence_per_day_with_roi.csv`  | (Optional) Aggregated confidence bin ROI, used for filtering insight        |
 
 ---
@@ -160,6 +175,7 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 | `logs/roi/tips_results_DATE_[level\|advised].csv` | Main per-day ROI breakdown |
 | `logs/roi/roi_telegram_DATE.log` | Output of Telegram ROI summary |
 | `logs/roi/weekly_roi_summary.txt` | Human-friendly weekly Telegram output |
+| `logs/roi/summary_commentary_<week>.txt` | Weekly commentary block with key insights |
 | `logs/roi/monster_confidence_per_day_with_roi.csv` | Confidence bin ROI stats for analysis |
 
 ---
@@ -229,7 +245,7 @@ The foundational elements and automated processes that power Tipping Monster are
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
 * **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `utils/backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
-    * **Security:** AES-256 Server-side encryption is enabled for all backups.
+    * **Security:** AES-256 Server-side encryption is enabled for all backups. Skips when `TM_DEV_MODE=1` via `upload_to_s3`. 
     * **Location:** Backups stored in the `tipping-monster-backups` S3 bucket.
 * **Reliability:** Backups are periodically tested to ensure data integrity.
 
@@ -251,14 +267,14 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 ## 🚧 PLANNED ENHANCEMENTS
 
 ### 🔜 v7 Features
-* SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
-* Confidence band filtering (Activate suppression logic based on band ROI performance)
+* ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
-* Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
-* Parallel model comparison (v6 vs v7)
-* Drawdown tracking in ROI logs
+* ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
+* ✅ Parallel model comparison (v6 vs v7)
+* ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
 * Trainer intent tracker (`trainer_intent_score.py`)
@@ -268,15 +284,18 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Self-training feedback loop
 * Hall of Fame
 * Tip memory tracking
-* /roi and /nap bot commands (Also /stats)
+* ✅ /roi and /nap bot commands (Also /stats)
+* ✅ /tip bot command for horse info
 * Commentary fine-tuning via GPT
 * Telegram poll buttons
 * Stake simulation modes
 * Place-focused model (predict 1st–3rd)
 * Confidence regression model (predict prob, not binary)
 * ROI-based calibration (not just accuracy)
-* Penalise stale horses and poor form
+* ✅ Penalise stale horses and poor form
 * Weekly ROI line chart (matplotlib) to logs
+* Penalise stale horses and poor form
+* ✅ Weekly ROI line chart (matplotlib) to logs
 * Monetisation hooks (Stripe, Patreon, etc.)
 
 ---
@@ -322,6 +341,8 @@ roi/weekly_roi_summary.py	Weekly Telegram summary	✅ Sent only
 roi/generate_tip_results_csv_with_mode_FINAL.py	Saves core results CSVs	✅ Sent only
 calibrate_confidence_daily.py	Tracks confidence band ROI	✅ All tips
 roi_by_confidence_band.py       Aggregates ROI by confidence band ✅ Sent only
+simulate_staking.py            Simulates staking strategies (level/conf/value) ✅ All tips
+win_rate_by_tag.py             Overall win % and ROI per tag (time-decay weighting)    ✅ All tips
 unified_roi_sheet.csv	Unified log for all tips	✅ All tips
 
 📄 ROI Output Files
@@ -333,6 +354,7 @@ logs/roi/tag_roi_summary_all.csv	ROI by tag for all tips
 logs/roi/monster_confidence_per_day_with_roi.csv	ROI by confidence bin
 logs/roi/roi_by_confidence_band_sent.csv        ROI by confidence band
 logs/roi/unified_roi_sheet.csv	Full tip log with Date/Week/Month
+logs/roi/staking_simulation.png Profit curves for staking simulations
 
 🔍 Analysis Levels
 Daily ROI and summary
@@ -348,6 +370,3 @@ By send status: Can compare sent vs unsent performance
 By time: Week/month fields embedded in final spready
 
 
----
-
-📅 Updated: 2025-06-01.

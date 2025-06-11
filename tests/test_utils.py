@@ -2,6 +2,8 @@ import os
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 # isort: off
@@ -13,6 +15,7 @@ from tippingmonster import (
     send_telegram_message,
     send_telegram_photo,
     tip_has_tag,
+    upload_to_s3,
 )
 
 # isort: on
@@ -116,6 +119,38 @@ def test_send_telegram_photo_dev_mode(monkeypatch, tmp_path):
     assert saved.exists()
 
 
+def test_send_telegram_message_error(monkeypatch):
+    def fake_post(url, data=None, timeout=None):
+        class Resp:
+            status_code = 500
+            text = "fail"
+
+        return Resp()
+
+    import requests
+
+    monkeypatch.setattr(requests, "post", fake_post)
+    with pytest.raises(RuntimeError):
+        send_telegram_message("oops", token="TOK", chat_id="CID")
+
+
+def test_send_telegram_photo_error(monkeypatch, tmp_path):
+    def fake_post(url, data=None, files=None, timeout=None):
+        class Resp:
+            status_code = 400
+            text = "bad"
+
+        return Resp()
+
+    import requests
+
+    monkeypatch.setattr(requests, "post", fake_post)
+    photo = tmp_path / "img.png"
+    photo.write_bytes(b"\x89PNG")
+    with pytest.raises(RuntimeError):
+        send_telegram_photo(photo, "cap", token="TOK", chat_id="CID")
+
+
 def test_calculate_profit_win_and_place():
     row = {
         "Odds": 10.0,
@@ -163,3 +198,23 @@ def test_tip_has_tag_basic():
     tip = {"tags": ["🧠 Monster NAP", "⚡ Fresh"]}
     assert tip_has_tag(tip, "NAP")
     assert not tip_has_tag(tip, "Value")
+
+
+def test_upload_to_s3_respects_dev_mode(monkeypatch, tmp_path):
+    calls = []
+
+    class FakeClient:
+        def upload_file(self, *a, **k):  # pragma: no cover - simple append
+            calls.append(True)
+
+    import types
+
+    fake_boto3 = types.SimpleNamespace(client=lambda *a, **k: FakeClient())
+    monkeypatch.setitem(sys.modules, "boto3", fake_boto3)
+    monkeypatch.setenv("TM_DEV_MODE", "1")
+
+    file_path = tmp_path / "tmp.txt"
+    file_path.write_text("data")
+    upload_to_s3(file_path, "b", "k")
+
+    assert not calls

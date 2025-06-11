@@ -3,14 +3,17 @@
 Tipping Monster is a fully automated machine-learning tip engine for UK and Irish horse racing. It scrapes racecards, runs an XGBoost model to generate tips, merges realistic Betfair odds, dispatches formatted messages to Telegram, and tracks ROI.
 
 A simple static landing page with a live tip feed is available under [site/index.html](site/index.html).
+For dashboards or other tools, a lightweight FastAPI server (`stats_api.py`) exposes
+`/roi`, `/tips` and `/tags` endpoints serving the latest ROI summaries and predictions.
 
-See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
+See the [Docs/README.md](Docs/README.md) file for complete documentation, including environment variables and subsystem details. An audit of unused scripts lives in [Docs/script_audit.txt](Docs/script_audit.txt). A security review is available in [Docs/SECURITY_REVIEW.md](Docs/SECURITY_REVIEW.md). For a quick list of common developer commands, check [Docs/dev_command_reference.md](Docs/dev_command_reference.md).
 
 ## Setup
 
 1. Create a Python virtual environment and install dependencies:
 
 ```bash
+# use `python3` if `python` is not available
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -22,14 +25,15 @@ pip install -r requirements.txt
 
 ```
 BF_USERNAME, BF_PASSWORD, BF_APP_KEY, BF_CERT_PATH, BF_KEY_PATH, BF_CERT_DIR,
-TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_DEV_CHAT_ID, TWITTER_API_KEY, TWITTER_API_SECRET,
+TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TELEGRAM_DEV_CHAT_ID, TM_DEV, TM_DEV_MODE,
+TWITTER_API_KEY, TWITTER_API_SECRET,
 TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ...
 ```
 
 
 Set `TM_DEV=1` to route Telegram messages to `TELEGRAM_DEV_CHAT_ID`.
-Set `TM_DEV_MODE=1` to suppress Telegram sends entirely and write logs to `logs/dev/` instead. Any script executed with the `--dev` flag automatically sets this variable.
-The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location.
+Set `TM_DEV_MODE=1` to suppress Telegram sends **and S3 uploads** and write logs to `logs/dev/` instead. Any script executed with the `--dev` flag automatically sets this variable.
+The `.env` file should be placed in the repository root. The `utils/dev-check.sh` script looks for it in this location and can be executed from anywhere inside the repo.
 
 
 For local development you can copy `.env.example` to `.env` and fill in your credentials.
@@ -79,8 +83,9 @@ Most Python scripts accept a `--debug` flag for verbose logging.
 **Important:** run inference scripts from the repository root. For example:
 
 ```bash
-python core/run_inference_and_select_top1.py
+python core/run_inference_and_select_top1.py --dev
 ```
+Use `--dev` to disable the final S3 upload.
 Executing this command while inside the `core/` directory will raise a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
@@ -101,7 +106,7 @@ python cli/tmcli.py dispatch --date YYYY-MM-DD --telegram
 python cli/tmcli.py roi-summary --date YYYY-MM-DD --telegram
 python cli/tmcli.py chart-fi path/to/model_dir
 python cli/tmcli.py send-photo path/to/image.jpg
-python telegram_bot.py --dev  # start Telegram bot with /roi command
+python telegram_bot.py --dev  # start Telegram bot with /roi, /nap and /tip commands
 ```
 
 ## Tip Dispatch
@@ -119,8 +124,9 @@ uses this same file to filter tips.
 These commands wrap existing scripts for convenience and default locations.
 
 The `tippingmonster` package also exposes handy helpers like
-`send_telegram_message()` and the new `send_telegram_photo()` for posting
-images with captions. A lightweight `trainer_intent_score()` function is also
+`send_telegram_message()`, `send_telegram_photo()` and `upload_to_s3()` for
+posting messages, photos and uploading files while respecting dev mode.
+A lightweight `trainer_intent_score()` function is also
 provided for estimating how likely a trainer is trying to win based on recent
 runs, strike rates and market moves.
 
@@ -168,6 +174,8 @@ make test     # run unit tests
 Run `self_training_loop.py --retrain` to retrain the model with recent ROI logs.
 This invokes `train_model_v6.py --self-train` and appends tip outcomes to the
 training dataset. Schedule this weekly for continuous learning.
+The repository also includes `train_place_model.py` to build a separate model
+predicting whether a runner finishes in the top three.
 
 `self_train_from_history.py` can be used to build a compact dataset from the
 logged tips. It aggregates columns like *Confidence*, *Tags*, *Race Type*,

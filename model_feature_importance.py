@@ -8,12 +8,12 @@ import base64
 import glob
 import gzip
 import json
+import os
 import tarfile
 import tempfile
 from datetime import date
 from pathlib import Path
 
-import boto3
 import matplotlib.pyplot as plt
 import pandas as pd
 import shap
@@ -21,7 +21,7 @@ import xgboost as xgb
 
 from core.validate_features import load_dataset
 from tippingmonster import logs_path, repo_path, send_telegram_photo
-from tippingmonster.utils import load_xgb_model
+from tippingmonster.utils import load_xgb_model, upload_to_s3
 
 
 def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
@@ -77,13 +77,6 @@ def load_data(paths: list[str]) -> pd.DataFrame:
     """Load and concatenate dataset files."""
     frames = [load_dataset(p) for p in paths]
     return pd.concat(frames, ignore_index=True)
-
-
-def upload_to_s3(file_path: Path, bucket: str) -> None:
-    """Upload file to S3 under model_explainability/ with today's date."""
-    key = f"model_explainability/{date.today().isoformat()}_top_features.png"
-    boto3.client("s3").upload_file(str(file_path), bucket, key)
-    print(f"Uploaded SHAP chart to s3://{bucket}/{key}")
 
 
 def generate_shap_chart(
@@ -166,7 +159,11 @@ def main(argv: list[str] | None = None) -> int:
         "--telegram", action="store_true", help="Send chart to Telegram"
     )
     parser.add_argument("--s3-bucket", help="Upload chart to this S3 bucket")
+    parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args(argv)
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
 
     try:
         out = generate_shap_chart(
@@ -178,7 +175,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"📈 Feature chart saved to {out}")
 
         if args.s3_bucket:
-            upload_to_s3(out, args.s3_bucket)
+            key = f"model_explainability/{date.today().isoformat()}_top_features.png"
+            if os.getenv("TM_DEV_MODE") == "1":
+                print(f"[DEV] Skipping S3 upload of {out}")
+            else:
+                upload_to_s3(out, args.s3_bucket, key)
         return 0
     except FileNotFoundError as e:
         print(f"Error: {e}")

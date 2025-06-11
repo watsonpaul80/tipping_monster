@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -16,6 +17,7 @@ import xgboost as xgb
 
 sys.path.append(str(Path(__file__).resolve().parent))
 from tippingmonster.env_loader import load_env
+from tippingmonster.utils import send_telegram_message
 
 FEATURES_FILE = Path("features.json")
 MODEL_FILE = Path("tipping-monster-xgb-model.bst.gz.b64")
@@ -109,6 +111,75 @@ def find_danger_favs(
     return candidates
 
 
+def load_results_csv(path: Path) -> pd.DataFrame:
+    """Return normalised results DataFrame from ``path``."""
+    df = pd.read_csv(path)
+    df.rename(
+        columns={
+            "off": "Race Time",
+            "course": "Course",
+            "horse": "Horse",
+            "pos": "Position",
+        },
+        inplace=True,
+    )
+    df["Horse"] = df["Horse"].astype(str).str.strip().str.lower()
+    df["Course"] = df["Course"].astype(str).str.strip().str.lower()
+    df["Race Time"] = df["Race Time"].astype(str).str.strip().str.lower()
+    return df
+
+
+def summarise_outcomes(cands: List[Dict], results_df: pd.DataFrame) -> dict:
+    """Return win/place/loss summary for ``cands`` given ``results_df``."""
+    if not cands:
+        return {"bets": 0, "wins": 0, "places": 0, "losses": 0}
+
+    df = pd.DataFrame(cands)
+    df["Horse"] = df["name"].astype(str).str.strip().str.lower()
+    df["Race Time"] = df["race"].astype(str).str.split().str[0].str.lower()
+    df["Course"] = df["race"].astype(str).str.split().str[1:].str.join(" ").str.lower()
+
+    merged = pd.merge(
+        df,
+        results_df,
+        how="left",
+        left_on=["Horse", "Race Time", "Course"],
+        right_on=["Horse", "Race Time", "Course"],
+    )
+
+    merged["Position"] = merged["Position"].fillna("NR")
+    wins = (merged["Position"] == "1").sum()
+    places = (
+        merged["Position"].apply(lambda x: str(x).isdigit() and 2 <= int(x) <= 4).sum()
+    )
+    nrs = (merged["Position"] == "NR").sum()
+    losses = len(merged) - wins - places - nrs
+    return {
+        "bets": len(merged),
+        "wins": int(wins),
+        "places": int(places),
+        "losses": int(losses),
+    }
+
+
+def append_history(date_str: str, summary: dict, path: Path) -> None:
+    """Append ``summary`` for ``date_str`` to CSV at ``path``."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df = pd.DataFrame(
+        [
+            {
+                "date": date_str,
+                "bets": summary.get("bets", 0),
+                "wins": summary.get("wins", 0),
+                "places": summary.get("places", 0),
+                "losses": summary.get("losses", 0),
+            }
+        ]
+    )
+    header = not path.exists()
+    df.to_csv(path, mode="a", header=header, index=False)
+
+
 def main(argv: List[str] | None = None) -> None:
     load_env()
     parser = argparse.ArgumentParser(description="Generate Danger Fav candidates")
@@ -118,7 +189,19 @@ def main(argv: List[str] | None = None) -> None:
     parser.add_argument("--model", default=str(MODEL_FILE))
     parser.add_argument("--out", help="Output JSONL file")
     parser.add_argument("--threshold", type=float, default=0.6)
+    parser.add_argument("--results", help="Results CSV for outcome logging")
+    parser.add_argument(
+        "--history",
+        default="logs/danger_fav_history.csv",
+        help="Danger Fav history CSV",
+    )
+    parser.add_argument("--telegram", action="store_true")
+    parser.add_argument("--dev", action="store_true")
     args = parser.parse_args(argv)
+
+    if args.dev:
+        os.environ["TM_DEV_MODE"] = "1"
+        os.environ["TM_LOG_DIR"] = "logs/dev"
 
     features_path = Path(args.features or f"rpscrape/batch_inputs/{args.date}.jsonl")
     if not features_path.exists():
@@ -146,6 +229,25 @@ def main(argv: List[str] | None = None) -> None:
         for row in candidates:
             f.write(orjson.dumps(row).decode() + "\n")
     print(f"Saved {len(candidates)} danger favs -> {out_file}")
+
+    if args.results is not None:
+        results_path = Path(args.results)
+    else:
+        results_path = Path(
+            f"rpscrape/data/dates/all/{args.date.replace('-', '_')}.csv"
+        )
+    if results_path.exists():
+        results_df = load_results_csv(results_path)
+        summary = summarise_outcomes(candidates, results_df)
+        append_history(args.date, summary, Path(args.history))
+        print(
+            f"Danger Favs {args.date}: {summary['wins']}W {summary['places']}P {summary['losses']}L"
+        )
+        if args.telegram:
+            msg = f"⚠️ Danger Favs went {summary['wins']}/{summary['bets']} today"
+            send_telegram_message(msg)
+    elif args.results:
+        raise FileNotFoundError(results_path)
 
 
 if __name__ == "__main__":

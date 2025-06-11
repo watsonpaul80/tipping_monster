@@ -7,7 +7,64 @@ from datetime import datetime
 
 import pandas as pd
 
-from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
+from core.tip import Tip
+
+# isort: off
+from tippingmonster import (
+    get_place_terms,
+    logs_path,
+    send_telegram_message,
+    tip_has_tag,
+)
+
+# isort: on
+
+BANKROLL_FILE = logs_path("roi", "bankroll_tracker.csv")
+
+
+def load_bankroll() -> pd.DataFrame:
+    if os.path.exists(BANKROLL_FILE):
+        return pd.read_csv(BANKROLL_FILE)
+    return pd.DataFrame(
+        columns=[
+            "Date",
+            "Profit",
+            "Stake",
+            "Bankroll",
+            "Peak",
+            "Drawdown",
+            "WorstDrawdown",
+        ]
+    )
+
+
+def update_bankroll(date: str, profit: float, stake: float) -> dict:
+    df = load_bankroll()
+    if date in df.get("Date", []):
+        df = df[df["Date"] != date]
+
+    prev_bankroll = float(df["Bankroll"].iloc[-1]) if not df.empty else 0.0
+    prev_peak = float(df["Peak"].iloc[-1]) if not df.empty else 0.0
+    prev_worst = float(df["WorstDrawdown"].iloc[-1]) if not df.empty else 0.0
+
+    bankroll = prev_bankroll + profit
+    peak = max(prev_peak, bankroll)
+    drawdown = bankroll - peak
+    worst = min(prev_worst, drawdown)
+
+    row = {
+        "Date": date,
+        "Profit": profit,
+        "Stake": stake,
+        "Bankroll": bankroll,
+        "Peak": peak,
+        "Drawdown": drawdown,
+        "WorstDrawdown": worst,
+    }
+
+    df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
+    df.to_csv(BANKROLL_FILE, index=False)
+    return row
 
 
 def normalize_horse_name(name):
@@ -60,7 +117,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
     tips = []
     with open(input_file, "r") as f:
         for line in f:
-            tip = json.loads(line)
+            tip = Tip.from_dict(json.loads(line))
             if tip.get("confidence", 0.0) >= min_conf and (
                 not tag or tip_has_tag(tip, tag)
             ):
@@ -83,7 +140,7 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
         )
         return
 
-    tips_df = pd.DataFrame(tips)
+    tips_df = pd.DataFrame(tip.to_dict() for tip in tips)
 
     try:
         results_df = pd.read_csv(results_path)
@@ -159,10 +216,26 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
     strike_rate = (wins / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
     place_rate = (places / summary["Tips"] * 100) if summary["Tips"] > 0 else 0.0
 
+    if show:
+        df_bank = load_bankroll()
+        if df_bank.empty:
+            bankroll_row = {"Bankroll": 0.0, "Drawdown": 0.0, "WorstDrawdown": 0.0}
+        else:
+            bankroll_row = df_bank.iloc[-1].to_dict()
+    else:
+        bankroll_row = update_bankroll(
+            summary["Date"], summary["Profit"], summary["Stake"]
+        )
+
+    bankroll = bankroll_row.get("Bankroll", 0.0)
+    drawdown = bankroll_row.get("Drawdown", 0.0)
+    worst_dd = bankroll_row.get("WorstDrawdown", 0.0)
+
     result_line = (
         f"{summary['Date']}   Tips: {summary['Tips']}    Wins: {summary['Wins']}   "
         f"Places: {summary['Places']}   NRs: {summary['NRs']}   Stake: {summary['Stake']:.2f} "
-        f"Profit: {summary['Profit']:.2f} ROI: {roi:.2f}%"
+        f"Profit: {summary['Profit']:.2f} ROI: {roi:.2f}%   "
+        f"Bankroll: {bankroll:+.2f} Drawdown: {drawdown:.2f} (Worst {worst_dd:.2f})"
     )
     print(result_line)
 
@@ -194,6 +267,8 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
 🎯 Strike Rate: {strike_rate:.2f}% | 🥈 Place Rate: {place_rate:.2f}%
 💰 Profit: {summary['Profit']:+.2f} pts
 📈 ROI: {roi:.2f}%
+💰 Bankroll: {bankroll:+.2f} pts
+🔻 Drawdown: {drawdown:.2f} (Worst {worst_dd:.2f})
 🪙 Staked: {summary['Stake']:.2f} pts"""
         send_telegram_message(message)
 

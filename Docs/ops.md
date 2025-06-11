@@ -13,8 +13,10 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 - **Log Output:** Where the primary output or errors of the cron command itself are logged (if specified). Internal script logging is now more organized within `logs/` subdirectories.
 
 > **Environment Note:** Telegram alerts depend on `TELEGRAM_BOT_TOKEN` and
-> `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
-> automatically.
+ > `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
+ > automatically.
+ > The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
+ > alerts when enabled.
 
 ---
 
@@ -110,20 +112,22 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
     *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh healthcheck /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/cli/tmcli.py healthcheck --date $(date +\%F)`
 
 
-### Sniper & Morning Preparation (Currently Commented Out or Specific Logging)
+### Sniper & Morning Preparation (Removed in June 2025)
 
-The following jobs are related to "sniper" functionality (market movement detection) and morning preparation tasks. Some sniper-related jobs appear to be commented out in the provided crontab.
+The following jobs were originally related to the "sniper" subsystem for market-movement detection and morning preparation tasks. The entire subsystem was removed in **June&nbsp;2025**, so these cron entries are no longer active.
 
-14. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Commented Out)
+14. **Build Sniper Intel (`steam_sniper_intel/build_sniper_schedule.py`)** (Removed)
     *   **Frequency:** Was Daily at 09:30
-    *   **Purpose:** Likely prepares data or schedules for the sniper functionality.
-    *   **Command:** `#bash /home/ec2-user/tipping-monster/utils/safecron.sh build_sniper_intel /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py`
+    *   **Purpose:** Prepared data or schedules for the sniper functionality.
+    <!-- Cron entry removed June&nbsp;2025 -->
+    <!-- **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh build_sniper_intel /home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/steam_sniper_intel/build_sniper_schedule.py` -->
     *   **Internal Logs:** Check `logs/sniper/` if re-enabled.
 
-15. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)**
-    *   **Frequency:** Daily at 09:35
-    *   **Purpose:** Loads sniper data and schedules the actual sniper monitoring jobs.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh`
+15. **Load Sniper Intel & Schedule Jobs (`steam_sniper_intel/generate_and_schedule_snipers.sh`)** (Removed)
+    *   **Frequency:** Was Daily at 09:35
+    *   **Purpose:** Loaded sniper data and scheduled the actual sniper monitoring jobs.
+    <!-- Cron entry removed June&nbsp;2025 -->
+    <!-- **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh` -->
     *   **Internal Logs:** Check `logs/sniper/`.
 
 16. **Fetch Betfair Odds (08:00 Snapshot)**
@@ -144,6 +148,7 @@ The following jobs are related to "sniper" functionality (market movement detect
     *   **Purpose:** Automatically tweets selected tips.
     *   **Command:** `/home/ec2-user/tipping-monster/.venv/bin/python /home/ec2-user/tipping-monster/monstertweeter/auto_tweet_tips.py >> /home/ec2-user/tipping-monster/logs/twitter_post.log 2>&1`
     *   **Log Output:** `logs/twitter_post.log` (remains in root `logs/`)
+    *   **Dev Mode:** Set `TM_DEV_MODE=1` to log tweets to `logs/dev/twitter.log` instead of posting.
 
 ---
 
