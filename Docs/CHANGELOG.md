@@ -1,3 +1,7 @@
+## 2025-07-07
+
+### Fixed
+- `Makefile` targets now call scripts from their proper subdirectories.
 
 
 ## 2025-07-08

@@ -1,4 +1,10 @@
 
+## [2025-07-07] Update Makefile paths
+**Prompt:** Align Makefile targets with script directories and log change.
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Train, pipeline, and ROI targets call scripts from `core/` and `roi/`.
+
+
 ## [2025-07-07] Respect explicit chat_id in Telegram helpers
 **Prompt:** Update Telegram send helpers to only use the dev chat when no `chat_id` argument is given.
 **Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/ec2_setup_guide.md, codex_log.md
