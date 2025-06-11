@@ -40,6 +40,7 @@ def dispatch(
     telegram: bool = False,
     dev: bool = False,
     comment_style: str | None = None,
+    course: str | None = None,
 ) -> None:
     cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
     if telegram:
@@ -50,6 +51,8 @@ def dispatch(
         os.environ["TM_LOG_DIR"] = "logs/dev"
     if comment_style:
         cmd += ["--comment-style", comment_style]
+    if course:
+        cmd += ["--course", course]
     subprocess.run(cmd, check=True)
 
 
@@ -139,6 +142,7 @@ def main(argv=None) -> None:
     )
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
+    parser_dispatch.add_argument("--course", help="Filter tips for a racecourse")
     parser_dispatch.add_argument(
         "--comment-style",
         choices=["basic", "expressive"],
@@ -195,6 +199,7 @@ def main(argv=None) -> None:
             telegram=args.telegram,
             dev=args.dev,
             comment_style=args.comment_style,
+            course=args.course,
         )
 
     elif args.command == "validate-tips":

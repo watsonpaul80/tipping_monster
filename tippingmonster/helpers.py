@@ -21,7 +21,12 @@ def _apply_dev_env(dev: bool) -> None:
         os.environ["TM_LOG_DIR"] = "logs/dev"
 
 
-def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+def dispatch(
+    date: str,
+    telegram: bool = False,
+    dev: bool = False,
+    course: str | None = None,
+) -> None:
     """Run ``dispatch_tips.py`` for ``date``."""
     _apply_dev_env(dev)
     cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
@@ -29,6 +34,8 @@ def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
         cmd.append("--telegram")
     if dev:
         cmd.append("--dev")
+    if course:
+        cmd += ["--course", course]
     subprocess.run(cmd, check=True)
 
 

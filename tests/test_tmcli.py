@@ -35,7 +35,12 @@ def run_command(cmd: list[str], dev: bool) -> None:
     subprocess.run(cmd, check=True, env=env)
 
 
-def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
+def dispatch(
+    date: str,
+    telegram: bool = False,
+    dev: bool = False,
+    course: str | None = None,
+) -> None:
     cmd = [sys.executable, str(repo_path("core", "dispatch_tips.py")), "--date", date]
     if telegram:
         cmd.append("--telegram")
@@ -43,6 +48,8 @@ def dispatch(date: str, telegram: bool = False, dev: bool = False) -> None:
         cmd.append("--dev")
         os.environ["TM_DEV_MODE"] = "1"
         os.environ["TM_LOG_DIR"] = "logs/dev"
+    if course:
+        cmd += ["--course", course]
     subprocess.run(cmd, check=True)
 
 
@@ -132,6 +139,7 @@ def main(argv=None) -> None:
     )
     parser_dispatch.add_argument("--telegram", action="store_true")
     parser_dispatch.add_argument("--dev", action="store_true")
+    parser_dispatch.add_argument("--course", help="Filter tips for a racecourse")
 
     # send-roi subcommand
     parser_roi = subparsers.add_parser(
@@ -182,6 +190,7 @@ def main(argv=None) -> None:
             date=date_arg or date.today().isoformat(),
             telegram=args.telegram,
             dev=args.dev,
+            course=args.course,
         )
 
     elif args.command == "validate-tips":

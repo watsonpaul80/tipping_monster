@@ -1,3 +1,8 @@
+## 2025-07-10
+
+### Added
+- `dispatch_tips.py` accepts `--course` to filter tips by racecourse.
+
 ## 2025-07-09
 
 ### Changed

@@ -435,3 +435,8 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/compare_model_v6_v7.py, core/fetch_betfair_odds.py, explain_model_decision.py, telegram_bot.py, tip_control_panel.py, tests/test_codex_logger.py, tests/test_dispatch_tips.py, tests/test_model_drift_report.py, tests/test_self_training_loop.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Removed unused imports and spacing issues; updated docs and task log
 
+## [2025-07-10] Course filter for dispatch
+**Prompt:** I need a dispatch tips but to be able to filter for all races at a track for example royal ascot
+**Files Changed:** core/dispatch_tips.py, tippingmonster/helpers.py, cli/tmcli.py, tests/test_tmcli.py, tests/test_dispatch_tips.py, README.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
+

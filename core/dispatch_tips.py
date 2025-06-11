@@ -15,6 +15,7 @@ load_dotenv()
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from core.tip import Tip
+from generate_lay_candidates import standardize_course_only
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
 from utils.commentary import generate_commentary
@@ -208,6 +209,12 @@ def should_skip_by_roi(conf: float, roi_map: dict, min_conf: float) -> bool:
     return roi_map.get(band, 0.0) <= 0.0
 
 
+def filter_tips_by_course(tips: list[Tip], course: str) -> list[Tip]:
+    """Return tips matching ``course`` (case-insensitive)."""
+    target = standardize_course_only(course)
+    return [t for t in tips if standardize_course_only(t.get("race", "")) == target]
+
+
 def log_nap_override(original: dict, new: dict | None, path: str) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
     orig_name = original.get("name", "Unknown")
@@ -308,6 +315,7 @@ def main(argv=None):
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--dev", action="store_true")
+    parser.add_argument("--course", help="Filter tips for a racecourse")
     parser.add_argument(
         "--explain", action="store_true", help="Include SHAP explanations"
     )
@@ -332,6 +340,8 @@ def main(argv=None):
         sys.exit(1)
 
     tips = read_tips(predictions_path)
+    if args.course:
+        tips = filter_tips_by_course(tips, args.course)
     if not tips:
         print("⚠️ No valid tips to process.")
         sys.exit(1)
