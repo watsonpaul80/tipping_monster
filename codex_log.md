@@ -398,6 +398,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Pipeline runs without missing directory errors.
 
+## [2025-06-11] Fix Makefile script paths
+**Prompt:** Makefile isnt correct
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Makefile targets call scripts from `core/` and `roi/` directories.
+
 ## [2025-07-04] Fix Makefile whitespace
 **Prompt:** `make test` failed with `missing separator`.
 **Files Changed:** Makefile
