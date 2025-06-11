@@ -1,3 +1,8 @@
+## [2025-07-07] Update Makefile paths
+**Prompt:** Align Makefile targets with script directories and log change.
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Train, pipeline, and ROI targets call scripts from `core/` and `roi/`.
+
 ## [2025-07-06] Restore inference script
 **Prompt:** Retrieve full `run_inference_and_select_top1.py` from history and ensure tests pass.
 **Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md, codex_log.md

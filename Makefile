@@ -1,13 +1,13 @@
 .PHONY: train pipeline roi test dev-check
 
 train: dev-check
-	bash daily_train.sh
+	bash core/daily_train.sh
 
 pipeline: dev-check
-	bash run_pipeline_with_venv.sh
+	bash core/run_pipeline_with_venv.sh
 
 roi: dev-check
-	bash run_roi_pipeline.sh
+	bash roi/run_roi_pipeline.sh
 
 test: dev-check
 	.venv/bin/pytest -q
