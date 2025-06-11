@@ -134,7 +134,9 @@ def _roi_csv(path, pnl):
         "Date,Confidence Bin,Tips,Wins,Win %,Places,Place %,Win PnL,EW PnL (5.0+),"
         "Win ROI %,EW ROI %,Win Profit £,EW Profit £\n"
     )
-    row = f"2025-06-01,0.70\u20130.80,10,1,10.0,1,10.0,{pnl},0.0,0.0,0.0,{pnl*10},0.0\n"
+    row = (
+        f"2025-06-01,0.70\u20130.80,10,1,10.0,1,10.0,{pnl},0.0,0.0,0.0,{pnl * 10},0.0\n"
+    )
     path.write_text(header + row)
 
 
