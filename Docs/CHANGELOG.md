@@ -1,4 +1,9 @@
 
+## 2025-07-05
+
+### Fixed
+- `run_pipeline_with_venv.sh` now ensures inference and dispatch log directories exist before running.
+
 ## 2025-07-04
 
 ### Fixed
