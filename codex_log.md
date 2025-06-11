@@ -447,3 +447,8 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
 
 
+
+## [2025-07-11] Add summarise_logs utility
+**Prompt:** Create summarise_logs.py for 7-day log checks with win/place counts.
+**Files Changed:** summarise_logs.py, tests/test_summarise_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script summarises log status; tests and documentation updated.
