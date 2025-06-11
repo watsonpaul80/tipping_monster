@@ -1,4 +1,9 @@
 
+## 2025-06-11
+
+### Fixed
+- Makefile targets now call scripts in their correct `core/` or `roi/` folders.
+
 ## 2025-07-07
 
 
