@@ -3,6 +3,42 @@
 ### Fixed
 - `Makefile` targets now call scripts from their proper subdirectories.
 
+
+## 2025-07-08
+
+### Documentation
+- Added `Docs/prod_setup_cheatsheet.md` with dev-to-prod steps.
+
+## 2025-06-11
+
+### Fixed
+- Makefile targets now call scripts in their correct `core/` or `roi/` folders.
+
+
+## 2025-07-07
+
+
+### Fixed
+- `send_telegram_message` and `send_telegram_photo` now respect explicit
+  `chat_id` arguments before applying the `TM_DEV` sandbox override.
+- Unit tests clear the `TM_DEV` env var to ensure consistent behaviour.
+
+### Documentation
+- Added EC2 setup guide reminding that `TM_DEV_MODE=1` must be set during testing to prevent Telegram posts.
+
+
+## 2025-06-11
+
+### Documentation
+- Added `ec2_setup_guide.md` with dev-to-prod setup steps.
+
+
+## 2025-07-06
+
+### Fixed
+- Restored full `run_inference_and_select_top1.py` after accidental truncation.
+
+
 ## 2025-07-06
 
 ### Fixed
@@ -31,6 +67,9 @@
 - Added notes about using `python3` for virtualenv creation.
 
 ## 2025-07-01
+
+### Added
+- Rolling 30-day ROI line chart in Paul's View dashboard.
 
 ### Documentation
 - Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.

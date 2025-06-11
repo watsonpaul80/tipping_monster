@@ -1,7 +1,26 @@
+
 ## [2025-07-07] Update Makefile paths
 **Prompt:** Align Makefile targets with script directories and log change.
 **Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Train, pipeline, and ROI targets call scripts from `core/` and `roi/`.
+
+
+## [2025-07-07] Respect explicit chat_id in Telegram helpers
+**Prompt:** Update Telegram send helpers to only use the dev chat when no `chat_id` argument is given.
+**Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/ec2_setup_guide.md, codex_log.md
+**Outcome:** Helpers resolve `chat_id` correctly; tests run with `TM_DEV` unset and sandbox item marked complete.
+
+## [2025-07-07] Document TM_DEV_MODE for EC2 tests
+**Prompt:** Amend Docs/ec2_setup_guide.md to emphasise that all test runs should set TM_DEV_MODE=1 to avoid Telegram posts.
+**Files Changed:** Docs/ec2_setup_guide.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Added guide with dev-mode reminder and updated changelog.
+
+
+## [2025-06-11] Add EC2 setup guide
+**Prompt:** Provide dev to prod instructions for Ubuntu server.
+**Files Changed:** Docs/ec2_setup_guide.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation explains how to initialise a dev EC2 instance and migrate to prod.
+
 
 ## [2025-07-06] Restore inference script
 **Prompt:** Retrieve full `run_inference_and_select_top1.py` from history and ensure tests pass.
@@ -169,6 +188,12 @@
 **Prompt:** Tick off snapshot alert, self-heal, and delta_tag tasks in monster_todo.md.
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
+
+## [2025-06-08] Add rolling ROI chart to Paul's View
+**Prompt:** Add 30-day rolling ROI line chart to streamlit_pauls_view.py
+**Files Changed:** cli/pauls_view_dashboard.py, Docs/monster_todo.md, Docs/CHANGELOG.md, tests/test_model_drift_report.py
+**Outcome:** Dashboard now plots 30-day ROI trend; docs updated; failing test fixed.
+=======
 
 ## [2025-06-08] Add weekly ROI Telegram command
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
@@ -379,7 +404,17 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Pipeline runs without missing directory errors.
 
+## [2025-06-11] Fix Makefile script paths
+**Prompt:** Makefile isnt correct
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Makefile targets call scripts from `core/` and `roi/` directories.
+
 ## [2025-07-04] Fix Makefile whitespace
 **Prompt:** `make test` failed with `missing separator`.
 **Files Changed:** Makefile
 **Outcome:** Replaced spaces with a tab for the `dev-check` rule.
+
+## [2025-07-08] Add production cheatsheet
+**Prompt:** Provide simple dev-to-prod instructions and script explanations
+**Files Changed:** Docs/prod_setup_cheatsheet.md, Docs/README.md, Docs/CHANGELOG.md
+**Outcome:** Added new cheatsheet doc and referenced it in main docs.
