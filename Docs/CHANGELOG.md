@@ -1,4 +1,11 @@
 
+## 2025-07-07
+
+### Fixed
+- `send_telegram_message` and `send_telegram_photo` now respect explicit
+  `chat_id` arguments before applying the `TM_DEV` sandbox override.
+- Unit tests clear the `TM_DEV` env var to ensure consistent behaviour.
+
 ## 2025-07-06
 
 ### Fixed

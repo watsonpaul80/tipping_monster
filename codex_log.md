@@ -1,3 +1,8 @@
+## [2025-07-07] Respect explicit chat_id in Telegram helpers
+**Prompt:** Update Telegram send helpers to only use the dev chat when no `chat_id` argument is given.
+**Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/ec2_setup_guide.md, codex_log.md
+**Outcome:** Helpers resolve `chat_id` correctly; tests run with `TM_DEV` unset and sandbox item marked complete.
+
 ## [2025-07-06] Restore inference script
 **Prompt:** Retrieve full `run_inference_and_select_top1.py` from history and ensure tests pass.
 **Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md, codex_log.md
