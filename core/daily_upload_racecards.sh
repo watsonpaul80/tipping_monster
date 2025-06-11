@@ -7,6 +7,7 @@ REPO_ROOT="${TIPPING_MONSTER_HOME:-$(git -C "$SCRIPT_DIR" rev-parse --show-tople
 RACE_OUTPUT="$REPO_ROOT/rpscrape/racecards/${TODAY}.json"
 SCRIPT_PATH="$REPO_ROOT/rpscrape/scripts"
 VENV="$REPO_ROOT/.venv/bin/activate"
+export PYTHONPATH="$SCRIPT_PATH":${PYTHONPATH:-}
 
 source "$VENV"
 cd "$SCRIPT_PATH"

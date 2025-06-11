@@ -347,6 +347,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Quickstart guide now references correct script path; changelog updated.
 
+## [2025-07-05] Ensure racecards script imports
+**Prompt:** Create `rpscrape/scripts/utils/__init__.py` and export `PYTHONPATH` in `daily_upload_racecards.sh`.
+**Files Changed:** rpscrape/scripts/utils/__init__.py, core/daily_upload_racecards.sh, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Racecard upload script imports utility modules without errors.
+
 ## [2025-07-03] dev-check resolves repo root
 **Prompt:** Update dev-check.sh so it can be run from any path.
 **Files Changed:** utils/dev-check.sh, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md, tests/test_dev_check.py, tests/test_nap_tracker.py, core/run_inference_and_select_top1.py
