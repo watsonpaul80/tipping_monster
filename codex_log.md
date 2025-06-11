@@ -418,3 +418,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Provide simple dev-to-prod instructions and script explanations
 **Files Changed:** Docs/prod_setup_cheatsheet.md, Docs/README.md, Docs/CHANGELOG.md
 **Outcome:** Added new cheatsheet doc and referenced it in main docs.
+
+## [2025-07-08] Fix CLI import paths
+**Prompt:** Ensure `model_feature_importance` and `tippingmonster` imports work when running `tmcli.py` directly.
+**Files Changed:** cli/tmcli.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** CLI runs from the repo root without `ModuleNotFoundError`.
