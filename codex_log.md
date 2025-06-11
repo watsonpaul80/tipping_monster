@@ -1,3 +1,13 @@
+## [2025-06-11] Add EC2 setup guide
+**Prompt:** Provide dev to prod instructions for Ubuntu server.
+**Files Changed:** Docs/ec2_setup_guide.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation explains how to initialise a dev EC2 instance and migrate to prod.
+
+## [2025-07-06] Restore inference script
+**Prompt:** Retrieve full `run_inference_and_select_top1.py` from history and ensure tests pass.
+**Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Restored function definitions and `__main__` logic; unit test passes.
+
 
 ## [2025-07-03] Fix dev-check path handling
 **Prompt:** Resolve errors when running `utils/dev-check.sh` from the repo root and align docs.
