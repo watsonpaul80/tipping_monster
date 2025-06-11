@@ -102,6 +102,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `track_lay_candidates_roi.py`: Computes ROI for Danger Fav lay candidates.
 * `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
 * `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
+* `check_tip_sanity.py`: Warns if the latest sent tips have low confidence or missing odds/stake.
 
 ---
 
