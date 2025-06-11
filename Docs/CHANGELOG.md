@@ -2,6 +2,7 @@
 
 ### Added
 - `dispatch_tips.py` accepts `--course` to filter tips by racecourse.
+- `backup_validator.py` ensures timestamped backups for root scripts.
 
 ## 2025-07-09
 

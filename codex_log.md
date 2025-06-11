@@ -447,3 +447,8 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
 
 
+## [2025-07-10] Add backup validator script
+**Prompt:** Backup Validator - ensure root scripts are backed up
+**Files Changed:** backup_validator.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Created timestamped backup tool and updated docs.
+
