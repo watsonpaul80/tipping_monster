@@ -435,3 +435,8 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/compare_model_v6_v7.py, core/fetch_betfair_odds.py, explain_model_decision.py, telegram_bot.py, tip_control_panel.py, tests/test_codex_logger.py, tests/test_dispatch_tips.py, tests/test_model_drift_report.py, tests/test_self_training_loop.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Removed unused imports and spacing issues; updated docs and task log
 
+## [2025-07-10] Final v7 cleanup features
+**Prompt:** Implement final cleanup tasks including new bot commands, ROI defaults, tag filtering and SHAP summary.
+**Files Changed:** telegram_bot.py, core/extract_best_realistic_odds.py, roi/roi_tracker_advised.py, roi/tag_roi_tracker.py, streamlit_pauls_view.py, train_model_v6.py, model_feature_importance.py, Docs/monster_overview.md, Docs/monster_todo.md, Docs/CHANGELOG.md
+**Outcome:** Added /ping and /help commands, clearer odds error, default ROI mode, tag filter option, SHAP logging, updated docs.
+

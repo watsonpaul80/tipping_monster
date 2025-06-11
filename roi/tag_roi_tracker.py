@@ -2,12 +2,12 @@
 import argparse
 import json
 import os
-import sys
 import re
+import sys
+from pathlib import Path
 
 import pandas as pd
 
-from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
@@ -72,7 +72,9 @@ def load_tips(date_str, min_conf, use_sent, tag=None):
     return tips
 
 
-def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
+def main(
+    date_str, mode, min_conf, send_to_telegram, show=False, tag=None, filter_tag=None
+):
     date_display = date_str
     results_path = f"rpscrape/data/dates/all/{date_str.replace('-', '_')}.csv"
     if not os.path.exists(results_path):
@@ -192,6 +194,12 @@ def main(date_str, mode, min_conf, send_to_telegram, show=False, tag=None):
                     Wins=("Position", lambda x: (x == "1").sum()),
                 )
                 tag_summary["ROI %"] = tag_summary["Profit"] / tag_summary["Tips"] * 100
+                if filter_tag:
+                    tag_summary = (
+                        tag_summary.loc[[filter_tag]]
+                        if filter_tag in tag_summary.index
+                        else tag_summary.iloc[0:0]
+                    )
                 tag_summary.reset_index().to_csv(tag_output, index=False)
                 print(f"✅ Tag ROI saved to {tag_output}")
 
@@ -215,6 +223,10 @@ if __name__ == "__main__":
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--show", action="store_true", help="Show summary in CLI only")
     parser.add_argument("--tag", help="Filter tips by tag (e.g. NAP)")
+    parser.add_argument(
+        "--filter-tag",
+        help="Only include rows with this tag when saving tag summary",
+    )
     parser.add_argument("--dev", action="store_true", help="Enable dev mode")
     args = parser.parse_args()
 
@@ -222,4 +234,12 @@ if __name__ == "__main__":
         os.environ["TM_DEV_MODE"] = "1"
         os.environ["TM_LOG_DIR"] = "logs/dev"
 
-    main(args.date, args.mode, args.min_conf, args.telegram, args.show, args.tag)
+    main(
+        args.date,
+        args.mode,
+        args.min_conf,
+        args.telegram,
+        args.show,
+        args.tag,
+        args.filter_tag,
+    )

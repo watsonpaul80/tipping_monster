@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simple Telegram bot with /roi, /nap and /tip commands."""
+"""Simple Telegram bot with /roi, /nap, /tip, /ping and /help commands."""
 
 from __future__ import annotations
 
@@ -189,7 +189,23 @@ async def _reply(update: Update, message: str) -> None:
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle /start command."""
-    await _reply(update, "Send /roi to get this week's ROI summary.")
+    await _reply(update, "Send /help to see available commands.")
+
+
+async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Simple healthcheck command."""
+    await _reply(update, "Monster is alive \U0001f9df")
+
+
+async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """List available commands."""
+    commands = [
+        "/roi [DATE]",
+        "/nap [DAYS]",
+        "/tip HORSE",
+        "/ping",
+    ]
+    await _reply(update, "Available: " + ", ".join(commands))
 
 
 async def roi(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -205,7 +221,10 @@ async def nap(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         days = int(context.args[0]) if context.args else 7
     except ValueError:
         days = 7
-    message = get_recent_naps(days)
+    try:
+        message = get_recent_naps(days)
+    except Exception as exc:
+        message = f"Error generating NAP summary: {exc}"
     await _reply(update, message)
 
 
@@ -226,6 +245,8 @@ def main() -> None:
 
     application = ApplicationBuilder().token(token).build()
     application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help_cmd))
+    application.add_handler(CommandHandler("ping", ping))
     application.add_handler(CommandHandler("roi", roi))
     application.add_handler(CommandHandler("nap", nap))
     application.add_handler(CommandHandler("tip", tip))

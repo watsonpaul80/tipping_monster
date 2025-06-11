@@ -51,7 +51,7 @@ The system defines 8 core product layers:
 1.  🧠 Monster Tips (Main)
 2.  📋 Monster Tips (All Races)
 3.  💸 Value Bets
-4.  📉 Steamers
+4.  📉 Steamers *(paused)*
 5.  🥈 Each-Way Specials
 6.  🔗 Doubles & Trebles
 7.  ⚠️ Danger Favs
@@ -84,7 +84,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 ## ⚙️ SCRIPT EXPLANATIONS
 
-* `core/train_model_v6.py`: Trains an XGBoost classifier using features like rating, class, form, trainer, jockey, etc.
+* `train_model_v7.py`: Default training script using XGBoost with rating, class, form, trainer, jockey, etc.
 * `train_place_model.py`: Predicts whether a runner finishes in the top 3 using the same feature set.
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
@@ -214,6 +214,10 @@ All components live and working as intended:
 ✔️ Daily tips filtered by sent tips file  
 ✔️ Advised + Level tracked separately  
 ✔️ Telegram summary sent nightly
+✔️ `/roi` and `/nap` commands available in the Telegram bot
+✔️ Model trained via `train_model_v7.py`
+✔️ Steam Sniper subsystem *paused*
+✔️ SHAP feature importance generated for private analysis
 
 ---
 
