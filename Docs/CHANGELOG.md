@@ -1,4 +1,10 @@
 
+## 2025-07-05
+
+### Fixed
+- `daily_upload_racecards.sh` now exports `PYTHONPATH` so `racecards.py` can import `utils` modules.
+- Added `rpscrape/scripts/utils/__init__.py` to mark the utilities package.
+
 ## 2025-07-04
 
 ### Fixed
