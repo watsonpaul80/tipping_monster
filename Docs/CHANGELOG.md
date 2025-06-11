@@ -537,6 +537,14 @@
 - LLM commentary
 - ML-based filtering in V2
 
+## 2025-07-10 — Final v7 Cleanup
+
+- Added `/ping` and `/help` commands to Telegram bot.
+- ROI tracker defaults to advised mode when not specified.
+- Tag ROI tracker supports `--filter-tag` for selective reports.
+- Streamlit dashboard shows optional SHAP summary.
+- Training pipeline outputs `features_used.json` with each model.
+
 ---
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup

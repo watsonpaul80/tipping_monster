@@ -40,7 +40,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 14. 🟡 *Removed for now* – breeding logic too hard to track without structured data  
 15. Trainer/Jockey ROI Leaderboard — daily form summary or on-demand stats  
 16. All Tips Mode — dispatch full racecards (mug mode) alongside Monster Tips  
-17. ✅ SHAP or feature gain per model *(2025-06-08)*
+17. ✅ SHAP or feature gain per model *(Live internally - 2025-06-08)*
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
 19. ✅ Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%” [Done: 2025-06-24]
 20. Use tags + confidence + form stats for explanation  
@@ -185,6 +185,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 98. ✅ `upload_to_s3` helper skips uploads in dev mode [Done: 2025-06-27]
 
 99. ✅ Flake8 cleanup across core and tests [Done: 2025-07-09]
+100. ✅ ROI snapshot injection integrated into pipeline [Done: 2025-07-10]
+101. ✅ Telegram summaries refined [Done: 2025-07-10]
 
 100. ✅ `--course` option to dispatch tips for a single track [Done: 2025-07-10]
 

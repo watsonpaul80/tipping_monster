@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import json
 import argparse
-from pathlib import Path
+import json
 from datetime import datetime
+from pathlib import Path
 
 
 def extract_race_key(race_str):
@@ -57,7 +57,10 @@ def main(date_str):
 
     snapshots = load_snapshots(date_str)
     if not snapshots:
-        print("❌ No snapshots available to pull odds from.")
+        print(
+            f"❌ No snapshots found for {date_str}. "
+            "Run core/fetch_betfair_odds.py first."
+        )
         return
 
     adjusted = []
@@ -69,8 +72,7 @@ def main(date_str):
             race_minutes, course = extract_race_key(race)
             if race_minutes is None:
                 continue
-            realistic_odds = find_best_odds(
-                race_minutes, course, name, snapshots)
+            realistic_odds = find_best_odds(race_minutes, course, name, snapshots)
             if realistic_odds:
                 tip["realistic_odds"] = realistic_odds
             else:
@@ -89,6 +91,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--date",
         help="Date string in YYYY-MM-DD format",
-        default=datetime.now().strftime("%Y-%m-%d"))
+        default=datetime.now().strftime("%Y-%m-%d"),
+    )
     args = parser.parse_args()
     main(args.date)

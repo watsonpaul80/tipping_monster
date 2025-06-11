@@ -2,8 +2,8 @@
 import argparse
 import json
 import os
-import sys
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -279,7 +279,12 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", required=True, help="Date in YYYY-MM-DD")
-    parser.add_argument("--mode", choices=["advised", "level"], required=True)
+    parser.add_argument(
+        "--mode",
+        choices=["advised", "level"],
+        default="advised",
+        help="ROI mode. Defaults to advised",
+    )
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument(
