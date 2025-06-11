@@ -12,6 +12,7 @@ from core.dispatch_tips import (
     load_recent_roi_stats,
     select_nap_tip,
     should_skip_by_roi,
+    filter_tips_by_course,
 )
 
 # isort: on
@@ -165,3 +166,13 @@ def test_build_confidence_line_basic():
     line = build_confidence_line(tip)
     assert line.startswith("\ud83e\udde0 Model Confidence: High (92%)")
     assert "class drop" in line and "fresh" in line
+
+
+def test_filter_tips_by_course():
+    tips = [
+        {"race": "1:00 Ascot", "name": "A"},
+        {"race": "2:00 Ascot", "name": "B"},
+        {"race": "3:00 York", "name": "C"},
+    ]
+    out = filter_tips_by_course(tips, "Ascot")
+    assert len(out) == 2

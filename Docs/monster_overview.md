@@ -22,6 +22,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Confidence calibration logger & detailed confidence band ROI logging
 * ✅ Weekly and daily ROI summaries
 * ✅ Sent vs unsent tip separation
+* ✅ Optional course filter for dispatch (`--course`)
 * ✅ Full logging + S3 backup
 * ✅ Pre-commit hooks enforce `black`, `isort`, and `flake8`
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)

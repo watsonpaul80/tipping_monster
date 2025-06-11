@@ -188,6 +188,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 100. ✅ ROI snapshot injection integrated into pipeline [Done: 2025-07-10]
 101. ✅ Telegram summaries refined [Done: 2025-07-10]
 
+100. ✅ `--course` option to dispatch tips for a single track [Done: 2025-07-10]
+
 
 
 
