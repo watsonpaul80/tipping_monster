@@ -403,3 +403,7 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Makefile
 **Outcome:** Replaced spaces with a tab for the `dev-check` rule.
 
+## [2025-07-08] Add production cheatsheet
+**Prompt:** Provide simple dev-to-prod instructions and script explanations
+**Files Changed:** Docs/prod_setup_cheatsheet.md, Docs/README.md, Docs/CHANGELOG.md
+**Outcome:** Added new cheatsheet doc and referenced it in main docs.

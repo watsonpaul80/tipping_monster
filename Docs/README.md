@@ -11,6 +11,7 @@ This documentation set covers everything about the **Tipping Monster** project �
 - `monster_todo.md` – task tracker for main tipping logic including ROI, model training, and Telegram output.
 - `monster_todo_v2.md` – high-level roadmap for upcoming features.
 - `dev_command_reference.md` – quick list of useful developer commands.
+- `prod_setup_cheatsheet.md` – dev-to-prod reference.
  - `../Docs/script_audit.txt` – summary of active vs. unused scripts with keep/remove/rewrite verdicts.
  - `../Docs/SECURITY_REVIEW.md` – latest security audit notes.
 
