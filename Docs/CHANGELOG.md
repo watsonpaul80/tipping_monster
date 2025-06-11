@@ -1,4 +1,5 @@
 
+
 ## 2025-07-05
 
 ### Fixed
@@ -8,10 +9,18 @@
 
 - `run_pipeline_with_venv.sh` now ensures inference and dispatch log directories exist before running.
 
+
 ## 2025-07-04
 
 ### Fixed
 - Corrected Makefile tab for dev-check rule.
+
+
+## 2025-07-05
+
+### Fixed
+- `utils/dev-check.sh` marked executable to run without manual `chmod`.
+- Added notes about using `python3` for virtualenv creation.
 
 ## 2025-07-01
 
@@ -39,6 +48,7 @@
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
 
 
+
 ## 2025-06-10
 
 ### Fixed
@@ -46,7 +56,6 @@
 
 ### Documentation
 - Quickstart updated for the new path.
-
 
 
 ## 2025-07-02
