@@ -2,10 +2,13 @@
 import argparse
 import json
 import os
+import sys
 import re
 
 import pandas as pd
 
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 from tippingmonster import get_place_terms, send_telegram_message, tip_has_tag
 

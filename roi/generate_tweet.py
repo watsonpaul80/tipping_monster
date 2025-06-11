@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import json
 import os
+import sys
 from datetime import date, timedelta
+from pathlib import Path
 
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 from tippingmonster import repo_path
 

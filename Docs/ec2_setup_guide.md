@@ -86,10 +86,12 @@ This guide explains how to deploy Tipping Monster on a fresh Ubuntu EC2 instance
    - `utils/upload_logs_to_s3.sh` – uploads logs to S3.
 4. **Testing commands before enabling cron:**
    ```bash
-   python core/run_inference_and_select_top1.py --dev
-   python core/dispatch_tips.py $(date +%F) --telegram --dev
-   python cli/tmcli.py healthcheck --date $(date +%F)
-   ```
+    python core/run_inference_and_select_top1.py --dev
+    python core/dispatch_tips.py $(date +%F) --telegram --dev
+    python cli/tmcli.py healthcheck --date $(date +%F)
+    ```
+    Running these scripts from inside the `core/` or `roi/` folders requires the
+    repository root to be on `PYTHONPATH` or using `python -m`.
 5. Once everything works in dev mode, remove the `--dev` flags and update your crontab accordingly.
 
 

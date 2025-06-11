@@ -1,3 +1,9 @@
+## 2025-07-09
+
+### Changed
+- Dispatch and ROI scripts now append the repository root to `sys.path` so they can be run directly without setting `PYTHONPATH`.
+- Documentation updated to mention using `PYTHONPATH` or `python -m` when executing scripts by path.
+
 ## 2025-07-07
 
 ### Fixed

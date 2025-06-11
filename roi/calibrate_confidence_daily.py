@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 
 # === ARGUMENTS ===

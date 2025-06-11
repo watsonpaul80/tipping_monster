@@ -58,7 +58,7 @@ These times are detailed in `Docs/monster_overview.md`.
 ```bash
 python core/run_inference_and_select_top1.py
 ```
-Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
+Running it while inside `core/` triggers a `ModuleNotFoundError` unless the repository root is on your `PYTHONPATH` or you run `python -m core.run_inference_and_select_top1`.
 - **Odds Integration:** `core/fetch_betfair_odds.py` grabs odds snapshots; `core/merge_odds_into_tips.py` merges them with tips; `core/extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `core/dispatch_tips.py` formats tips for Telegram. `roi/roi_tracker_advised.py` and `roi/send_daily_roi_summary.py` track daily performance and report ROI.
 - **Explainability:** `model_feature_importance.py` plots SHAP values and can upload the chart to S3.
@@ -68,7 +68,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless you set 
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations.
-3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. Running the inference script directly requires the repo root to be on `PYTHONPATH`.
+3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. If you run the inference script by path, ensure the repo root is on `PYTHONPATH` or use the module form above.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 6. Run `./utils/dev-check.sh` followed by `make test` to verify your setup.
