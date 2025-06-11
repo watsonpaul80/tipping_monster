@@ -4,10 +4,27 @@
 ### Fixed
 - Restored full `run_inference_and_select_top1.py` after accidental truncation.
 
+## 2025-07-05
+
+### Fixed
+
+- `daily_upload_racecards.sh` now exports `PYTHONPATH` so `racecards.py` can import `utils` modules.
+- Added `rpscrape/scripts/utils/__init__.py` to mark the utilities package.
+
+- `run_pipeline_with_venv.sh` now ensures inference and dispatch log directories exist before running.
+
+
 ## 2025-07-04
 
 ### Fixed
 - Corrected Makefile tab for dev-check rule.
+
+
+## 2025-07-05
+
+### Fixed
+- `utils/dev-check.sh` marked executable to run without manual `chmod`.
+- Added notes about using `python3` for virtualenv creation.
 
 ## 2025-07-01
 
@@ -35,6 +52,7 @@
 - `Makefile` and documentation updated to call `utils/dev-check.sh`.
 
 
+
 ## 2025-06-10
 
 ### Fixed
@@ -42,7 +60,6 @@
 
 ### Documentation
 - Quickstart updated for the new path.
-
 
 
 ## 2025-07-02
