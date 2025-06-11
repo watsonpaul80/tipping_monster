@@ -5,6 +5,7 @@ This page lists common commands useful when working on Tipping Monster.
 ## Environment Setup
 
 ```bash
+# use `python3` if `python` isn't installed
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt

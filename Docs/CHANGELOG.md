@@ -1,3 +1,20 @@
+## 2025-07-04
+
+### Fixed
+- Corrected Makefile tab for dev-check rule.
+
+## 2025-07-05
+
+### Fixed
+- `utils/dev-check.sh` marked executable to run without manual `chmod`.
+- Added notes about using `python3` for virtualenv creation.
+
+## 2025-07-03
+
+### Fixed
+- `utils/dev-check.sh` now checks paths from the repository root.
+- `Makefile` and documentation updated to call `utils/dev-check.sh`.
+
 ## 2025-07-02
 
 ### Changed

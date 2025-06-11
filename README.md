@@ -13,6 +13,7 @@ See the [Docs/README.md](Docs/README.md) file for complete documentation, includ
 1. Create a Python virtual environment and install dependencies:
 
 ```bash
+# use `python3` if `python` is not available
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
