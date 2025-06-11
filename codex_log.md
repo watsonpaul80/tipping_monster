@@ -418,3 +418,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Provide simple dev-to-prod instructions and script explanations
 **Files Changed:** Docs/prod_setup_cheatsheet.md, Docs/README.md, Docs/CHANGELOG.md
 **Outcome:** Added new cheatsheet doc and referenced it in main docs.
+
+## [2025-07-09] Inject repo root path for dispatch scripts
+**Prompt:** In `core/dispatch_tips.py`, inject repo-root path and update docs.
+**Files Changed:** core/dispatch_tips.py, core/dispatch_all_tips.py, roi/generate_tweet.py, roi/roi_tracker_advised.py, roi/calibrate_confidence_daily.py, roi/generate_subscriber_log.py, roi/tag_roi_tracker.py, README.md, Docs/ec2_setup_guide.md, Docs/quickstart.md, Docs/CHANGELOG.md
+**Outcome:** Scripts now run from within subfolders without `PYTHONPATH`; docs mention using `PYTHONPATH` or `python -m` when running by path.

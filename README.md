@@ -86,7 +86,8 @@ Most Python scripts accept a `--debug` flag for verbose logging.
 python core/run_inference_and_select_top1.py --dev
 ```
 Use `--dev` to disable the final S3 upload.
-Executing this command while inside the `core/` directory will raise a `ModuleNotFoundError` unless you set `PYTHONPATH=..`.
+Executing this command inside the `core/` directory fails unless the repository root is on `PYTHONPATH` or you run it as a module:
+`python -m core.run_inference_and_select_top1`.
 
 This script uploads racecards, fetches odds, runs model inference, dispatches tips to Telegram, and uploads logs to S3. You can also run scripts individually for more control.
 
@@ -113,6 +114,8 @@ python telegram_bot.py --dev  # start Telegram bot with /roi, /nap and /tip comm
 
 Run `core/dispatch_tips.py` to send the day's tips to Telegram. Use `--telegram` to
 actually post messages and `--explain` to append a short "Why we tipped this" summary generated from SHAP values.
+If you run this file from inside `core/`, set `PYTHONPATH=..` or call it as
+`python -m core.dispatch_tips` so it can locate the `core` package.
 
 Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in

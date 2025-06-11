@@ -4,12 +4,15 @@ import json
 import os
 import sys
 from datetime import date, timedelta
+from pathlib import Path
 from time import sleep
 
 import pandas as pd
 from dotenv import load_dotenv
 
 load_dotenv()
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from core.tip import Tip
 from tippingmonster import logs_path, send_telegram_message

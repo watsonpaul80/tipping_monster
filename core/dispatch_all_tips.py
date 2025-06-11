@@ -1,11 +1,14 @@
 import argparse
 import json
 import os
+import sys
 from collections import defaultdict
 from datetime import date
 
 from dotenv import load_dotenv
+from pathlib import Path
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 from tippingmonster import send_telegram_message
 

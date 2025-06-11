@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
 
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.tip import Tip
 
 # === CONFIG ===
