@@ -91,7 +91,7 @@ def main():
 
         for i in range(0, len(market_ids), batch_size):
             batch = market_ids[i : i + batch_size]
-            print(f"[+] Fetching batch {i//batch_size + 1}")
+            print(f"[+] Fetching batch {i // batch_size + 1}")
             try:
                 price_data = trading.betting.list_market_book(
                     market_ids=batch,
@@ -102,7 +102,7 @@ def main():
                 all_price_data.extend(price_data)
                 time.sleep(0.5)
             except Exception as e:
-                print(f"[!] Error fetching batch {i//batch_size + 1}: {e}")
+                print(f"[!] Error fetching batch {i // batch_size + 1}: {e}")
                 continue
 
         # === Match Prices to Runners ===
