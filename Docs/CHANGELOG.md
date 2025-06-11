@@ -1,3 +1,13 @@
+## 2025-06-11
+
+### Documentation
+- Added `ec2_setup_guide.md` with dev-to-prod setup steps.
+
+
+## 2025-07-06
+
+### Fixed
+- Restored full `run_inference_and_select_top1.py` after accidental truncation.
 
 ## 2025-07-06
 
