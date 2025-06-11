@@ -1,8 +1,15 @@
 
+
+## 2025-07-08
+
+### Documentation
+- Added `Docs/prod_setup_cheatsheet.md` with dev-to-prod steps.
+
 ## 2025-06-11
 
 ### Fixed
 - Makefile targets now call scripts in their correct `core/` or `roi/` folders.
+
 
 ## 2025-07-07
 
