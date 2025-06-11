@@ -165,6 +165,12 @@
 **Files Changed:** Docs/monster_todo.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation reflects completed features.
 
+## [2025-06-08] Add rolling ROI chart to Paul's View
+**Prompt:** Add 30-day rolling ROI line chart to streamlit_pauls_view.py
+**Files Changed:** cli/pauls_view_dashboard.py, Docs/monster_todo.md, Docs/CHANGELOG.md, tests/test_model_drift_report.py
+**Outcome:** Dashboard now plots 30-day ROI trend; docs updated; failing test fixed.
+=======
+
 ## [2025-06-08] Add weekly ROI Telegram command
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
 **Files Changed:** telegram_bot.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_todo.md, README.md, codex_log.md
@@ -378,3 +384,4 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** `make test` failed with `missing separator`.
 **Files Changed:** Makefile
 **Outcome:** Replaced spaces with a tab for the `dev-check` rule.
+

@@ -28,6 +28,9 @@
 
 ## 2025-07-01
 
+### Added
+- Rolling 30-day ROI line chart in Paul's View dashboard.
+
 ### Documentation
 - Clarified that the repository ships `monstertweeter/.env.example` and removed old secrets from version control.
 
