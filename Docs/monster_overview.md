@@ -216,6 +216,7 @@ All components live and working as intended:
 ✔️ Advised + Level tracked separately  
 ✔️ Telegram summary sent nightly
 ✔️ `/roi` and `/nap` commands available in the Telegram bot
+✔️ `/override_conf`, `/reset_conf`, `/conf_status` manage confidence threshold
 ✔️ Model trained via `train_model_v7.py`
 ✔️ Steam Sniper subsystem *paused*
 ✔️ SHAP feature importance generated for private analysis

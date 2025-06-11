@@ -13,6 +13,14 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 from tippingmonster import repo_path
+from tippingmonster.utils import (
+    clear_conf_override,
+    load_override_or_default,
+    set_conf_override,
+)
+
+PAUL_TELEGRAM_ID = int(os.getenv("PAUL_TELEGRAM_ID", "0"))
+DEFAULT_MIN_CONF = 0.80
 
 
 def get_roi_summary(date: str, base_dir: Path | None = None) -> str:
@@ -204,6 +212,9 @@ async def help_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "/nap [DAYS]",
         "/tip HORSE",
         "/ping",
+        "/override_conf VALUE",
+        "/reset_conf",
+        "/conf_status",
     ]
     await _reply(update, "Available: " + ", ".join(commands))
 
@@ -238,6 +249,52 @@ async def tip(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await _reply(update, message)
 
 
+def _authorised(update: Update) -> bool:
+    return update.effective_user and update.effective_user.id == PAUL_TELEGRAM_ID
+
+
+async def override_conf(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not _authorised(update):
+        return
+    if not context.args:
+        await _reply(update, "Usage: /override_conf 0.30")
+        return
+    try:
+        value = float(context.args[0])
+    except ValueError:
+        await _reply(update, "Invalid value")
+        return
+    set_conf_override(value, hours_valid=6)
+    await _reply(update, f"\U0001f513 Confidence override set to {value:.2f}")
+
+
+async def reset_conf(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not _authorised(update):
+        return
+    clear_conf_override()
+    await _reply(update, f"\U0001f512 Confidence reset to {DEFAULT_MIN_CONF:.2f}")
+
+
+async def conf_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    override = load_override_or_default(None)
+    if override is not None:
+        path = repo_path("config", "conf_override.json")
+        try:
+            data = json.loads(path.read_text())
+            expires = data.get("expires")
+        except Exception:
+            expires = "?"
+        await _reply(
+            update,
+            f"\U0001f513 Current min_conf override: {override:.2f} (expires at {expires.split('T')[1] if expires else '?'} )",
+        )
+    else:
+        await _reply(
+            update,
+            f"\U0001f512 Using default confidence threshold: {DEFAULT_MIN_CONF:.2f}",
+        )
+
+
 def main() -> None:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
@@ -250,6 +307,9 @@ def main() -> None:
     application.add_handler(CommandHandler("roi", roi))
     application.add_handler(CommandHandler("nap", nap))
     application.add_handler(CommandHandler("tip", tip))
+    application.add_handler(CommandHandler("override_conf", override_conf))
+    application.add_handler(CommandHandler("reset_conf", reset_conf))
+    application.add_handler(CommandHandler("conf_status", conf_status))
     application.run_polling()
 
 
