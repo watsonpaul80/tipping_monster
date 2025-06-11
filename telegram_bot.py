@@ -166,7 +166,7 @@ def get_tip_info(name: str, base_dir: Path | None = None) -> str:
                     if odds:
                         parts[0] += f" @ {odds}"
                     if confidence is not None:
-                        parts.append(f"Confidence {confidence*100:.1f}%")
+                        parts.append(f"Confidence {confidence * 100:.1f}%")
                     if tags:
                         parts.append(f"Tags: {tags}")
                     if commentary:

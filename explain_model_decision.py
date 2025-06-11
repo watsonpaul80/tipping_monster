@@ -67,7 +67,7 @@ def generate_explanations(
         abs_vals = np.abs(values)
         top_idx = abs_vals.argsort()[-top_n:][::-1]
         parts = [f"{features[i]}{'↑' if values[i] > 0 else '↓'}" for i in top_idx]
-        tip_id = f"{row.get('race','')}|{row.get('name','')}"
+        tip_id = f"{row.get('race', '')}|{row.get('name', '')}"
         explanations[tip_id] = ", ".join(parts)
     return explanations
 

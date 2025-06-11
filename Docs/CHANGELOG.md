@@ -4,6 +4,11 @@
 - `Makefile` targets now call scripts from their proper subdirectories.
 
 
+## 2025-07-09
+
+### Maintenance
+- Cleared flake8 warnings across core and test modules.
+
 ## 2025-07-08
 
 ### Documentation

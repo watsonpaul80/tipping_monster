@@ -1,13 +1,11 @@
 import sys
 from pathlib import Path
-from unittest.mock import patch
 
 import pandas as pd
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
-from datetime import datetime  # Import timedelta explicitly for the test
-from datetime import timedelta
+from datetime import datetime
 
 from model_drift_report import generate_report
 

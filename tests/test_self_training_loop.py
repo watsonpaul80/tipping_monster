@@ -1,4 +1,3 @@
-import tempfile
 from pathlib import Path
 
 from self_training_loop import gather_roi_logs

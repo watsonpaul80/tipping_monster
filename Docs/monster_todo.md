@@ -184,6 +184,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 98. ✅ `upload_to_s3` helper skips uploads in dev mode [Done: 2025-06-27]
 
+99. ✅ Flake8 cleanup across core and tests [Done: 2025-07-09]
+
 
 
 
