@@ -5,6 +5,8 @@ import sys
 from datetime import date, datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from model_feature_importance import generate_chart
 from tippingmonster import repo_path
 from utils.ensure_sent_tips import ensure_sent_tips

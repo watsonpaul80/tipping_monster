@@ -14,6 +14,9 @@
 ### Documentation
 - Added `Docs/prod_setup_cheatsheet.md` with dev-to-prod steps.
 
+### Fixed
+- `tmcli.py` adds the repo root to `sys.path` so imports work when run directly.
+
 ## 2025-06-11
 
 ### Fixed
