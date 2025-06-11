@@ -21,6 +21,11 @@ from tippingmonster import (
 # isort: on
 
 
+@pytest.fixture(autouse=True)
+def clear_tm_dev(monkeypatch):
+    monkeypatch.delenv("TM_DEV", raising=False)
+
+
 def test_send_telegram_message(monkeypatch):
     calls = {}
     monkeypatch.delenv("TM_DEV_MODE", raising=False)

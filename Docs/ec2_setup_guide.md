@@ -1,3 +1,14 @@
+s
+# EC2 Setup Guide
+
+This guide summarises the steps to run Tipping Monster on an AWS EC2 instance.
+
+## Dev Mode and Telegram
+
+Set `TM_DEV_MODE=1` or use the `--dev` flag with CLI scripts to avoid sending
+real Telegram posts during tests. Messages are logged to `logs/dev/telegram.log`
+instead.
+
 
 # EC2 Setup Guide
 
@@ -81,5 +92,4 @@ This guide explains how to deploy Tipping Monster on a fresh Ubuntu EC2 instance
    ```
 5. Once everything works in dev mode, remove the `--dev` flags and update your crontab accordingly.
 
-With these steps you can bootstrap a new EC2 instance for development, run the full pipeline safely, and then switch to production by disabling dev mode and enabling the cron schedule.
 

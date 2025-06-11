@@ -1,3 +1,9 @@
+
+## [2025-07-07] Respect explicit chat_id in Telegram helpers
+**Prompt:** Update Telegram send helpers to only use the dev chat when no `chat_id` argument is given.
+**Files Changed:** tippingmonster/utils.py, tests/test_utils.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/ec2_setup_guide.md, codex_log.md
+**Outcome:** Helpers resolve `chat_id` correctly; tests run with `TM_DEV` unset and sandbox item marked complete.
+
 ## [2025-07-07] Document TM_DEV_MODE for EC2 tests
 **Prompt:** Amend Docs/ec2_setup_guide.md to emphasise that all test runs should set TM_DEV_MODE=1 to avoid Telegram posts.
 **Files Changed:** Docs/ec2_setup_guide.md, Docs/CHANGELOG.md, codex_log.md
