@@ -1,3 +1,8 @@
+## [2025-07-07] Document TM_DEV_MODE for EC2 tests
+**Prompt:** Amend Docs/ec2_setup_guide.md to emphasise that all test runs should set TM_DEV_MODE=1 to avoid Telegram posts.
+**Files Changed:** Docs/ec2_setup_guide.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Added guide with dev-mode reminder and updated changelog.
+
 ## [2025-07-06] Restore inference script
 **Prompt:** Retrieve full `run_inference_and_select_top1.py` from history and ensure tests pass.
 **Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md, codex_log.md

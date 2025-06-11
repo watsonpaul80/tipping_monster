@@ -1,3 +1,8 @@
+## 2025-07-07
+
+### Documentation
+- Added EC2 setup guide reminding that `TM_DEV_MODE=1` must be set during testing to prevent Telegram posts.
+
 
 ## 2025-07-06
 
