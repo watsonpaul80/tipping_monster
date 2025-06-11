@@ -2,6 +2,7 @@
 
 ### Added
 - `dispatch_tips.py` accepts `--course` to filter tips by racecourse.
+- `check_tip_sanity.py` validates the latest sent tips for low confidence or missing fields.
 
 ## 2025-07-09
 

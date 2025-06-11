@@ -190,6 +190,8 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 
 100. ✅ `--course` option to dispatch tips for a single track [Done: 2025-07-10]
 
+102. ✅ `check_tip_sanity.py` warns about low confidence or missing odds/stake [Done: 2025-07-10]
+
 
 
 

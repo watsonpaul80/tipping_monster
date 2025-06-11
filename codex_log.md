@@ -446,4 +446,9 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/dispatch_tips.py, tippingmonster/helpers.py, cli/tmcli.py, tests/test_tmcli.py, tests/test_dispatch_tips.py, README.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
 
+## [2025-07-10] Add tip sanity checker
+**Prompt:** Create check_tip_sanity.py to warn about low confidence tips, NAP confidence under 0.8 and missing odds or stake.
+**Files Changed:** check_tip_sanity.py, tests/test_check_tip_sanity.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script loads the latest sent tips and prints warnings for any issues. Added tests and documentation.
+
 
