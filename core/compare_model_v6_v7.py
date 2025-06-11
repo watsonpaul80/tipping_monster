@@ -10,12 +10,11 @@ Columns: ``Race``, ``Horse``, ``v6_conf``, ``v7_conf``, ``delta``, ``winner``.
 """
 import glob
 import os
+
 import pandas as pd
 import xgboost as xgb
-from datetime import date
 
 from core.train_model_v6 import load_all_results, merge_tip_logs, preprocess
-
 
 FEATURES_V6 = [
     "draw",

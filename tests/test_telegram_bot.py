@@ -43,7 +43,7 @@ def test_get_weekly_roi_summary(tmp_path):
 def test_get_recent_naps(tmp_path):
     base = tmp_path
     for i in range(3):
-        date = f"2025-06-0{i+1}"
+        date = f"2025-06-0{i + 1}"
         pred_dir = base / "predictions" / date
         pred_dir.mkdir(parents=True)
         nap = {

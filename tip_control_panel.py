@@ -63,7 +63,7 @@ def format_message(tip: dict) -> str:
     conf = tip.get("confidence", 0.0) * 100
     odds = tip.get("bf_sp") or tip.get("odds", "N/A")
     tags = " | ".join(tip.get("tags", []))
-    return f"{tip.get('race','?')}\n{tip.get('name','?')} @ {odds}\nConfidence: {conf:.0f}%\n{tags}"
+    return f"{tip.get('race', '?')}\n{tip.get('name', '?')} @ {odds}\nConfidence: {conf:.0f}%\n{tags}"
 
 
 def send_messages(tips: Iterable[dict], telegram: bool) -> None:

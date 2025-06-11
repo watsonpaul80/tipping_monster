@@ -10,10 +10,18 @@
 - `Makefile` targets now call scripts from their proper subdirectories.
 
 
+## 2025-07-09
+
+### Maintenance
+- Cleared flake8 warnings across core and test modules.
+
 ## 2025-07-08
 
 ### Documentation
 - Added `Docs/prod_setup_cheatsheet.md` with dev-to-prod steps.
+
+### Fixed
+- `tmcli.py` adds the repo root to `sys.path` so imports work when run directly.
 
 ## 2025-06-11
 
