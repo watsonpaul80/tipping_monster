@@ -468,6 +468,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** summarise_logs.py, tests/test_summarise_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script summarises log status; tests and documentation updated.
 
+## [2025-07-12] Clarify dev mode in pipeline
+**Prompt:** Add README note that `--dev`/`TM_DEV_MODE=1` stops real Telegram posts and S3 uploads when testing.
+**Files Changed:** README.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Documentation updated with explicit warning about dev mode.
+
 
 ## [2025-07-12] Harden pipeline script
 **Prompt:** Add strict mode, safer line count, whitespace trim and AWS check in run_pipeline_with_venv.sh
