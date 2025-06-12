@@ -32,6 +32,14 @@
 - Fixed script paths so the pipeline works when invoked via `tmcli`.
 
 
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` no longer errors if called without arguments.
+- Fixed script paths so the pipeline works when invoked via `tmcli`.
+- `fetch_betfair_odds.py` adds the repo root to `sys.path` so the pipeline
+  doesn't fail with `ModuleNotFoundError`.
+
 ## 2025-07-12
 
 ### Fixed
