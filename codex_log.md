@@ -446,6 +446,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/dispatch_tips.py, tippingmonster/helpers.py, cli/tmcli.py, tests/test_tmcli.py, tests/test_dispatch_tips.py, README.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
 
+
+## [2025-07-11] Telegram confidence override
+**Prompt:** Implement Telegram-based override for minimum confidence threshold.
+**Files Changed:** telegram_bot.py, core/dispatch_tips.py, tippingmonster/utils.py, tests/test_conf_override.py, .env.example, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md
+**Outcome:** Added `/override_conf`, `/reset_conf`, `/conf_status` commands and override logic applied during dispatch.
+
 ## [2025-07-10] Add tip sanity checker
 **Prompt:** Create check_tip_sanity.py to warn about low confidence tips, NAP confidence under 0.8 and missing odds or stake.
 **Files Changed:** check_tip_sanity.py, tests/test_check_tip_sanity.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
@@ -461,4 +467,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Create summarise_logs.py for 7-day log checks with win/place counts.
 **Files Changed:** summarise_logs.py, tests/test_summarise_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script summarises log status; tests and documentation updated.
+
 

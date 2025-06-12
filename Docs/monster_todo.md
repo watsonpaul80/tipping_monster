@@ -194,6 +194,8 @@ pt
 =======
 102. ✅ Log summariser script `summarise_logs.py` to review last 7 days [Done: 2025-07-11]
 
+102. ✅ Telegram-based confidence override commands [Done: 2025-07-11]
+
 
 
 102. ✅ Local backup validator ensures timestamped copies of root scripts [Done: 2025-07-10]

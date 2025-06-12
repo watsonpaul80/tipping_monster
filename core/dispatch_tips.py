@@ -18,6 +18,7 @@ from core.tip import Tip
 from generate_lay_candidates import standardize_course_only
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
+from tippingmonster.utils import load_override_or_default
 from utils.commentary import generate_commentary
 
 load_env()
@@ -327,6 +328,8 @@ def main(argv=None):
     )
     args = parser.parse_args(argv)
 
+    min_conf = load_override_or_default(args.min_conf)
+
     if args.dev:
         os.environ["TM_DEV_MODE"] = "1"
         os.environ["TM_LOG_DIR"] = "logs/dev"
@@ -375,10 +378,10 @@ def main(argv=None):
         )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(
-            tip.get("confidence", 0.0), odds, min_conf=args.min_conf
+            tip.get("confidence", 0.0), odds, min_conf=min_conf
         )
         if stake == 0.0 and should_skip_by_roi(
-            tip.get("confidence", 0.0), roi_map, args.min_conf
+            tip.get("confidence", 0.0), roi_map, min_conf
         ):
             continue
         if stake == 0.0:

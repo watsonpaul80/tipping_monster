@@ -555,6 +555,12 @@
 - Streamlit dashboard shows optional SHAP summary.
 - Training pipeline outputs `features_used.json` with each model.
 
+## 2025-07-11
+
+- Telegram bot now supports `/override_conf`, `/reset_conf` and `/conf_status` to
+  manage confidence thresholds.
+- `dispatch_tips.py` reads `config/conf_override.json` for any active override.
+
 ---
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
