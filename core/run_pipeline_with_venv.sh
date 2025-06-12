@@ -1,12 +1,12 @@
 #!/bin/bash
 # Tipping Monster: Full Daily Pipeline (Run from cron or manually)
-# Last updated: 2025-06-06
+# Last updated: 2025-07-13
 set -euo pipefail
 
 echo "🔄 Starting full pipeline: $(date)"
 
 DEV_MODE=0
-if [ "$1" = "--dev" ]; then
+if [ "${1:-}" = "--dev" ]; then
     DEV_MODE=1
     export TM_DEV_MODE=1
     export TM_LOG_DIR="logs/dev"
@@ -26,11 +26,11 @@ mkdir -p "$LOG_DIR/inference" "$LOG_DIR/dispatch"
 
 # 1. Upload racecards
 echo "📥 Uploading racecards..."
-bash daily_upload_racecards.sh >> "$LOG_DIR/racecards.log" 2>&1
+bash "$SCRIPT_DIR/daily_upload_racecards.sh" >> "$LOG_DIR/racecards.log" 2>&1
 
 # 2. Flatten racecards
 echo "🪬 Flattening racecards..."
-bash daily_flatten.sh >> "$LOG_DIR/flatten.log" 2>&1
+bash "$SCRIPT_DIR/daily_flatten.sh" >> "$LOG_DIR/flatten.log" 2>&1
 
 # === Wait until 08:50 before continuing ===
 TARGET_TIME="08:50"
