@@ -474,3 +474,8 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Documentation updated with explicit warning about dev mode.
 
 
+## [2025-07-12] Harden pipeline script
+**Prompt:** Add strict mode, safer line count, whitespace trim and AWS check in run_pipeline_with_venv.sh
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Pipeline aborts on errors, counts tips reliably and skips S3 upload if AWS CLI missing.
+

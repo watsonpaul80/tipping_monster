@@ -1,6 +1,7 @@
 #!/bin/bash
 # Tipping Monster: Full Daily Pipeline (Run from cron or manually)
 # Last updated: 2025-06-06
+set -euo pipefail
 
 echo "🔄 Starting full pipeline: $(date)"
 
@@ -69,7 +70,12 @@ DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
 
 # Confirm how many tips were sent
 SENT_TIPS_PATH="$REPO_ROOT/logs/dispatch/sent_tips_${TODAY}.jsonl"
-SENT_COUNT=$(jq -s length "$SENT_TIPS_PATH" 2>/dev/null || echo "0")
+if [ -f "$SENT_TIPS_PATH" ]; then
+    SENT_COUNT=$(wc -l < "$SENT_TIPS_PATH")
+else
+    SENT_COUNT=0
+fi
+SENT_COUNT="$(echo "$SENT_COUNT" | tr -d '[:space:]')"
 echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 
 # Optional: Alert if no tips were dispatched
@@ -85,9 +91,13 @@ fi
 
 # 8. Upload logs and dispatched tips to S3
 if [ "$DEV_MODE" -eq 0 ]; then
-    echo "🗂️ Uploading tips and logs to S3..."
-    aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-    aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+    if command -v aws >/dev/null; then
+        echo "🗂️ Uploading tips and logs to S3..."
+        aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
+        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+    else
+        echo "⚠️ AWS CLI not found, skipping S3 uploads"
+    fi
 else
     echo "[DEV] Skipping S3 uploads"
 fi
