@@ -207,3 +207,5 @@ pt
 
 105. ✅ Pipeline script handles missing args with `${1:-}` [Done: 2025-07-13]
 
+106. ✅ tmcli pipeline works again after fixing script paths [Done: 2025-07-13]
+
