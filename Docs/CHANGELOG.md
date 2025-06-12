@@ -1,3 +1,9 @@
+## 2025-07-12
+
+### Fixed
+- `core/run_pipeline_with_venv.sh` uses strict mode and safer line counting.
+- S3 uploads are skipped if AWS CLI isn't found.
+
 ## 2025-07-11
 
 ### Added

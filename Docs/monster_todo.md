@@ -199,3 +199,4 @@ pt
 
 
 102. ✅ Local backup validator ensures timestamped copies of root scripts [Done: 2025-07-10]
+103. ✅ Pipeline script uses strict mode and skips S3 if AWS CLI missing [Done: 2025-07-12]
