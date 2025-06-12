@@ -1,3 +1,8 @@
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` no longer errors if called without arguments.
+
 ## 2025-07-12
 
 ### Fixed
