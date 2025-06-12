@@ -218,4 +218,10 @@ pt
 107. ✅ Pipeline script initialises `DEV_MODE` from `TM_DEV_MODE` for consistent
      behaviour [Done: 2025-07-14]
 
+
 108. ✅ Combo generator logs ROI and shows time/course/odds [Done: 2025-07-16]
+
+108. ✅ Document `TG_BOT_TOKEN` / `TG_USER_ID` env vars and mention safecron
+     failure alerts [Done: 2025-07-15]
+
+
