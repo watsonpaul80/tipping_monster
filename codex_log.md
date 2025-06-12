@@ -193,7 +193,7 @@
 **Prompt:** Add 30-day rolling ROI line chart to streamlit_pauls_view.py
 **Files Changed:** cli/pauls_view_dashboard.py, Docs/monster_todo.md, Docs/CHANGELOG.md, tests/test_model_drift_report.py
 **Outcome:** Dashboard now plots 30-day ROI trend; docs updated; failing test fixed.
-=======
+
 
 ## [2025-06-08] Add weekly ROI Telegram command
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
@@ -452,6 +452,7 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** telegram_bot.py, core/dispatch_tips.py, tippingmonster/utils.py, tests/test_conf_override.py, .env.example, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** Added `/override_conf`, `/reset_conf`, `/conf_status` commands and override logic applied during dispatch.
 
+
 ## [2025-07-10] Add tip sanity checker
 **Prompt:** Create check_tip_sanity.py to warn about low confidence tips, NAP confidence under 0.8 and missing odds or stake.
 **Files Changed:** check_tip_sanity.py, tests/test_check_tip_sanity.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
@@ -468,6 +469,7 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** summarise_logs.py, tests/test_summarise_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script summarises log status; tests and documentation updated.
 
+
 ## [2025-07-12] Clarify dev mode in pipeline
 **Prompt:** Add README note that `--dev`/`TM_DEV_MODE=1` stops real Telegram posts and S3 uploads when testing.
 **Files Changed:** README.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
@@ -478,4 +480,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Add strict mode, safer line count, whitespace trim and AWS check in run_pipeline_with_venv.sh
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Pipeline aborts on errors, counts tips reliably and skips S3 upload if AWS CLI missing.
+
 
