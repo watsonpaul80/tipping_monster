@@ -78,6 +78,10 @@ bash core/run_pipeline_with_venv.sh
 bash core/run_pipeline_with_venv.sh --dev
 ```
 
+While testing the pipeline, always run it with `--dev` (or set
+`TM_DEV_MODE=1`) so no real Telegram messages are posted and no files are
+uploaded to S3.
+
 Most Python scripts accept a `--debug` flag for verbose logging.
 
 **Important:** run inference scripts from the repository root. For example:
