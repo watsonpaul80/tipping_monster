@@ -497,3 +497,8 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Added `+x` flags and updated docs to run scripts directly.
 
 
+
+## [2025-07-13] Fix pipeline script paths
+**Prompt:** Running `tmcli.py pipeline --dev` failed with exit 127. Update `run_pipeline_with_venv.sh` to call daily scripts via `$SCRIPT_DIR`.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** CLI pipeline locates `daily_upload_racecards.sh` and `daily_flatten.sh` correctly.

@@ -1,3 +1,10 @@
+
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` now references daily scripts using `$SCRIPT_DIR` so
+  the CLI pipeline command works from any directory.
+
 ## 2025-07-14
 
 ### Changed
