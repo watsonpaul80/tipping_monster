@@ -14,9 +14,11 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 > **Environment Note:** Telegram alerts depend on `TELEGRAM_BOT_TOKEN` and
  > `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
- > automatically.
- > The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
- > alerts when enabled.
+> automatically.
+> The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
+> alerts when enabled.
+> It posts failure alerts using `TG_BOT_TOKEN` and `TG_USER_ID` when jobs exit
+> non-zero.
 
 ---
 

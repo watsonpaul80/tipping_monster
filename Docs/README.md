@@ -28,7 +28,9 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
+- `TG_BOT_TOKEN` (optional alias for `TELEGRAM_BOT_TOKEN`)
 - `TELEGRAM_CHAT_ID`
+- `TG_USER_ID` (optional alias for `TELEGRAM_CHAT_ID`)
 - `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`; ignored when `TM_DEV_MODE=1`)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`

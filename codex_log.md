@@ -501,4 +501,9 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/fetch_betfair_odds.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Added repo root to `sys.path` so the odds fetcher runs inside the CLI pipeline.
 
+## [2025-07-15] Document safecron Telegram vars
+**Prompt:** Update README and `.env.example` to mention `TG_BOT_TOKEN` and `TG_USER_ID` and document failure alerts in `safecron.sh`.
+**Files Changed:** Docs/README.md, Docs/ops.md, .env.example, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Docs now list the new aliases and explain how `safecron.sh` posts alerts when a cron job fails.
+
 

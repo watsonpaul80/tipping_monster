@@ -1,4 +1,10 @@
 
+## 2025-07-15
+
+### Documentation
+- `Docs/README.md` and `.env.example` list `TG_BOT_TOKEN` and `TG_USER_ID`.
+- `Docs/ops.md` clarifies that `safecron.sh` posts failure alerts using these variables.
+
 ## 2025-07-14
 
 ### Changed
