@@ -5,6 +5,12 @@ This document provides an overview of the operational aspects of the Tipping Mon
 ## Scheduled Tasks (Cron Jobs)
 
 The system relies on a series of cron jobs to perform regular tasks. Below is a breakdown of these jobs, their schedules, and their purposes.
+You can load the full schedule using the templates in `cron/`:
+
+```text
+cron/prod.crontab  # production
+cron/dev.crontab   # development (TM_DEV_MODE=1)
+```
 
 **Key:**
 - **Frequency:** When the job runs.

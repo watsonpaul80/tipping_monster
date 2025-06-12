@@ -64,6 +64,14 @@ pytest
 pre-commit run --files $(git ls-files '*.py')
 ```
 
+6. Install the cron schedule:
+
+```bash
+crontab cron/dev.crontab   # dev mode
+# or
+crontab cron/prod.crontab  # production
+```
+
 ---
 
 ## Usage

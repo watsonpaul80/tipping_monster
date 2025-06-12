@@ -39,7 +39,7 @@ tipped.
 ## 4. Deploying to Production
 
 1. Set `TM_DEV_MODE=0` in `.env`.
-2. Install cron jobs from `Docs/ops.md` using `utils/safecron.sh`.
+2. Install cron jobs using the template at `cron/prod.crontab` (`crontab cron/prod.crontab`).
 3. Run `make pipeline` to produce daily predictions.
 4. Enable `core/dispatch_tips.py --telegram` in cron to send tips.
 5. Schedule `roi/run_roi_pipeline.sh` and `roi/send_daily_roi_summary.py` for ROI updates.
