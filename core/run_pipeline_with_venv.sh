@@ -1,11 +1,11 @@
 #!/bin/bash
 # Tipping Monster: Full Daily Pipeline (Run from cron or manually)
-# Last updated: 2025-07-13
+# Last updated: 2025-07-14
 set -euo pipefail
 
 echo "🔄 Starting full pipeline: $(date)"
 
-DEV_MODE=0
+DEV_MODE="${TM_DEV_MODE:-0}"
 if [ "${1:-}" = "--dev" ]; then
     DEV_MODE=1
     export TM_DEV_MODE=1

@@ -1,3 +1,9 @@
+## 2025-07-14
+
+### Changed
+- `run_pipeline_with_venv.sh` reads `TM_DEV_MODE` first and uses the resulting
+  `DEV_MODE` flag for Telegram and S3 checks.
+
 ## 2025-07-13
 
 ### Fixed

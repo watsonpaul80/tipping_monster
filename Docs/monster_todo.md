@@ -209,3 +209,6 @@ pt
 
 106. ✅ tmcli pipeline works again after fixing script paths [Done: 2025-07-13]
 
+107. ✅ Pipeline script initialises `DEV_MODE` from `TM_DEV_MODE` for consistent
+     behaviour [Done: 2025-07-14]
+
