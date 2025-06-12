@@ -496,10 +496,16 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Updated script to reference sub-scripts via `$SCRIPT_DIR`, allowing CLI wrapper to execute successfully.
 
+## [2025-07-14] Improve pipeline dev-mode handling
+**Prompt:** Open `core/run_pipeline_with_venv.sh`.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Pipeline respects existing `TM_DEV_MODE` value and uses `DEV_MODE` for all safety checks.
+
 ## [2025-07-14] Make scripts executable
 **Prompt:** Update permissions on pipeline and utility scripts.
 **Files Changed:** core/, roi/, rpscrape/scripts/, utils/, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/ops.md, codex_log.md
 **Outcome:** Added `+x` flags and updated docs to run scripts directly.
+
 
 
 

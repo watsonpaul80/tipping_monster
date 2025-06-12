@@ -1,3 +1,10 @@
+
+## 2025-07-14
+
+### Changed
+- `run_pipeline_with_venv.sh` reads `TM_DEV_MODE` first and uses the resulting
+  `DEV_MODE` flag for Telegram and S3 checks.
+
 ## 2025-06-12
 
 ### Fixed
@@ -15,6 +22,7 @@
 ### Changed
 - Pipeline and utility scripts are now executable via direct path.
 - Cron docs updated to drop explicit `/bin/bash`.
+
 
 ## 2025-07-13
 
