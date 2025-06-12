@@ -188,7 +188,7 @@ Track daily and weekly ROI using **realistic odds** (from Betfair snapshots) and
 Run manually:
 ```bash
 # Daily ROI pipeline (default date = today)
-bash roi/run_roi_pipeline.sh
+roi/run_roi_pipeline.sh
 
 # Weekly summary (current ISO week)
 roi/weekly_roi_summary.py --week $(date +%G-W%V) --telegram
@@ -199,7 +199,7 @@ python roi/weekly_roi_summary.py --week $(date +%G-W%V) --telegram
 Automated by cron:
 ```cron
 # 📊 ROI Pipeline (Realistic Odds → ROI → Telegram)
-50 22 * * * bash utils/safecron.sh roi_pipeline /bin/bash roi/run_roi_pipeline.sh
+50 22 * * * bash utils/safecron.sh roi_pipeline roi/run_roi_pipeline.sh
 
 # 📤 Weekly ROI Summary to Telegram
 58 23 * * 0 bash utils/safecron.sh weekly_telegram /home/ec2-user/tipping-monster/.venv/bin/python roi/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
