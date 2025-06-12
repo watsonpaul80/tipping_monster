@@ -1,3 +1,9 @@
+## 2025-07-14
+
+### Changed
+- Pipeline and utility scripts are now executable via direct path.
+- Cron docs updated to drop explicit `/bin/bash`.
+
 ## 2025-07-13
 
 ### Fixed
