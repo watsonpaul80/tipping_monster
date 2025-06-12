@@ -199,3 +199,6 @@ pt
 
 
 102. ✅ Local backup validator ensures timestamped copies of root scripts [Done: 2025-07-10]
+
+103. ✅ README emphasises that `--dev` (or `TM_DEV_MODE=1`) prevents real
+     Telegram posts and S3 uploads during testing [Done: 2025-07-12]
