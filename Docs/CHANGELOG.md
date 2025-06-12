@@ -1,3 +1,8 @@
+## 2025-06-12
+
+### Fixed
+- Added missing newline at end of `Makefile` for clean diffs.
+
 
 ## 2025-07-13
 
