@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
@@ -10,6 +11,8 @@ import betfairlightweight
 import pytz
 from betfairlightweight import filters
 from dotenv import load_dotenv
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from tippingmonster.env_loader import load_env
 from tippingmonster.utils import upload_to_s3
