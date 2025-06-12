@@ -1,0 +1,34 @@
+# Telegram Alerts & Environment Variables
+
+This page summarises the Telegram-related environment variables and where they are used within the Tipping Monster codebase.
+
+## Environment Variables
+
+- `TELEGRAM_BOT_TOKEN` – primary bot token for sending messages.
+- `TG_BOT_TOKEN` – alternate token name used by cron helpers and the morning digest.
+- `TELEGRAM_CHAT_ID` – chat or user ID receiving messages.
+- `TG_USER_ID` – alternate chat ID variable for `safecron.sh` and `morning_digest.py`.
+- `TELEGRAM_DEV_CHAT_ID` – chat ID used when `TM_DEV=1`.
+- `PAUL_TELEGRAM_ID` – Paul's user ID for admin-only commands in `telegram_bot.py`.
+- `TM_DEV` – if set, redirects messages to `TELEGRAM_DEV_CHAT_ID`.
+- `TM_DEV_MODE` – disables all Telegram posts and logs messages locally.
+
+## Usage by Script
+
+| Script | Variables | Purpose |
+|-------|-----------|---------|
+| `core/dispatch_tips.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Sends the daily Monster tips. |
+| `core/dispatch_all_tips.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Posts a full racecard of tips. |
+| `dispatch_danger_favs.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Alerts about short‑priced favourites to lay. |
+| `generate_combos.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Sends doubles and trebles. |
+| `roi/send_daily_roi_summary.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Daily ROI summary. |
+| `roi/weekly_roi_summary.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Weekly ROI + chart. |
+| `track_lay_candidates_roi.py` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Summarises lay candidate results. |
+| `scripts/morning_digest.py` | `TG_BOT_TOKEN`, `TG_USER_ID` | Daily checklist of pipeline status. |
+| `core/run_pipeline_with_venv.sh` | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Warns if no tips were dispatched. |
+| `telegram_bot.py` | `TELEGRAM_BOT_TOKEN`, `PAUL_TELEGRAM_ID`, `TM_DEV_MODE` | Interactive bot commands. |
+| `utils/safecron.sh` | `TG_BOT_TOKEN`, `TG_USER_ID`, `TM_DEV_MODE` | Sends cron failure alerts. |
+
+Most other scripts call `tippingmonster.send_telegram_message`, which respects `TM_DEV` and `TM_DEV_MODE` to route or suppress notifications.
+
+`utils/safecron.sh` wraps cron jobs and posts an alert with `TG_BOT_TOKEN`/`TG_USER_ID` if a job exits non‑zero, unless `TM_DEV_MODE=1` is active.

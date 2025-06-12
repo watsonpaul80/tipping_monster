@@ -631,4 +631,10 @@
 - Sample crontab templates for prod and dev under `cron/`.
 - Docs updated to reference `cron/prod.crontab` and `cron/dev.crontab`.
 
+## 2025-07-16
+
+### Added
+- `Docs/telegram_alerts.md` summarises all Telegram environment variables and
+  which scripts post alerts. `Docs/README.md` now links to this page.
+
 
