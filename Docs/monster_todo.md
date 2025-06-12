@@ -191,7 +191,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 100. ✅ `--course` option to dispatch tips for a single track [Done: 2025-07-10]
 pt
 102. ✅ `check_tip_sanity.py` warns about low confidence or missing odds/stake [Done: 2025-07-10]
-=======
+
 102. ✅ Log summariser script `summarise_logs.py` to review last 7 days [Done: 2025-07-11]
 
 102. ✅ Telegram-based confidence override commands [Done: 2025-07-11]
@@ -199,3 +199,9 @@ pt
 
 
 102. ✅ Local backup validator ensures timestamped copies of root scripts [Done: 2025-07-10]
+
+103. ✅ Pipeline script uses strict mode and skips S3 if AWS CLI missing [Done: 2025-07-12]
+
+104. ✅ README emphasises that `--dev` (or `TM_DEV_MODE=1`) prevents real
+     Telegram posts and S3 uploads during testing [Done: 2025-07-12]
+

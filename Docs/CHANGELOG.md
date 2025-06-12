@@ -1,3 +1,13 @@
+## 2025-07-12
+
+### Fixed
+- `core/run_pipeline_with_venv.sh` uses strict mode and safer line counting.
+- S3 uploads are skipped if AWS CLI isn't found.
+
+### Documentation
+- Clarified in README that `--dev` or `TM_DEV_MODE=1` prevents real Telegram
+  posts and S3 uploads when testing.
+
 ## 2025-07-11
 
 ### Added
