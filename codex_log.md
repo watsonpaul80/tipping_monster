@@ -1,4 +1,9 @@
 
+## [2025-06-12] Append newline to Makefile
+**Prompt:** Ensure file ends with newline for consistent formatting.
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Trailing newline added; pre-commit and tests pass.
+
 ## [2025-07-07] Update Makefile paths
 **Prompt:** Align Makefile targets with script directories and log change.
 **Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
@@ -496,4 +501,15 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Pipeline respects existing `TM_DEV_MODE` value and uses `DEV_MODE` for all safety checks.
 
+## [2025-07-14] Make scripts executable
+**Prompt:** Update permissions on pipeline and utility scripts.
+**Files Changed:** core/, roi/, rpscrape/scripts/, utils/, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/ops.md, codex_log.md
+**Outcome:** Added `+x` flags and updated docs to run scripts directly.
 
+
+
+
+## [2025-07-13] Fix pipeline script paths
+**Prompt:** Running `tmcli.py pipeline --dev` failed with exit 127. Update `run_pipeline_with_venv.sh` to call daily scripts via `$SCRIPT_DIR`.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** CLI pipeline locates `daily_upload_racecards.sh` and `daily_flatten.sh` correctly.
