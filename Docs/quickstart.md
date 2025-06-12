@@ -67,7 +67,8 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless the repo
 ## Next Steps for Newcomers
 
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
-2. **Consult `Docs/ops.md`** for cron schedules and log locations.
+2. **Consult `Docs/ops.md`** for cron schedules and log locations. Ready-to-use
+   templates live in `cron/prod.crontab` and `cron/dev.crontab`.
 3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. If you run the inference script by path, ensure the repo root is on `PYTHONPATH` or use the module form above.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.

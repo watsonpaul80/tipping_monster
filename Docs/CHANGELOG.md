@@ -630,3 +630,11 @@
 
 ### Testing & Validation
 - Verified full odds snapshot → comparison → steamer flow.
+
+## 2025-07-15
+
+### Added
+- Sample crontab templates for prod and dev under `cron/`.
+- Docs updated to reference `cron/prod.crontab` and `cron/dev.crontab`.
+
+

@@ -507,3 +507,8 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Docs now list the new aliases and explain how `safecron.sh` posts alerts when a cron job fails.
 
 
+## [2025-07-15] Add cron templates
+**Prompt:** Create crontab files for prod and dev setups.
+**Files Changed:** cron/prod.crontab, cron/dev.crontab, Docs/ops.md, Docs/prod_setup_cheatsheet.md, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Schedules consolidated into templates and docs updated.
+
