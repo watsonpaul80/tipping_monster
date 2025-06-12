@@ -637,4 +637,12 @@
 - Sample crontab templates for prod and dev under `cron/`.
 - Docs updated to reference `cron/prod.crontab` and `cron/dev.crontab`.
 
+## 2025-07-16
+
+### Added
+- `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
+
+### Changed
+- Combo messages include race time, course and odds for each runner.
+
 
