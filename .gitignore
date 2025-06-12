@@ -18,3 +18,4 @@ monstertweeter/.env
 tipping-monster-xgb-model.bst
 tipping-monster-xgb-model.bst.gz
 
+backups/

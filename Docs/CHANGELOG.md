@@ -1,7 +1,17 @@
+## 2025-07-11
+
+### Added
+- `summarise_logs.py` outputs 7-day log status with win/place counts.
+
 ## 2025-07-10
 
 ### Added
 - `dispatch_tips.py` accepts `--course` to filter tips by racecourse.
+
+- `backup_validator.py` ensures timestamped backups for root scripts.
+
+- `check_tip_sanity.py` validates the latest sent tips for low confidence or missing fields.
+
 
 ## 2025-07-09
 
