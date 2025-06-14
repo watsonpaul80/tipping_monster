@@ -24,6 +24,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
 
+
 def generate_reason(tip: dict) -> str:
     reason = []
     try:
@@ -184,6 +185,7 @@ def extract_race_sort_key(race: str) -> int:
         return h * 60 + m
     except Exception:
         return 9999
+
 
 def main() -> None:
     load_env()
