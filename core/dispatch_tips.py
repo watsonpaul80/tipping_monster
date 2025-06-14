@@ -413,9 +413,9 @@ def main(argv=None):
             formatted.append(msg)
 
     os.makedirs(os.path.dirname(summary_path), exist_ok=True)
-    with open(summary_path, "w") as f:
+    with open(summary_path, "w", encoding="utf-8") as f:
         f.write("\n\n".join(formatted))
-    with open(sent_path, "w") as f:
+    with open(sent_path, "w", encoding="utf-8") as f:
         for tip in enriched:
             json.dump(tip.to_dict(), f)
             f.write("\n")

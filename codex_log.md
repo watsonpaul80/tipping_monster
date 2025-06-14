@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Enforce UTF-8 writes
+**Prompt:** Update generate_lay_candidates and related scripts to write files with UTF-8 encoding.
+**Files Changed:** generate_lay_candidates.py core/*.py rpscrape/scripts/ingest_racecards_json.py train_model_v6.py train_place_model.py utils/healthcheck_logs.py Docs/CHANGELOG.md Docs/monster_overview.md codex_log.md
+**Outcome:** All scripts now specify UTF-8 when writing files; formatting hooks pass.

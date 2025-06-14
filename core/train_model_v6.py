@@ -146,7 +146,7 @@ def train_model(df, feature_cols):
     with tarfile.open(tar_path, "w:gz") as tar:
         tar.add("tipping-monster-xgb-model.bst")
         # Save the feature list too
-        with open("features.json", "w") as f:
+        with open("features.json", "w", encoding="utf-8") as f:
             json.dump(feature_cols, f)
         tar.add("features.json")
     print(f"📦 Model saved and packaged as {tar_path}")

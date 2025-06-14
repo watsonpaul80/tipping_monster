@@ -225,7 +225,7 @@ def main(argv: List[str] | None = None) -> None:
         odds = json.load(f)
 
     candidates = find_danger_favs(df, odds, args.threshold)
-    with open(out_file, "w") as f:
+    with open(out_file, "w", encoding="utf-8") as f:
         for row in candidates:
             f.write(orjson.dumps(row).decode() + "\n")
     print(f"Saved {len(candidates)} danger favs -> {out_file}")
