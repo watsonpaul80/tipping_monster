@@ -668,3 +668,8 @@
 - Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
 - `Docs/README.md` links to the new reference.
 
+## 2025-07-18
+
+### Documentation
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+

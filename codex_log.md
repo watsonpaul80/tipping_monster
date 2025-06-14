@@ -538,4 +538,9 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
 
+## [2025-07-18] Document new inference and comparison scripts
+**Prompt:** In `Docs/monster_overview.md`, list `run_inference_monster_v8.py` and `compare_model_outputs.py` alongside other key scripts with a short description.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
+
 
