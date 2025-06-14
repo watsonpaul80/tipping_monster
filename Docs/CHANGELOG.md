@@ -765,6 +765,12 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+
+## 2025-07-24
+
+### Fixed
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
 ## 2025-07-24
 
 ### Fixed
