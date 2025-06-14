@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Ensure newline at end of init files
+**Prompt:** Append newlines to several `__init__.py` modules and rerun linting.
+**Files Changed:** cli/__init__.py core/__init__.py roi/__init__.py sniper/__init__.py utils/__init__.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Added trailing blank lines so that isort, black, and flake8 all pass.

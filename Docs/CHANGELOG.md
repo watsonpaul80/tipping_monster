@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Maintenance
+- Added trailing newlines to empty `__init__.py` files to satisfy linters.
+
