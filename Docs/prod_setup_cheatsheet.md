@@ -26,8 +26,9 @@ production deployment.
   - `train_model_v6.py` – base model, optionally use `--self-train` to inject past tips.
   - `core/train_modelv7.py` – always includes tip history features (`was_tipped`,
     `tip_confidence`, `tip_profit`).
-- `compare_model_v6_v7.py` – trains v6 and v7 side by side and writes
-  `logs/compare_model_v6_v7.csv` with ROI for each.
+ - `compare_model_v6_v7.py` – trains v6 and v7 side by side and writes
+   `logs/compare_model_v6_v7.csv` with ROI for each.
+ - `compare_model_outputs.py` – runs both models on the same racecards and logs tip and confidence differences.
 
 ## 3. Training Data
 
@@ -39,7 +40,7 @@ tipped.
 ## 4. Deploying to Production
 
 1. Set `TM_DEV_MODE=0` in `.env`.
-2. Install cron jobs from `Docs/ops.md` using `utils/safecron.sh`.
+2. Install cron jobs using the template at `cron/prod.crontab` (`crontab cron/prod.crontab`).
 3. Run `make pipeline` to produce daily predictions.
 4. Enable `core/dispatch_tips.py --telegram` in cron to send tips.
 5. Schedule `roi/run_roi_pipeline.sh` and `roi/send_daily_roi_summary.py` for ROI updates.

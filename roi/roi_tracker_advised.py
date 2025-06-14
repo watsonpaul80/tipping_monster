@@ -2,8 +2,8 @@
 import argparse
 import json
 import os
-import sys
 import re
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -23,6 +23,7 @@ from tippingmonster import (
 # isort: on
 
 BANKROLL_FILE = logs_path("roi", "bankroll_tracker.csv")
+DRAWDOWN_STATS_FILE = logs_path("drawdown_stats.csv")
 
 
 def load_bankroll() -> pd.DataFrame:
@@ -67,6 +68,36 @@ def update_bankroll(date: str, profit: float, stake: float) -> dict:
 
     df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
     df.to_csv(BANKROLL_FILE, index=False)
+    return row
+
+
+def load_drawdown_stats() -> pd.DataFrame:
+    if os.path.exists(DRAWDOWN_STATS_FILE):
+        return pd.read_csv(DRAWDOWN_STATS_FILE)
+    return pd.DataFrame(
+        columns=["Date", "CurrentLosingRun", "LongestLosingRun", "MaxDrawdown"]
+    )
+
+
+def update_drawdown_stats(date: str, profit: float, worst_drawdown: float) -> dict:
+    df = load_drawdown_stats()
+    prev_current = int(df["CurrentLosingRun"].iloc[-1]) if not df.empty else 0
+    prev_longest = int(df["LongestLosingRun"].iloc[-1]) if not df.empty else 0
+    prev_max = float(df["MaxDrawdown"].iloc[-1]) if not df.empty else 0.0
+
+    current = prev_current + 1 if profit < 0 else 0
+    longest = max(prev_longest, current)
+    max_dd = max(prev_max, abs(worst_drawdown))
+
+    row = {
+        "Date": date,
+        "CurrentLosingRun": current,
+        "LongestLosingRun": longest,
+        "MaxDrawdown": max_dd,
+    }
+    df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
+    Path(DRAWDOWN_STATS_FILE).parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(DRAWDOWN_STATS_FILE, index=False)
     return row
 
 
@@ -234,11 +265,21 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
     drawdown = bankroll_row.get("Drawdown", 0.0)
     worst_dd = bankroll_row.get("WorstDrawdown", 0.0)
 
+    if show:
+        dd_df = load_drawdown_stats()
+        if dd_df.empty:
+            dd_row = {"CurrentLosingRun": 0, "LongestLosingRun": 0, "MaxDrawdown": 0.0}
+        else:
+            dd_row = dd_df.iloc[-1].to_dict()
+    else:
+        dd_row = update_drawdown_stats(summary["Date"], summary["Profit"], worst_dd)
+
     result_line = (
         f"{summary['Date']}   Tips: {summary['Tips']}    Wins: {summary['Wins']}   "
         f"Places: {summary['Places']}   NRs: {summary['NRs']}   Stake: {summary['Stake']:.2f} "
         f"Profit: {summary['Profit']:.2f} ROI: {roi:.2f}%   "
-        f"Bankroll: {bankroll:+.2f} Drawdown: {drawdown:.2f} (Worst {worst_dd:.2f})"
+        f"Bankroll: {bankroll:+.2f} Drawdown: {drawdown:.2f} (Worst {worst_dd:.2f})   "
+        f"Run: {dd_row['CurrentLosingRun']} (Longest {dd_row['LongestLosingRun']}) MaxDD: {dd_row['MaxDrawdown']:.2f}"
     )
     print(result_line)
 
@@ -272,6 +313,8 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
 📈 ROI: {roi:.2f}%
 💰 Bankroll: {bankroll:+.2f} pts
 🔻 Drawdown: {drawdown:.2f} (Worst {worst_dd:.2f})
+📉 Run: {dd_row['CurrentLosingRun']} (Longest {dd_row['LongestLosingRun']})
+📉 Max DD: {dd_row['MaxDrawdown']:.2f} pts
 🪙 Staked: {summary['Stake']:.2f} pts"""
         send_telegram_message(message)
 
@@ -279,7 +322,12 @@ def main(date_str, mode, min_conf, send_to_telegram, use_sent, show=False, tag=N
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", required=True, help="Date in YYYY-MM-DD")
-    parser.add_argument("--mode", choices=["advised", "level"], required=True)
+    parser.add_argument(
+        "--mode",
+        choices=["advised", "level"],
+        default="advised",
+        help="ROI mode. Defaults to advised",
+    )
     parser.add_argument("--min_conf", type=float, default=0.8)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument(

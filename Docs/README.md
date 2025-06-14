@@ -28,7 +28,9 @@ Create a `.env` file (see `.env.example`) with the following variables:
 - `BF_KEY_PATH`
 - `BF_CERT_DIR`
 - `TELEGRAM_BOT_TOKEN`
+- `TG_BOT_TOKEN` (optional alias for `TELEGRAM_BOT_TOKEN`)
 - `TELEGRAM_CHAT_ID`
+- `TG_USER_ID` (optional alias for `TELEGRAM_CHAT_ID`)
 - `TELEGRAM_DEV_CHAT_ID` (used when `TM_DEV=1`; ignored when `TM_DEV_MODE=1`)
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
@@ -41,6 +43,7 @@ Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` inst
 Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
 The `utils/safecron.sh` helper also respects this variable and will not send
 Telegram alerts when `TM_DEV_MODE=1`.
+See `telegram_alerts.md` for a full list of Telegram variables and the scripts that use them.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 

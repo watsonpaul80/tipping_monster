@@ -15,6 +15,7 @@ from datetime import date
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import shap
 import xgboost as xgb
@@ -32,11 +33,15 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     containing `tipping-monster-xgb-model.bst` and `features.json`.
     """
     if model_path.endswith(".tar.gz"):
-        tmpdir = tempfile.mkdtemp()
-        with tarfile.open(model_path, "r:gz") as tar:
-            tar.extractall(tmpdir)
-        model_file = Path(tmpdir) / "tipping-monster-xgb-model.bst"
-        features_file = Path(tmpdir) / "features.json"
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with tarfile.open(model_path, "r:gz") as tar:
+                tar.extractall(tmpdir)
+            model_file = Path(tmpdir) / "tipping-monster-xgb-model.bst"
+            features_file = Path(tmpdir) / "features.json"
+            model = load_xgb_model(str(model_file))
+            with open(features_file) as f:
+                features = json.load(f)
+            return model, features
     else:
         data = Path(model_path).read_bytes()
         cleaned = model_path
@@ -105,6 +110,25 @@ def generate_shap_chart(
 
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X)
+
+    # Save top 5 features per tip for internal review
+    shap_rows = []
+    for i, row in df.iterrows():
+        values = shap_values[i]
+        top_idx = list(np.argsort(np.abs(values))[-5:][::-1])
+        tip_id = f"{row.get('race', '')}|{row.get('horse', '')}"
+        for idx in top_idx:
+            shap_rows.append(
+                {
+                    "Tip": tip_id,
+                    "Feature": features[idx],
+                    "Value": float(values[idx]),
+                }
+            )
+    if shap_rows:
+        shap_csv = logs_path("shap_explanations.csv")
+        shap_csv.parent.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame(shap_rows).to_csv(shap_csv, index=False)
 
     plt.clf()
     shap.summary_plot(

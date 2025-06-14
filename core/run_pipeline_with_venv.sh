@@ -1,11 +1,12 @@
 #!/bin/bash
 # Tipping Monster: Full Daily Pipeline (Run from cron or manually)
-# Last updated: 2025-06-06
+# Last updated: 2025-07-14
+set -euo pipefail
 
 echo "🔄 Starting full pipeline: $(date)"
 
-DEV_MODE=0
-if [ "$1" = "--dev" ]; then
+DEV_MODE="${TM_DEV_MODE:-0}"
+if [ "${1:-}" = "--dev" ]; then
     DEV_MODE=1
     export TM_DEV_MODE=1
     export TM_LOG_DIR="logs/dev"
@@ -25,11 +26,11 @@ mkdir -p "$LOG_DIR/inference" "$LOG_DIR/dispatch"
 
 # 1. Upload racecards
 echo "📥 Uploading racecards..."
-bash daily_upload_racecards.sh >> "$LOG_DIR/racecards.log" 2>&1
+bash "$SCRIPT_DIR/daily_upload_racecards.sh" >> "$LOG_DIR/racecards.log" 2>&1
 
 # 2. Flatten racecards
 echo "🪬 Flattening racecards..."
-bash daily_flatten.sh >> "$LOG_DIR/flatten.log" 2>&1
+bash "$SCRIPT_DIR/daily_flatten.sh" >> "$LOG_DIR/flatten.log" 2>&1
 
 # === Wait until 08:50 before continuing ===
 TARGET_TIME="08:50"
@@ -69,7 +70,12 @@ DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
 
 # Confirm how many tips were sent
 SENT_TIPS_PATH="$REPO_ROOT/logs/dispatch/sent_tips_${TODAY}.jsonl"
-SENT_COUNT=$(jq -s length "$SENT_TIPS_PATH" 2>/dev/null || echo "0")
+if [ -f "$SENT_TIPS_PATH" ]; then
+    SENT_COUNT=$(wc -l < "$SENT_TIPS_PATH")
+else
+    SENT_COUNT=0
+fi
+SENT_COUNT="$(echo "$SENT_COUNT" | tr -d '[:space:]')"
 echo "🧾 Dispatched $SENT_COUNT tip(s) to Telegram"
 
 # Optional: Alert if no tips were dispatched
@@ -85,12 +91,8 @@ fi
 
 # 8. Upload logs and dispatched tips to S3
 if [ "$DEV_MODE" -eq 0 ]; then
-    echo "🗂️ Uploading tips and logs to S3..."
-    aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-    aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
-else
-    echo "[DEV] Skipping S3 uploads"
-fi
-
-echo "✅ Pipeline complete: $(date)"
-
+    if command -v aws >/dev/null; then
+        echo "🗂️ Uploading tips and logs to S3..."
+        aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
+        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster](#)
+

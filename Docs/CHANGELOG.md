@@ -1,7 +1,87 @@
+
 ## 2025-07-10
 
 ### Added
 - SHAP commentary helper to produce technical summaries and punter explanations.
+
+## 2025-07-17
+
+### Documentation
+- `Docs/monster_overview.md` lists the new `run_inference_monster_v8.py` and `compare_model_outputs.py` scripts.
+- `all_scripts.txt` updated with both filenames.
+
+## 2025-07-15
+
+### Documentation
+- `Docs/README.md` and `.env.example` list `TG_BOT_TOKEN` and `TG_USER_ID`.
+- `Docs/ops.md` clarifies that `safecron.sh` posts failure alerts using these variables.
+
+## 2025-07-14
+
+### Changed
+- `run_pipeline_with_venv.sh` reads `TM_DEV_MODE` first and uses the resulting
+  `DEV_MODE` flag for Telegram and S3 checks.
+
+## 2025-06-12
+
+### Fixed
+- Added missing newline at end of `Makefile` for clean diffs.
+
+
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` now references daily scripts using `$SCRIPT_DIR` so
+  the CLI pipeline command works from any directory.
+
+## 2025-07-14
+
+### Changed
+- Pipeline and utility scripts are now executable via direct path.
+- Cron docs updated to drop explicit `/bin/bash`.
+
+
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` no longer errors if called without arguments.
+
+- Fixed script paths so the pipeline works when invoked via `tmcli`.
+
+
+## 2025-07-13
+
+### Fixed
+- `run_pipeline_with_venv.sh` no longer errors if called without arguments.
+- Fixed script paths so the pipeline works when invoked via `tmcli`.
+- `fetch_betfair_odds.py` adds the repo root to `sys.path` so the pipeline
+  doesn't fail with `ModuleNotFoundError`.
+
+## 2025-07-12
+
+### Fixed
+- `core/run_pipeline_with_venv.sh` uses strict mode and safer line counting.
+- S3 uploads are skipped if AWS CLI isn't found.
+
+### Documentation
+- Clarified in README that `--dev` or `TM_DEV_MODE=1` prevents real Telegram
+  posts and S3 uploads when testing.
+
+## 2025-07-11
+
+### Added
+- `summarise_logs.py` outputs 7-day log status with win/place counts.
+
+## 2025-07-10
+
+### Added
+- `dispatch_tips.py` accepts `--course` to filter tips by racecourse.
+
+- `backup_validator.py` ensures timestamped backups for root scripts.
+
+- `check_tip_sanity.py` validates the latest sent tips for low confidence or missing fields.
+
+
 
 ## 2025-07-09
 
@@ -537,6 +617,20 @@
 - LLM commentary
 - ML-based filtering in V2
 
+## 2025-07-10 — Final v7 Cleanup
+
+- Added `/ping` and `/help` commands to Telegram bot.
+- ROI tracker defaults to advised mode when not specified.
+- Tag ROI tracker supports `--filter-tag` for selective reports.
+- Streamlit dashboard shows optional SHAP summary.
+- Training pipeline outputs `features_used.json` with each model.
+
+## 2025-07-11
+
+- Telegram bot now supports `/override_conf`, `/reset_conf` and `/conf_status` to
+  manage confidence thresholds.
+- `dispatch_tips.py` reads `config/conf_override.json` for any active override.
+
 ---
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
@@ -548,3 +642,82 @@
 
 ### Testing & Validation
 - Verified full odds snapshot → comparison → steamer flow.
+
+## 2025-07-15
+
+### Added
+- Sample crontab templates for prod and dev under `cron/`.
+- Docs updated to reference `cron/prod.crontab` and `cron/dev.crontab`.
+
+## 2025-07-16
+
+### Added
+- `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
+- New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
+
+### Changed
+- Combo messages include race time, course and odds for each runner.
+
+## 2025-07-17
+
+
+### Added
+- `run_inference_and_select_top1.py` loads an optional meta place model and
+  outputs `final_place_confidence` per runner.
+- `dispatch_tips.py` displays a "Place Chance" line when this value is present.
+
+
+### Changed
+- Model tarball extraction now uses `tempfile.TemporaryDirectory` so temporary
+  folders are cleaned up automatically.
+
+
+## 2025-07-16
+
+### Added
+- `train_monster_model_v8.py` stacked ensemble trainer and accompanying inference scripts.
+
+### Changed
+- `train_monster_model_v8.py` now logs SHAP features, embeds model identity and
+  deduplicates self-training tips.
+
+## 2025-07-17
+
+### Adde
+
+- `ultimate_dashboard.py` provides a full-featured Streamlit dashboard with ROI trends, confidence heatmap and filters.
+
+### Changed
+- Dashboard now supports day-of-week filtering and shows top winners by profit, confidence and odds side by side.
+
+- ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
+
+## 2025-07-17
+
+### Fixed
+- Documented that meta data files use kebab-case names: `meta-win.pkl`, `meta-place.pkl`, `meta-features.json`.
+
+
+### Changed
+- Daily ROI summary shows current losing run, longest streak and max drawdown.
+
+
+
+## 2025-07-17
+
+### Added
+- `generate_shap_explanations.py` outputs top SHAP features for each tip.
+
+
+## 2025-07-17
+
+### Documentation
+- Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
+- `Docs/README.md` links to the new reference.
+
+
+## 2025-07-18
+
+### Documentation
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+

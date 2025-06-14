@@ -5,6 +5,12 @@ This document provides an overview of the operational aspects of the Tipping Mon
 ## Scheduled Tasks (Cron Jobs)
 
 The system relies on a series of cron jobs to perform regular tasks. Below is a breakdown of these jobs, their schedules, and their purposes.
+You can load the full schedule using the templates in `cron/`:
+
+```text
+cron/prod.crontab  # production
+cron/dev.crontab   # development (TM_DEV_MODE=1)
+```
 
 **Key:**
 - **Frequency:** When the job runs.
@@ -14,9 +20,11 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 
 > **Environment Note:** Telegram alerts depend on `TELEGRAM_BOT_TOKEN` and
  > `TELEGRAM_CHAT_ID`. Set these in your `.env` file so all scripts can load them
- > automatically.
- > The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
- > alerts when enabled.
+> automatically.
+> The `utils/safecron.sh` wrapper respects `TM_DEV_MODE=1` and skips Telegram
+> alerts when enabled.
+> It posts failure alerts using `TG_BOT_TOKEN` and `TG_USER_ID` when jobs exit
+> non-zero.
 
 ---
 
@@ -26,7 +34,7 @@ The system relies on a series of cron jobs to perform regular tasks. Below is a 
 1.  **Run Main Pipeline (`core/run_pipeline_with_venv.sh` or `cli/tmcli.py pipeline`)**
     *   **Frequency:** Daily at 05:00
     *   **Purpose:** Executes the main data processing and tipping pipeline. This likely involves fetching racecards, running predictions, selecting tips, and preparing them for dispatch.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh pipeline /bin/bash /home/ec2-user/tipping-monster/core/run_pipeline_with_venv.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh pipeline /home/ec2-user/tipping-monster/core/run_pipeline_with_venv.sh`
     *   **Internal Logs:** Check `logs/inference/`, `logs/dispatch/` for detailed logs from this pipeline.
 
 2.  **Fetch Betfair Odds (Hourly)**
@@ -44,7 +52,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 3.  **Upload Daily Results (`core/daily_upload_results.sh`)**
     *   **Frequency:** Daily at 22:30
     *   **Purpose:** Uploads race results from the day. These results are essential for calculating ROI and model performance.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh upload_results /bin/bash /home/ec2-user/tipping-monster/core/daily_upload_results.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh upload_results /home/ec2-user/tipping-monster/core/daily_upload_results.sh`
 
 4.  **Calibrate Confidence Daily (`roi/calibrate_confidence_daily.py`)**
     *   **Frequency:** Daily at 22:45
@@ -55,7 +63,7 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 5.  **Run ROI Pipeline (`roi/run_roi_pipeline.sh`)**
     *   **Frequency:** Daily at 22:50
     *   **Purpose:** Executes the ROI (Return on Investment) calculation pipeline. This likely processes sent tips and their results to generate ROI statistics.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh roi_pipeline /bin/bash /home/ec2-user/tipping-monster/roi/run_roi_pipeline.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh roi_pipeline /home/ec2-user/tipping-monster/roi/run_roi_pipeline.sh`
     *   **Alt:** `python cli/tmcli.py roi --date $(date +\%F)`
     *   **Internal Logs:** Check `logs/roi/` for detailed ROI logs.
 
@@ -93,12 +101,12 @@ Scripts are now organised under `core/` and `roi/` directories. The old `ROI/` f
 10. **Backup to S3 (`utils/backup_to_s3.sh`)**
     *   **Frequency:** Daily at 02:10
     *   **Purpose:** Backs up the entire application directory (presumably excluding certain files/dirs) to an S3 bucket.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh backup /bin/bash /home/ec2-user/tipping-monster/utils/backup_to_s3.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh backup /home/ec2-user/tipping-monster/utils/backup_to_s3.sh`
 
 11. **Upload Logs to S3 (`utils/upload_logs_to_s3.sh`)**
     *   **Frequency:** Daily at 04:00
     *   **Purpose:** Uploads the `logs/` directory (and its new subdirectories) to S3.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh upload_logs /bin/bash /home/ec2-user/tipping-monster/utils/upload_logs_to_s3.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh upload_logs /home/ec2-user/tipping-monster/utils/upload_logs_to_s3.sh`
 
 12. **Delete Old Log Files**
     *   **Frequency:** Daily at 03:00
@@ -127,7 +135,7 @@ The following jobs were originally related to the "sniper" subsystem for market-
     *   **Frequency:** Was Daily at 09:35
     *   **Purpose:** Loaded sniper data and scheduled the actual sniper monitoring jobs.
     <!-- Cron entry removed June&nbsp;2025 -->
-    <!-- **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh load_sniper_intel /bin/bash /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh` -->
+    <!-- **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh load_sniper_intel /home/ec2-user/tipping-monster/steam_sniper_intel/generate_and_schedule_snipers.sh` -->
     *   **Internal Logs:** Check `logs/sniper/`.
 
 16. **Fetch Betfair Odds (08:00 Snapshot)**
@@ -157,7 +165,7 @@ The following jobs were originally related to the "sniper" subsystem for market-
 19. **Daily Model Training (`core/daily_train.sh`)**
     *   **Frequency:** Daily at 03:00
     *   **Purpose:** Performs daily model retraining.
-    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh train /bin/bash /home/ec2-user/tipping-monster/core/daily_train.sh`
+    *   **Command:** `bash /home/ec2-user/tipping-monster/utils/safecron.sh train /home/ec2-user/tipping-monster/core/daily_train.sh`
     *   **Log Output:** The script itself logs to `logs/train.log` and `logs/train_YYYY-MM-DD.log` (remains in root `logs/`).
 
 20. **S3 Upload of `master_subscriber_log.csv` (Redundant?)**

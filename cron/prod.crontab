@@ -1,0 +1,34 @@
+# Tipping Monster Production Crontab
+# Install with: crontab cron/prod.crontab
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+TIPPING_MONSTER_HOME=/home/ec2-user/tipping-monster
+
+# Core pipeline & odds fetching
+0 5 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh pipeline $TIPPING_MONSTER_HOME/core/run_pipeline_with_venv.sh
+5 7-20 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh odds_hourly $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/core/fetch_betfair_odds.py
+
+# Results & ROI processing
+30 22 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh upload_results $TIPPING_MONSTER_HOME/core/daily_upload_results.sh
+45 22 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh calibrate_conf $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/roi/calibrate_confidence_daily.py
+50 22 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh roi_pipeline $TIPPING_MONSTER_HOME/roi/run_roi_pipeline.sh
+30 22 * * * $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/roi/generate_subscriber_log.py --date $(date +\%F) && aws s3 cp $TIPPING_MONSTER_HOME/logs/roi/master_subscriber_log.csv s3://tipping-monster-data/master_subscriber_log.csv
+59 22 * * 0 bash $TIPPING_MONSTER_HOME/utils/safecron.sh weekly_summary $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/roi/generate_weekly_summary.py
+10 23 * * 0 bash $TIPPING_MONSTER_HOME/utils/safecron.sh weekly_roi $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/roi/generate_weekly_roi.py
+58 23 * * 0 bash $TIPPING_MONSTER_HOME/utils/safecron.sh weekly_telegram $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/roi/weekly_roi_summary.py --week $(date +\%G-W\%V) --telegram
+55 23 * * 0 bash $TIPPING_MONSTER_HOME/utils/safecron.sh model_features $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/model_feature_importance.py --telegram
+
+# System maintenance
+10 2 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh backup $TIPPING_MONSTER_HOME/utils/backup_to_s3.sh
+0 3 * * * find $TIPPING_MONSTER_HOME/logs/ -type f -name "*.log" -mtime +14 -delete
+0 4 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh upload_logs $TIPPING_MONSTER_HOME/utils/upload_logs_to_s3.sh
+5 0 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh healthcheck $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/cli/tmcli.py healthcheck --date $(date +\%F)
+
+# Optional model training & redundant upload
+0 3 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh train $TIPPING_MONSTER_HOME/core/daily_train.sh
+59 23 * * * /usr/local/bin/aws s3 cp $TIPPING_MONSTER_HOME/logs/roi/master_subscriber_log.csv s3://tipping-monster-data/ --region eu-west-2 >> $TIPPING_MONSTER_HOME/logs/s3_upload.log 2>&1
+
+# Odds snapshot & extras
+0 8 * * * bash $TIPPING_MONSTER_HOME/utils/safecron.sh odds_0800 $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/core/fetch_betfair_odds.py --label 0800 >> $TIPPING_MONSTER_HOME/logs/inference/odds_0800_$(date +\%F).log 2>&1
+15 8 * * * $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/monstertweeter/auto_tweet_tips.py >> $TIPPING_MONSTER_HOME/logs/twitter_post.log 2>&1
+10 9 * * * $TIPPING_MONSTER_HOME/.venv/bin/python $TIPPING_MONSTER_HOME/scripts/morning_digest.py >> $TIPPING_MONSTER_HOME/logs/morning_digest.log 2>&1

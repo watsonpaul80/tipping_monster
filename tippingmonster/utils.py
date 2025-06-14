@@ -1,5 +1,7 @@
+import json
 import os
 import shutil
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -17,6 +19,9 @@ __all__ = [
     "get_place_terms",
     "tip_has_tag",
     "upload_to_s3",
+    "load_override_or_default",
+    "set_conf_override",
+    "clear_conf_override",
 ]
 
 # Base directory of the repository. Can be overridden via TM_ROOT env var.
@@ -203,3 +208,38 @@ def load_xgb_model(model_path: str):
     else:
         model.load_model(model_path)
     return model
+
+
+def _override_path() -> Path:
+    return repo_path("config", "conf_override.json")
+
+
+def load_override_or_default(default: float) -> float:
+    path = _override_path()
+    if path.exists():
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            expires = datetime.fromisoformat(data.get("expires", ""))
+            if datetime.utcnow() < expires:
+                return float(data.get("min_conf_override", default))
+        except Exception:
+            pass
+    return default
+
+
+def set_conf_override(value: float, hours_valid: int = 6) -> None:
+    path = _override_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = {
+        "min_conf_override": float(value),
+        "expires": (datetime.utcnow() + timedelta(hours=hours_valid)).isoformat(),
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f)
+
+
+def clear_conf_override() -> None:
+    path = _override_path()
+    if path.exists():
+        path.unlink()

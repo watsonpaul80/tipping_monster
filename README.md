@@ -64,6 +64,14 @@ pytest
 pre-commit run --files $(git ls-files '*.py')
 ```
 
+6. Install the cron schedule:
+
+```bash
+crontab cron/dev.crontab   # dev mode
+# or
+crontab cron/prod.crontab  # production
+```
+
 ---
 
 ## Usage
@@ -77,6 +85,10 @@ bash core/run_pipeline_with_venv.sh
 # (sets `TM_DEV_MODE=1`)
 bash core/run_pipeline_with_venv.sh --dev
 ```
+
+While testing the pipeline, always run it with `--dev` (or set
+`TM_DEV_MODE=1`) so no real Telegram messages are posted and no files are
+uploaded to S3.
 
 Most Python scripts accept a `--debug` flag for verbose logging.
 
@@ -117,9 +129,16 @@ actually post messages and `--explain` to append a short "Why we tipped this" su
 If you run this file from inside `core/`, set `PYTHONPATH=..` or call it as
 `python -m core.dispatch_tips` so it can locate the `core` package.
 
+Use `--course "Royal Ascot"` (or any track name) to dispatch tips for a single
+meeting only.
+
 Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in
 `monster_confidence_per_day_with_roi.csv`).
+
+If the optional *meta place model* is present, each tip also includes a
+`final_place_confidence` value summarised in the Telegram message as
+"Place Chance".
 
 The Streamlit P&L dashboard includes a *Positive ROI Bands Only* checkbox that
 uses this same file to filter tips.

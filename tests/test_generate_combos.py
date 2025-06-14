@@ -16,7 +16,8 @@ def test_generate_combo_messages_basic():
 
     msgs = generate_combo_messages(tips)
     assert len(msgs) == 2
-    assert "HorseA" in msgs[0] or "HorseD" in msgs[0]
-    assert "HorseB" in msgs[0]
     assert msgs[0].startswith("\U0001f9e0 Monster Double")
+    assert "12:00 A" in msgs[0]
+    assert "HorseB" in msgs[0]
+    assert "@ 5.0" in msgs[0] or "@ 2.0" in msgs[0]
     assert msgs[1].startswith("\U0001f9e0 Monster Treble")

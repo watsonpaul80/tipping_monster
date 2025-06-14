@@ -8,6 +8,7 @@ import shutil
 import tarfile
 import tempfile
 from datetime import date
+from pathlib import Path
 
 import boto3
 import pandas as pd
@@ -147,7 +148,9 @@ def train_model(df, feature_cols):
         # Save the feature list too
         with open("features.json", "w") as f:
             json.dump(feature_cols, f)
+        Path("features_used.json").write_text(json.dumps(feature_cols))
         tar.add("features.json")
+        tar.add("features_used.json")
     print(f"📦 Model saved and packaged as {tar_path}")
     if os.getenv("TM_DEV_MODE") == "1":
         print(f"[DEV] Skipping S3 upload of {tar_path}")

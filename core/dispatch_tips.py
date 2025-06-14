@@ -15,8 +15,10 @@ load_dotenv()
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from core.tip import Tip
+from generate_lay_candidates import standardize_course_only
 from tippingmonster import logs_path, send_telegram_message
 from tippingmonster.env_loader import load_env
+from tippingmonster.utils import load_override_or_default
 from utils.commentary import generate_commentary
 
 load_env()
@@ -157,6 +159,14 @@ def build_confidence_line(tip: dict) -> str:
     return f"\ud83e\udde0 Model Confidence: {level} ({conf_pct}%){suffix}."
 
 
+def build_place_line(tip: dict) -> str | None:
+    place_conf = tip.get("final_place_confidence")
+    if place_conf is None:
+        return None
+    pct = round(place_conf * 100)
+    return f"\ud83c\udfc5 Place Chance: {pct}%"
+
+
 def get_confidence_band(conf: float) -> str | None:
     """Return the confidence band label for ``conf`` or ``None`` if out of range."""
     bins = [
@@ -206,6 +216,12 @@ def should_skip_by_roi(conf: float, roi_map: dict, min_conf: float) -> bool:
     if not band:
         return True
     return roi_map.get(band, 0.0) <= 0.0
+
+
+def filter_tips_by_course(tips: list[Tip], course: str) -> list[Tip]:
+    """Return tips matching ``course`` (case-insensitive)."""
+    target = standardize_course_only(course)
+    return [t for t in tips if standardize_course_only(t.get("race", "")) == target]
 
 
 def log_nap_override(original: dict, new: dict | None, path: str) -> None:
@@ -275,7 +291,11 @@ def format_tip_message(tip, max_id):
     explain = tip.get("explanation")
     explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
     confidence_line = build_confidence_line(tip)
-    parts = [header, title, stats, confidence_line, tags, comment]
+    place_line = build_place_line(tip)
+    parts = [header, title, stats, confidence_line]
+    if place_line:
+        parts.append(place_line)
+    parts.extend([tags, comment])
     if explain_line:
         parts.append(explain_line)
     parts.append("-" * 30)
@@ -308,6 +328,7 @@ def main(argv=None):
     parser.add_argument("--min_conf", type=float, default=0.80)
     parser.add_argument("--telegram", action="store_true")
     parser.add_argument("--dev", action="store_true")
+    parser.add_argument("--course", help="Filter tips for a racecourse")
     parser.add_argument(
         "--explain", action="store_true", help="Include SHAP explanations"
     )
@@ -318,6 +339,8 @@ def main(argv=None):
         help="Tone for generated commentary",
     )
     args = parser.parse_args(argv)
+
+    min_conf = load_override_or_default(args.min_conf)
 
     if args.dev:
         os.environ["TM_DEV_MODE"] = "1"
@@ -332,6 +355,8 @@ def main(argv=None):
         sys.exit(1)
 
     tips = read_tips(predictions_path)
+    if args.course:
+        tips = filter_tips_by_course(tips, args.course)
     if not tips:
         print("⚠️ No valid tips to process.")
         sys.exit(1)
@@ -365,10 +390,10 @@ def main(argv=None):
         )
         odds = tip.get("bf_sp") or tip.get("odds", 0.0)
         stake = calculate_monster_stake(
-            tip.get("confidence", 0.0), odds, min_conf=args.min_conf
+            tip.get("confidence", 0.0), odds, min_conf=min_conf
         )
         if stake == 0.0 and should_skip_by_roi(
-            tip.get("confidence", 0.0), roi_map, args.min_conf
+            tip.get("confidence", 0.0), roi_map, min_conf
         ):
             continue
         if stake == 0.0:

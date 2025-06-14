@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from io import BytesIO
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -141,6 +142,16 @@ if "Tags" in df_filtered.columns and not df_filtered["Tags"].dropna().empty:
     st.dataframe(tag_stats[["ROI %", "Strike Rate %", "Profit"]].round(2))
 else:
     st.write("No tag data available.")
+
+# === Optional SHAP Summary ===
+shap_file = Path("logs/shap_explanations.csv")
+if shap_file.exists():
+    st.subheader("\U0001f9e0 SHAP Summary (Private)")
+    shap_df = pd.read_csv(shap_file)
+    top_feats = (
+        shap_df.groupby("Feature")["Value"].mean().sort_values(ascending=False).head(10)
+    )
+    st.bar_chart(top_feats)
 
 # === Export CSV ===
 st.subheader("\U0001f4be Export Filtered Data")

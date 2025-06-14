@@ -7,11 +7,13 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.dispatch_tips import (
     calculate_monster_stake,
     build_confidence_line,
+    build_place_line,
     generate_tags,
     get_tip_composite_id,
     load_recent_roi_stats,
     select_nap_tip,
     should_skip_by_roi,
+    filter_tips_by_course,
 )
 
 # isort: on
@@ -165,3 +167,23 @@ def test_build_confidence_line_basic():
     line = build_confidence_line(tip)
     assert line.startswith("\ud83e\udde0 Model Confidence: High (92%)")
     assert "class drop" in line and "fresh" in line
+
+
+def test_build_place_line():
+    tip = {"final_place_confidence": 0.73}
+    line = build_place_line(tip)
+    assert line == "\ud83c\udfc5 Place Chance: 73%"
+
+
+def test_build_place_line_none():
+    assert build_place_line({}) is None
+
+
+def test_filter_tips_by_course():
+    tips = [
+        {"race": "1:00 Ascot", "name": "A"},
+        {"race": "2:00 Ascot", "name": "B"},
+        {"race": "3:00 York", "name": "C"},
+    ]
+    out = filter_tips_by_course(tips, "Ascot")
+    assert len(out) == 2

@@ -4,6 +4,12 @@
 **Files Changed:** utils/shap_commentary.py, tests/test_shap_commentary.py, Docs/CHANGELOG.md, Docs/monster_todo.md
 **Outcome:** New helper returns technical summary and Telegram-friendly text.
 
+## [2025-06-12] Append newline to Makefile
+**Prompt:** Ensure file ends with newline for consistent formatting.
+**Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Trailing newline added; pre-commit and tests pass.
+
+
 ## [2025-07-07] Update Makefile paths
 **Prompt:** Align Makefile targets with script directories and log change.
 **Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md
@@ -198,7 +204,7 @@
 **Prompt:** Add 30-day rolling ROI line chart to streamlit_pauls_view.py
 **Files Changed:** cli/pauls_view_dashboard.py, Docs/monster_todo.md, Docs/CHANGELOG.md, tests/test_model_drift_report.py
 **Outcome:** Dashboard now plots 30-day ROI trend; docs updated; failing test fixed.
-=======
+
 
 ## [2025-06-08] Add weekly ROI Telegram command
 **Prompt:** Implement /roi command to show current week's profit, ROI, and win/place stats.
@@ -439,4 +445,149 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** core/compare_model_v6_v7.py:13:1: F401 'datetime.date' imported but unused
 **Files Changed:** core/compare_model_v6_v7.py, core/fetch_betfair_odds.py, explain_model_decision.py, telegram_bot.py, tip_control_panel.py, tests/test_codex_logger.py, tests/test_dispatch_tips.py, tests/test_model_drift_report.py, tests/test_self_training_loop.py, tests/test_telegram_bot.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Removed unused imports and spacing issues; updated docs and task log
+
+
+## [2025-07-10] Final v7 cleanup features
+**Prompt:** Implement final cleanup tasks including new bot commands, ROI defaults, tag filtering and SHAP summary.
+**Files Changed:** telegram_bot.py, core/extract_best_realistic_odds.py, roi/roi_tracker_advised.py, roi/tag_roi_tracker.py, streamlit_pauls_view.py, train_model_v6.py, model_feature_importance.py, Docs/monster_overview.md, Docs/monster_todo.md, Docs/CHANGELOG.md
+**Outcome:** Added /ping and /help commands, clearer odds error, default ROI mode, tag filter option, SHAP logging, updated docs.
+
+## [2025-07-10] Course filter for dispatch
+**Prompt:** I need a dispatch tips but to be able to filter for all races at a track for example royal ascot
+**Files Changed:** core/dispatch_tips.py, tippingmonster/helpers.py, cli/tmcli.py, tests/test_tmcli.py, tests/test_dispatch_tips.py, README.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added `--course` argument to filter tips by racecourse. Updated docs and tests.
+
+
+## [2025-07-11] Telegram confidence override
+**Prompt:** Implement Telegram-based override for minimum confidence threshold.
+**Files Changed:** telegram_bot.py, core/dispatch_tips.py, tippingmonster/utils.py, tests/test_conf_override.py, .env.example, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md
+**Outcome:** Added `/override_conf`, `/reset_conf`, `/conf_status` commands and override logic applied during dispatch.
+
+
+## [2025-07-10] Add tip sanity checker
+**Prompt:** Create check_tip_sanity.py to warn about low confidence tips, NAP confidence under 0.8 and missing odds or stake.
+**Files Changed:** check_tip_sanity.py, tests/test_check_tip_sanity.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script loads the latest sent tips and prints warnings for any issues. Added tests and documentation.
+
+## [2025-07-10] Add backup validator script
+**Prompt:** Backup Validator - ensure root scripts are backed up
+**Files Changed:** backup_validator.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Created timestamped backup tool and updated docs.
+
+
+## [2025-07-11] Add summarise_logs utility
+**Prompt:** Create summarise_logs.py for 7-day log checks with win/place counts.
+**Files Changed:** summarise_logs.py, tests/test_summarise_logs.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script summarises log status; tests and documentation updated.
+
+
+## [2025-07-12] Clarify dev mode in pipeline
+**Prompt:** Add README note that `--dev`/`TM_DEV_MODE=1` stops real Telegram posts and S3 uploads when testing.
+**Files Changed:** README.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Documentation updated with explicit warning about dev mode.
+
+
+## [2025-07-12] Harden pipeline script
+**Prompt:** Add strict mode, safer line count, whitespace trim and AWS check in run_pipeline_with_venv.sh
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Pipeline aborts on errors, counts tips reliably and skips S3 upload if AWS CLI missing.
+
+## [2025-07-13] Fix unbound variable in pipeline
+**Prompt:** The automated daily pipeline script fails with an error `unbound variable $1`. Please fix it.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Script now handles missing arguments safely using `${1:-}`.
+
+## [2025-07-13] Restore tmcli pipeline
+**Prompt:** Running `tmcli pipeline --dev` exited with status 127.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Updated script to reference sub-scripts via `$SCRIPT_DIR`, allowing CLI wrapper to execute successfully.
+
+## [2025-07-13] Fix odds snapshot import path
+**Prompt:** `fetch_betfair_odds.py` failed with `ModuleNotFoundError: tippingmonster` when run via the pipeline.
+**Files Changed:** core/fetch_betfair_odds.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Added repo root to `sys.path` so the odds fetcher runs inside the CLI pipeline.
+
+## [2025-07-15] Document safecron Telegram vars
+**Prompt:** Update README and `.env.example` to mention `TG_BOT_TOKEN` and `TG_USER_ID` and document failure alerts in `safecron.sh`.
+**Files Changed:** Docs/README.md, Docs/ops.md, .env.example, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Docs now list the new aliases and explain how `safecron.sh` posts alerts when a cron job fails.
+
+
+## [2025-07-15] Add cron templates
+**Prompt:** Create crontab files for prod and dev setups.
+**Files Changed:** cron/prod.crontab, cron/dev.crontab, Docs/ops.md, Docs/prod_setup_cheatsheet.md, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Schedules consolidated into templates and docs updated.
+
+## [2025-07-16] Enhance combo generator
+**Prompt:** Improve `generate_combos.py` to log ROI when posting to Telegram and show odds, times and course.
+**Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+**Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
+
+
+## [2025-07-17] Document new v8 inference script
+**Prompt:** Add short docs for `run_inference_monster_v8.py` and `compare_model_outputs.py` and list them in `all_scripts.txt`.
+**Files Changed:** Docs/monster_overview.md, all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview section includes both scripts and script index updated.
+
+
+## [2025-07-17] Add place confidence output
+**Prompt:** Generate `final_place_confidence` using the meta-place model and show it in Telegram tips.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_run_inference_and_select_top1.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** Inference writes a place probability for each runner and Telegram messages include a "Place Chance" line when available.
+
+## [2025-07-17] Use TemporaryDirectory for model tar extraction
+**Prompt:** Ensure temporary folders for ensemble tarballs are cleaned up automatically.
+**Files Changed:** core/run_inference_and_select_top1.py, model_feature_importance.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Model loading now unpacks to a context-managed temp directory that is removed after use.
+
+## [2025-07-17] Check run_inference_monster_v8 script
+**Prompt:** Update `core/run_inference_monster_v8.py` to use kebab-case meta filenames.
+**Files Changed:** Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Requested script not found; documented expected naming in CHANGELOG.
+
+## [2025-07-16] Add stacked ensemble training
+**Prompt:** Create `train_monster_model_v8.py` with CatBoost, XGB and Keras stack; inference and comparison scripts.
+**Files Changed:** train_monster_model_v8.py, core/run_inference_monster_v8.py, core/compare_model_outputs.py, Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, requirements.txt, codex_log.md
+**Outcome:** New v8 training and inference tools enable stacked ensemble evaluation.
+
+## [2025-07-16] Refine v8 trainer
+**Prompt:** Polish `train_monster_model_v8.py` with model metadata, SHAP export and deduped self-training.
+**Files Changed:** train_monster_model_v8.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** v8 trainer now records model identity, logs SHAP top features and merges past tips without duplication.
+
+## [2025-07-17] Add Streamlit ultimate dashboard
+**Prompt:** Create `ultimate_dashboard.py` using Streamlit with ROI trends, confidence heatmap, tag breakdown and filters.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New dashboard script visualises tip performance with advanced filters and export option.
+
+## [2025-07-17] Improve ultimate dashboard filters
+**Prompt:** Refine `ultimate_dashboard.py` to add day-of-week filtering and show top winners by profit, confidence and odds.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+
+
+## [2025-07-17] Document Telegram env vars
+**Prompt:** Create a reference doc for Telegram variables and link it from README.
+**Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** New doc lists all Telegram variables, shows which scripts use them and notes safecron alerts.
+
+## [2025-07-17] Track drawdown streaks
+**Prompt:** Extend the ROI tracker to log drawdown streaks — longest losing streak, current losing run, max drawdown in points. Save to `logs/drawdown_stats.csv`.
+**Files Changed:** roi/roi_tracker_advised.py, tests/test_drawdown_stats.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** ROI summary now prints drawdown streak info and updates `drawdown_stats.csv` daily.
+
+## [2025-07-16] Model output comparator
+**Prompt:** Build `compare_model_outputs.py` to run two models (v6 vs v7) on same racecards, and log differences in tip selection, confidence, and feature impact.
+**Files Changed:** compare_model_outputs.py, Docs/quickstart.md, Docs/prod_setup_cheatsheet.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script outputs CSV of v6 vs v7 tips with SHAP summaries.
+
+## [2025-07-17] Add SHAP explanations script
+**Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
+**Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
+
+## [2025-07-18] Document new inference and comparison scripts
+**Prompt:** In `Docs/monster_overview.md`, list `run_inference_monster_v8.py` and `compare_model_outputs.py` alongside other key scripts with a short description.
+**Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
+
 
