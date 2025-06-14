@@ -634,6 +634,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Fix truncated pipeline script
+**Prompt:** Ensure lines after S3 upload commands are complete and add cleanup.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Script now properly closes S3 section, deactivates venv, and exits cleanly.
+
 ## [2025-06-14] Purge versioned logs
 **Prompt:** Remove unnecessary log files from version control (`git rm logs/*` except for `.gitkeep`).
 **Files Changed:** logs/* Docs/CHANGELOG.md codex_log.md
@@ -653,3 +658,4 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append trailing newline to select scripts and reformat.
 **Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
+

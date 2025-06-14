@@ -767,6 +767,11 @@
 
 
 
+## 2025-07-24
+
+### Fixed
+- Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
 ## 2025-06-14
 
 ### Removed
@@ -784,4 +789,3 @@
 
 ### Fixed
 - Added missing trailing newlines to several scripts for lint compliance.
-
