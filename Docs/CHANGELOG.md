@@ -725,3 +725,8 @@
 
 ### Documentation
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+
+## 2025-07-20
+
+### Documentation
+- Marked the Steam Sniper subsystem as removed in `quickstart.md` and updated `TIPPING_MONSTER_PRODUCTS.md`.

@@ -600,3 +600,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** In `Docs/monster_overview.md`, list `run_inference_monster_v8.py` and `compare_model_outputs.py` alongside other key scripts with a short description.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
+
+## [2025-07-20] Update docs for sniper removal
+**Prompt:** Scan docs and update outdated references.
+**Files Changed:** Docs/TIPPING_MONSTER_PRODUCTS.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Steam Sniper references now marked as removed and products doc updated.

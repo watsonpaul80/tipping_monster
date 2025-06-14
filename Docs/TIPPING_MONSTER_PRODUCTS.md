@@ -34,12 +34,11 @@ This document defines the 8 core product layers of the Tipping Monster system. E
 
 ---
 
-### 4. 📉 Steamers
+### 4. 📉 Steamers *(paused)*
 
-* Horses whose odds drop 30%+ from 08:00 snapshot
-* NOT already tipped by Monster
-* Market signal-only tips
-* Optional overlay: confidence, form, tags
+* This product was removed from the live pipeline in June 2025.
+* Historically focused on horses whose odds dropped 30%+ from the 08:00 snapshot.
+* The supporting sniper scripts are no longer maintained.
 
 ---
 
@@ -84,7 +83,7 @@ This document defines the 8 core product layers of the Tipping Monster system. E
 
 ---
 
-### 📅 Updated: 2025-06-29
+### 📅 Updated: 2025-07-20
 
 > Notes:
 >
