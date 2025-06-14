@@ -140,7 +140,7 @@ def main():
 
         # === Save Locally ===
         print(f"[+] Saving {len(all_data)} runner odds to {output_path}")
-        with open(output_path, "w") as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             json.dump(all_data, f, indent=2)
 
         # === Upload to S3 ===

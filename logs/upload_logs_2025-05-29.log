@@ -1,3 +1,0 @@
-  adding: home/ec2-user/tipping-monster/logs/roi_cron.log (stored 0%)
-Completed 302 Bytes/302 Bytes (848 Bytes/s) with 1 file(s) remainingupload: ../../tmp/tipping-monster-logs-2025-05-29.zip to s3://tipping-monster/logs-archive/tipping-monster-logs-2025-05-29.zip
-Uploaded /tmp/tipping-monster-logs-2025-05-29.zip to s3://tipping-monster/logs-archive/
