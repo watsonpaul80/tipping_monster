@@ -517,3 +517,13 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-16] Add stacked ensemble training
+**Prompt:** Create `train_monster_model_v8.py` with CatBoost, XGB and Keras stack; inference and comparison scripts.
+**Files Changed:** train_monster_model_v8.py, core/run_inference_monster_v8.py, core/compare_model_outputs.py, Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, requirements.txt, codex_log.md
+**Outcome:** New v8 training and inference tools enable stacked ensemble evaluation.
+
+## [2025-07-16] Refine v8 trainer
+**Prompt:** Polish `train_monster_model_v8.py` with model metadata, SHAP export and deduped self-training.
+**Files Changed:** train_monster_model_v8.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** v8 trainer now records model identity, logs SHAP top features and merges past tips without duplication.
+

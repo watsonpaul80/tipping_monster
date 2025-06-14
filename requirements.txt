@@ -20,3 +20,5 @@ lxml
 requests
 tomli
 dotenv
+catboost
+tensorflow
