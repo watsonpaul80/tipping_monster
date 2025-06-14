@@ -767,6 +767,11 @@
 
 ## 2025-07-24
 
+### Changed
+- `cli/streamlit_dashboard.py` now only ignores `ValueError` and `KeyError`
+  when loading confidence data and logs unexpected issues.
+
+
 
 ### Removed
 - Dropped unused `dotenv` package from `requirements.txt`.
