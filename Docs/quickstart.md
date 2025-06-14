@@ -54,6 +54,8 @@ These times are detailed in `Docs/monster_overview.md`.
   `tipping-monster-xgb-model-*.tar.gz` in the repository root and downloads it
   from S3 if a path is provided. If no model is available, the script exits with
   `FileNotFoundError`.
+- **v8 Ensemble Training:** `core/train_monster_model_v8.py` builds the stacked
+  model and saves `models/monster_v8_stack.tar.gz`.
 - **v8 Ensemble Inference:** `core/run_inference_monster_v8.py` loads
   `models/monster_v8_stack.tar.gz` (downloaded on demand) and writes
   predictions to `predictions/<DATE>/output_v8.jsonl`.

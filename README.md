@@ -220,8 +220,8 @@ via `--model`, that file is downloaded if missing locally.
 ### v8 Stacked Ensemble (Experimental)
 
 The latest research pipeline trains an ensemble of CatBoost, XGBoost and a small
-Keras MLP. `train_monster_model_v8.py` saves the resulting stack as
-`models/monster_v8_stack.tar.gz` and uploads it to the `tipping-monster` S3
+Keras MLP. Run `python core/train_monster_model_v8.py` to generate
+`models/monster_v8_stack.tar.gz`, which is uploaded to the `tipping-monster` S3
 bucket. Use `python -m core.run_inference_monster_v8 --input <racecards.jsonl>`
 to produce tips under `predictions/<DATE>/output_v8.jsonl`.
 

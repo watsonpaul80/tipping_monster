@@ -733,3 +733,8 @@
 
 ### Fixed
 - Restored missing helper functions in `core/run_inference_and_select_top1.py` so tests pass again.
+
+## 2025-07-21
+
+### Documentation
+- Added explicit command for `train_monster_model_v8.py` in README and Quickstart.

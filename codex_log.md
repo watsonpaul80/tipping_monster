@@ -601,3 +601,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Tests failed due to missing `extract_race_sort_key` in `run_inference_and_select_top1.py`.
 **Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md
 **Outcome:** Restored helper functions and tests pass.
+
+## [2025-07-21] Clarify v8 training docs
+**Prompt:** Addressed user feedback about missing v8 instructions. Added training command for the stacked ensemble to README and Quickstart.
+**Files Changed:** README.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation now spells out how to run `train_monster_model_v8.py`.
