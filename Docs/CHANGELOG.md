@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+
+## 2025-07-24
+
+### Fixed
+- Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
