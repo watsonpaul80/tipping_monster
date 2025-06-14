@@ -1,3 +1,8 @@
+## 2025-07-10
+
+### Added
+- SHAP commentary helper to produce technical summaries and punter explanations.
+
 ## 2025-07-09
 
 ### Changed

@@ -1,4 +1,9 @@
 
+## [2025-07-10] Add SHAP commentary helper
+**Prompt:** Integrate new explanation engine for punter commentary.
+**Files Changed:** utils/shap_commentary.py, tests/test_shap_commentary.py, Docs/CHANGELOG.md, Docs/monster_todo.md
+**Outcome:** New helper returns technical summary and Telegram-friendly text.
+
 ## [2025-07-07] Update Makefile paths
 **Prompt:** Align Makefile targets with script directories and log change.
 **Files Changed:** Makefile, Docs/CHANGELOG.md, codex_log.md

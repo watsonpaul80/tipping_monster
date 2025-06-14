@@ -43,7 +43,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 17. ✅ SHAP or feature gain per model *(2025-06-08)*
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
 19. ✅ Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%” [Done: 2025-06-24]
-20. Use tags + confidence + form stats for explanation  
+20. ✅ Use tags + confidence + form stats for explanation [Done: 2025-07-10]
 21. ✅ Score tips by band, confidence, and value *(Done: 2025-06-24)*
 22. Tag top 3 per day as Premium Tips  
 23. Split public vs subscriber tips via logic or tier  
