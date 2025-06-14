@@ -769,6 +769,8 @@
 
 ### Documentation
 
+- Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
+
 - Explicitly note the commentary script is proprietary and not included.
 - Removed disabled commentary lines from cron and pipeline docs.
 - Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
