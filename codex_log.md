@@ -517,3 +517,9 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+
+## [2025-07-17] Add SHAP explanations script
+**Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
+**Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
+

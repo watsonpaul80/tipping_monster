@@ -225,3 +225,4 @@ pt
      failure alerts [Done: 2025-07-15]
 
 
+109. ✅ SHAP explanations script generates tips_with_shap.jsonl [Done: 2025-07-17]
