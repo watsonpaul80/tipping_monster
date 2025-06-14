@@ -58,3 +58,4 @@ This guide summarises all environment variables related to Telegram notification
 ## Cron failure alerts
 
 `safecron.sh` captures the last lines of the job log and sends an alert if the exit code is non‑zero. Alerts are skipped when `TM_DEV_MODE=1`.
+Before running `safecron.sh`, ensure both `TG_BOT_TOKEN` and `TG_USER_ID` are set in your environment so failure alerts can be sent.

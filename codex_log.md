@@ -601,7 +601,13 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
 
+## [2025-07-19] Clarify v8 workflow docs
+**Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.
+**Files Changed:** README.md, Docs/quickstart.md, Docs/model_storage.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Repo docs now explain how to train and run the v8 stack and where the tarball is stored.
 
+
+=======
 ## [2025-07-19] Clarify v8 workflow docs
 **Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.
 **Files Changed:** README.md, Docs/quickstart.md, Docs/model_storage.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
@@ -618,6 +624,7 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Addressed user feedback about missing v8 instructions. Added training command for the stacked ensemble to README and Quickstart.
 **Files Changed:** README.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation now spells out how to run `train_monster_model_v8.py`.
+<
 ## [2025-07-22] Tick off completed todo items
 **Prompt:** Check the todo and overview for done tasks and update.
 **Files Changed:** Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
@@ -634,7 +641,88 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+
+## [2025-07-24] Handle CSV parse failures in run_inference_and_select_top1
+**Prompt:** Replace generic exception handling with specific pandas errors and log the file path.
+**Files Changed:** core/run_inference_and_select_top1.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Script now warns which CSV failed to load and avoids hiding unrelated errors.
+
+## [2025-07-24] Harden dashboard parser
+**Prompt:** Catch only `ValueError` in the dashboard loader and surface unexpected errors.
+**Files Changed:** cli/streamlit_dashboard.py, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Streamlit dashboard prints debug info for malformed tip lines and re-raises unknown issues.
+
+## [2025-07-24] Remove dotenv from requirements
+**Prompt:** Delete the `dotenv` line from `requirements.txt`.
+**Files Changed:** requirements.txt Docs/CHANGELOG.md Docs/monster_todo.md codex_log.md
+**Outcome:** Removed unused dependency and updated changelog and todo.
+
+## [2025-07-24] Add shebang to backup_validator
+**Prompt:** Insert Python shebang and make script executable.
+**Files Changed:** backup_validator.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Script now runnable directly and docs updated.
+
+## [2025-07-24] Document dispatch_tips helpers
+**Prompt:** Add docstrings for send_to_telegram and main.
+**Files Changed:** core/dispatch_tips.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Functions now explained and docs updated.
+
+## [2025-07-24] Enforce UTF-8 writes
+**Prompt:** Update generate_lay_candidates and related scripts to write files with UTF-8 encoding.
+**Files Changed:** generate_lay_candidates.py core/*.py rpscrape/scripts/ingest_racecards_json.py train_model_v6.py train_place_model.py utils/healthcheck_logs.py Docs/CHANGELOG.md Docs/monster_overview.md codex_log.md
+**Outcome:** All scripts now specify UTF-8 when writing files; formatting hooks pass.
+
+## [2025-07-24] Format inference script
+**Prompt:** Run isort, black, and flake8 on run_inference_and_select_top1.py.
+**Files Changed:** core/run_inference_and_select_top1.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Imports sorted and file formatted. Tests and pre-commit pass.
+
+## [2025-07-24] Ensure newline at end of init files
+**Prompt:** Append newlines to several `__init__.py` modules and rerun linting.
+**Files Changed:** cli/__init__.py core/__init__.py roi/__init__.py sniper/__init__.py utils/__init__.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Added trailing blank lines so that isort, black, and flake8 all pass.
+
+
+## [2025-07-24] Document safecron env requirements
+**Prompt:** Add note under cron section about TG_BOT_TOKEN and TG_USER_ID.
+**Files Changed:** Docs/telegram_alerts.md Docs/CHANGELOG.md codex_log.md
+**Outcome:** Cron docs clarify env vars required before running safecron.sh.
+
+
+## [2025-07-24] Document proprietary commentary script
+**Prompt:** State explicitly that the optional commentary script is proprietary and remove old pipeline references.
+**Files Changed:** Docs/monster_overview.md Docs/quickstart.md core/run_pipeline_with_venv.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** Docs note the missing proprietary script and pipeline steps no longer reference it.
+
+## [2025-07-24] Document install step before tests
+**Prompt:** Document running `pip install -r requirements.txt` before running tests and provide optional setup script.
+**Files Changed:** README.md scripts/install_requirements.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** README emphasises installing dependencies prior to tests and new helper script created.
+
+
 ## [2025-07-24] Fix truncated pipeline script
 **Prompt:** Ensure lines after S3 upload commands are complete and add cleanup.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Script now properly closes S3 section, deactivates venv, and exits cleanly.
+
+
+## [2025-06-14] Purge versioned logs
+**Prompt:** Remove unnecessary log files from version control (`git rm logs/*` except for `.gitkeep`).
+**Files Changed:** logs/* Docs/CHANGELOG.md codex_log.md
+**Outcome:** Old logs deleted; `.gitkeep` files retained and existing ignore rules prevent re-adding.
+
+## [2025-07-24] Close file handle when scraping racecards
+**Prompt:** Wrap `run()` call in a `with open()` block for proper cleanup.
+**Files Changed:** rpscrape/scripts/ingest_racecards_json.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Output JSON file closes properly after scraping.
+
+## [2025-07-24] Remove unused requests import
+**Prompt:** Delete the `import requests` line in `roi/weekly_roi_summary.py`.
+**Files Changed:** roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Removed unused import and updated changelog.
+
+## [2025-07-24] Enforce newline at EOF
+**Prompt:** Append trailing newline to select scripts and reformat.
+**Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
+
