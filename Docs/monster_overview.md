@@ -12,7 +12,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Confidence-based XGBoost ML model for tip generation
 * ✅ Odds integration (Betfair snapshot)
 * ✅ Tagging (e.g. Class Drop, In Form)
-* (Optional) LLM commentary generation – script not included
+* (Optional) LLM commentary generation – **proprietary script not included**
 * ✅ Tag-based commentary generation (ML-driven)
 * ✅ LLM commentary generation (optional)
 * ✅ Realistic odds injection
@@ -73,7 +73,6 @@ The system defines 8 core product layers:
 | 08:09 | `generate_lay_candidates.py`      | Flags favourites with low Monster confidence |
 | 08:10 | `dispatch_danger_favs.py`         | Sends Danger Fav alerts to Telegram |
 | 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
-| 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 08:13 | `generate_combos.py`              | Suggests doubles & trebles from top tips               |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
@@ -258,12 +257,12 @@ The foundational elements and automated processes that power Tipping Monster are
     * **`08:00`**: Fetch Betfair odds
     * **`08:05`**: Run ML inference
     * **`08:08`**: Merge tips with odds
-    * **`08:10`**: *(disabled)* Add LLM commentary – script not included
     * **`08:12`**: Dispatch tips to Telegram
     * **`23:30`**: Upload race results
     * **`23:55`**: Run ROI tracker
     * **`23:59`**: Send ROI summary to Telegram
     * **`23:56`**: Track bankroll and cumulative profit
+    * *(optional)* Generate commentary – **proprietary script not included**
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
 * **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `utils/backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.

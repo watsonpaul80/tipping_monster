@@ -638,3 +638,45 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append newlines to several `__init__.py` modules and rerun linting.
 **Files Changed:** cli/__init__.py core/__init__.py roi/__init__.py sniper/__init__.py utils/__init__.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Added trailing blank lines so that isort, black, and flake8 all pass.
+
+
+## [2025-07-24] Document safecron env requirements
+**Prompt:** Add note under cron section about TG_BOT_TOKEN and TG_USER_ID.
+**Files Changed:** Docs/telegram_alerts.md Docs/CHANGELOG.md codex_log.md
+**Outcome:** Cron docs clarify env vars required before running safecron.sh.
+
+
+## [2025-07-24] Document proprietary commentary script
+**Prompt:** State explicitly that the optional commentary script is proprietary and remove old pipeline references.
+**Files Changed:** Docs/monster_overview.md Docs/quickstart.md core/run_pipeline_with_venv.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** Docs note the missing proprietary script and pipeline steps no longer reference it.
+
+## [2025-07-24] Document install step before tests
+**Prompt:** Document running `pip install -r requirements.txt` before running tests and provide optional setup script.
+**Files Changed:** README.md scripts/install_requirements.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** README emphasises installing dependencies prior to tests and new helper script created.
+
+## [2025-07-24] Fix truncated pipeline script
+**Prompt:** Ensure lines after S3 upload commands are complete and add cleanup.
+**Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Script now properly closes S3 section, deactivates venv, and exits cleanly.
+
+## [2025-06-14] Purge versioned logs
+**Prompt:** Remove unnecessary log files from version control (`git rm logs/*` except for `.gitkeep`).
+**Files Changed:** logs/* Docs/CHANGELOG.md codex_log.md
+**Outcome:** Old logs deleted; `.gitkeep` files retained and existing ignore rules prevent re-adding.
+
+## [2025-07-24] Close file handle when scraping racecards
+**Prompt:** Wrap `run()` call in a `with open()` block for proper cleanup.
+**Files Changed:** rpscrape/scripts/ingest_racecards_json.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Output JSON file closes properly after scraping.
+
+## [2025-07-24] Remove unused requests import
+**Prompt:** Delete the `import requests` line in `roi/weekly_roi_summary.py`.
+**Files Changed:** roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Removed unused import and updated changelog.
+
+## [2025-07-24] Enforce newline at EOF
+**Prompt:** Append trailing newline to select scripts and reformat.
+**Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.

@@ -1,2 +1,0 @@
-usage: send_daily_roi_summary.py [-h] [--date DATE]
-send_daily_roi_summary.py: error: unrecognized arguments: --telegram
