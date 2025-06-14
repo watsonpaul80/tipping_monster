@@ -765,3 +765,9 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Fixed
+- CSV loading errors in `run_inference_and_select_top1.py` now report the file
+  path and only catch parsing-related issues.
+

@@ -4,6 +4,7 @@
 import argparse
 import glob
 import json
+import logging
 import os
 import pickle
 import sys
@@ -23,6 +24,9 @@ import xgboost as xgb
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
+
+logger = logging.getLogger(__name__)
+
 
 def generate_reason(tip: dict) -> str:
     reason = []
@@ -137,7 +141,8 @@ def load_combined_results() -> pd.DataFrame:
                 parse_dates=["date"],
             )
             master_frames.append(df)
-        except Exception:
+        except (FileNotFoundError, pd.errors.ParserError) as exc:
+            logger.warning("Failed to load %s: %s", path, exc)
             continue
     recent_paths = glob.glob("rpscrape/data/dates/all/*.csv")
     recent_frames = []
@@ -149,7 +154,8 @@ def load_combined_results() -> pd.DataFrame:
                 parse_dates=["date"],
             )
             recent_frames.append(df)
-        except Exception:
+        except (FileNotFoundError, pd.errors.ParserError) as exc:
+            logger.warning("Failed to load %s: %s", path, exc)
             continue
     combined = pd.concat(master_frames + recent_frames, ignore_index=True)
     combined["horse_clean"] = (
@@ -185,7 +191,9 @@ def extract_race_sort_key(race: str) -> int:
     except Exception:
         return 9999
 
+
 def main() -> None:
+    logging.basicConfig(level=logging.INFO)
     load_env()
 
     models = sorted(glob.glob("tipping-monster-xgb-model-*.tar.gz"))
