@@ -26,8 +26,9 @@ production deployment.
   - `train_model_v6.py` – base model, optionally use `--self-train` to inject past tips.
   - `core/train_modelv7.py` – always includes tip history features (`was_tipped`,
     `tip_confidence`, `tip_profit`).
-- `compare_model_v6_v7.py` – trains v6 and v7 side by side and writes
-  `logs/compare_model_v6_v7.csv` with ROI for each.
+ - `compare_model_v6_v7.py` – trains v6 and v7 side by side and writes
+   `logs/compare_model_v6_v7.csv` with ROI for each.
+ - `compare_model_outputs.py` – runs both models on the same racecards and logs tip and confidence differences.
 
 ## 3. Training Data
 
