@@ -24,6 +24,7 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
 
+
 def generate_reason(tip: dict) -> str:
     reason = []
     try:
@@ -185,6 +186,7 @@ def extract_race_sort_key(race: str) -> int:
     except Exception:
         return 9999
 
+
 def main() -> None:
     load_env()
 
@@ -278,7 +280,7 @@ def main() -> None:
     combined_results_df = load_combined_results()
     today_date = datetime.today().date()
 
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         max_conf = top_tips["confidence"].max()
         for row in top_tips.to_dict(orient="records"):
             row["last_class"] = get_last_class(

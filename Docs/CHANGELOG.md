@@ -767,6 +767,65 @@
 
 ## 2025-07-24
 
+
 ### Removed
 - Dropped unused `dotenv` package from `requirements.txt`.
+### Documentation
+
+- `backup_validator.py` now includes a standard Python shebang and is executable.
+
+- Added docstrings to send_to_telegram() and main() in dispatch_tips.
+
+### Changed
+- Standardized UTF-8 encoding for all script file outputs to avoid cross-platform issues.
+
+
+
+## 2025-07-24
+
+### Maintenance
+- Sorted imports and reformatted `core/run_inference_and_select_top1.py`.
+
+## 2025-07-24
+
+### Maintenance
+- Added trailing newlines to empty `__init__.py` files to satisfy linters.
+
+### Documentation
+
+- Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
+
+- Explicitly note the commentary script is proprietary and not included.
+- Removed disabled commentary lines from cron and pipeline docs.
+- Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
+
+
+- README clarifies to install dependencies with `pip install -r requirements.txt` before running tests.
+- Added `scripts/install_requirements.sh` helper script.
+
+
+
+## 2025-07-24
+
+### Fixed
+- Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
+## 2025-06-14
+
+### Removed
+- Cleared historical logs from `logs/` leaving only `.gitkeep` placeholders.
+
+## 2025-07-24
+
+### Fixed
+
+- `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
+
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.
+
 
