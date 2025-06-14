@@ -284,6 +284,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
+* ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
