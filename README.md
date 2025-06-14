@@ -136,6 +136,10 @@ Tips under **0.80** confidence are automatically skipped unless their confidence
 band showed a positive ROI in the last 30 days (tracked in
 `monster_confidence_per_day_with_roi.csv`).
 
+If the optional *meta place model* is present, each tip also includes a
+`final_place_confidence` value summarised in the Telegram message as
+"Place Chance".
+
 The Streamlit P&L dashboard includes a *Positive ROI Bands Only* checkbox that
 uses this same file to filter tips.
 

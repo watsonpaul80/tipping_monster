@@ -88,7 +88,12 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 * `train_model_v7.py`: Default training script using XGBoost with rating, class, form, trainer, jockey, etc.
 * `train_place_model.py`: Predicts whether a runner finishes in the top 3 using the same feature set.
+
+* The optional **meta place model** combines core features to output
+  `final_place_confidence` during inference.
+
 * `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
+
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.

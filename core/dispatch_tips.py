@@ -159,6 +159,14 @@ def build_confidence_line(tip: dict) -> str:
     return f"\ud83e\udde0 Model Confidence: {level} ({conf_pct}%){suffix}."
 
 
+def build_place_line(tip: dict) -> str | None:
+    place_conf = tip.get("final_place_confidence")
+    if place_conf is None:
+        return None
+    pct = round(place_conf * 100)
+    return f"\ud83c\udfc5 Place Chance: {pct}%"
+
+
 def get_confidence_band(conf: float) -> str | None:
     """Return the confidence band label for ``conf`` or ``None`` if out of range."""
     bins = [
@@ -283,7 +291,11 @@ def format_tip_message(tip, max_id):
     explain = tip.get("explanation")
     explain_line = f"💡 Why we tipped this: {explain}" if explain else ""
     confidence_line = build_confidence_line(tip)
-    parts = [header, title, stats, confidence_line, tags, comment]
+    place_line = build_place_line(tip)
+    parts = [header, title, stats, confidence_line]
+    if place_line:
+        parts.append(place_line)
+    parts.extend([tags, comment])
     if explain_line:
         parts.append(explain_line)
     parts.append("-" * 30)
