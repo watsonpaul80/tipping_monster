@@ -770,3 +770,9 @@
 
 ### Fixed
 - Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.
+

@@ -634,7 +634,13 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+
 ## [2025-07-24] Remove unused requests import
 **Prompt:** Delete the `import requests` line in `roi/weekly_roi_summary.py`.
 **Files Changed:** roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed unused import and updated changelog.
+
+## [2025-07-24] Enforce newline at EOF
+**Prompt:** Append trailing newline to select scripts and reformat.
+**Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
