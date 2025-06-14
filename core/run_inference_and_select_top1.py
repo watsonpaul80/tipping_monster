@@ -24,7 +24,9 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
 from tippingmonster.env_loader import load_env
 
-# ... [KEEP ALL YOUR EXISTING FUNCTION DEFINITIONS HERE: generate_reason, generate_tags, make_json_safe, load_combined_results, get_last_class, extract_race_sort_key] ...
+# ... [KEEP ALL YOUR EXISTING FUNCTION DEFINITIONS HERE: 
+# generate_reason, generate_tags, make_json_safe, 
+# load_combined_results, get_last_class, extract_race_sort_key] ...
 
 def main() -> None:
     load_env()

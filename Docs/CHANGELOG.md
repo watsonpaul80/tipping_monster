@@ -667,6 +667,7 @@
 - `dispatch_tips.py` displays a "Place Chance" line when this value is present.
 
 
+
 ### Changed
 - Model tarball extraction now uses `tempfile.TemporaryDirectory` so temporary
   folders are cleaned up automatically.
@@ -720,4 +721,5 @@
 
 ### Documentation
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+
 

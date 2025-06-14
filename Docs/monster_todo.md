@@ -243,6 +243,9 @@ pt
 108. ✅ Document `TG_BOT_TOKEN` / `TG_USER_ID` env vars and mention safecron
      failure alerts [Done: 2025-07-15]
 
+109. ✅ Meta place model outputs `final_place_confidence` for each tip
+    [Done: 2025-07-17]
+
 
 109. ✅ Meta place model outputs `final_place_confidence` for each tip
     [Done: 2025-07-17]
