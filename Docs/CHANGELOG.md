@@ -646,6 +646,15 @@
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-16
+
+### Added
+- `train_monster_model_v8.py` stacked ensemble trainer and accompanying inference scripts.
+
+### Changed
+- `train_monster_model_v8.py` now logs SHAP features, embeds model identity and
+  deduplicates self-training tips.
+
 ## 2025-07-17
 
 ### Adde
@@ -673,5 +682,3 @@
 ### Documentation
 - Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
 - `Docs/README.md` links to the new reference.
-
-

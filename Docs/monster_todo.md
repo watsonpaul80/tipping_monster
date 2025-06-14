@@ -63,6 +63,19 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
+
+30. Confidence regression model (predict prob, not binary)
+31. ✅ Stacked ensemble model (CatBoost + XGB + MLP) *(Done: 2025-07-16, SHAP logging 2025-07-16)*
+32. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
+33. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
+34. ✅ Add weekly ROI line chart (matplotlib) to logs *(Done: 2025-06-26)*
+35. Include win/loss emoji outcomes in Telegram ROI
+36. Optional: highlight top winners in Telegram
+37. NAP-only output mode for casual tier
+38. Invite-only Telegram access logic
+39. Visual dashboards (Streamlit / HTML)
+40. Monetisation hooks (Stripe, Patreon, etc.)
+
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
@@ -73,6 +86,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 37. Invite-only Telegram access logic  
 38. ✅ Visual dashboards (Streamlit / HTML) *(Done: 2025-07-17)*
 39. Monetisation hooks (Stripe, Patreon, etc.)
+
 
 ---
 
