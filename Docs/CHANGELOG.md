@@ -765,3 +765,9 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Changed
+- `cli/streamlit_dashboard.py` now only ignores `ValueError` and `KeyError`
+  when loading confidence data and logs unexpected issues.
+
