@@ -89,5 +89,14 @@ if [ "$DEV_MODE" -eq 0 ]; then
     if command -v aws >/dev/null; then
         echo "🗂️ Uploading tips and logs to S3..."
         aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster](#)
-
+        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+    else
+        echo "⚠️ AWS CLI not found, skipping S3 uploads"
+    fi
+else
+    echo "[DEV] Skipping S3 uploads"
+fi
+
+deactivate
+echo "✅ Pipeline complete: $(date)"
+exit 0
