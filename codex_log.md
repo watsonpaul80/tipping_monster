@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Format inference script
+**Prompt:** Run isort, black, and flake8 on run_inference_and_select_top1.py.
+**Files Changed:** core/run_inference_and_select_top1.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Imports sorted and file formatted. Tests and pre-commit pass.
