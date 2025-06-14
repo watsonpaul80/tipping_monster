@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Document install step before tests
+**Prompt:** Document running `pip install -r requirements.txt` before running tests and provide optional setup script.
+**Files Changed:** README.md scripts/install_requirements.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** README emphasises installing dependencies prior to tests and new helper script created.
