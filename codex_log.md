@@ -522,3 +522,44 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Update `core/run_inference_monster_v8.py` to use kebab-case meta filenames.
 **Files Changed:** Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Requested script not found; documented expected naming in CHANGELOG.
+
+## [2025-07-16] Add stacked ensemble training
+**Prompt:** Create `train_monster_model_v8.py` with CatBoost, XGB and Keras stack; inference and comparison scripts.
+**Files Changed:** train_monster_model_v8.py, core/run_inference_monster_v8.py, core/compare_model_outputs.py, Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, requirements.txt, codex_log.md
+**Outcome:** New v8 training and inference tools enable stacked ensemble evaluation.
+
+## [2025-07-16] Refine v8 trainer
+**Prompt:** Polish `train_monster_model_v8.py` with model metadata, SHAP export and deduped self-training.
+**Files Changed:** train_monster_model_v8.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** v8 trainer now records model identity, logs SHAP top features and merges past tips without duplication.
+
+## [2025-07-17] Add Streamlit ultimate dashboard
+**Prompt:** Create `ultimate_dashboard.py` using Streamlit with ROI trends, confidence heatmap, tag breakdown and filters.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New dashboard script visualises tip performance with advanced filters and export option.
+
+## [2025-07-17] Improve ultimate dashboard filters
+**Prompt:** Refine `ultimate_dashboard.py` to add day-of-week filtering and show top winners by profit, confidence and odds.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+
+
+## [2025-07-17] Document Telegram env vars
+**Prompt:** Create a reference doc for Telegram variables and link it from README.
+**Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** New doc lists all Telegram variables, shows which scripts use them and notes safecron alerts.
+
+## [2025-07-17] Track drawdown streaks
+**Prompt:** Extend the ROI tracker to log drawdown streaks — longest losing streak, current losing run, max drawdown in points. Save to `logs/drawdown_stats.csv`.
+**Files Changed:** roi/roi_tracker_advised.py, tests/test_drawdown_stats.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** ROI summary now prints drawdown streak info and updates `drawdown_stats.csv` daily.
+
+## [2025-07-16] Model output comparator
+**Prompt:** Build `compare_model_outputs.py` to run two models (v6 vs v7) on same racecards, and log differences in tip selection, confidence, and feature impact.
+**Files Changed:** compare_model_outputs.py, Docs/quickstart.md, Docs/prod_setup_cheatsheet.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** New script outputs CSV of v6 vs v7 tips with SHAP summaries.
+
+## [2025-07-17] Add SHAP explanations script
+**Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
+**Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
+
