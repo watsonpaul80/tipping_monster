@@ -666,6 +666,12 @@
 
 - ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
 
+## 2025-07-17
+
+### Fixed
+- Documented that meta data files use kebab-case names: `meta-win.pkl`, `meta-place.pkl`, `meta-features.json`.
+
+
 ### Changed
 - Daily ROI summary shows current losing run, longest streak and max drawdown.
 
@@ -682,3 +688,4 @@
 ### Documentation
 - Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
 - `Docs/README.md` links to the new reference.
+
