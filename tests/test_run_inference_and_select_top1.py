@@ -11,6 +11,12 @@ import orjson
 import pandas as pd
 
 
+class DummyPlaceModel:
+    def predict_proba(self, X):
+        scores = X["score"].astype(float).values
+        return np.vstack([1 - scores, scores]).T
+
+
 def test_run_inference_selects_top_tip(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
 
@@ -32,12 +38,24 @@ def test_run_inference_selects_top_tip(tmp_path, monkeypatch):
     # create features.json and dummy model tarball
     features_json = tmp_path / "features.json"
     json.dump(["score"], open(features_json, "w"))
+    meta_features = tmp_path / "meta_place_features.json"
+    json.dump(["score"], open(meta_features, "w"))
+
     model_file = tmp_path / "tipping-monster-xgb-model.bst"
     model_file.write_text("")
+
+    meta_model_file = tmp_path / "meta_place_model.pkl"
+    import pickle
+
+    with open(meta_model_file, "wb") as f:
+        pickle.dump(DummyPlaceModel(), f)
+
     tar_path = tmp_path / "tipping-monster-xgb-model-test.tar.gz"
     with tarfile.open(tar_path, "w:gz") as tar:
         tar.add(features_json, arcname="features.json")
         tar.add(model_file, arcname="tipping-monster-xgb-model.bst")
+        tar.add(meta_features, arcname="meta_place_features.json")
+        tar.add(meta_model_file, arcname="meta_place_model.pkl")
 
     # create input jsonl
     input_file = tmp_path / "inputs.jsonl"
@@ -132,6 +150,7 @@ def test_run_inference_selects_top_tip(tmp_path, monkeypatch):
     race_a = next(r for r in rows if r["race"] == "10:00 A")
     assert race_a["name"] == "HorseB"
     assert abs(race_a["confidence"] - 0.8) < 1e-6
+    assert abs(race_a["final_place_confidence"] - 0.8) < 1e-6
     assert "\U0001f9e0 Monster NAP" in race_a["tags"]
     assert "\U0001f7e2 Class Drop" in race_a["tags"]
 
