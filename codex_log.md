@@ -584,10 +584,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** roi/roi_tracker_advised.py, tests/test_drawdown_stats.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** ROI summary now prints drawdown streak info and updates `drawdown_stats.csv` daily.
 
+
 ## [2025-07-16] Model output comparator
 **Prompt:** Build `compare_model_outputs.py` to run two models (v6 vs v7) on same racecards, and log differences in tip selection, confidence, and feature impact.
 **Files Changed:** compare_model_outputs.py, Docs/quickstart.md, Docs/prod_setup_cheatsheet.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script outputs CSV of v6 vs v7 tips with SHAP summaries.
+
 
 ## [2025-07-17] Add SHAP explanations script
 **Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
@@ -598,5 +600,3 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** In `Docs/monster_overview.md`, list `run_inference_monster_v8.py` and `compare_model_outputs.py` alongside other key scripts with a short description.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
-
-
