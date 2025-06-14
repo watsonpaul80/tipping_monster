@@ -18,11 +18,14 @@ from tensorflow import keras
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from core.model_fetcher import download_if_missing
-from core.run_inference_and_select_top1 import (extract_race_sort_key,
-                                                generate_reason, generate_tags,
-                                                get_last_class,
-                                                load_combined_results,
-                                                make_json_safe)
+from core.run_inference_and_select_top1 import (
+    extract_race_sort_key,
+    generate_reason,
+    generate_tags,
+    get_last_class,
+    load_combined_results,
+    make_json_safe,
+)
 from tippingmonster.env_loader import load_env
 
 DEF_MODEL = "models/monster_v8_stack.tar.gz"
@@ -115,7 +118,7 @@ def main() -> None:
 
     combined_results_df = load_combined_results()
     today_date = datetime.today().date()
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         max_conf = top["final_confidence"].max()
         for row in top.to_dict(orient="records"):
             row["last_class"] = get_last_class(

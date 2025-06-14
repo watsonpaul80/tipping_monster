@@ -252,3 +252,4 @@ pt
 
 
 134. ✅ SHAP explanations script generates tips_with_shap.jsonl [Done: 2025-07-17]
+135. ~~Remove deprecated `dotenv` dependency from requirements~~ [Done: 2025-07-24]

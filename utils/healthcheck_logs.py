@@ -20,7 +20,7 @@ def check_logs(out_log: Path, date: str | None = None) -> list[Path]:
         if not p.exists() or p.stat().st_size == 0:
             missing.append(p)
     out_log.parent.mkdir(parents=True, exist_ok=True)
-    with out_log.open("a") as fh:
+    with out_log.open("a", encoding="utf-8") as fh:
         if missing:
             for p in missing:
                 fh.write(f"{date} MISSING {p}\n")
@@ -30,9 +30,15 @@ def check_logs(out_log: Path, date: str | None = None) -> list[Path]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Check that expected logs exist and append result to healthcheck.log")
-    parser.add_argument("--out-log", default="logs/healthcheck.log", help="Where to write health status")
-    parser.add_argument("--date", help="Date string YYYY-MM-DD to check. Defaults to today")
+    parser = argparse.ArgumentParser(
+        description="Check that expected logs exist and append result to healthcheck.log"
+    )
+    parser.add_argument(
+        "--out-log", default="logs/healthcheck.log", help="Where to write health status"
+    )
+    parser.add_argument(
+        "--date", help="Date string YYYY-MM-DD to check. Defaults to today"
+    )
     args = parser.parse_args()
     check_logs(Path(args.out_log), args.date)
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+import sys
 from datetime import timedelta
 
 import boto3
@@ -71,8 +72,15 @@ def load_sent_confidence(date_str: str) -> dict:
                 horse = str(tip.get("name", "")).strip().lower()
                 key = (course.strip().lower(), time_str.lstrip("0"), horse)
                 conf_map[key] = float(tip.get("confidence", 0.0))
-            except Exception:
+            except (ValueError, KeyError) as err:
+                print(f"Skipping invalid tip line: {err}", file=sys.stderr)
                 continue
+            except Exception as err:
+                print(
+                    f"Unexpected error while parsing tip line: {err}",
+                    file=sys.stderr,
+                )
+                raise
     return conf_map
 
 

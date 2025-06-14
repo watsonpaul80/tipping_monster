@@ -27,7 +27,6 @@ from tippingmonster.env_loader import load_env
 
 logger = logging.getLogger(__name__)
 
-
 def generate_reason(tip: dict) -> str:
     reason = []
     try:
@@ -286,7 +285,7 @@ def main() -> None:
     combined_results_df = load_combined_results()
     today_date = datetime.today().date()
 
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         max_conf = top_tips["confidence"].max()
         for row in top_tips.to_dict(orient="records"):
             row["last_class"] = get_last_class(
