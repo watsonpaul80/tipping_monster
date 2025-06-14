@@ -769,4 +769,13 @@
 ## 2025-07-24
 
 ### Fixed
+
 - `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
+
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.
+
