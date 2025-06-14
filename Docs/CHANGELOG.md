@@ -747,3 +747,21 @@
 =======
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
+## 2025-07-22
+
+### Documentation
+- Marked All Tips Mode and tag-based ROI as complete in todo/overview.
+
+
+## 2025-07-22
+
+### Documentation
+- Cleaned numbering and removed duplicates in monster_todo.md.
+
+
+## 2025-07-23
+
+### Documentation
+- Removed duplicate meta place model lines in overview and todo.
+- Clarified planned stable-level intent profiler in overview.
+
