@@ -652,6 +652,10 @@
 ## 2025-07-16
 
 ### Added
+
+- `Docs/telegram_alerts.md` summarises all Telegram environment variables and
+  which scripts post alerts. `Docs/README.md` now links to this page.
+
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
 - New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
@@ -665,6 +669,7 @@
 - `run_inference_and_select_top1.py` loads an optional meta place model and
   outputs `final_place_confidence` per runner.
 - `dispatch_tips.py` displays a "Place Chance" line when this value is present.
+
 
 
 ### Changed
@@ -719,6 +724,7 @@
 ## 2025-07-18
 
 ### Documentation
+
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
 ## 2025-07-19
@@ -738,3 +744,86 @@
 
 ### Documentation
 - Added explicit command for `train_monster_model_v8.py` in README and Quickstart.
+
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+
+## 2025-07-22
+
+### Documentation
+- Marked All Tips Mode and tag-based ROI as complete in todo/overview.
+
+
+## 2025-07-22
+
+### Documentation
+- Cleaned numbering and removed duplicates in monster_todo.md.
+
+
+## 2025-07-23
+
+### Documentation
+- Removed duplicate meta place model lines in overview and todo.
+- Clarified planned stable-level intent profiler in overview.
+
+## 2025-07-24
+
+
+### Removed
+- Dropped unused `dotenv` package from `requirements.txt`.
+### Documentation
+
+- `backup_validator.py` now includes a standard Python shebang and is executable.
+
+- Added docstrings to send_to_telegram() and main() in dispatch_tips.
+
+### Changed
+- Standardized UTF-8 encoding for all script file outputs to avoid cross-platform issues.
+
+
+
+## 2025-07-24
+
+### Maintenance
+- Sorted imports and reformatted `core/run_inference_and_select_top1.py`.
+
+## 2025-07-24
+
+### Maintenance
+- Added trailing newlines to empty `__init__.py` files to satisfy linters.
+
+### Documentation
+
+- Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
+
+- Explicitly note the commentary script is proprietary and not included.
+- Removed disabled commentary lines from cron and pipeline docs.
+- Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
+
+
+- README clarifies to install dependencies with `pip install -r requirements.txt` before running tests.
+- Added `scripts/install_requirements.sh` helper script.
+
+
+
+## 2025-07-24
+
+### Fixed
+- Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
+## 2025-06-14
+
+### Removed
+- Cleared historical logs from `logs/` leaving only `.gitkeep` placeholders.
+
+## 2025-07-24
+
+### Fixed
+
+- `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
+
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.

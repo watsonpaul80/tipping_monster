@@ -12,7 +12,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Confidence-based XGBoost ML model for tip generation
 * ✅ Odds integration (Betfair snapshot)
 * ✅ Tagging (e.g. Class Drop, In Form)
-* (Optional) LLM commentary generation – script not included
+* (Optional) LLM commentary generation – **proprietary script not included**
 * ✅ Tag-based commentary generation (ML-driven)
 * ✅ LLM commentary generation (optional)
 * ✅ Realistic odds injection
@@ -25,6 +25,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Optional course filter for dispatch (`--course`)
 * ✅ Full logging + S3 backup
 * ✅ Pre-commit hooks enforce `black`, `isort`, and `flake8`
+* ✅ UTF-8 encoding enforced for all generated files
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
 * ✅ Dev Mode via `--dev` sets `TM_DEV_MODE=1` to skip S3 uploads and Telegram posts
 * ✅ Automatic log archiving of files older than 14 days
@@ -73,7 +74,6 @@ The system defines 8 core product layers:
 | 08:09 | `generate_lay_candidates.py`      | Flags favourites with low Monster confidence |
 | 08:10 | `dispatch_danger_favs.py`         | Sends Danger Fav alerts to Telegram |
 | 08:10 | `export_lay_candidates_csv.py`    | Saves Danger Fav CSV summary |
-| 08:11 | *(disabled)* `generate_commentary_bedrock.py` | Optional commentary step – script not included |
 | 08:12 | `core/dispatch_tips.py`           | Sends formatted tips to Telegram                       |
 | 08:13 | `generate_combos.py`              | Suggests doubles & trebles from top tips               |
 | 23:30 | `rpscrape` (results cron)    | Gets results for today’s races                         |
@@ -91,14 +91,13 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 * The optional **meta place model** combines core features to output
   `final_place_confidence` during inference.
-
 * `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
 
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `run_inference_monster_v8.py`: Entry point for the v8 model. Provide a flattened racecard JSONL via `--input` and it saves predictions under `predictions/`.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-* `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
+* ✅ `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
 * `generate_combos.py`: Suggests doubles and trebles from 90%+ confidence tips. Messages
   include race time, course and odds, and any Telegram posts are logged with ROI.
 * `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV. Uses the `requests` library to send ROI summaries to Telegram.
@@ -259,12 +258,12 @@ The foundational elements and automated processes that power Tipping Monster are
     * **`08:00`**: Fetch Betfair odds
     * **`08:05`**: Run ML inference
     * **`08:08`**: Merge tips with odds
-    * **`08:10`**: *(disabled)* Add LLM commentary – script not included
     * **`08:12`**: Dispatch tips to Telegram
     * **`23:30`**: Upload race results
     * **`23:55`**: Run ROI tracker
     * **`23:59`**: Send ROI summary to Telegram
     * **`23:56`**: Track bankroll and cumulative profit
+    * *(optional)* Generate commentary – **proprietary script not included**
 * **Centralized Logging:** All system logs are meticulously saved under the `/logs/*.log` directory for easy monitoring and debugging.
 * **Automated S3 Backups:** Daily backup to S3 at `02:10 AM` using `utils/backup_to_s3.sh`.
     * **Retention Policy:** Lifecycle rule ensures auto-deletion of backups older than **30 days**.
@@ -297,14 +296,14 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
   * New `ultimate_dashboard.py` visualises ROI trends with filters and heatmaps.
   * Added day-of-week filtering and split top winners by profit, confidence and odds.
-* Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
+* ✅ Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
 * ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
-* Trainer intent tracker (`trainer_intent_score.py`)
+* Stable-level intent profiler (`trainer_intent_score.py`) – combines win-rate tracking and multiple-runner detection (planned)
 * Drift watcher
 * Telegram replay builder
 * Wildcard tips

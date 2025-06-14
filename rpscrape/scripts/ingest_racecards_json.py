@@ -1,23 +1,38 @@
 #!/usr/bin/env python3
+import argparse
+import json
+import logging
 import os
 import sys
-import argparse
-import logging
-import json
-from subprocess import run, PIPE
+from datetime import datetime
+from subprocess import PIPE, run
+
 import psycopg2
 from psycopg2.extras import execute_values
-from datetime import datetime
 
 # --- CLI ---
 parser = argparse.ArgumentParser(description="Scrape and ingest racecards JSON files")
-parser.add_argument("--folder", required=True, help="Folder containing racecards JSON files, relative to project root")
-parser.add_argument("--skip-scrape", action="store_true", help="Skip scraping; ingest existing JSON in folder")
+parser.add_argument(
+    "--folder",
+    required=True,
+    help="Folder containing racecards JSON files, relative to project root",
+)
+parser.add_argument(
+    "--skip-scrape",
+    action="store_true",
+    help="Skip scraping; ingest existing JSON in folder",
+)
 parser.add_argument("--db-host", default=os.getenv("DB_HOST"), help="Database host")
-parser.add_argument("--db-port", default=os.getenv("DB_PORT", "5432"), help="Database port")
-parser.add_argument("--db-name", default=os.getenv("DB_NAME", "racecards"), help="Database name")
+parser.add_argument(
+    "--db-port", default=os.getenv("DB_PORT", "5432"), help="Database port"
+)
+parser.add_argument(
+    "--db-name", default=os.getenv("DB_NAME", "racecards"), help="Database name"
+)
 parser.add_argument("--db-user", default=os.getenv("DB_USER"), help="Database user")
-parser.add_argument("--db-password", default=os.getenv("DB_PASSWORD"), help="Database password")
+parser.add_argument(
+    "--db-password", default=os.getenv("DB_PASSWORD"), help="Database password"
+)
 args = parser.parse_args()
 
 # Setup logging
@@ -38,7 +53,8 @@ if not args.skip_scrape:
         os.remove(json_file)
     logger.info("Scraping racecards for today")
     scraper = os.path.join(PROJECT_ROOT, "rpscrape/scripts/racecards.py")
-    result = run([sys.executable, scraper, "today"], stdout=open(json_file, "w"), stderr=PIPE)
+    with open(json_file, "w", encoding="utf-8") as fh:
+        result = run([sys.executable, scraper, "today"], stdout=fh, stderr=PIPE)
     if result.returncode != 0:
         logger.error(f"Scraper failed: {result.stderr.decode().strip()}")
         sys.exit(1)
@@ -59,32 +75,42 @@ meetings = []
 for region_val in data.values():
     if isinstance(region_val, dict):
         for meeting in region_val.values():
-            if isinstance(meeting, dict) and 'races' in meeting:
+            if isinstance(meeting, dict) and "races" in meeting:
                 meetings.append(meeting)
 
 if not meetings:
-    logger.error(f"No meetings found in {json_file}. Top-level keys: {list(data.keys())}")
+    logger.error(
+        f"No meetings found in {json_file}. Top-level keys: {list(data.keys())}"
+    )
     sys.exit(1)
 
 # Connect to database
 conn = psycopg2.connect(
-    host=args.db_host, port=args.db_port,
-    dbname=args.db_name, user=args.db_user,
-    password=args.db_password
+    host=args.db_host,
+    port=args.db_port,
+    dbname=args.db_name,
+    user=args.db_user,
+    password=args.db_password,
 )
 cur = conn.cursor()
 
 # Flatten runner rows
 rows = []
 for meeting in meetings:
-    mid = meeting.get('meeting_id') or meeting.get('id')
-    for race in meeting.get('races', []):
-        rid = race.get('race_id') or race.get('id')
-        for runner in race.get('runners', []):
-            runner_id = runner.get('runner_id') or runner.get('id')
-            name = runner.get('name')
-            trainer_info = runner.get('trainer') or runner.get('stats', {}).get('trainer', {})
-            trainer_pct = trainer_info.get('ovr_wins_pct') if isinstance(trainer_info, dict) else None
+    mid = meeting.get("meeting_id") or meeting.get("id")
+    for race in meeting.get("races", []):
+        rid = race.get("race_id") or race.get("id")
+        for runner in race.get("runners", []):
+            runner_id = runner.get("runner_id") or runner.get("id")
+            name = runner.get("name")
+            trainer_info = runner.get("trainer") or runner.get("stats", {}).get(
+                "trainer", {}
+            )
+            trainer_pct = (
+                trainer_info.get("ovr_wins_pct")
+                if isinstance(trainer_info, dict)
+                else None
+            )
             rows.append((mid, rid, runner_id, name, trainer_pct))
 
 if not rows:
@@ -101,4 +127,3 @@ else:
 
 cur.close()
 conn.close()
-

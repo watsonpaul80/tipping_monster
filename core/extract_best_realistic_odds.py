@@ -79,7 +79,7 @@ def main(date_str):
                 tip["realistic_odds"] = tip.get("bf_sp", tip.get("odds", 0.0))
             adjusted.append(tip)
 
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         for tip in adjusted:
             f.write(json.dumps(tip) + "\n")
 
