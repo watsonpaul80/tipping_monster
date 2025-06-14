@@ -766,7 +766,26 @@
 - Clarified planned stable-level intent profiler in overview.
 
 
+
 ## 2025-07-24
 
 ### Fixed
 - Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
+## 2025-06-14
+
+### Removed
+- Cleared historical logs from `logs/` leaving only `.gitkeep` placeholders.
+
+## 2025-07-24
+
+### Fixed
+
+- `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
+
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.
