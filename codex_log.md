@@ -634,6 +634,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Remove dotenv from requirements
+**Prompt:** Delete the `dotenv` line from `requirements.txt`.
+**Files Changed:** requirements.txt Docs/CHANGELOG.md Docs/monster_todo.md codex_log.md
+**Outcome:** Removed unused dependency and updated changelog and todo.
+
 ## [2025-07-24] Add shebang to backup_validator
 **Prompt:** Insert Python shebang and make script executable.
 **Files Changed:** backup_validator.py Docs/CHANGELOG.md codex_log.md
@@ -700,5 +705,4 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append trailing newline to select scripts and reformat.
 **Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
-
 

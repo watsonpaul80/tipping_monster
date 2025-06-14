@@ -767,6 +767,9 @@
 
 ## 2025-07-24
 
+
+### Removed
+- Dropped unused `dotenv` package from `requirements.txt`.
 ### Documentation
 
 - `backup_validator.py` now includes a standard Python shebang and is executable.
@@ -824,6 +827,5 @@
 
 ### Fixed
 - Added missing trailing newlines to several scripts for lint compliance.
-
 
 
