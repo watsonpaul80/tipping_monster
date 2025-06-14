@@ -601,7 +601,13 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
 
+## [2025-07-19] Clarify v8 workflow docs
+**Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.
+**Files Changed:** README.md, Docs/quickstart.md, Docs/model_storage.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Repo docs now explain how to train and run the v8 stack and where the tarball is stored.
 
+
+=======
 ## [2025-07-19] Clarify v8 workflow docs
 **Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.
 **Files Changed:** README.md, Docs/quickstart.md, Docs/model_storage.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
@@ -618,6 +624,7 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Addressed user feedback about missing v8 instructions. Added training command for the stacked ensemble to README and Quickstart.
 **Files Changed:** README.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation now spells out how to run `train_monster_model_v8.py`.
+<
 ## [2025-07-22] Tick off completed todo items
 **Prompt:** Check the todo and overview for done tasks and update.
 **Files Changed:** Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
@@ -705,4 +712,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append trailing newline to select scripts and reformat.
 **Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
+
 

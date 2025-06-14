@@ -744,7 +744,7 @@
 
 ### Documentation
 - Added explicit command for `train_monster_model_v8.py` in README and Quickstart.
-=======
+
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
 ## 2025-07-22
@@ -827,5 +827,3 @@
 
 ### Fixed
 - Added missing trailing newlines to several scripts for lint compliance.
-
-
