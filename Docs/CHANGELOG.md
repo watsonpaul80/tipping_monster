@@ -766,6 +766,12 @@
 - Clarified planned stable-level intent profiler in overview.
 
 
+
+## 2025-06-14
+
+### Removed
+- Cleared historical logs from `logs/` leaving only `.gitkeep` placeholders.
+
 ## 2025-07-24
 
 ### Fixed
