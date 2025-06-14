@@ -1,4 +1,9 @@
 
+## 2025-07-10
+
+### Added
+- SHAP commentary helper to produce technical summaries and punter explanations.
+
 ## 2025-07-17
 
 ### Documentation
@@ -75,6 +80,7 @@
 - `backup_validator.py` ensures timestamped backups for root scripts.
 
 - `check_tip_sanity.py` validates the latest sent tips for low confidence or missing fields.
+
 
 
 ## 2025-07-09
@@ -660,7 +666,7 @@
   outputs `final_place_confidence` per runner.
 - `dispatch_tips.py` displays a "Place Chance" line when this value is present.
 
-=======
+
 ### Changed
 - Model tarball extraction now uses `tempfile.TemporaryDirectory` so temporary
   folders are cleaned up automatically.
