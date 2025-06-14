@@ -40,6 +40,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
 * ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
+* ✅ Drawdown Streaks: Tracker logs longest losing run and max DD in `drawdown_stats.csv`
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
@@ -87,8 +88,12 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 * `train_model_v7.py`: Default training script using XGBoost with rating, class, form, trainer, jockey, etc.
 * `train_place_model.py`: Predicts whether a runner finishes in the top 3 using the same feature set.
+
 * The optional **meta place model** combines core features to output
   `final_place_confidence` during inference.
+
+* `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
+
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
@@ -279,12 +284,16 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 
 ### 🔜 v7 Features
 * ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* `generate_shap_explanations.py` exports tips_with_shap.jsonl
 * ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
+  * New `ultimate_dashboard.py` visualises ROI trends with filters and heatmaps.
+  * Added day-of-week filtering and split top winners by profit, confidence and odds.
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
+* ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
@@ -303,6 +312,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Place-focused model (predict 1st–3rd)
 * Confidence regression model (predict prob, not binary)
 * ROI-based calibration (not just accuracy)
+* Stacked ensemble model combining CatBoost, XGBoost and Keras (v8)
 * ✅ Penalise stale horses and poor form
 * Weekly ROI line chart (matplotlib) to logs
 * Penalise stale horses and poor form
