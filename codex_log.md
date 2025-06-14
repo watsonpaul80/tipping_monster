@@ -634,6 +634,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+
+## [2025-07-24] Document proprietary commentary script
+**Prompt:** State explicitly that the optional commentary script is proprietary and remove old pipeline references.
+**Files Changed:** Docs/monster_overview.md Docs/quickstart.md core/run_pipeline_with_venv.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** Docs note the missing proprietary script and pipeline steps no longer reference it.
+
 ## [2025-07-24] Document install step before tests
 **Prompt:** Document running `pip install -r requirements.txt` before running tests and provide optional setup script.
 **Files Changed:** README.md scripts/install_requirements.sh Docs/CHANGELOG.md codex_log.md
@@ -663,4 +669,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append trailing newline to select scripts and reformat.
 **Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
+
 

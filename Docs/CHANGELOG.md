@@ -768,6 +768,12 @@
 ## 2025-07-24
 
 ### Documentation
+
+- Explicitly note the commentary script is proprietary and not included.
+- Removed disabled commentary lines from cron and pipeline docs.
+- Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
+
+
 - README clarifies to install dependencies with `pip install -r requirements.txt` before running tests.
 - Added `scripts/install_requirements.sh` helper script.
 
@@ -795,3 +801,4 @@
 
 ### Fixed
 - Added missing trailing newlines to several scripts for lint compliance.
+
