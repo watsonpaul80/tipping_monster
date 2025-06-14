@@ -768,11 +768,14 @@
 ## 2025-07-24
 
 ### Documentation
+
+- `backup_validator.py` now includes a standard Python shebang and is executable.
+
 - Added docstrings to send_to_telegram() and main() in dispatch_tips.
 
 ### Changed
 - Standardized UTF-8 encoding for all script file outputs to avoid cross-platform issues.
-=======
+
 
 
 ## 2025-07-24
@@ -821,5 +824,6 @@
 
 ### Fixed
 - Added missing trailing newlines to several scripts for lint compliance.
+
 
 

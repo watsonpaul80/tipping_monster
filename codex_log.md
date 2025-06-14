@@ -634,6 +634,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Add shebang to backup_validator
+**Prompt:** Insert Python shebang and make script executable.
+**Files Changed:** backup_validator.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Script now runnable directly and docs updated.
+
 ## [2025-07-24] Document dispatch_tips helpers
 **Prompt:** Add docstrings for send_to_telegram and main.
 **Files Changed:** core/dispatch_tips.py Docs/CHANGELOG.md codex_log.md
