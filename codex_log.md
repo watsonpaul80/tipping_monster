@@ -518,6 +518,47 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
 
+## [2025-07-17] Document new v8 inference script
+**Prompt:** Add short docs for `run_inference_monster_v8.py` and `compare_model_outputs.py` and list them in `all_scripts.txt`.
+**Files Changed:** Docs/monster_overview.md, all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview section includes both scripts and script index updated.
+
+
+## [2025-07-17] Add place confidence output
+**Prompt:** Generate `final_place_confidence` using the meta-place model and show it in Telegram tips.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_run_inference_and_select_top1.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** Inference writes a place probability for each runner and Telegram messages include a "Place Chance" line when available.
+
+## [2025-07-17] Use TemporaryDirectory for model tar extraction
+**Prompt:** Ensure temporary folders for ensemble tarballs are cleaned up automatically.
+**Files Changed:** core/run_inference_and_select_top1.py, model_feature_importance.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Model loading now unpacks to a context-managed temp directory that is removed after use.
+
+## [2025-07-17] Check run_inference_monster_v8 script
+**Prompt:** Update `core/run_inference_monster_v8.py` to use kebab-case meta filenames.
+**Files Changed:** Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Requested script not found; documented expected naming in CHANGELOG.
+
+## [2025-07-16] Add stacked ensemble training
+**Prompt:** Create `train_monster_model_v8.py` with CatBoost, XGB and Keras stack; inference and comparison scripts.
+**Files Changed:** train_monster_model_v8.py, core/run_inference_monster_v8.py, core/compare_model_outputs.py, Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, requirements.txt, codex_log.md
+**Outcome:** New v8 training and inference tools enable stacked ensemble evaluation.
+
+## [2025-07-16] Refine v8 trainer
+**Prompt:** Polish `train_monster_model_v8.py` with model metadata, SHAP export and deduped self-training.
+**Files Changed:** train_monster_model_v8.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** v8 trainer now records model identity, logs SHAP top features and merges past tips without duplication.
+
+## [2025-07-17] Add Streamlit ultimate dashboard
+**Prompt:** Create `ultimate_dashboard.py` using Streamlit with ROI trends, confidence heatmap, tag breakdown and filters.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New dashboard script visualises tip performance with advanced filters and export option.
+
+## [2025-07-17] Improve ultimate dashboard filters
+**Prompt:** Refine `ultimate_dashboard.py` to add day-of-week filtering and show top winners by profit, confidence and odds.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+
+
 ## [2025-07-17] Document Telegram env vars
 **Prompt:** Create a reference doc for Telegram variables and link it from README.
 **Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
