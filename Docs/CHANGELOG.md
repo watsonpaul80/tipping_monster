@@ -1,4 +1,15 @@
 
+## 2025-07-10
+
+### Added
+- SHAP commentary helper to produce technical summaries and punter explanations.
+
+## 2025-07-17
+
+### Documentation
+- `Docs/monster_overview.md` lists the new `run_inference_monster_v8.py` and `compare_model_outputs.py` scripts.
+- `all_scripts.txt` updated with both filenames.
+
 ## 2025-07-15
 
 ### Documentation
@@ -69,6 +80,7 @@
 - `backup_validator.py` ensures timestamped backups for root scripts.
 
 - `check_tip_sanity.py` validates the latest sent tips for low confidence or missing fields.
+
 
 
 ## 2025-07-09
@@ -641,15 +653,73 @@
 
 ### Added
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
+- New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
 ## 2025-07-17
 
+
 ### Added
 - `run_inference_and_select_top1.py` loads an optional meta place model and
   outputs `final_place_confidence` per runner.
 - `dispatch_tips.py` displays a "Place Chance" line when this value is present.
+
+
+
+### Changed
+- Model tarball extraction now uses `tempfile.TemporaryDirectory` so temporary
+  folders are cleaned up automatically.
+
+
+## 2025-07-16
+
+### Added
+- `train_monster_model_v8.py` stacked ensemble trainer and accompanying inference scripts.
+
+### Changed
+- `train_monster_model_v8.py` now logs SHAP features, embeds model identity and
+  deduplicates self-training tips.
+
+## 2025-07-17
+
+### Adde
+
+- `ultimate_dashboard.py` provides a full-featured Streamlit dashboard with ROI trends, confidence heatmap and filters.
+
+### Changed
+- Dashboard now supports day-of-week filtering and shows top winners by profit, confidence and odds side by side.
+
+- ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
+
+## 2025-07-17
+
+### Fixed
+- Documented that meta data files use kebab-case names: `meta-win.pkl`, `meta-place.pkl`, `meta-features.json`.
+
+
+### Changed
+- Daily ROI summary shows current losing run, longest streak and max drawdown.
+
+
+
+## 2025-07-17
+
+### Added
+- `generate_shap_explanations.py` outputs top SHAP features for each tip.
+
+
+## 2025-07-17
+
+### Documentation
+- Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
+- `Docs/README.md` links to the new reference.
+
+
+## 2025-07-18
+
+### Documentation
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
 
