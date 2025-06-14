@@ -518,10 +518,17 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** cron/prod.crontab, cron/dev.crontab, Docs/ops.md, Docs/prod_setup_cheatsheet.md, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Schedules consolidated into templates and docs updated.
 
+
+## [2025-07-16] Document Telegram variables
+**Prompt:** Create `Docs/telegram_alerts.md` summarising Telegram env vars and scripts.
+**Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Added reference doc and linked it from README.
+
 ## [2025-07-16] Enhance combo generator
 **Prompt:** Improve `generate_combos.py` to log ROI when posting to Telegram and show odds, times and course.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
+
 
 
 ## [2025-07-17] Document new v8 inference script
@@ -530,10 +537,12 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Overview section includes both scripts and script index updated.
 
 
+
 ## [2025-07-17] Add place confidence output
 **Prompt:** Generate `final_place_confidence` using the meta-place model and show it in Telegram tips.
 **Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_run_inference_and_select_top1.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
 **Outcome:** Inference writes a place probability for each runner and Telegram messages include a "Place Chance" line when available.
+
 
 ## [2025-07-17] Use TemporaryDirectory for model tar extraction
 **Prompt:** Ensure temporary folders for ensemble tarballs are cleaned up automatically.
@@ -575,10 +584,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** roi/roi_tracker_advised.py, tests/test_drawdown_stats.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** ROI summary now prints drawdown streak info and updates `drawdown_stats.csv` daily.
 
+
 ## [2025-07-16] Model output comparator
 **Prompt:** Build `compare_model_outputs.py` to run two models (v6 vs v7) on same racecards, and log differences in tip selection, confidence, and feature impact.
 **Files Changed:** compare_model_outputs.py, Docs/quickstart.md, Docs/prod_setup_cheatsheet.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script outputs CSV of v6 vs v7 tips with SHAP summaries.
+
 
 ## [2025-07-17] Add SHAP explanations script
 **Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
@@ -589,6 +600,7 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** In `Docs/monster_overview.md`, list `run_inference_monster_v8.py` and `compare_model_outputs.py` alongside other key scripts with a short description.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
+
 
 ## [2025-07-19] Clarify v8 workflow docs
 **Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.

@@ -652,6 +652,10 @@
 ## 2025-07-16
 
 ### Added
+
+- `Docs/telegram_alerts.md` summarises all Telegram environment variables and
+  which scripts post alerts. `Docs/README.md` now links to this page.
+
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
 - New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
@@ -665,6 +669,7 @@
 - `run_inference_and_select_top1.py` loads an optional meta place model and
   outputs `final_place_confidence` per runner.
 - `dispatch_tips.py` displays a "Place Chance" line when this value is present.
+
 
 
 ### Changed
@@ -719,6 +724,7 @@
 ## 2025-07-18
 
 ### Documentation
+
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
 ## 2025-07-19
@@ -738,3 +744,6 @@
 
 ### Documentation
 - Added explicit command for `train_monster_model_v8.py` in README and Quickstart.
+=======
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+

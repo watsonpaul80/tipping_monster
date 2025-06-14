@@ -52,6 +52,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 26. Telegram control panel for config (bands, filters)  
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
 28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
+29. ✅ Output comparison script `compare_model_outputs.py` *(Done: 2025-07-16)*
 
 29. ✅ Drawdown streak metrics logged *(Done: 2025-07-17)*
 =======
@@ -242,6 +243,9 @@ pt
 
 108. ✅ Document `TG_BOT_TOKEN` / `TG_USER_ID` env vars and mention safecron
      failure alerts [Done: 2025-07-15]
+
+109. ✅ Meta place model outputs `final_place_confidence` for each tip
+    [Done: 2025-07-17]
 
 
 109. ✅ Meta place model outputs `final_place_confidence` for each tip

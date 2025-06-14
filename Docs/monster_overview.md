@@ -92,6 +92,10 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * The optional **meta place model** combines core features to output
   `final_place_confidence` during inference.
 
+
+* The optional **meta place model** combines core features to output
+  `final_place_confidence` during inference.
+
 * `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
 
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
