@@ -646,3 +646,8 @@
 - Combo messages include race time, course and odds for each runner.
 
 
+## 2025-07-17
+
+### Fixed
+- Documented that meta data files use kebab-case names: `meta-win.pkl`, `meta-place.pkl`, `meta-features.json`.
+
