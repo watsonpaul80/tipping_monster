@@ -661,3 +661,10 @@
 ### Added
 - `generate_shap_explanations.py` outputs top SHAP features for each tip.
 
+
+## 2025-07-17
+
+### Documentation
+- Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
+- `Docs/README.md` links to the new reference.
+

@@ -517,6 +517,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+
+## [2025-07-17] Document Telegram env vars
+**Prompt:** Create a reference doc for Telegram variables and link it from README.
+**Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** New doc lists all Telegram variables, shows which scripts use them and notes safecron alerts.
+
 ## [2025-07-17] Track drawdown streaks
 **Prompt:** Extend the ROI tracker to log drawdown streaks — longest losing streak, current losing run, max drawdown in points. Save to `logs/drawdown_stats.csv`.
 **Files Changed:** roi/roi_tracker_advised.py, tests/test_drawdown_stats.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
