@@ -645,4 +645,11 @@
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-17
+
+### Added
+- `run_inference_and_select_top1.py` loads an optional meta place model and
+  outputs `final_place_confidence` per runner.
+- `dispatch_tips.py` displays a "Place Chance" line when this value is present.
+
 

@@ -517,3 +517,8 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-17] Add place confidence output
+**Prompt:** Generate `final_place_confidence` using the meta-place model and show it in Telegram tips.
+**Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_run_inference_and_select_top1.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
+**Outcome:** Inference writes a place probability for each runner and Telegram messages include a "Place Chance" line when available.
+
