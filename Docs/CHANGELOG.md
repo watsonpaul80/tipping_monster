@@ -631,7 +631,6 @@
   manage confidence thresholds.
 - `dispatch_tips.py` reads `config/conf_override.json` for any active override.
 
----
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
 
@@ -814,11 +813,11 @@
 - Added `scripts/install_requirements.sh` helper script.
 
 
-
 ## 2025-07-24
 
 ### Fixed
 - Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
 
 ## 2025-06-14
 
