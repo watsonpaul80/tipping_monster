@@ -217,6 +217,14 @@ repository root. If no model is found, they exit with `FileNotFoundError` and
 instruct you to download one from S3 or train locally. When a path is provided
 via `--model`, that file is downloaded if missing locally.
 
+### v8 Stacked Ensemble (Experimental)
+
+The latest research pipeline trains an ensemble of CatBoost, XGBoost and a small
+Keras MLP. Run `python core/train_monster_model_v8.py` to generate
+`models/monster_v8_stack.tar.gz`, which is uploaded to the `tipping-monster` S3
+bucket. Use `python -m core.run_inference_monster_v8 --input <racecards.jsonl>`
+to produce tips under `predictions/<DATE>/output_v8.jsonl`.
+
 ## Model Transparency and Self‑Training
 
 The pipeline uses **SHAP** to compute feature importance for each prediction. These explanations
