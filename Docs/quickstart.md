@@ -68,7 +68,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless the repo
 - **Odds Integration:** `core/fetch_betfair_odds.py` grabs odds snapshots; `core/merge_odds_into_tips.py` merges them with tips; `core/extract_best_realistic_odds.py` updates tips with the best available odds for ROI.
 - **Dispatch & ROI:** `core/dispatch_tips.py` formats tips for Telegram. `roi/roi_tracker_advised.py` and `roi/send_daily_roi_summary.py` track daily performance and report ROI.
 - **Explainability:** `model_feature_importance.py` plots SHAP values and can upload the chart to S3.
-- **Steam Sniper:** Scripts like `build_sniper_schedule.py` detect market steamers from Betfair odds.
+- **Steam Sniper:** *Subsystem removed in June 2025.* Older scripts such as `build_sniper_schedule.py` are no longer part of the pipeline.
 
 ## Next Steps for Newcomers
 
