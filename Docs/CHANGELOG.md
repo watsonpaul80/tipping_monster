@@ -652,6 +652,10 @@
 ## 2025-07-16
 
 ### Added
+
+- `Docs/telegram_alerts.md` summarises all Telegram environment variables and
+  which scripts post alerts. `Docs/README.md` now links to this page.
+
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
 - New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
@@ -721,5 +725,3 @@
 
 ### Documentation
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
-
-

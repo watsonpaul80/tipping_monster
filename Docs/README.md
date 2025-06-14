@@ -45,6 +45,9 @@ The `utils/safecron.sh` helper also respects this variable and will not send
 Telegram alerts when `TM_DEV_MODE=1`.
 See `telegram_alerts.md` for a full list of Telegram variables and the scripts that use them.
 
+For a detailed breakdown of each Telegram variable and how they are used, see
+[`telegram_alerts.md`](telegram_alerts.md).
+
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
 ---

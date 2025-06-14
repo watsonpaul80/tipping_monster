@@ -518,6 +518,12 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** cron/prod.crontab, cron/dev.crontab, Docs/ops.md, Docs/prod_setup_cheatsheet.md, Docs/quickstart.md, README.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Schedules consolidated into templates and docs updated.
 
+
+## [2025-07-16] Document Telegram variables
+**Prompt:** Create `Docs/telegram_alerts.md` summarising Telegram env vars and scripts.
+**Files Changed:** Docs/telegram_alerts.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Added reference doc and linked it from README.
+
 ## [2025-07-16] Enhance combo generator
 **Prompt:** Improve `generate_combos.py` to log ROI when posting to Telegram and show odds, times and course.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
