@@ -765,6 +765,12 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Documentation
+- README clarifies to install dependencies with `pip install -r requirements.txt` before running tests.
+- Added `scripts/install_requirements.sh` helper script.
+
 
 
 ## 2025-07-24

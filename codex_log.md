@@ -634,6 +634,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Document install step before tests
+**Prompt:** Document running `pip install -r requirements.txt` before running tests and provide optional setup script.
+**Files Changed:** README.md scripts/install_requirements.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** README emphasises installing dependencies prior to tests and new helper script created.
+
 ## [2025-07-24] Fix truncated pipeline script
 **Prompt:** Ensure lines after S3 upload commands are complete and add cleanup.
 **Files Changed:** core/run_pipeline_with_venv.sh, Docs/CHANGELOG.md, codex_log.md
