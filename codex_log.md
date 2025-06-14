@@ -590,4 +590,19 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Overview now mentions the v8 inference script and the output comparator with typical usage guidance.
 
+## [2025-07-19] Clarify v8 workflow docs
+**Prompt:** User noted missing v8 references. Add documentation about the stacked ensemble scripts and update README, quickstart and model storage notes.
+**Files Changed:** README.md, Docs/quickstart.md, Docs/model_storage.md, Docs/README.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Repo docs now explain how to train and run the v8 stack and where the tarball is stored.
 
+
+
+## [2025-07-20] Fix inference helper imports
+**Prompt:** Tests failed due to missing `extract_race_sort_key` in `run_inference_and_select_top1.py`.
+**Files Changed:** core/run_inference_and_select_top1.py, Docs/CHANGELOG.md
+**Outcome:** Restored helper functions and tests pass.
+
+## [2025-07-21] Clarify v8 training docs
+**Prompt:** Addressed user feedback about missing v8 instructions. Added training command for the stacked ensemble to README and Quickstart.
+**Files Changed:** README.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Documentation now spells out how to run `train_monster_model_v8.py`.
