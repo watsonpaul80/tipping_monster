@@ -52,9 +52,10 @@ Optionally, set `TIPPING_MONSTER_HOME` to the repository root:
 source utils/set_tm_home.sh
 ```
 
-4. Run tests to confirm everything is working:
+4. Run tests to confirm everything is working. Install dependencies first if you skipped step 1:
 
 ```bash
+pip install -r requirements.txt
 pytest
 ```
 

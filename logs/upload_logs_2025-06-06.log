@@ -1,3 +1,0 @@
-  adding: home/ec2-user/tipping-monster/logs/upload_results_2025-05-28.log (deflated 38%)
-Completed 544 Bytes/544 Bytes (1.5 KiB/s) with 1 file(s) remainingupload: ../../tmp/tipping-monster-logs-2025-06-06.zip to s3://tipping-monster/logs-archive/tipping-monster-logs-2025-06-06.zip
-Uploaded /tmp/tipping-monster-logs-2025-06-06.zip to s3://tipping-monster/logs-archive/
