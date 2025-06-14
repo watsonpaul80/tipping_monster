@@ -43,7 +43,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 17. ✅ SHAP or feature gain per model *(Live internally - 2025-06-08)*
 18. ~~Top 5 feature impact per tip (in .md + Telegram)~~ ✅ Implemented via `explain_model_decision.py` and `dispatch_tips.py --explain`
 19. ✅ Logic-based commentary block: “📉 Class Drop, 📈 In Form, Conf: 92%” [Done: 2025-06-24]
-20. Use tags + confidence + form stats for explanation  
+20. ✅ Use tags + confidence + form stats for explanation [Done: 2025-07-10]
 21. ✅ Score tips by band, confidence, and value *(Done: 2025-06-24)*
 22. Tag top 3 per day as Premium Tips  
 23. Split public vs subscriber tips via logic or tier  
@@ -53,11 +53,29 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
 28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
+29. ✅ Drawdown streak metrics logged *(Done: 2025-07-17)*
+=======
+29. ✅ Output comparison script `compare_model_outputs.py` *(Done: 2025-07-16)*
+
+
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
+
+30. Confidence regression model (predict prob, not binary)
+31. ✅ Stacked ensemble model (CatBoost + XGB + MLP) *(Done: 2025-07-16, SHAP logging 2025-07-16)*
+32. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
+33. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
+34. ✅ Add weekly ROI line chart (matplotlib) to logs *(Done: 2025-06-26)*
+35. Include win/loss emoji outcomes in Telegram ROI
+36. Optional: highlight top winners in Telegram
+37. NAP-only output mode for casual tier
+38. Invite-only Telegram access logic
+39. Visual dashboards (Streamlit / HTML)
+40. Monetisation hooks (Stripe, Patreon, etc.)
+
 30. Confidence regression model (predict prob, not binary)  
 31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
 32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
@@ -66,8 +84,9 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 35. Optional: highlight top winners in Telegram  
 36. NAP-only output mode for casual tier  
 37. Invite-only Telegram access logic  
-38. Visual dashboards (Streamlit / HTML)  
+38. ✅ Visual dashboards (Streamlit / HTML) *(Done: 2025-07-17)*
 39. Monetisation hooks (Stripe, Patreon, etc.)
+
 
 ---
 
@@ -218,3 +237,21 @@ pt
 107. ✅ Pipeline script initialises `DEV_MODE` from `TM_DEV_MODE` for consistent
      behaviour [Done: 2025-07-14]
 
+
+108. ✅ Combo generator logs ROI and shows time/course/odds [Done: 2025-07-16]
+
+108. ✅ Document `TG_BOT_TOKEN` / `TG_USER_ID` env vars and mention safecron
+     failure alerts [Done: 2025-07-15]
+
+109. ✅ Meta place model outputs `final_place_confidence` for each tip
+    [Done: 2025-07-17]
+
+
+109. ✅ Meta place model outputs `final_place_confidence` for each tip
+    [Done: 2025-07-17]
+
+109. ✅ Model tarball extraction cleaned up with `TemporaryDirectory`
+     [Done: 2025-07-17]
+
+
+109. ✅ SHAP explanations script generates tips_with_shap.jsonl [Done: 2025-07-17]
