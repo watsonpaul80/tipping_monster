@@ -57,12 +57,7 @@ echo "🧠 Running model inference..."
 echo "🔗 Merging tips with odds..."
 .venv/bin/python core/merge_odds_into_tips.py >> "$LOG_DIR/merge.log" 2>&1
 
-# 6. (Optional) Generate commentary
-# NOTE: The commentary script (`generate_commentary_bedrock.py`) is not included
-# in this repository. The call is disabled to avoid errors in the daily cron.
-# .venv/bin/python generate_commentary_bedrock.py >> "$LOG_DIR/commentary.log" 2>&1
-
-# 7. Dispatch tips to Telegram
+# 6. Dispatch tips to Telegram
 echo "🚀 Dispatching tips to Telegram..."
 TODAY=$(date +%F)
 DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
@@ -94,5 +89,14 @@ if [ "$DEV_MODE" -eq 0 ]; then
     if command -v aws >/dev/null; then
         echo "🗂️ Uploading tips and logs to S3..."
         aws s3 cp "$SENT_TIPS_PATH" s3://tipping-monster/sent_tips/ --only-show-errors
-        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster](#)
-
+        aws s3 cp "$REPO_ROOT/logs/roi/tips_results_${TODAY}_advised.csv" s3://tipping-monster/results/ --only-show-errors
+    else
+        echo "⚠️ AWS CLI not found, skipping S3 uploads"
+    fi
+else
+    echo "[DEV] Skipping S3 uploads"
+fi
+
+deactivate
+echo "✅ Pipeline complete: $(date)"
+exit 0

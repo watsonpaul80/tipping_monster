@@ -631,7 +631,6 @@
   manage confidence thresholds.
 - `dispatch_tips.py` reads `config/conf_override.json` for any active override.
 
----
 
 ## [2025-05-31] 🧠 Tipping Monster — Pipeline Stability & Odds Snapshot Cleanup
 
@@ -724,9 +723,124 @@
 ## 2025-07-18
 
 ### Documentation
+
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
 ## 2025-07-20
 
 ### Documentation
 - Marked the Steam Sniper subsystem as removed in `quickstart.md` and updated `TIPPING_MONSTER_PRODUCTS.md`.
+=======
+
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+
+## 2025-07-19
+
+### Documentation
+- README and Quickstart highlight the experimental v8 training and inference scripts.
+- `Docs/model_storage.md` references `monster_v8_stack.tar.gz` tarball.
+- `Docs/README.md` lists `run_inference_monster_v8.py` as an included document.
+
+
+## 2025-07-20
+
+### Fixed
+- Restored missing helper functions in `core/run_inference_and_select_top1.py` so tests pass again.
+
+## 2025-07-21
+
+### Documentation
+- Added explicit command for `train_monster_model_v8.py` in README and Quickstart.
+
+- `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
+
+## 2025-07-22
+
+### Documentation
+- Marked All Tips Mode and tag-based ROI as complete in todo/overview.
+
+
+## 2025-07-22
+
+### Documentation
+- Cleaned numbering and removed duplicates in monster_todo.md.
+
+
+## 2025-07-23
+
+### Documentation
+- Removed duplicate meta place model lines in overview and todo.
+- Clarified planned stable-level intent profiler in overview.
+
+## 2025-07-24
+
+### Fixed
+- CSV loading errors in `run_inference_and_select_top1.py` now report the file
+  path and only catch parsing-related issues.
+
+
+### Changed
+- `cli/streamlit_dashboard.py` now only ignores `ValueError` and `KeyError`
+  when loading confidence data and logs unexpected issues.
+
+
+
+### Removed
+- Dropped unused `dotenv` package from `requirements.txt`.
+### Documentation
+
+- `backup_validator.py` now includes a standard Python shebang and is executable.
+
+- Added docstrings to send_to_telegram() and main() in dispatch_tips.
+
+### Changed
+- Standardized UTF-8 encoding for all script file outputs to avoid cross-platform issues.
+
+
+
+## 2025-07-24
+
+### Maintenance
+- Sorted imports and reformatted `core/run_inference_and_select_top1.py`.
+
+## 2025-07-24
+
+### Maintenance
+- Added trailing newlines to empty `__init__.py` files to satisfy linters.
+
+### Documentation
+
+- Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
+
+- Explicitly note the commentary script is proprietary and not included.
+- Removed disabled commentary lines from cron and pipeline docs.
+- Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
+
+
+- README clarifies to install dependencies with `pip install -r requirements.txt` before running tests.
+- Added `scripts/install_requirements.sh` helper script.
+
+
+## 2025-07-24
+
+### Fixed
+- Restored missing lines in `run_pipeline_with_venv.sh` after S3 upload step and added cleanup exit.
+
+
+## 2025-06-14
+
+### Removed
+- Cleared historical logs from `logs/` leaving only `.gitkeep` placeholders.
+
+## 2025-07-24
+
+### Fixed
+
+- `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
+
+- Removed unused `requests` import from `roi/weekly_roi_summary.py`.
+
+## 2025-07-24
+
+### Fixed
+- Added missing trailing newlines to several scripts for lint compliance.

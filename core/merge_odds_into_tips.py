@@ -78,7 +78,7 @@ for tip in tips:
 
 # === SAVE OUTPUT ===
 output_file.parent.mkdir(parents=True, exist_ok=True)
-with open(output_file, "w") as f:
+with open(output_file, "w", encoding="utf-8") as f:
     for row in merged:
         f.write(json.dumps(row) + "\n")
 
