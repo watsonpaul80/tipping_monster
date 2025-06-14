@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Document safecron env requirements
+**Prompt:** Add note under cron section about TG_BOT_TOKEN and TG_USER_ID.
+**Files Changed:** Docs/telegram_alerts.md Docs/CHANGELOG.md codex_log.md
+**Outcome:** Cron docs clarify env vars required before running safecron.sh.

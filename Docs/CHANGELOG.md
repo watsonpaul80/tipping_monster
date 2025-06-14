@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Documentation
+- Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
+
