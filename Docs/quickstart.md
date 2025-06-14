@@ -48,6 +48,7 @@ These times are detailed in `Docs/monster_overview.md`.
 
 - **Training:** `core/train_model_v6.py` and `core/train_modelv7.py` load historical data and produce an XGBoost model.
 - **Model Comparison:** `core/compare_model_v6_v7.py` trains both versions side by side and logs confidence deltas.
+- **Output Comparison:** `compare_model_outputs.py` runs two models on the same racecards and saves the differences in tip selection, confidence and feature impact.
 
 - **Inference:** `core/run_inference_and_select_top1.py` chooses the most recent
   `tipping-monster-xgb-model-*.tar.gz` in the repository root and downloads it
