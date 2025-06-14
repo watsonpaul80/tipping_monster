@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Close file handle when scraping racecards
+**Prompt:** Wrap `run()` call in a `with open()` block for proper cleanup.
+**Files Changed:** rpscrape/scripts/ingest_racecards_json.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Output JSON file closes properly after scraping.

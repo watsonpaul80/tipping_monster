@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+
+## 2025-07-24
+
+### Fixed
+- `ingest_racecards_json.py` now opens the output file using a `with` block so the file handle closes properly.
