@@ -641,6 +641,7 @@
 
 ### Added
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
+- New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
 ### Changed
 - Combo messages include race time, course and odds for each runner.
