@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Add shebang to backup_validator
+**Prompt:** Insert Python shebang and make script executable.
+**Files Changed:** backup_validator.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Script now runnable directly and docs updated.

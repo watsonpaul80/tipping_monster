@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Documentation
+- `backup_validator.py` now includes a standard Python shebang and is executable.
+
