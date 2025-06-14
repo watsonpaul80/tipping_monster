@@ -1,7 +1,0 @@
-📅 Scraping results for 2025/05/30
-../settings/user_settings.toml does not exist, using ../settings/default_settings.toml
-Finished scraping.
-2025_05_30.csv saved in rpscrape/data/dates/all/
-☁️ Uploading results CSV to S3
-Completed 192.0 KiB/192.0 KiB (371.6 KiB/s) with 1 file(s) remainingupload: ../data/dates/all/2025_05_30.csv to s3://tipping-monster/results/2025_05_30.csv
-✅ Results upload complete for 2025/05/30
