@@ -641,6 +641,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Handle CSV parse failures in run_inference_and_select_top1
+**Prompt:** Replace generic exception handling with specific pandas errors and log the file path.
+**Files Changed:** core/run_inference_and_select_top1.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Script now warns which CSV failed to load and avoids hiding unrelated errors.
+
 ## [2025-07-24] Harden dashboard parser
 **Prompt:** Catch only `ValueError` in the dashboard loader and surface unexpected errors.
 **Files Changed:** cli/streamlit_dashboard.py, Docs/CHANGELOG.md, codex_log.md
