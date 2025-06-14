@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Document dispatch_tips helpers
+**Prompt:** Add docstrings for send_to_telegram and main.
+**Files Changed:** core/dispatch_tips.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Functions now explained and docs updated.

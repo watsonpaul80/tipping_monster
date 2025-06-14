@@ -303,6 +303,8 @@ def format_tip_message(tip, max_id):
 
 
 def send_to_telegram(text):
+    """Send `text` to Telegram unless running in CLI-only mode."""
+
     if LOG_TO_CLI_ONLY:
         print(text)
         return
@@ -322,6 +324,8 @@ def send_batched_messages(tips, batch_size):
 
 
 def main(argv=None):
+    """Dispatch daily tips and optionally send them to Telegram."""
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=TODAY)
     parser.add_argument("--mode", default="advised")

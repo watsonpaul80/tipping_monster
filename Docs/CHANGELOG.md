@@ -765,3 +765,8 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Documentation
+- Added docstrings to send_to_telegram() and main() in dispatch_tips.
+
