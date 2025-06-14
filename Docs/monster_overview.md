@@ -25,6 +25,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Optional course filter for dispatch (`--course`)
 * ✅ Full logging + S3 backup
 * ✅ Pre-commit hooks enforce `black`, `isort`, and `flake8`
+* ✅ UTF-8 encoding enforced for all generated files
 * ✅ Organized log folders (`roi/`, `dispatch/`, `inference/`)
 * ✅ Dev Mode via `--dev` sets `TM_DEV_MODE=1` to skip S3 uploads and Telegram posts
 * ✅ Automatic log archiving of files older than 14 days

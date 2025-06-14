@@ -53,7 +53,7 @@ if not args.skip_scrape:
         os.remove(json_file)
     logger.info("Scraping racecards for today")
     scraper = os.path.join(PROJECT_ROOT, "rpscrape/scripts/racecards.py")
-    with open(json_file, "w") as fh:
+    with open(json_file, "w", encoding="utf-8") as fh:
         result = run([sys.executable, scraper, "today"], stdout=fh, stderr=PIPE)
     if result.returncode != 0:
         logger.error(f"Scraper failed: {result.stderr.decode().strip()}")
