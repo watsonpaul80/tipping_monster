@@ -303,6 +303,8 @@ def format_tip_message(tip, max_id):
 
 
 def send_to_telegram(text):
+    """Send `text` to Telegram unless running in CLI-only mode."""
+
     if LOG_TO_CLI_ONLY:
         print(text)
         return
@@ -322,6 +324,8 @@ def send_batched_messages(tips, batch_size):
 
 
 def main(argv=None):
+    """Dispatch daily tips and optionally send them to Telegram."""
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", default=TODAY)
     parser.add_argument("--mode", default="advised")
@@ -413,9 +417,9 @@ def main(argv=None):
             formatted.append(msg)
 
     os.makedirs(os.path.dirname(summary_path), exist_ok=True)
-    with open(summary_path, "w") as f:
+    with open(summary_path, "w", encoding="utf-8") as f:
         f.write("\n\n".join(formatted))
-    with open(sent_path, "w") as f:
+    with open(sent_path, "w", encoding="utf-8") as f:
         for tip in enriched:
             json.dump(tip.to_dict(), f)
             f.write("\n")

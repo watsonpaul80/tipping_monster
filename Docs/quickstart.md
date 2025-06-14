@@ -35,7 +35,6 @@ A typical daily pipeline runs the following steps:
 08:00  core/fetch_betfair_odds.py      # Capture odds snapshot
 08:05  python -m core.run_inference_and_select_top1  # Predict and select tips
 08:08  core/merge_odds_into_tips.py    # Attach odds to tips
-08:10  [disabled] generate_commentary_bedrock.py  # Script not included
 08:12  core/dispatch_tips.py           # Send tips to Telegram
 08:13  generate_combos.py              # Suggest Monster doubles/trebles
 23:30  rpscrape (results cron)         # Get results for today
@@ -43,6 +42,7 @@ A typical daily pipeline runs the following steps:
 23:59  roi/send_daily_roi_summary.py  # Telegram summary of ROI
 ```
 These times are detailed in `Docs/monster_overview.md`.
+*Note:* An optional commentary step exists, but the script is **proprietary and not included**.
 
 ## Key Scripts
 

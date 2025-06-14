@@ -108,7 +108,7 @@ if __name__ == "__main__":
     output_path = sys.argv[2]
     rows = flatten_racecard(input_path)
 
-    with open(output_path, "w") as out:
+    with open(output_path, "w", encoding="utf-8") as out:
         for row in rows:
             out.write(json.dumps(row) + "\n")
 
