@@ -767,6 +767,9 @@
 
 ## 2025-07-24
 
+### Maintenance
+- Added trailing newlines to empty `__init__.py` files to satisfy linters.
+
 ### Documentation
 
 - Added a note under the cron section in `telegram_alerts.md` reminding users to set `TG_BOT_TOKEN` and `TG_USER_ID` before running `safecron.sh`.
