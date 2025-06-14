@@ -5,6 +5,7 @@ import argparse
 import glob
 import json
 import os
+import pickle
 import sys
 import tarfile
 import tempfile
@@ -233,6 +234,17 @@ def main() -> None:
     model = xgb.XGBClassifier()
     model.load_model(model_file)
 
+    meta_place_model = None
+    meta_feat_file = os.path.join(model_dir, "meta_place_features.json")
+    meta_model_file = os.path.join(model_dir, "meta_place_model.pkl")
+    if os.path.exists(meta_model_file) and os.path.exists(meta_feat_file):
+        with open(meta_model_file, "rb") as f:
+            meta_place_model = pickle.load(f)
+        with open(meta_feat_file) as f:
+            meta_place_features = json.load(f)
+    else:
+        meta_place_features = []
+
     with open(input_path) as f:
         rows = [json.loads(line) for line in f]
     df = pd.DataFrame(rows)
@@ -251,6 +263,15 @@ def main() -> None:
     X = X.apply(pd.to_numeric, errors="coerce").fillna(-1)
 
     df["confidence"] = model.predict_proba(X)[:, 1]
+
+    if meta_place_model and meta_place_features:
+        missing_meta = [f for f in meta_place_features if f not in df.columns]
+        if missing_meta:
+            print(f"❌ Place feature mismatch. Missing: {missing_meta}")
+        else:
+            X_place = df[meta_place_features]
+            X_place = X_place.apply(pd.to_numeric, errors="coerce").fillna(-1)
+            df["final_place_confidence"] = meta_place_model.predict_proba(X_place)[:, 1]
     top_tips = df.sort_values("confidence", ascending=False).groupby("race").head(1)
 
     top_tips["sort_key"] = top_tips["race"].apply(extract_race_sort_key)
