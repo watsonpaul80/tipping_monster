@@ -40,6 +40,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
 * ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
+* ✅ Drawdown Streaks: Tracker logs longest losing run and max DD in `drawdown_stats.csv`
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
