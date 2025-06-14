@@ -645,4 +645,12 @@
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-17
+
+### Added
+- `ultimate_dashboard.py` provides a full-featured Streamlit dashboard with ROI trends, confidence heatmap and filters.
+
+### Changed
+- Dashboard now supports day-of-week filtering and shows top winners by profit, confidence and odds side by side.
+
 

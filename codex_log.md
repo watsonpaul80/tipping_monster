@@ -517,3 +517,13 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-17] Add Streamlit ultimate dashboard
+**Prompt:** Create `ultimate_dashboard.py` using Streamlit with ROI trends, confidence heatmap, tag breakdown and filters.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_todo.md, Docs/script_audit.txt, all_scripts.txt, codex_log.md
+**Outcome:** New dashboard script visualises tip performance with advanced filters and export option.
+
+## [2025-07-17] Improve ultimate dashboard filters
+**Prompt:** Refine `ultimate_dashboard.py` to add day-of-week filtering and show top winners by profit, confidence and odds.
+**Files Changed:** ultimate_dashboard.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
+**Outcome:** Dashboard now includes weekday filter and splits top winner tables for clearer insights.
+

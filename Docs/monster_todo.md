@@ -66,7 +66,7 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 35. Optional: highlight top winners in Telegram  
 36. NAP-only output mode for casual tier  
 37. Invite-only Telegram access logic  
-38. Visual dashboards (Streamlit / HTML)  
+38. ✅ Visual dashboards (Streamlit / HTML) *(Done: 2025-07-17)*
 39. Monetisation hooks (Stripe, Patreon, etc.)
 
 ---
