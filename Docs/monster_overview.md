@@ -104,6 +104,8 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
 * `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
 * `check_tip_sanity.py`: Warns if the latest sent tips have low confidence or missing odds/stake.
+* `run_inference_monster_v8.py`: Runs the experimental v8 model and outputs tips with confidence scores.
+* `compare_model_outputs.py`: Produces side-by-side comparisons of model predictions and ROI.
 
 ---
 

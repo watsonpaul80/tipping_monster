@@ -517,3 +517,8 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-17] Document new v8 inference script
+**Prompt:** Add short docs for `run_inference_monster_v8.py` and `compare_model_outputs.py` and list them in `all_scripts.txt`.
+**Files Changed:** Docs/monster_overview.md, all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview section includes both scripts and script index updated.
+

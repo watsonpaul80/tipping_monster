@@ -1,4 +1,10 @@
 
+## 2025-07-17
+
+### Documentation
+- `Docs/monster_overview.md` lists the new `run_inference_monster_v8.py` and `compare_model_outputs.py` scripts.
+- `all_scripts.txt` updated with both filenames.
+
 ## 2025-07-15
 
 ### Documentation
