@@ -518,6 +518,12 @@ error. Added tests for failing responses and documented in changelog.
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
 
+## [2025-07-17] Document new v8 inference script
+**Prompt:** Add short docs for `run_inference_monster_v8.py` and `compare_model_outputs.py` and list them in `all_scripts.txt`.
+**Files Changed:** Docs/monster_overview.md, all_scripts.txt, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Overview section includes both scripts and script index updated.
+
+
 ## [2025-07-17] Add place confidence output
 **Prompt:** Generate `final_place_confidence` using the meta-place model and show it in Telegram tips.
 **Files Changed:** core/run_inference_and_select_top1.py, core/dispatch_tips.py, tests/test_run_inference_and_select_top1.py, tests/test_dispatch_tips.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, README.md, codex_log.md
@@ -572,6 +578,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
 **Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
-
 
 
