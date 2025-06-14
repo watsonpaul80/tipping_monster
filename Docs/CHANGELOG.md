@@ -767,6 +767,9 @@
 
 ## 2025-07-24
 
+### Documentation
+- Added docstrings to send_to_telegram() and main() in dispatch_tips.
+
 ### Changed
 - Standardized UTF-8 encoding for all script file outputs to avoid cross-platform issues.
 =======
