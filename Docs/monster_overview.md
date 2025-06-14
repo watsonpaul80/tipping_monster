@@ -278,12 +278,14 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 
 ### 🔜 v7 Features
 * ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* `generate_shap_explanations.py` exports tips_with_shap.jsonl
 * ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
+* ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
