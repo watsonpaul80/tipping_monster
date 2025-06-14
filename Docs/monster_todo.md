@@ -53,6 +53,11 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
 28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
+29. ✅ Drawdown streak metrics logged *(Done: 2025-07-17)*
+=======
+29. ✅ Output comparison script `compare_model_outputs.py` *(Done: 2025-07-16)*
+
+
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
@@ -225,3 +230,4 @@ pt
      failure alerts [Done: 2025-07-15]
 
 
+109. ✅ SHAP explanations script generates tips_with_shap.jsonl [Done: 2025-07-17]

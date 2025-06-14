@@ -641,10 +641,25 @@
 
 ### Added
 - `generate_combos.py` now logs each Telegram post to `logs/roi/combos_DATE.csv`.
+- New `compare_model_outputs.py` script compares v6 and v7 predictions on the same racecards.
 
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-17
+
+### Added
+- ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
+
+### Changed
+- Daily ROI summary shows current losing run, longest streak and max drawdown.
+
+
+
+## 2025-07-17
+
+### Added
+- `generate_shap_explanations.py` outputs top SHAP features for each tip.
 
 
 ## 2025-07-17
