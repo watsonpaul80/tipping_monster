@@ -91,18 +91,13 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 
 * The optional **meta place model** combines core features to output
   `final_place_confidence` during inference.
-
-
-* The optional **meta place model** combines core features to output
-  `final_place_confidence` during inference.
-
 * `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
 
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
 * `run_inference_monster_v8.py`: Entry point for the v8 model. Provide a flattened racecard JSONL via `--input` and it saves predictions under `predictions/`.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
-* `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
+* ✅ `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
 * `generate_combos.py`: Suggests doubles and trebles from 90%+ confidence tips. Messages
   include race time, course and odds, and any Telegram posts are logged with ROI.
 * `roi/roi_tracker_advised.py`: Matches tips with results and calculates each-way profit. Also acts as the main daily tracker – filters, calculates profit, generates tip results CSV. Uses the `requests` library to send ROI summaries to Telegram.
@@ -301,14 +296,14 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
   * New `ultimate_dashboard.py` visualises ROI trends with filters and heatmaps.
   * Added day-of-week filtering and split top winners by profit, confidence and odds.
-* Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
+* ✅ Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
 * ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
-* Trainer intent tracker (`trainer_intent_score.py`)
+* Stable-level intent profiler (`trainer_intent_score.py`) – combines win-rate tracking and multiple-runner detection (planned)
 * Drift watcher
 * Telegram replay builder
 * Wildcard tips

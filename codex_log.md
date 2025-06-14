@@ -618,3 +618,18 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Addressed user feedback about missing v8 instructions. Added training command for the stacked ensemble to README and Quickstart.
 **Files Changed:** README.md, Docs/quickstart.md, Docs/CHANGELOG.md, codex_log.md
 **Outcome:** Documentation now spells out how to run `train_monster_model_v8.py`.
+## [2025-07-22] Tick off completed todo items
+**Prompt:** Check the todo and overview for done tasks and update.
+**Files Changed:** Docs/monster_todo.md, Docs/monster_overview.md, Docs/CHANGELOG.md, codex_log.md
+**Outcome:** Marked All Tips Mode and tag-based ROI as completed with dates in docs.
+
+
+## [2025-07-22] Clean monster_todo numbering
+**Prompt:** Fix messy numbering and duplicates in monster_todo.md.
+**Files Changed:** Docs/monster_todo.md
+**Outcome:** Renumbered tasks sequentially and removed merge artifacts.
+
+## [2025-07-23] Deduplicate meta place docs
+**Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
+**Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
+**Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
