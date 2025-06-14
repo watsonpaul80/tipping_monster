@@ -765,3 +765,10 @@
 - Removed duplicate meta place model lines in overview and todo.
 - Clarified planned stable-level intent profiler in overview.
 
+## 2025-07-24
+
+### Documentation
+- Explicitly note the commentary script is proprietary and not included.
+- Removed disabled commentary lines from cron and pipeline docs.
+- Cleaned `run_pipeline_with_venv.sh` of stale commentary references.
+

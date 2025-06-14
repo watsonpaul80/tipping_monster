@@ -633,3 +633,8 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Address PR feedback about duplicate meta place model description and clarify trainer intent profiler status.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
+
+## [2025-07-24] Document proprietary commentary script
+**Prompt:** State explicitly that the optional commentary script is proprietary and remove old pipeline references.
+**Files Changed:** Docs/monster_overview.md Docs/quickstart.md core/run_pipeline_with_venv.sh Docs/CHANGELOG.md codex_log.md
+**Outcome:** Docs note the missing proprietary script and pipeline steps no longer reference it.

@@ -57,12 +57,7 @@ echo "🧠 Running model inference..."
 echo "🔗 Merging tips with odds..."
 .venv/bin/python core/merge_odds_into_tips.py >> "$LOG_DIR/merge.log" 2>&1
 
-# 6. (Optional) Generate commentary
-# NOTE: The commentary script (`generate_commentary_bedrock.py`) is not included
-# in this repository. The call is disabled to avoid errors in the daily cron.
-# .venv/bin/python generate_commentary_bedrock.py >> "$LOG_DIR/commentary.log" 2>&1
-
-# 7. Dispatch tips to Telegram
+# 6. Dispatch tips to Telegram
 echo "🚀 Dispatching tips to Telegram..."
 TODAY=$(date +%F)
 DISPATCH_LOG="$LOG_DIR/dispatch/dispatch_${TODAY}.log"
