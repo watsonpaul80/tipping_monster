@@ -43,6 +43,7 @@ Set `TM_DEV_MODE=1` to suppress all Telegram sends and write to `logs/dev/` inst
 Running scripts with the `--dev` flag automatically sets `TM_DEV_MODE=1`.
 The `utils/safecron.sh` helper also respects this variable and will not send
 Telegram alerts when `TM_DEV_MODE=1`.
+See `telegram_alerts.md` for a full list of Telegram variables and the scripts that use them.
 
 You can copy `.env.example` to `.env` and fill in your credentials for local development.
 
