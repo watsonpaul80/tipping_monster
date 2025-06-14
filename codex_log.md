@@ -634,6 +634,11 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** Docs/monster_overview.md Docs/monster_todo.md Docs/CHANGELOG.md codex_log.md
 **Outcome:** Removed duplicate lines and updated overview bullet for planned stable-level profiler.
 
+## [2025-07-24] Format inference script
+**Prompt:** Run isort, black, and flake8 on run_inference_and_select_top1.py.
+**Files Changed:** core/run_inference_and_select_top1.py Docs/CHANGELOG.md codex_log.md
+**Outcome:** Imports sorted and file formatted. Tests and pre-commit pass.
+
 ## [2025-07-24] Ensure newline at end of init files
 **Prompt:** Append newlines to several `__init__.py` modules and rerun linting.
 **Files Changed:** cli/__init__.py core/__init__.py roi/__init__.py sniper/__init__.py utils/__init__.py Docs/CHANGELOG.md codex_log.md
@@ -680,3 +685,4 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Append trailing newline to select scripts and reformat.
 **Files Changed:** core/run_inference_and_select_top1.py model_drift_report.py roi/weekly_roi_summary.py Docs/CHANGELOG.md codex_log.md
 **Outcome:** Files end with newline and pass `black`, `isort`, and `flake8`.
+
