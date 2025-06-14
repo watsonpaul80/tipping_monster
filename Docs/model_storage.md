@@ -35,7 +35,8 @@ The inference script `run_inference_and_select_top1.py` automatically selects
 the most recent `tipping-monster-xgb-model-*.tar.gz` in the repository root. If
 no tarball is found, it exits with `FileNotFoundError: No model tarball found.
 Download one from S3 or run training.` When a path or S3 key is provided via
-`--model`, the script downloads that file if missing locally.
+`--model`, the file is downloaded if missing. The v8 ensemble workflow follows
+the same pattern with `models/monster_v8_stack.tar.gz`.
 
 
 Large model files are tracked with **Git LFS**. If you clone the repository with

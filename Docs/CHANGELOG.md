@@ -721,3 +721,20 @@
 ### Documentation
 - `Docs/monster_overview.md` lists `run_inference_monster_v8.py` and `compare_model_outputs.py` with usage notes.
 
+## 2025-07-19
+
+### Documentation
+- README and Quickstart highlight the experimental v8 training and inference scripts.
+- `Docs/model_storage.md` references `monster_v8_stack.tar.gz` tarball.
+- `Docs/README.md` lists `run_inference_monster_v8.py` as an included document.
+
+
+## 2025-07-20
+
+### Fixed
+- Restored missing helper functions in `core/run_inference_and_select_top1.py` so tests pass again.
+
+## 2025-07-21
+
+### Documentation
+- Added explicit command for `train_monster_model_v8.py` in README and Quickstart.

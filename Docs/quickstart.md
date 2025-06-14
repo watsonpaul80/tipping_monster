@@ -54,6 +54,11 @@ These times are detailed in `Docs/monster_overview.md`.
   `tipping-monster-xgb-model-*.tar.gz` in the repository root and downloads it
   from S3 if a path is provided. If no model is available, the script exits with
   `FileNotFoundError`.
+- **v8 Ensemble Training:** `core/train_monster_model_v8.py` builds the stacked
+  model and saves `models/monster_v8_stack.tar.gz`.
+- **v8 Ensemble Inference:** `core/run_inference_monster_v8.py` loads
+  `models/monster_v8_stack.tar.gz` (downloaded on demand) and writes
+  predictions to `predictions/<DATE>/output_v8.jsonl`.
 - **Important:** run this script from the **repository root**:
 
 ```bash
@@ -70,7 +75,7 @@ Running it while inside `core/` triggers a `ModuleNotFoundError` unless the repo
 1. **Read through `Docs/monster_overview.md`** to understand the full pipeline and feature set.
 2. **Consult `Docs/ops.md`** for cron schedules and log locations. Ready-to-use
    templates live in `cron/prod.crontab` and `cron/dev.crontab`.
-3. Explore the training (`core/train_model_v6.py`) and inference (`python -m core.run_inference_and_select_top1`) scripts to see how predictions are generated. If you run the inference script by path, ensure the repo root is on `PYTHONPATH` or use the module form above.
+3. Explore the training scripts (`core/train_model_v6.py` and the experimental `train_monster_model_v8.py`) and their matching inference commands (`python -m core.run_inference_and_select_top1` or `python -m core.run_inference_monster_v8`). If you run these by path, ensure the repo root is on `PYTHONPATH` or use the module form above.
 4. Review the ROI scripts (e.g., `roi/roi_tracker_advised.py`) and `roi/run_roi_pipeline.sh` to understand profit tracking.
 5. Check the TODO lists in `Docs/monster_todo.md` and `Docs/TIPPING_MONSTER_ROI_TODO.md` for future work items.
 6. Run `./utils/dev-check.sh` followed by `make test` to verify your setup.
