@@ -40,3 +40,5 @@ streamlit_pauls_view.py
 generate_rolling_roi.py
 public_dashboard.py
 simulate_staking.py
+ultimate_dashboard.py
+

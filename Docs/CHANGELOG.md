@@ -648,7 +648,13 @@
 
 ## 2025-07-17
 
-### Added
+### Adde
+
+- `ultimate_dashboard.py` provides a full-featured Streamlit dashboard with ROI trends, confidence heatmap and filters.
+
+### Changed
+- Dashboard now supports day-of-week filtering and shows top winners by profit, confidence and odds side by side.
+
 - ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
 
 ### Changed
@@ -667,4 +673,5 @@
 ### Documentation
 - Added `Docs/telegram_alerts.md` summarising Telegram environment variables and their usage.
 - `Docs/README.md` links to the new reference.
+
 

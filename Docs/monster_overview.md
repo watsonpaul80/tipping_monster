@@ -282,6 +282,8 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 * ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
+  * New `ultimate_dashboard.py` visualises ROI trends with filters and heatmaps.
+  * Added day-of-week filtering and split top winners by profit, confidence and odds.
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
