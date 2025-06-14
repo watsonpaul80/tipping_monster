@@ -277,6 +277,7 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 
 ### 🔜 v7 Features
 * ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* `generate_shap_explanations.py` exports tips_with_shap.jsonl
 * ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)

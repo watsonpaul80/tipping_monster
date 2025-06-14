@@ -522,3 +522,9 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** compare_model_outputs.py, Docs/quickstart.md, Docs/prod_setup_cheatsheet.md, Docs/monster_overview.md, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** New script outputs CSV of v6 vs v7 tips with SHAP summaries.
 
+## [2025-07-17] Add SHAP explanations script
+**Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
+**Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
+
+
