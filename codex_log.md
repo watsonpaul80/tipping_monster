@@ -517,3 +517,8 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-17] Use TemporaryDirectory for model tar extraction
+**Prompt:** Ensure temporary folders for ensemble tarballs are cleaned up automatically.
+**Files Changed:** core/run_inference_and_select_top1.py, model_feature_importance.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Model loading now unpacks to a context-managed temp directory that is removed after use.
+

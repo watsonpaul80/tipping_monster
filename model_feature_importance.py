@@ -33,11 +33,15 @@ def load_model(model_path: str) -> tuple[xgb.XGBClassifier, list[str]]:
     containing `tipping-monster-xgb-model.bst` and `features.json`.
     """
     if model_path.endswith(".tar.gz"):
-        tmpdir = tempfile.mkdtemp()
-        with tarfile.open(model_path, "r:gz") as tar:
-            tar.extractall(tmpdir)
-        model_file = Path(tmpdir) / "tipping-monster-xgb-model.bst"
-        features_file = Path(tmpdir) / "features.json"
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with tarfile.open(model_path, "r:gz") as tar:
+                tar.extractall(tmpdir)
+            model_file = Path(tmpdir) / "tipping-monster-xgb-model.bst"
+            features_file = Path(tmpdir) / "features.json"
+            model = load_xgb_model(str(model_file))
+            with open(features_file) as f:
+                features = json.load(f)
+            return model, features
     else:
         data = Path(model_path).read_bytes()
         cleaned = model_path

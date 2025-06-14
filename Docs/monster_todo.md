@@ -224,4 +224,7 @@ pt
 108. ✅ Document `TG_BOT_TOKEN` / `TG_USER_ID` env vars and mention safecron
      failure alerts [Done: 2025-07-15]
 
+109. ✅ Model tarball extraction cleaned up with `TemporaryDirectory`
+     [Done: 2025-07-17]
+
 
