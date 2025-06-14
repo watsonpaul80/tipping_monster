@@ -517,6 +517,10 @@ error. Added tests for failing responses and documented in changelog.
 **Files Changed:** generate_combos.py, tests/test_generate_combos.py, Docs/CHANGELOG.md, Docs/monster_overview.md, codex_log.md
 **Outcome:** Combo messages now display full race details and are stored in daily ROI logs when sent.
 
+## [2025-07-17] Use TemporaryDirectory for model tar extraction
+**Prompt:** Ensure temporary folders for ensemble tarballs are cleaned up automatically.
+**Files Changed:** core/run_inference_and_select_top1.py, model_feature_importance.py, Docs/CHANGELOG.md, Docs/monster_todo.md, codex_log.md
+**Outcome:** Model loading now unpacks to a context-managed temp directory that is removed after use.
 
 ## [2025-07-17] Check run_inference_monster_v8 script
 **Prompt:** Update `core/run_inference_monster_v8.py` to use kebab-case meta filenames.
@@ -562,4 +566,5 @@ error. Added tests for failing responses and documented in changelog.
 **Prompt:** Create `generate_shap_explanations.py` to attach per-tip SHAP data.
 **Files Changed:** generate_shap_explanations.py, Docs/CHANGELOG.md, Docs/monster_overview.md, Docs/monster_todo.md, codex_log.md
 **Outcome:** Tips can now be enriched with top 5 SHAP features saved to `tips_with_shap.jsonl`.
+
 

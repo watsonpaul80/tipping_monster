@@ -223,55 +223,55 @@ def main() -> None:
         download_if_missing(bucket, model_arg, local_model_file)
         model_path = local_model_file
 
-    model_dir = tempfile.mkdtemp()
-    with tarfile.open(model_path, "r:gz") as tar:
-        tar.extractall(model_dir)
+    with tempfile.TemporaryDirectory() as model_dir:
+        with tarfile.open(model_path, "r:gz") as tar:
+            tar.extractall(model_dir)
 
-    model_file = os.path.join(model_dir, "tipping-monster-xgb-model.bst")
-    features_file = os.path.join(model_dir, "features.json")
+        model_file = os.path.join(model_dir, "tipping-monster-xgb-model.bst")
+        features_file = os.path.join(model_dir, "features.json")
 
-    model = xgb.XGBClassifier()
-    model.load_model(model_file)
+        model = xgb.XGBClassifier()
+        model.load_model(model_file)
 
-    with open(input_path) as f:
-        rows = [json.loads(line) for line in f]
-    df = pd.DataFrame(rows)
+        with open(input_path) as f:
+            rows = [json.loads(line) for line in f]
+        df = pd.DataFrame(rows)
 
-    model_features = list(df.columns)
-    if os.path.exists(features_file):
-        with open(features_file) as f:
-            model_features = json.load(f)
+        model_features = list(df.columns)
+        if os.path.exists(features_file):
+            with open(features_file) as f:
+                model_features = json.load(f)
 
-    missing = [f for f in model_features if f not in df.columns]
-    if missing:
-        print(f"❌ Feature mismatch. Missing: {missing}")
-        sys.exit(1)
+        missing = [f for f in model_features if f not in df.columns]
+        if missing:
+            print(f"❌ Feature mismatch. Missing: {missing}")
+            sys.exit(1)
 
-    X = df[model_features]
-    X = X.apply(pd.to_numeric, errors="coerce").fillna(-1)
+        X = df[model_features]
+        X = X.apply(pd.to_numeric, errors="coerce").fillna(-1)
 
-    df["confidence"] = model.predict_proba(X)[:, 1]
-    top_tips = df.sort_values("confidence", ascending=False).groupby("race").head(1)
+        df["confidence"] = model.predict_proba(X)[:, 1]
+        top_tips = df.sort_values("confidence", ascending=False).groupby("race").head(1)
 
-    top_tips["sort_key"] = top_tips["race"].apply(extract_race_sort_key)
-    top_tips = top_tips.sort_values("sort_key").drop(columns="sort_key")
+        top_tips["sort_key"] = top_tips["race"].apply(extract_race_sort_key)
+        top_tips = top_tips.sort_values("sort_key").drop(columns="sort_key")
 
-    combined_results_df = load_combined_results()
-    today_date = datetime.today().date()
+        combined_results_df = load_combined_results()
+        today_date = datetime.today().date()
 
-    with open(output_path, "w") as f:
-        max_conf = top_tips["confidence"].max()
-        for row in top_tips.to_dict(orient="records"):
-            row["last_class"] = get_last_class(
-                row["name"], today_date, combined_results_df
-            )
-            row["global_max_confidence"] = max_conf
-            row["tags"] = generate_tags(row)
-            row["commentary"] = generate_reason(row)
-            row_safe = make_json_safe(row)
-            f.write(orjson.dumps(row_safe).decode() + "\n")
+        with open(output_path, "w") as f:
+            max_conf = top_tips["confidence"].max()
+            for row in top_tips.to_dict(orient="records"):
+                row["last_class"] = get_last_class(
+                    row["name"], today_date, combined_results_df
+                )
+                row["global_max_confidence"] = max_conf
+                row["tags"] = generate_tags(row)
+                row["commentary"] = generate_reason(row)
+                row_safe = make_json_safe(row)
+                f.write(orjson.dumps(row_safe).decode() + "\n")
 
-    print(f"Saved {len(top_tips)} top tips to {output_path}")
+        print(f"Saved {len(top_tips)} top tips to {output_path}")
 
     if os.getenv("TM_DEV_MODE") == "1":
         print(f"[DEV] Skipping S3 upload of {output_path}")

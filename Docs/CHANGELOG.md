@@ -646,6 +646,13 @@
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-17
+
+### Changed
+- Model tarball extraction now uses `tempfile.TemporaryDirectory` so temporary
+  folders are cleaned up automatically.
+
+=======
 ## 2025-07-16
 
 ### Added
