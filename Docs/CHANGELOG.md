@@ -646,6 +646,14 @@
 ### Changed
 - Combo messages include race time, course and odds for each runner.
 
+## 2025-07-17
+
+### Added
+- ROI tracker logs drawdown streak metrics (`logs/drawdown_stats.csv`).
+
+### Changed
+- Daily ROI summary shows current losing run, longest streak and max drawdown.
+
 
 
 ## 2025-07-17
