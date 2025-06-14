@@ -53,11 +53,17 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 27. ✅ Parallel model comparison (v6 vs v7) *(2025-06-08)*
 28. ✅ Drawdown tracking in ROI logs *(Done: 2025-06-08)*
 
+29. ✅ Drawdown streak metrics logged *(Done: 2025-07-17)*
+=======
+29. ✅ Output comparison script `compare_model_outputs.py` *(Done: 2025-07-16)*
+
+
 ---
 
 ## 🔭 STRATEGIC ENHANCEMENTS (v8+ & BEYOND)
 
 29. ✅ Place-focused model (predict 1st–3rd) *(Done: 2025-06-21)*
+
 30. Confidence regression model (predict prob, not binary)
 31. ✅ Stacked ensemble model (CatBoost + XGB + MLP) *(Done: 2025-07-16, SHAP logging 2025-07-16)*
 32. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
@@ -69,6 +75,18 @@ A living roadmap of every feature, fix, and dream for the Tipping Monster system
 38. Invite-only Telegram access logic
 39. Visual dashboards (Streamlit / HTML)
 40. Monetisation hooks (Stripe, Patreon, etc.)
+
+30. Confidence regression model (predict prob, not binary)  
+31. ✅ ROI-based calibration (not just accuracy) *(2025-06-08)*
+32. ✅ Penalise stale horses and poor form *(Done: 2025-06-25)*
+33. ✅ Add weekly ROI line chart (matplotlib) to logs *(Done: 2025-06-26)*
+34. Include win/loss emoji outcomes in Telegram ROI  
+35. Optional: highlight top winners in Telegram  
+36. NAP-only output mode for casual tier  
+37. Invite-only Telegram access logic  
+38. ✅ Visual dashboards (Streamlit / HTML) *(Done: 2025-07-17)*
+39. Monetisation hooks (Stripe, Patreon, etc.)
+
 
 ---
 
@@ -226,3 +244,4 @@ pt
      failure alerts [Done: 2025-07-15]
 
 
+109. ✅ SHAP explanations script generates tips_with_shap.jsonl [Done: 2025-07-17]

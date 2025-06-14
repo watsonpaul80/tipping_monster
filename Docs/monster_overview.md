@@ -40,6 +40,7 @@ These core functionalities are currently **deployed and operating seamlessly** w
 * ✅ Each-Way Profit Logic: Accurate Each-Way profit calculation based on fluctuating odds
 * ✅ Financial Tracking: Comprehensive bankroll tracker with detailed CSV logs
 * ✅ Drawdown Metrics: Daily and weekly ROI logs show bankroll and worst drawdown
+* ✅ Drawdown Streaks: Tracker logs longest losing run and max DD in `drawdown_stats.csv`
 * ✅ Tip Summaries: Automated creation of `tips_summary.txt` files
 * ✅ Matching Accuracy: Enhanced fuzzy horse name matching and time alignment for precise result linking
 
@@ -278,12 +279,16 @@ feedback loop continually refines accuracy and keeps the weekly insights fresh.
 
 ### 🔜 v7 Features
 * ✅ SHAP-based tip explanations implemented via `dispatch_tips.py --explain`
+* `generate_shap_explanations.py` exports tips_with_shap.jsonl
 * ✅ Confidence band filtering (Activate suppression logic based on band ROI performance)
 * Premium tip tagging logic (Tag top 3 per day as Premium Tips)
 * Dashboard enhancements (Visual dashboards - Streamlit / HTML)
+  * New `ultimate_dashboard.py` visualises ROI trends with filters and heatmaps.
+  * Added day-of-week filtering and split top winners by profit, confidence and odds.
 * Tag-based ROI (ROI breakdown by confidence band, tip type, and tag)
 * ✅ Logic-based commentary blocks (e.g., "📉 Class Drop, 📈 In Form, Conf: 92%")
 * ✅ Parallel model comparison (v6 vs v7)
+* ✅ Output comparison tool `compare_model_outputs.py` to inspect tip differences
 * ✅ Drawdown tracking in ROI logs
 
 ### 🔭 v8+ Expansion (Strategic)
