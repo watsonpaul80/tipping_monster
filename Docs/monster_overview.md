@@ -95,6 +95,7 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `train_monster_model_v8.py`: Stacked ensemble training (CatBoost, XGBoost, Keras MLP + logistic meta) with SHAP export and model identity metadata.
 
 * `python -m core.run_inference_and_select_top1`: Uses the model to predict a winner per race with confidence scores. Run it from the repo root (or add the repo root to `PYTHONPATH`) so it can locate the `core` package.
+* `run_inference_monster_v8.py`: Entry point for the v8 model. Provide a flattened racecard JSONL via `--input` and it saves predictions under `predictions/`.
 * `core/merge_odds_into_tips.py`: Adds price info to each runner in the tip file.
 * `core/dispatch_tips.py`: Outputs NAPs, best bets, and high confidence runners into a formatted Telegram message.
 * `core/dispatch_all_tips.py`: Sends every generated tip for a day. Use `--telegram` to post to Telegram and `--batch-size` to control how many tips per message (ensure `TG_USER_ID` is set).
@@ -111,8 +112,12 @@ Scripts are grouped under `core/` and `roi/` directories for clarity.
 * `core/trainer_stable_profile.py`: Computes 30-day win rate and ROI per trainer.
 * `trainer_intent_profiler.py`: Adds stable-form tags to tips based on recent performance.
 * `check_tip_sanity.py`: Warns if the latest sent tips have low confidence or missing odds/stake.
+
+* `compare_model_outputs.py`: Runs two model tarballs on the same racecards and writes `logs/compare_model_outputs.csv` for inspection.
+
 * `run_inference_monster_v8.py`: Runs the experimental v8 model and outputs tips with confidence scores.
 * `compare_model_outputs.py`: Produces side-by-side comparisons of model predictions and ROI.
+
 
 ---
 
